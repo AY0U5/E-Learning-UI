@@ -1,0 +1,84 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'packStudent.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'packStudent.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'packStudent.nombreCours' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="1" [disabled]="true" placeholder="{{'packStudent.nombreCours' | translate}}" [ngModel]="item.nombreCours"></p-inputNumber>
+                    </div>
+                    <div class="field align-inputswitch col-12  md:col-6">
+                        <div  class="label-inputswitch">
+                            <label for="2">{{'packStudent.forGroupe' | translate}}</label>
+                        </div>
+                        <div class="input-switch">
+                            <p-inputSwitch id="2"  [disabled]="true" [ngModel]="item.forGroupe"></p-inputSwitch>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'packStudent.code' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.code' | translate}}" autofocus  id="3" [ngModel]="item.code">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'packStudent.libelle' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.libelle' | translate}}" autofocus  id="4" [ngModel]="item.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'packStudent.description' | translate}}</label>
+                        <textarea id="5" pInputTextarea rows="5" cols="30" [disabled]="true" placeholder="{{'packStudent.description' | translate}}"  [ngModel]="item.description"></textarea>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'packStudent.preRequisites' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.preRequisites' | translate}}" autofocus  id="6" [ngModel]="item.preRequisites">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="7">{{'packStudent.whyTakeThisCourse' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.whyTakeThisCourse' | translate}}" autofocus  id="7" [ngModel]="item.whyTakeThisCourse">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="8">{{'packStudent.expectations' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.expectations' | translate}}" autofocus  id="8" [ngModel]="item.expectations">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="9">{{'packStudent.parcours' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.parcours' | translate}}" autofocus  id="9" [ngModel]="item.parcours?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="10">{{'packStudent.imgUrl' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.imgUrl' | translate}}" autofocus  id="10" [ngModel]="item.imgUrl">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="11">{{'packStudent.price' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.price' | translate}}" autofocus  id="11" [ngModel]="item.price?.lib">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="12">{{'packStudent.totalStudents' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="12" [disabled]="true" placeholder="{{'packStudent.totalStudents' | translate}}" [ngModel]="item.totalStudents"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="13">{{'packStudent.rating' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.rating' | translate}}" autofocus  id="13" [ngModel]="item.rating">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="14">{{'packStudent.oldPrice' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'packStudent.oldPrice' | translate}}" autofocus  id="14" [ngModel]="item.oldPrice">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

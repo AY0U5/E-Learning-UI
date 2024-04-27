@@ -1,0 +1,44 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'typeHomeWork.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'typeHomeWork.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'typeHomeWork.code' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'typeHomeWork.code' | translate}}" id="1" [(ngModel)]="item.code"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validTypeHomeWorkCode}"  />
+                                                    <small class='p-error' *ngIf='!validTypeHomeWorkCode'>Code est obligatoire.</small>
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="2">{{'typeHomeWork.lib' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'typeHomeWork.lib' | translate}}" id="2" [(ngModel)]="item.lib"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validTypeHomeWorkLib}"  />
+                                                    <small class='p-error' *ngIf='!validTypeHomeWorkLib'>Lib est obligatoire.</small>
+                                                </div>
+
+
+
+                                </div>
+                            </p-tabPanel>
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-flexbox">
+
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="save()"></button>
+
+
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+
+
+                </div>
+            </ng-template>
+
+    </p-dialog>

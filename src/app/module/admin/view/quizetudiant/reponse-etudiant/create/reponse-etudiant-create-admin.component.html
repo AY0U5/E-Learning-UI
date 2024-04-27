@@ -1,0 +1,75 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'reponseEtudiant.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'reponseEtudiant.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'reponseEtudiant.ref' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'reponseEtudiant.ref' | translate}}" id="1" [(ngModel)]="item.ref"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validReponseEtudiantRef}"  />
+                                                    <small class='p-error' *ngIf='!validReponseEtudiantRef'>Ref est obligatoire.</small>
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="2">{{'reponseEtudiant.reponse' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="reponses" [(ngModel)]="item.reponse" id="2" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="lib" placeholder="{{'reponseEtudiant.reponse' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="3">{{'reponseEtudiant.answer' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'reponseEtudiant.answer' | translate}}" id="3" [(ngModel)]="item.answer"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="4">{{'reponseEtudiant.quizEtudiant' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="quizEtudiants" [(ngModel)]="item.quizEtudiant" id="4" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="ref" placeholder="{{'reponseEtudiant.quizEtudiant' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="5">{{'reponseEtudiant.note' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="5" placeholder="{{'reponseEtudiant.note' | translate}}" [(ngModel)]="item.note"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="6">{{'reponseEtudiant.question' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="questions" [(ngModel)]="item.question" id="6" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'reponseEtudiant.question' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                </div>
+                            </p-tabPanel>
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-flexbox">
+
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="save()"></button>
+
+
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+
+
+                </div>
+            </ng-template>
+
+    </p-dialog>

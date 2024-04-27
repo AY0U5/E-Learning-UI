@@ -1,0 +1,148 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'packStudent.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'packStudent.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'packStudent.nombreCours' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="1" placeholder="{{'packStudent.nombreCours' | translate}}" [(ngModel)]="item.nombreCours"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field align-inputswitch col-12  md:col-6">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="2">{{'packStudent.forGroupe' | translate}}</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="2"  [(ngModel)]="item.forGroupe"
+                                                                 >
+                                                        </p-inputSwitch>
+                                                        
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="3">{{'packStudent.code' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'packStudent.code' | translate}}" id="3" [(ngModel)]="item.code"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validPackStudentCode}"  />
+                                                    <small class='p-error' *ngIf='!validPackStudentCode'>Code est obligatoire.</small>
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="4">{{'packStudent.libelle' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'packStudent.libelle' | translate}}" id="4" [(ngModel)]="item.libelle"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validPackStudentLibelle}"  />
+                                                    <small class='p-error' *ngIf='!validPackStudentLibelle'>Libelle est obligatoire.</small>
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="5">{{'packStudent.description' | translate}}</label>
+                                                    <textarea id="5" pInputTextarea rows="5" cols="30" placeholder="{{'packStudent.description' | translate}}"  [(ngModel)]="item.description"
+                                                             ></textarea>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="6">{{'packStudent.preRequisites' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'packStudent.preRequisites' | translate}}" id="6" [(ngModel)]="item.preRequisites"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="7">{{'packStudent.whyTakeThisCourse' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'packStudent.whyTakeThisCourse' | translate}}" id="7" [(ngModel)]="item.whyTakeThisCourse"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="8">{{'packStudent.expectations' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'packStudent.expectations' | translate}}" id="8" [(ngModel)]="item.expectations"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="9">{{'packStudent.parcours' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="parcourss" [(ngModel)]="item.parcours" id="9" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'packStudent.parcours' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="10">{{'packStudent.imgUrl' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'packStudent.imgUrl' | translate}}" id="10" [(ngModel)]="item.imgUrl"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="11">{{'packStudent.price' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="prices" [(ngModel)]="item.price" id="11" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="lib" placeholder="{{'packStudent.price' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="12">{{'packStudent.totalStudents' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="12" placeholder="{{'packStudent.totalStudents' | translate}}" [(ngModel)]="item.totalStudents"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="13">{{'packStudent.rating' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'packStudent.rating' | translate}}" id="13" [(ngModel)]="item.rating"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="14">{{'packStudent.oldPrice' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'packStudent.oldPrice' | translate}}" id="14" [(ngModel)]="item.oldPrice"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                </div>
+                            </p-tabPanel>
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-flexbox">
+
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="save()"></button>
+
+
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+
+
+                </div>
+            </ng-template>
+
+    </p-dialog>

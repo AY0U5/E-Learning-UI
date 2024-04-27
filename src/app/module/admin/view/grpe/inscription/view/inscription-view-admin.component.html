@@ -1,0 +1,104 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'inscription.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'inscription.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'inscription.numeroInscription' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="1" [disabled]="true" placeholder="{{'inscription.numeroInscription' | translate}}" [ngModel]="item.numeroInscription"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'inscription.etudiant' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.etudiant' | translate}}" autofocus  id="2" [ngModel]="item.etudiant?.ref">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'inscription.etatInscription' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.etatInscription' | translate}}" autofocus  id="3" [ngModel]="item.etatInscription?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'inscription.parcours' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.parcours' | translate}}" autofocus  id="4" [ngModel]="item.parcours?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'inscription.groupeEtude' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.groupeEtude' | translate}}" autofocus  id="5" [ngModel]="item.groupeEtude?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'inscription.groupeType' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.groupeType' | translate}}" autofocus  id="6" [ngModel]="item.groupeType?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="7">{{'inscription.statutSocial' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.statutSocial' | translate}}" autofocus  id="7" [ngModel]="item.statutSocial?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="8">{{'inscription.interetEtudiant' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.interetEtudiant' | translate}}" autofocus  id="8" [ngModel]="item.interetEtudiant?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="9">{{'inscription.niveauEtude' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.niveauEtude' | translate}}" autofocus  id="9" [ngModel]="item.niveauEtude?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="10">{{'inscription.fonction' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.fonction' | translate}}" autofocus  id="10" [ngModel]="item.fonction?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="11">{{'inscription.quiz' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.quiz' | translate}}" autofocus  id="11" [ngModel]="item.quiz?.lib">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="12">{{'inscription.noteQuizNiveau' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="12" [disabled]="true" placeholder="{{'inscription.noteQuizNiveau' | translate}}" [ngModel]="item.noteQuizNiveau"></p-inputNumber>
+                    </div>
+                    <div class="field align-inputswitch col-12  md:col-6">
+                        <div  class="label-inputswitch">
+                            <label for="13">{{'inscription.quizFinished' | translate}}</label>
+                        </div>
+                        <div class="input-switch">
+                            <p-inputSwitch id="13"  [disabled]="true" [ngModel]="item.quizFinished"></p-inputSwitch>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="14">{{'inscription.dateRegistration' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.dateRegistration' | translate}}" autofocus  id="14" [ngModel]="item.dateRegistration">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="15">{{'inscription.datedebutinscription' | translate}}</label>
+                        <p-calendar id="15" [disabled]="true"  [showTime]="true" [showSeconds]="false" placeholder="{{'inscription.datedebutinscription' | translate}}"  [ngModel]="item.datedebutinscription" dateFormat="{{dateFormat}}"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="16">{{'inscription.datefininscription' | translate}}</label>
+                        <p-calendar id="16" [disabled]="true"  [showTime]="true" [showSeconds]="false" placeholder="{{'inscription.datefininscription' | translate}}"  [ngModel]="item.datefininscription" dateFormat="{{dateFormat}}"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="17">{{'inscription.packStudent' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.packStudent' | translate}}" autofocus  id="17" [ngModel]="item.packStudent?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="18">{{'inscription.skill' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.skill' | translate}}" autofocus  id="18" [ngModel]="item.skill?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="19">{{'inscription.skype' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'inscription.skype' | translate}}" autofocus  id="19" [ngModel]="item.skype">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

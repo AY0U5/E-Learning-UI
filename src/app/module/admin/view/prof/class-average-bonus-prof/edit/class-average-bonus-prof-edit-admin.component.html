@@ -1,0 +1,56 @@
+    <p-dialog [(visible)]="editDialog" [style]="{width: '70vw'}" header="{{'classAverageBonusProf.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+        <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="{{'classAverageBonusProf.tabPan' | translate}}">
+                        <div class="grid">
+
+                                    <div class="field col-11 md:col-6">
+                                        <label for="1">{{'classAverageBonusProf.prof' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="profs" [(ngModel)]="item.prof" id="1" [filter]="true" filterMatchMode="contains"
+                                                     [showClear]="true" optionLabel="ref" placeholder="{{'classAverageBonusProf.prof' | translate}}"  >
+                                        </p-dropdown>
+                                        
+                                    </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="2">{{'classAverageBonusProf.mois' | translate}}</label>
+                                            <p-inputNumber class="mb-2 mr-2" id="2" placeholder="{{'classAverageBonusProf.mois' | translate}}" [(ngModel)]="item.mois"  >
+                                            </p-inputNumber>
+                                            
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="3">{{'classAverageBonusProf.annee' | translate}}</label>
+                                            <p-inputNumber class="mb-2 mr-2" id="3" placeholder="{{'classAverageBonusProf.annee' | translate}}" [(ngModel)]="item.annee"  >
+                                            </p-inputNumber>
+                                            
+                                        </div>
+
+                                    <div class="field col-11 md:col-6">
+                                        <label for="4">{{'classAverageBonusProf.salary' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="salarys" [(ngModel)]="item.salary" id="4" [filter]="true" filterMatchMode="contains"
+                                                     [showClear]="true" optionLabel="code" placeholder="{{'classAverageBonusProf.salary' | translate}}"  >
+                                        </p-dropdown>
+                                        
+                                    </div>
+
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+        </ng-template>
+
+        <ng-template pTemplate="footer" >
+            <div class="p-flexbox">
+
+                    <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="edit()"></button>
+
+
+                        <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideEditDialog()"></button>
+
+
+            </div>
+        </ng-template>
+
+    </p-dialog>

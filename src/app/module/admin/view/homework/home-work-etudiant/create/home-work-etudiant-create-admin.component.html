@@ -1,0 +1,144 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'homeWorkEtudiant.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'homeWorkEtudiant.tabPan' | translate}}">
+                                <div class="grid">
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="1">{{'homeWorkEtudiant.etudiant' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="etudiants" [(ngModel)]="item.etudiant" id="1" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="ref" placeholder="{{'homeWorkEtudiant.etudiant' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="2">{{'homeWorkEtudiant.homeWork' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="homeWorks" [(ngModel)]="item.homeWork" id="2" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'homeWorkEtudiant.homeWork' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="4">{{'homeWorkEtudiant.note' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="4" placeholder="{{'homeWorkEtudiant.note' | translate}}" [(ngModel)]="item.note"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="5">{{'homeWorkEtudiant.resultat' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'homeWorkEtudiant.resultat' | translate}}" id="5" [(ngModel)]="item.resultat"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="6">{{'homeWorkEtudiant.dateHomeWork' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="6"  [showTime]="true" [showSeconds]="false" placeholder="{{'homeWorkEtudiant.dateHomeWork' | translate}}"  [(ngModel)]="item.dateHomeWork"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                </div>
+                            </p-tabPanel>
+                                    <p-tabPanel header="{{'homeWorkEtudiant.reponseEtudiantHomeWorks' | translate}}">
+                                        <p-tabView [(activeIndex)]="activeTab">
+                                            <p-tabPanel header="Création">
+                                                    <div class="grid">
+                                                                    <div class="field col-11 md:col-6">
+                                                                        <label>Howe work q s t reponse</label>
+                                                                        <p-dropdown  appendTo="body"  [options]="howeWorkQSTReponses" [(ngModel)]="reponseEtudiantHomeWorksElement.howeWorkQSTReponse"
+                                                                                     id="1"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="lib"
+                                                                                     placeholder="Howe work q s t reponse"  >
+                                                                        </p-dropdown>
+                                                                        
+                                                                    </div>
+
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="2">Answer</label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Answer"
+                                                                               id="2" [(ngModel)]="reponseEtudiantHomeWorksElement.answer" autofocus   >
+                                                                        
+                                                                    </div>
+                                                                    <div class="field col-11 md:col-6">
+                                                                        <label>Home work question</label>
+                                                                        <p-dropdown  appendTo="body"  [options]="homeWorkQuestions" [(ngModel)]="reponseEtudiantHomeWorksElement.homeWorkQuestion"
+                                                                                     id="4"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="libelle"
+                                                                                     placeholder="Home work question"  >
+                                                                        </p-dropdown>
+                                                                        
+                                                                    </div>
+
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="5">Prof note</label>
+                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Prof note"
+                                                                               id="5" [(ngModel)]="reponseEtudiantHomeWorksElement.profNote" autofocus   >
+                                                                        
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="6">Note</label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="note" placeholder="Note"  [(ngModel)]="reponseEtudiantHomeWorksElement.note"></p-inputNumber>
+                                                                        
+                                                                    </div>
+                                                        <div class="field col-12 md:col-1">
+                                                            <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addReponseEtudiantHomeWorks()"></button>
+                                                        </div>
+
+                                                    </div>
+                                            </p-tabPanel>
+                                            <p-tabPanel header="Liste {{item.reponseEtudiantHomeWorks?.length > 0 ? '(' + item.reponseEtudiantHomeWorks?.length + ')' : ''}}">
+                                                    <div class="card">
+                                                        <p-table [value]="item.reponseEtudiantHomeWorks" [scrollable]="true" scrollHeight="200px">
+                                                            <ng-template pTemplate="header">
+                                                                <tr>
+                                                                                <th>Howe work q s t reponse</th>
+                                                                                <th>Answer</th>
+                                                                                <th>Home work question</th>
+                                                                                <th>Prof note</th>
+                                                                                <th>Note</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </ng-template>
+                                                            <ng-template pTemplate="body" let-p>
+                                                                <tr>
+                                                                            <td>{{p.howeWorkQSTReponse?.lib}}</td>
+                                                                                <td>{{p.answer}}</td>
+                                                                            <td>{{p.homeWorkQuestion?.libelle}}</td>
+                                                                                <td>{{p.profNote}}</td>
+                                                                                <td>{{p.note}}</td>
+                                                                    <td>
+                                                                        <button (click)="deleteReponseEtudiantHomeWorks(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
+                                                                        <button (click)="editReponseEtudiantHomeWorks(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-template>
+                                                        </p-table>
+                                                    </div>
+
+                                            </p-tabPanel>
+                                        </p-tabView>
+                                    </p-tabPanel>
+
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-flexbox">
+
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="save()"></button>
+
+
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+
+
+                </div>
+            </ng-template>
+
+    </p-dialog>

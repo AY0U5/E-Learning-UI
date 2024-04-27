@@ -1,0 +1,56 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'sectionItem.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'sectionItem.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'sectionItem.imageUrl' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'sectionItem.imageUrl' | translate}}" autofocus  id="1" [ngModel]="item.imageUrl">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'sectionItem.response' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'sectionItem.response' | translate}}" autofocus  id="2" [ngModel]="item.response">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'sectionItem.transcription' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'sectionItem.transcription' | translate}}" autofocus  id="3" [ngModel]="item.transcription">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'sectionItem.translation' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'sectionItem.translation' | translate}}" autofocus  id="4" [ngModel]="item.translation">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'sectionItem.explanation' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'sectionItem.explanation' | translate}}" autofocus  id="5" [ngModel]="item.explanation">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'sectionItem.example' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'sectionItem.example' | translate}}" autofocus  id="6" [ngModel]="item.example">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="7">{{'sectionItem.synonyms' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'sectionItem.synonyms' | translate}}" autofocus  id="7" [ngModel]="item.synonyms">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="8">{{'sectionItem.section' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'sectionItem.section' | translate}}" autofocus  id="8" [ngModel]="item.section?.code">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

@@ -1,0 +1,64 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'freeTrialformule.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'freeTrialformule.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'freeTrialformule.code' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialformule.code' | translate}}" autofocus  id="1" [ngModel]="item.code">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'freeTrialformule.inscription' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialformule.inscription' | translate}}" autofocus  id="2" [ngModel]="item.inscription?.id">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'freeTrialformule.dayspeerweek' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialformule.dayspeerweek' | translate}}" autofocus  id="3" [ngModel]="item.dayspeerweek">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'freeTrialformule.timeperday' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialformule.timeperday' | translate}}" autofocus  id="4" [ngModel]="item.timeperday">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'freeTrialformule.teacherGenderoption' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialformule.teacherGenderoption' | translate}}" autofocus  id="5" [ngModel]="item.teacherGenderoption">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'freeTrialformule.teacherAgeRange' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialformule.teacherAgeRange' | translate}}" autofocus  id="6" [ngModel]="item.teacherAgeRange">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="7">{{'freeTrialformule.teacherPersonnality' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialformule.teacherPersonnality' | translate}}" autofocus  id="7" [ngModel]="item.teacherPersonnality">
+                    </div>
+                    <div class="field align-inputswitch col-12  md:col-6">
+                        <div  class="label-inputswitch">
+                            <label for="8">{{'freeTrialformule.status' | translate}}</label>
+                        </div>
+                        <div class="input-switch">
+                            <p-inputSwitch id="8"  [disabled]="true" [ngModel]="item.status"></p-inputSwitch>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="9">{{'freeTrialformule.dateConfirmation' | translate}}</label>
+                        <p-calendar id="9" [disabled]="true"  [showTime]="true" [showSeconds]="false" placeholder="{{'freeTrialformule.dateConfirmation' | translate}}"  [ngModel]="item.dateConfirmation" dateFormat="{{dateFormat}}"></p-calendar>
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

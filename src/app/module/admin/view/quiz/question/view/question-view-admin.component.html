@@ -1,0 +1,90 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'question.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'question.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'question.ref' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'question.ref' | translate}}" autofocus  id="1" [ngModel]="item.ref">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'question.libelle' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'question.libelle' | translate}}" autofocus  id="2" [ngModel]="item.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'question.urlImg' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'question.urlImg' | translate}}" autofocus  id="3" [ngModel]="item.urlImg">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'question.urlVideo' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'question.urlVideo' | translate}}" autofocus  id="4" [ngModel]="item.urlVideo">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'question.numero' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="5" [disabled]="true" placeholder="{{'question.numero' | translate}}" [ngModel]="item.numero"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'question.pointReponseJuste' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="6" [disabled]="true" placeholder="{{'question.pointReponseJuste' | translate}}" [ngModel]="item.pointReponseJuste"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="7">{{'question.pointReponsefausse' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="7" [disabled]="true" placeholder="{{'question.pointReponsefausse' | translate}}" [ngModel]="item.pointReponsefausse"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="8">{{'question.typeDeQuestion' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'question.typeDeQuestion' | translate}}" autofocus  id="8" [ngModel]="item.typeDeQuestion?.lib">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="10">{{'question.quiz' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'question.quiz' | translate}}" autofocus  id="10" [ngModel]="item.quiz?.lib">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="11">{{'question.homeWork' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'question.homeWork' | translate}}" autofocus  id="11" [ngModel]="item.homeWork?.libelle">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="{{'question.reponses' | translate}}">
+                <div class="grid">
+                    <div class="col">
+                        <div class="card">
+                            <p-table [value]="item.reponses" [scrollable]="true" scrollHeight="200px">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Ref</th>
+                                        <th>Lib</th>
+                                        <th>Etat reponse</th>
+                                        <th>Numero</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-p>
+                                    <tr>
+                                        <td>{{p.ref}}</td>
+                                        <td>{{p.lib}}</td>
+                                        <td>{{p.etatReponse}}</td>
+                                        <td>{{p.numero}}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

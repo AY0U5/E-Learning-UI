@@ -1,0 +1,129 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'sessionCours.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'sessionCours.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'sessionCours.reference' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'sessionCours.reference' | translate}}" id="1" [(ngModel)]="item.reference"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validSessionCoursReference}"  />
+                                                    <small class='p-error' *ngIf='!validSessionCoursReference'>Reference est obligatoire.</small>
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="2">{{'sessionCours.prof' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="profs" [(ngModel)]="item.prof" id="2" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="ref" placeholder="{{'sessionCours.prof' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="3">{{'sessionCours.cours' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="courss" [(ngModel)]="item.cours" id="3" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'sessionCours.cours' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="4">{{'sessionCours.groupeEtudiant' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="groupeEtudiants" [(ngModel)]="item.groupeEtudiant" id="4" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="id" placeholder="{{'sessionCours.groupeEtudiant' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="5">{{'sessionCours.duree' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="5" placeholder="{{'sessionCours.duree' | translate}}" [(ngModel)]="item.duree"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="6">{{'sessionCours.totalheure' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="6" placeholder="{{'sessionCours.totalheure' | translate}}" [(ngModel)]="item.totalheure"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="7">{{'sessionCours.mois' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'sessionCours.mois' | translate}}" [(ngModel)]="item.mois"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="8">{{'sessionCours.annee' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="8" placeholder="{{'sessionCours.annee' | translate}}" [(ngModel)]="item.annee"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="9">{{'sessionCours.dateFin' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="9"  [showTime]="true" [showSeconds]="false" placeholder="{{'sessionCours.dateFin' | translate}}"  [(ngModel)]="item.dateFin"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="10">{{'sessionCours.dateDebut' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="10"  [showTime]="true" [showSeconds]="false" placeholder="{{'sessionCours.dateDebut' | translate}}"  [(ngModel)]="item.dateDebut"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                                <div class="field align-inputswitch col-12  md:col-6">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="11">{{'sessionCours.payer' | translate}}</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="11"  [(ngModel)]="item.payer"
+                                                                 >
+                                                        </p-inputSwitch>
+                                                        
+                                                    </div>
+                                                </div>
+
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="12">{{'sessionCours.salary' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="salarys" [(ngModel)]="item.salary" id="12" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="code" placeholder="{{'sessionCours.salary' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                            <div class="field col-12  md:col-6">
+                                                <label>Section</label>
+                                                <p-multiSelect [options]="sessionCoursSections" [(ngModel)]="item.sessionCoursSections" itemSize="30" [virtualScroll]="true"
+                                                                                                                          defaultLabel="Select un section" optionLabel="section.code"  display="chip"></p-multiSelect>
+                                            </div>
+                                </div>
+                            </p-tabPanel>
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-flexbox">
+
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="save()"></button>
+
+
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+
+
+                </div>
+            </ng-template>
+
+    </p-dialog>

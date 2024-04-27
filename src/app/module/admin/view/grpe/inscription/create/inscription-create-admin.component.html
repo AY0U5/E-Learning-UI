@@ -1,0 +1,183 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'inscription.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'inscription.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'inscription.numeroInscription' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="1" placeholder="{{'inscription.numeroInscription' | translate}}" [(ngModel)]="item.numeroInscription" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionNumeroInscription}"  >
+                                                    </p-inputNumber>
+                                                    <small class='p-error' *ngIf='!validInscriptionNumeroInscription'>NumeroInscription est obligatoire.</small>
+                                                </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="2">{{'inscription.etudiant' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="etudiants" [(ngModel)]="item.etudiant" id="2" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="ref" placeholder="{{'inscription.etudiant' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionEtudiant}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionEtudiant'>Etudiant est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="3">{{'inscription.etatInscription' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="etatInscriptions" [(ngModel)]="item.etatInscription" id="3" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.etatInscription' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionEtatInscription}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionEtatInscription'>EtatInscription est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="4">{{'inscription.parcours' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="parcourss" [(ngModel)]="item.parcours" id="4" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.parcours' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionParcours}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionParcours'>Parcours est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="5">{{'inscription.groupeEtude' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="groupeEtudes" [(ngModel)]="item.groupeEtude" id="5" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.groupeEtude' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionGroupeEtude}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionGroupeEtude'>GroupeEtude est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="6">{{'inscription.groupeType' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="groupeTypes" [(ngModel)]="item.groupeType" id="6" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.groupeType' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionGroupeType}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionGroupeType'>GroupeType est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="7">{{'inscription.statutSocial' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="statutSocials" [(ngModel)]="item.statutSocial" id="7" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.statutSocial' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionStatutSocial}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionStatutSocial'>StatutSocial est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="8">{{'inscription.interetEtudiant' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="interetEtudiants" [(ngModel)]="item.interetEtudiant" id="8" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.interetEtudiant' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionInteretEtudiant}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionInteretEtudiant'>InteretEtudiant est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="9">{{'inscription.niveauEtude' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="niveauEtudes" [(ngModel)]="item.niveauEtude" id="9" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.niveauEtude' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionNiveauEtude}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionNiveauEtude'>NiveauEtude est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="10">{{'inscription.fonction' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="fonctions" [(ngModel)]="item.fonction" id="10" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.fonction' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionFonction}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionFonction'>Fonction est obligatoire.</small>
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="11">{{'inscription.quiz' | translate}}<span style="color: red;">*</span></label>
+                                                <p-dropdown  appendTo="body"  [options]="quizs" [(ngModel)]="item.quiz" id="11" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="lib" placeholder="{{'inscription.quiz' | translate}}" [ngClass]="{'ng-invalid ng-dirty' : !validInscriptionQuiz}"  >
+                                                </p-dropdown>
+                                                <small class='p-error' *ngIf='!validInscriptionQuiz'>Quiz est obligatoire.</small>
+                                            </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="12">{{'inscription.noteQuizNiveau' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="12" placeholder="{{'inscription.noteQuizNiveau' | translate}}" [(ngModel)]="item.noteQuizNiveau"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field align-inputswitch col-12  md:col-6">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="13">{{'inscription.quizFinished' | translate}}</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="13"  [(ngModel)]="item.quizFinished"
+                                                                 >
+                                                        </p-inputSwitch>
+                                                        
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="14">{{'inscription.dateRegistration' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'inscription.dateRegistration' | translate}}" id="14" [(ngModel)]="item.dateRegistration"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="15">{{'inscription.datedebutinscription' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="15"  [showTime]="true" [showSeconds]="false" placeholder="{{'inscription.datedebutinscription' | translate}}"  [(ngModel)]="item.datedebutinscription"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="16">{{'inscription.datefininscription' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="16"  [showTime]="true" [showSeconds]="false" placeholder="{{'inscription.datefininscription' | translate}}"  [(ngModel)]="item.datefininscription"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="17">{{'inscription.packStudent' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="packStudents" [(ngModel)]="item.packStudent" id="17" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.packStudent' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="18">{{'inscription.skill' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="skills" [(ngModel)]="item.skill" id="18" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'inscription.skill' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="19">{{'inscription.skype' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'inscription.skype' | translate}}" id="19" [(ngModel)]="item.skype"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                </div>
+                            </p-tabPanel>
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-flexbox">
+
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="save()"></button>
+
+
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+
+
+                </div>
+            </ng-template>
+
+    </p-dialog>

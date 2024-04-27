@@ -1,0 +1,36 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'freeTrialTeacherWhatsTemplate.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'freeTrialTeacherWhatsTemplate.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'freeTrialTeacherWhatsTemplate.object' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialTeacherWhatsTemplate.object' | translate}}" autofocus  id="1" [ngModel]="item.object">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'freeTrialTeacherWhatsTemplate.corps' | translate}}</label>
+                        <textarea id="2" pInputTextarea rows="5" cols="30" [disabled]="true" placeholder="{{'freeTrialTeacherWhatsTemplate.corps' | translate}}"  [ngModel]="item.corps"></textarea>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'freeTrialTeacherWhatsTemplate.source' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'freeTrialTeacherWhatsTemplate.source' | translate}}" autofocus  id="3" [ngModel]="item.source">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

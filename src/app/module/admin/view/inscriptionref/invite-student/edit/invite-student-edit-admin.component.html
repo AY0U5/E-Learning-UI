@@ -1,0 +1,102 @@
+    <p-dialog [(visible)]="editDialog" [style]="{width: '70vw'}" header="{{'inviteStudent.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+        <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="{{'inviteStudent.tabPan' | translate}}">
+                        <div class="grid">
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="1">{{'inviteStudent.code' | translate}}<span style="color: red;">*</span></label>
+                                            <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'inviteStudent.code' | translate}}" id="1" [(ngModel)]="item.code"
+                                                   [ngClass]="{'ng-invalid ng-dirty' : !validInviteStudentCode}"  />
+                                            <small class='p-error' *ngIf='!validInviteStudentCode'>Code est obligatoire.</small>
+                                        </div>
+
+
+
+                                    <div class="field col-11 md:col-6">
+                                        <label for="2">{{'inviteStudent.etudiant' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="etudiants" [(ngModel)]="item.etudiant" id="2" [filter]="true" filterMatchMode="contains"
+                                                     [showClear]="true" optionLabel="ref" placeholder="{{'inviteStudent.etudiant' | translate}}"  >
+                                        </p-dropdown>
+                                        
+                                    </div>
+
+                                        <div class="field align-inputswitch col-12  md:col-6">
+                                            <div  class="label-inputswitch">
+                                                <label for="3">{{'inviteStudent.isAccepted' | translate}}</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="3"  [(ngModel)]="item.isAccepted"
+                                                                >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field align-inputswitch col-12  md:col-6">
+                                            <div  class="label-inputswitch">
+                                                <label for="4">{{'inviteStudent.isPaidPack' | translate}}</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="4"  [(ngModel)]="item.isPaidPack"
+                                                                >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="5">{{'inviteStudent.emailInvited' | translate}}</label>
+                                            <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'inviteStudent.emailInvited' | translate}}" id="5" [(ngModel)]="item.emailInvited"
+                                                    />
+                                            
+                                        </div>
+
+
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="6">{{'inviteStudent.dateSentInvitation' | translate}}</label>
+                                            <p-calendar appendTo="body" id="6"  [showTime]="true" [showSeconds]="false" placeholder="{{'inviteStudent.dateSentInvitation' | translate}}"  [(ngModel)]="item.dateSentInvitation"
+                                                        dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="7">{{'inviteStudent.dateAcceptInvitation' | translate}}</label>
+                                            <p-calendar appendTo="body" id="7"  [showTime]="true" [showSeconds]="false" placeholder="{{'inviteStudent.dateAcceptInvitation' | translate}}"  [(ngModel)]="item.dateAcceptInvitation"
+                                                        dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="8">{{'inviteStudent.datePayPack' | translate}}</label>
+                                            <p-calendar appendTo="body" id="8"  [showTime]="true" [showSeconds]="false" placeholder="{{'inviteStudent.datePayPack' | translate}}"  [(ngModel)]="item.datePayPack"
+                                                        dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+        </ng-template>
+
+        <ng-template pTemplate="footer" >
+            <div class="p-flexbox">
+
+                    <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="edit()"></button>
+
+
+                        <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideEditDialog()"></button>
+
+
+            </div>
+        </ng-template>
+
+    </p-dialog>

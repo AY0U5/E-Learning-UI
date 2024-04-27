@@ -1,0 +1,100 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'homeWork.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'homeWork.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'homeWork.libelle' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'homeWork.libelle' | translate}}" autofocus  id="1" [ngModel]="item.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'homeWork.urlImage' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'homeWork.urlImage' | translate}}" autofocus  id="2" [ngModel]="item.urlImage">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'homeWork.urlVideo' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'homeWork.urlVideo' | translate}}" autofocus  id="3" [ngModel]="item.urlVideo">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'homeWork.cours' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'homeWork.cours' | translate}}" autofocus  id="6" [ngModel]="item.cours?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="7">{{'homeWork.typeHomeWork' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'homeWork.typeHomeWork' | translate}}" autofocus  id="7" [ngModel]="item.typeHomeWork?.lib">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="{{'homeWork.homeWorkQuestions' | translate}}">
+                <div class="grid">
+                    <div class="col">
+                        <div class="card">
+                            <p-table [value]="item.homeWorkQuestions" [scrollable]="true" scrollHeight="200px">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Ref</th>
+                                        <th>Libelle</th>
+                                        <th>Numero</th>
+                                        <th>Point reponse juste</th>
+                                        <th>Point reponsefausse</th>
+                                        <th>Type de question</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-p>
+                                    <tr>
+                                        <td>{{p.ref}}</td>
+                                        <td>{{p.libelle}}</td>
+                                        <td>{{p.numero}}</td>
+                                        <td>{{p.pointReponseJuste}}</td>
+                                        <td>{{p.pointReponsefausse}}</td>
+                                        <td>{{p.typeDeQuestion?.lib}}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="{{'homeWork.homeWorkEtudiants' | translate}}">
+                <div class="grid">
+                    <div class="col">
+                        <div class="card">
+                            <p-table [value]="item.homeWorkEtudiants" [scrollable]="true" scrollHeight="200px">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Etudiant</th>
+                                        <th>Note</th>
+                                        <th>Resultat</th>
+                                        <th>Date home work</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-p>
+                                    <tr>
+                                        <td>{{p.etudiant?.ref}}</td>
+                                        <td>{{p.note}}</td>
+                                        <td>{{p.resultat}}</td>
+                                        <td>{{p.dateHomeWork | date: dateFormatColumn}}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

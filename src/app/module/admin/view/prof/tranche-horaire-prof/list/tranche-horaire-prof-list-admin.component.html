@@ -1,0 +1,194 @@
+<div class="grid"  *ngIf="listActionIsValid">
+    <div class="col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                                        <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('TrancheHoraireProf')" *ngIf="createActionIsValid"></button>
+                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
+                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="col-12">
+                    <div class="flex flex-wrap p-fluid col-12">
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="1-2">{{'trancheHoraireProf.prof' | translate}}</label>
+                            <p-dropdown [options]="profs" [(ngModel)]="criteria.prof" id="1" [filter]="true" class="p-fluid"
+                                        [showClear]="true"  placeholder="{{'trancheHoraireProf.prof' | translate}}" optionLabel="ref">
+                            </p-dropdown>
+                        </div>
+                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="2">{{'trancheHoraireProf.startHour' | translate}}</label>
+                            <input  class="w-full"  pInputText id="2" type="text"  [(ngModel)]="criteria.startHourLike">
+                        </div>
+                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="3">{{'trancheHoraireProf.endHour' | translate}}</label>
+                            <input  class="w-full"  pInputText id="3" type="text"  [(ngModel)]="criteria.endHourLike">
+                        </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="4-1">{{'trancheHoraireProf.dayMin' | translate}}</label>
+                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.dayMin" id="4-1"></p-inputNumber>
+                        </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="4-2">{{'trancheHoraireProf.dayMax' | translate}}</label>
+                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.dayMax" id="4-2"></p-inputNumber>
+                       </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="5-1">{{'trancheHoraireProf.groupIndexMin' | translate}}</label>
+                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.groupIndexMin" id="5-1"></p-inputNumber>
+                        </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="5-2">{{'trancheHoraireProf.groupIndexMax' | translate}}</label>
+                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.groupIndexMax" id="5-2"></p-inputNumber>
+                       </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="6-1">{{'trancheHoraireProf.profsIdMin' | translate}}</label>
+                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.profsIdMin" id="6-1"></p-inputNumber>
+                        </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="6-2">{{'trancheHoraireProf.profsIdMax' | translate}}</label>
+                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.profsIdMax" id="6-2"></p-inputNumber>
+                       </div>
+                    </div>
+                    <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
+                        <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
+                    </div>
+                </div>
+
+
+            </p-toolbar>
+
+
+            <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
+                    [globalFilterFields]="['profref', 'startHour', 'endHour', 'day', 'groupIndex', 'profsId']" [(selection)]="selections"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                    currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
+                    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column flex-row justify-content-between table-header">
+                        <h5 class="p-m-0">{{'trancheHoraireProf.header' | translate}}</h5>
+                        <span class="p-input-icon-left ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                                
+                        <th pSortableColumn="prof">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'trancheHoraireProf.prof' | translate}}</span>
+                                <p-sortIcon field="prof"></p-sortIcon>
+                            </div>
+                        </th>
+                                
+                                
+                        <th pSortableColumn="startHour">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'trancheHoraireProf.startHour' | translate}}</span>
+                                <p-sortIcon field="startHour"></p-sortIcon>
+                                <p-columnFilter type="text" field="element.startHour" display="menu" class="ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                                
+                                
+                        <th pSortableColumn="endHour">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'trancheHoraireProf.endHour' | translate}}</span>
+                                <p-sortIcon field="endHour"></p-sortIcon>
+                                <p-columnFilter type="text" field="element.endHour" display="menu" class="ml-auto"></p-columnFilter>
+                            </div>
+                        </th>
+                                
+                                
+                        <th pSortableColumn="day">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'trancheHoraireProf.day' | translate}}</span>
+                                <p-sortIcon field="day"></p-sortIcon>
+                            </div>
+                        </th>
+                                
+                                
+                        <th pSortableColumn="groupIndex">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'trancheHoraireProf.groupIndex' | translate}}</span>
+                                <p-sortIcon field="groupIndex"></p-sortIcon>
+                            </div>
+                        </th>
+                                
+                                
+                        <th pSortableColumn="profsId">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'trancheHoraireProf.profsId' | translate}}</span>
+                                <p-sortIcon field="profsId"></p-sortIcon>
+                            </div>
+                        </th>
+                                
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-element>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="element"></p-tableCheckbox>
+                        </td>
+                            
+                        <td>{{element.prof?.ref}}</td>
+                            
+                            
+                        <td>{{element.startHour}}</td>
+                            
+                            
+                        <td>{{element.endHour}}</td>
+                            
+                            
+                        <td>{{element.day}}</td>
+                            
+                            
+                        <td>{{element.groupIndex}}</td>
+                            
+                            
+                        <td>{{element.profsId}}</td>
+                            
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)"  *ngIf="deleteActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="summary">
+                    <p-paginator  [rows]="10" [totalRecords]="totalRecords" (onPageChange)="onPage($event)"></p-paginator>
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale il {{items ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{items ? totalRecords : 0 }} {{items ? totalRecords == 1 ? 'tranche horaire prof' : 'tranche horaire profs' : 0 }}.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-tranche-horaire-prof-create-admin  *ngIf="createDialog  && createActionIsValid"></app-tranche-horaire-prof-create-admin>
+        <app-tranche-horaire-prof-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-tranche-horaire-prof-edit-admin>
+        <app-tranche-horaire-prof-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-tranche-horaire-prof-view-admin>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>
+
+<p-card header="Permission not allowed" *ngIf="!listActionIsValid">
+    <p class="m-0">
+        You don't have permission to access !
+    </p>
+</p-card>

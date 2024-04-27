@@ -1,0 +1,132 @@
+    <p-dialog [(visible)]="editDialog" [style]="{width: '70vw'}" header="{{'reclamationProf.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+        <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="{{'reclamationProf.tabPan' | translate}}">
+                        <div class="grid">
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="1">{{'reclamationProf.reference' | translate}}<span style="color: red;">*</span></label>
+                                            <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'reclamationProf.reference' | translate}}" id="1" [(ngModel)]="item.reference"
+                                                   [ngClass]="{'ng-invalid ng-dirty' : !validReclamationProfReference}"  />
+                                            <small class='p-error' *ngIf='!validReclamationProfReference'>Reference est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="2">{{'reclamationProf.dateReclamation' | translate}}</label>
+                                            <p-calendar appendTo="body" id="2"  [showTime]="true" [showSeconds]="false" placeholder="{{'reclamationProf.dateReclamation' | translate}}"  [(ngModel)]="item.dateReclamation"
+                                                        dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="3">{{'reclamationProf.message' | translate}}</label>
+                                            <textarea id="3" pInputTextarea rows="5" cols="30" placeholder="{{'reclamationProf.message' | translate}}"  [(ngModel)]="item.message"
+                                                       ></textarea>
+                                            
+                                        </div>
+
+                                        <div class="field align-inputswitch col-12  md:col-6">
+                                            <div  class="label-inputswitch">
+                                                <label for="4">{{'reclamationProf.traite' | translate}}</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="4"  [(ngModel)]="item.traite"
+                                                                >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="5">{{'reclamationProf.dateTraitement' | translate}}</label>
+                                            <p-calendar appendTo="body" id="5"  [showTime]="true" [showSeconds]="false" placeholder="{{'reclamationProf.dateTraitement' | translate}}"  [(ngModel)]="item.dateTraitement"
+                                                        dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="6">{{'reclamationProf.dateReponse' | translate}}</label>
+                                            <p-calendar appendTo="body" id="6"  [showTime]="true" [showSeconds]="false" placeholder="{{'reclamationProf.dateReponse' | translate}}"  [(ngModel)]="item.dateReponse"
+                                                        dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="field align-inputswitch col-12  md:col-6">
+                                            <div  class="label-inputswitch">
+                                                <label for="7">{{'reclamationProf.postView' | translate}}</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="7"  [(ngModel)]="item.postView"
+                                                                >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="8">{{'reclamationProf.commentaireTraiteur' | translate}}</label>
+                                            <textarea id="8" pInputTextarea rows="5" cols="30" placeholder="{{'reclamationProf.commentaireTraiteur' | translate}}"  [(ngModel)]="item.commentaireTraiteur"
+                                                       ></textarea>
+                                            
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="9">{{'reclamationProf.objetReclamationProf' | translate}}</label>
+                                            <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'reclamationProf.objetReclamationProf' | translate}}" id="9" [(ngModel)]="item.objetReclamationProf"
+                                                    />
+                                            
+                                        </div>
+
+
+
+                                    <div class="field col-11 md:col-6">
+                                        <label for="10">{{'reclamationProf.admin' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="admins" [(ngModel)]="item.admin" id="10" [filter]="true" filterMatchMode="contains"
+                                                     [showClear]="true" optionLabel="id" placeholder="{{'reclamationProf.admin' | translate}}"  >
+                                        </p-dropdown>
+                                        
+                                    </div>
+
+                                    <div class="field col-11 md:col-6">
+                                        <label for="11">{{'reclamationProf.prof' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="profs" [(ngModel)]="item.prof" id="11" [filter]="true" filterMatchMode="contains"
+                                                     [showClear]="true" optionLabel="ref" placeholder="{{'reclamationProf.prof' | translate}}"  >
+                                        </p-dropdown>
+                                        
+                                    </div>
+
+                                    <div class="field col-11 md:col-6">
+                                        <label for="12">{{'reclamationProf.typeReclamationProf' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="typeReclamationProfs" [(ngModel)]="item.typeReclamationProf" id="12" [filter]="true" filterMatchMode="contains"
+                                                     [showClear]="true" optionLabel="libelle" placeholder="{{'reclamationProf.typeReclamationProf' | translate}}"  >
+                                        </p-dropdown>
+                                        
+                                    </div>
+
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+        </ng-template>
+
+        <ng-template pTemplate="footer" >
+            <div class="p-flexbox">
+
+                    <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="edit()"></button>
+
+
+                        <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideEditDialog()"></button>
+
+
+            </div>
+        </ng-template>
+
+    </p-dialog>
