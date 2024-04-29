@@ -59,6 +59,11 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									icon: 'pi pi-fw pi-plus-circle',
 									routerLink: ['/app/admin/course/section/list']
 								  },
+                                  {
+									label: 'remplir cours',
+									icon: 'pi pi-fw pi-plus-circle',
+									routerLink: ['/app/admin/course/section/remplir']
+								  },
 						]
 					  },
 					  {

@@ -21,6 +21,7 @@ import { SectionItemListAdminComponent } from './section-item/list/section-item-
 import { CoursListAdminComponent } from './cours/list/cours-list-admin.component';
 import { ParcoursListAdminComponent } from './parcours/list/parcours-list-admin.component';
 import { SectionListAdminComponent } from './section/list/section-list-admin.component';
+import {MenuRemplirComponent} from "./remplir/menu/menu-remplir.component";
 @NgModule({
     imports: [
         RouterModule.forChild(
@@ -130,6 +131,17 @@ import { SectionListAdminComponent } from './section/list/section-list-admin.com
                                 {
                                     path: 'list',
                                     component: SectionListAdminComponent ,
+                                    canActivate: [AuthGuard]
+                                }
+                            ]
+                        },
+                        {
+
+                            path: 'section',
+                            children: [
+                                {
+                                    path: 'remplir',
+                                    component: MenuRemplirComponent ,
                                     canActivate: [AuthGuard]
                                 }
                             ]

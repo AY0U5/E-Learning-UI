@@ -1,23 +1,32 @@
 import {Component, OnInit} from '@angular/core';
-import {SectionAdminService} from 'src/app/shared/service/admin/course/SectionAdmin.service';
-import {SectionDto} from 'src/app/shared/model/course/Section.model';
-import {SectionCriteria} from 'src/app/shared/criteria/course/SectionCriteria.model';
-import {AbstractListController} from 'src/app/zynerator/controller/AbstractListController';
-import { environment } from 'src/environments/environment';
-
-import {CategorieSectionDto} from 'src/app/shared/model/courseref/CategorieSection.model';
-import {CategorieSectionAdminService} from 'src/app/shared/service/admin/courseref/CategorieSectionAdmin.service';
-import {CoursDto} from 'src/app/shared/model/course/Cours.model';
-import {CoursAdminService} from 'src/app/shared/service/admin/course/CoursAdmin.service';
-import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
-import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
-
+import {HttpClient} from "@angular/common/http";
+import {CoursDto} from "../../../../../../shared/model/course/Cours.model";
+import {CoursAdminService} from "../../../../../../shared/service/admin/course/CoursAdmin.service";
+import {AbstractListController} from "../../../../../../zynerator/controller/AbstractListController";
+import {SectionDto} from "../../../../../../shared/model/course/Section.model";
+import {SectionCriteria} from "../../../../../../shared/criteria/course/SectionCriteria.model";
+import {SectionAdminService} from "../../../../../../shared/service/admin/course/SectionAdmin.service";
+import {CategorieSectionDto} from "../../../../../../shared/model/courseref/CategorieSection.model";
+import {environment} from "../../../../../../../environments/environment";
+import {
+    CategorieSectionAdminService
+} from "../../../../../../shared/service/admin/courseref/CategorieSectionAdmin.service";
+import {CoursCriteria} from "../../../../../../shared/criteria/course/CoursCriteria.model";
+import {EtatCoursDto} from "../../../../../../shared/model/courseref/EtatCours.model";
+import {ParcoursDto} from "../../../../../../shared/model/course/Parcours.model";
+import {ParcoursAdminService} from "../../../../../../shared/service/admin/course/ParcoursAdmin.service";
+import {EtatCoursAdminService} from "../../../../../../shared/service/admin/courseref/EtatCoursAdmin.service";
+import {TypeHomeWorkAdminService} from "../../../../../../shared/service/admin/homework/TypeHomeWorkAdmin.service";
+import {HomeWorkAdminService} from "../../../../../../shared/service/admin/homework/HomeWorkAdmin.service";
+import {SectionItemAdminService} from "../../../../../../shared/service/admin/course/SectionItemAdmin.service";
+import {first} from "rxjs";
 
 @Component({
-  selector: 'app-section-list-admin',
-  templateUrl: './section-list-admin.component.html'
+  selector: 'app-menu',
+  templateUrl: './menu-remplir.component.html',
+  styleUrls: ['./menu-remplir.component.css']
 })
-export class SectionListAdminComponent extends AbstractListController<SectionDto, SectionCriteria, SectionAdminService>  implements OnInit {
+export class MenuRemplirComponent extends AbstractListController<SectionDto, SectionCriteria, SectionAdminService> implements OnInit{
 
     override fileName = 'Section';
 
@@ -64,36 +73,36 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
 
 
     public async loadCategorieSection(){
-       this.categorieSectionService.findAllOptimized().subscribe(categorieSections => this.categorieSections = categorieSections, error => console.log(error))
+        this.categorieSectionService.findAllOptimized().subscribe(categorieSections => this.categorieSections = categorieSections, error => console.log(error))
     }
     public async loadCours(){
-       this.coursService.findAllOptimized().subscribe(courss => this.courss = courss, error => console.log(error))
+        this.coursService.findAllOptimized().subscribe(courss => this.courss = courss, error => console.log(error))
     }
 
-	public override initDuplicate(res: SectionDto) {
+    public override initDuplicate(res: SectionDto) {
         if (res.sectionItems != null) {
-             res.sectionItems.forEach(d => { d.section = null; d.id = null; });
+            res.sectionItems.forEach(d => { d.section = null; d.id = null; });
         }
-	}
+    }
 
 
-   public  override prepareColumnExport(): void {
+    public  override prepareColumnExport(): void {
         this.exportData = this.items.map(e => {
             return {
-                 'Code': e.code ,
-                 'Libelle': e.libelle ,
-                 'Url image': e.urlImage ,
-                 'Url image2': e.urlImage2 ,
-                 'Url image3': e.urlImage3 ,
-                 'Url video': e.urlVideo ,
-                 'Contenu': e.contenu ,
-                 'Questions': e.questions ,
-                 'Indication prof': e.indicationProf ,
-                 'Numero order': e.numeroOrder ,
+                'Code': e.code ,
+                'Libelle': e.libelle ,
+                'Url image': e.urlImage ,
+                'Url image2': e.urlImage2 ,
+                'Url image3': e.urlImage3 ,
+                'Url video': e.urlVideo ,
+                'Contenu': e.contenu ,
+                'Questions': e.questions ,
+                'Indication prof': e.indicationProf ,
+                'Numero order': e.numeroOrder ,
                 'Categorie section': e.categorieSection?.code ,
                 'Cours': e.cours?.libelle ,
-                 'Url': e.url ,
-                 'Content': e.content ,
+                'Url': e.url ,
+                'Content': e.content ,
             }
         });
 
@@ -116,5 +125,5 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
             'Content Min': this.criteria.contentMin ? this.criteria.contentMin : environment.emptyForExport ,
             'Content Max': this.criteria.contentMax ? this.criteria.contentMax : environment.emptyForExport ,
         }];
-      }
+    }
 }

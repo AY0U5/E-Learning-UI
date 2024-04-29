@@ -2,7 +2,7 @@ import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {ToolbarModule} from "primeng/toolbar";
 import {InputTextareaModule} from "primeng/inputtextarea";
-
+import { EditorModule } from 'primeng/editor';
 import {FileUploadModule} from "primeng/fileupload";
 import {SelectButtonModule} from "primeng/selectbutton";
 import {PanelMenuModule} from "primeng/panelmenu";
@@ -92,6 +92,7 @@ imports: [
 
   AdminModule,
   AdminRoutingModule,
+    EditorModule,
 
   TranslateModule.forRoot({
   loader: {

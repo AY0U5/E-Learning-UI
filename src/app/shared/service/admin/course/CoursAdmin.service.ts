@@ -29,4 +29,6 @@ export class CoursAdminService extends AbstractService<CoursDto, CoursCriteria> 
     get API() {
         return environment.apiUrlAlcservice + 'admin/cours/';
     }
+
+
 }
