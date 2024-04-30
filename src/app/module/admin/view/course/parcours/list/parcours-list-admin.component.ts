@@ -46,8 +46,10 @@ import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionr
 
 
 @Component({
+
   selector: 'app-parcours-list-admin',
-  templateUrl: './parcours-list-admin.component.html'
+  templateUrl: './parcours-list-admin.component.html',
+    styleUrls : ['./parcours-list-admin.component.css']
 })
 export class ParcoursListAdminComponent extends AbstractListController<ParcoursDto, ParcoursCriteria, ParcoursAdminService>  implements OnInit {
 
