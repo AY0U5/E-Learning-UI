@@ -8,12 +8,12 @@
                     <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
                     <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
                 </ng-template>
-                <ng-template pTemplate="right">
+               <!-- <ng-template pTemplate="right">
                     <div class="flex">
                         <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
                     </div>
                 </ng-template>
-
+-->
             </p-toolbar>
             <p-toolbar *ngIf="findByCriteriaShow">
 
@@ -37,12 +37,12 @@
                                         [showClear]="true"  placeholder="{{'cours.etatCours' | translate}}" optionLabel="libelle">
                             </p-dropdown>
                         </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                        <!--<div class="lg:col-3 md:col-6 sm:col-12 mb-4">
                             <label  class="font-bold block mb-2" for="6-2">{{'cours.parcours' | translate}}</label>
                             <p-dropdown [options]="parcourss" [(ngModel)]="criteria.parcours" id="6" [filter]="true" class="p-fluid"
                                         [showClear]="true"  placeholder="{{'cours.parcours' | translate}}" optionLabel="libelle">
                             </p-dropdown>
-                        </div>
+                        </div>-->
                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
                             <label  class="font-bold block mb-2" for="7-1">{{'cours.nombreSectionFinaliseMin' | translate}}</label>
                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionFinaliseMin" id="7-1"></p-inputNumber>
@@ -93,7 +93,7 @@
             </p-toolbar>
 
 
-            <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
+            <p-table #dt [value]="itemsCours" [columns]="cols" [rows]="8" [paginator]="false"
                     [globalFilterFields]="['code', 'libelle', 'image', 'etatCourslibelle', 'parcourslibelle', 'nombreSectionFinalise', 'nombreSectionEnCours', 'nombreLinkEnCours', 'nombreLinkFinalise', 'numeroOrder']" [(selection)]="selections"
                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
                     currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
@@ -198,7 +198,7 @@
                         <th>Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-element>
+                <ng-template  pTemplate="body" let-element>
                     <tr>
                         <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
@@ -245,7 +245,7 @@
                 <ng-template pTemplate="summary">
                     <p-paginator  [rows]="10" [totalRecords]="totalRecords" (onPageChange)="onPage($event)"></p-paginator>
                     <div class="p-d-flex p-ai-center p-jc-between">
-                        En totale il {{items ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{items ? totalRecords : 0 }} {{items ? totalRecords == 1 ? 'cours' : 'courss' : 0 }}.
+                        En totale il {{itemsCours ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{itemsCours ? totalRecords : 0 }} {{itemsCours ? totalRecords == 1 ? 'cours' : 'courss' : 0 }}.
                     </div>
                 </ng-template>
             </p-table>

@@ -2,7 +2,7 @@
             <ng-template pTemplate="content" >
                         <p-tabView>
                             <p-tabPanel header="{{'cours.tabPan' | translate}}">
-                                <div class="grid">
+                                <div class="grid" (click)="afficherparcour()">
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="1">{{'cours.code' | translate}}<span style="color: red;">*</span></label>
@@ -26,14 +26,14 @@
                                                     <label for="3">{{'cours.description' | translate}}</label>
                                                     <textarea id="3" pInputTextarea rows="5" cols="30" placeholder="{{'cours.description' | translate}}"  [(ngModel)]="item.description"
                                                              ></textarea>
-                                                    
+
                                                 </div>
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="4">{{'cours.image' | translate}}</label>
                                                     <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'cours.image' | translate}}" id="4" [(ngModel)]="item.image"
                                                              />
-                                                    
+
                                                 </div>
 
 
@@ -43,7 +43,7 @@
                                                 <p-dropdown  appendTo="body"  [options]="etatCourss" [(ngModel)]="item.etatCours" id="5" [filter]="true" filterMatchMode="contains"
                                                         [showClear]="true" optionLabel="libelle" placeholder="{{'cours.etatCours' | translate}}"  >
                                                 </p-dropdown>
-                                                
+
                                             </div>
 
                                             <div class="field col-11 md:col-6">
@@ -51,42 +51,46 @@
                                                 <p-dropdown  appendTo="body"  [options]="parcourss" [(ngModel)]="item.parcours" id="6" [filter]="true" filterMatchMode="contains"
                                                         [showClear]="true" optionLabel="libelle" placeholder="{{'cours.parcours' | translate}}"  >
                                                 </p-dropdown>
-                                                
                                             </div>
+                                    <!--<div class="field col-11 md:col-6">
+                                        <label for="6">{{'cours.parcours' | translate}}</label>
+                                        <p-dropdown  appendTo="body"  [options]="parcourss" [ngModel]="itemParcour" id="6" [disabled]="true" optionLabel="libelle" placeholder="{{'cours.parcours' | translate}}"  >
+                                        </p-dropdown>
+                                    </div>-->
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="7">{{'cours.nombreSectionFinalise' | translate}}</label>
                                                     <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'cours.nombreSectionFinalise' | translate}}" [(ngModel)]="item.nombreSectionFinalise"  >
                                                     </p-inputNumber>
-                                                    
+
                                                 </div>
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="8">{{'cours.nombreSectionEnCours' | translate}}</label>
                                                     <p-inputNumber class="mb-2 mr-2" id="8" placeholder="{{'cours.nombreSectionEnCours' | translate}}" [(ngModel)]="item.nombreSectionEnCours"  >
                                                     </p-inputNumber>
-                                                    
+
                                                 </div>
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="9">{{'cours.nombreLinkEnCours' | translate}}</label>
                                                     <p-inputNumber class="mb-2 mr-2" id="9" placeholder="{{'cours.nombreLinkEnCours' | translate}}" [(ngModel)]="item.nombreLinkEnCours"  >
                                                     </p-inputNumber>
-                                                    
+
                                                 </div>
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="10">{{'cours.nombreLinkFinalise' | translate}}</label>
                                                     <p-inputNumber class="mb-2 mr-2" id="10" placeholder="{{'cours.nombreLinkFinalise' | translate}}" [(ngModel)]="item.nombreLinkFinalise"  >
                                                     </p-inputNumber>
-                                                    
+
                                                 </div>
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="11">{{'cours.numeroOrder' | translate}}</label>
                                                     <p-inputNumber class="mb-2 mr-2" id="11" placeholder="{{'cours.numeroOrder' | translate}}" [(ngModel)]="item.numeroOrder"  >
                                                     </p-inputNumber>
-                                                    
+
                                                 </div>
 
                                 </div>
@@ -105,54 +109,54 @@
                                                                         <label for="2">Libelle</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Libelle"
                                                                                id="2" [(ngModel)]="sectionsElement.libelle" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="3">Url image</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image"
                                                                                id="3" [(ngModel)]="sectionsElement.urlImage" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="4">Url image2</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image2"
                                                                                id="4" [(ngModel)]="sectionsElement.urlImage2" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="5">Url image3</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image3"
                                                                                id="5" [(ngModel)]="sectionsElement.urlImage3" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="6">Url video</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Url video"
                                                                                id="6" [(ngModel)]="sectionsElement.urlVideo" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="7">Contenu</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Contenu"
                                                                                id="7" [(ngModel)]="sectionsElement.contenu" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="8">Questions</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Questions"
                                                                                id="8" [(ngModel)]="sectionsElement.questions" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="9">Indication prof</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Indication prof"
                                                                                id="9" [(ngModel)]="sectionsElement.indicationProf" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="10">Numero order</label>
                                                                         <p-inputNumber class="mb-2 mr-2" id="numeroOrder" placeholder="Numero order"  [(ngModel)]="sectionsElement.numeroOrder"></p-inputNumber>
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-11 md:col-6">
                                                                         <label>Categorie section</label>
@@ -160,18 +164,18 @@
                                                                                      id="11"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="code"
                                                                                      placeholder="Categorie section"  >
                                                                         </p-dropdown>
-                                                                        
+
                                                                     </div>
 
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="13">Url</label>
                                                                         <p-inputNumber class="mb-2 mr-2" id="url" placeholder="Url"  [(ngModel)]="sectionsElement.url"></p-inputNumber>
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="14">Content</label>
                                                                         <p-inputNumber class="mb-2 mr-2" id="content" placeholder="Content"  [(ngModel)]="sectionsElement.content"></p-inputNumber>
-                                                                        
+
                                                                     </div>
                                                         <div class="field col-12 md:col-1">
                                                             <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addSections()"></button>
@@ -242,13 +246,13 @@
                                                                         <label for="2">Url image</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image"
                                                                                id="2" [(ngModel)]="homeWorksElement.urlImage" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="3">Url video</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Url video"
                                                                                id="3" [(ngModel)]="homeWorksElement.urlVideo" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-11 md:col-6">
                                                                         <label>Type home work</label>
@@ -256,7 +260,7 @@
                                                                                      id="7"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="lib"
                                                                                      placeholder="Type home work"  >
                                                                         </p-dropdown>
-                                                                        
+
                                                                     </div>
 
                                                         <div class="field col-12 md:col-1">

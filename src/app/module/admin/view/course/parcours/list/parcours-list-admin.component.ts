@@ -43,6 +43,7 @@ import {TeacherLocalityDto} from 'src/app/shared/model/inscriptionref/TeacherLoc
 import {TeacherLocalityAdminService} from 'src/app/shared/service/admin/inscriptionref/TeacherLocalityAdmin.service';
 import {NiveauEtudeDto} from 'src/app/shared/model/inscriptionref/NiveauEtude.model';
 import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionref/NiveauEtudeAdmin.service';
+import * as events from "events";
 
 
 @Component({
@@ -52,6 +53,53 @@ import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionr
     styleUrls : ['./parcours-list-admin.component.css']
 })
 export class ParcoursListAdminComponent extends AbstractListController<ParcoursDto, ParcoursCriteria, ParcoursAdminService>  implements OnInit {
+
+    //
+    get itemsCours(): Array<CoursDto> {
+        return this.coursService.itemsCours;
+    }
+
+    set itemsCours(value: Array<CoursDto>) {
+        this.coursService.itemsCours = value;
+    }
+    get viewcoursOk(): boolean {
+        return this.coursService.viewcoursOk;
+    }
+
+    set viewcoursOk(value: boolean) {
+        this.coursService.viewcoursOk = value;
+    }
+    public async viewCourss(dto: ParcoursDto) {
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.itemsCours = res.courss;
+            this.viewcoursOk = true;
+            this.item = dto;
+            console.log(this.service.item);
+        });
+
+
+        // this.viewcoursOk = true;
+        // console.log(this.viewcoursOk);
+        // // console.log(element.courss);
+        // this.coursService.findByParcourId(element.id).subscribe( res =>
+        //     this.itemsCours = res
+        // )
+        // console.log(this.itemsCours);
+    }
+
+    set itemParcour(value: ParcoursDto) {
+        this.service.itemParcour = value;
+    }
+    get itemParcour():  ParcoursDto {
+        return this.service.itemParcour;
+    }
+    parcourview(dto: ParcoursDto) {
+       this.itemParcour = dto ;
+       console.log(this.itemParcour);
+    }
+
+
+    //
 
     override fileName = 'Parcours';
 
@@ -72,6 +120,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
                 this.loadCentre();
             }
         });
+
     }
 
 
@@ -131,4 +180,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
         //'Centre': this.criteria.centre?.ref ? this.criteria.centre?.ref : environment.emptyForExport ,
         }];
       }
+
+
+
 }

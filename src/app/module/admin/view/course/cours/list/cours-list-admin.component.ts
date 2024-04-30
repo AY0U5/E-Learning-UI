@@ -31,6 +31,27 @@ import {SectionItemAdminService} from 'src/app/shared/service/admin/course/Secti
 })
 export class CoursListAdminComponent extends AbstractListController<CoursDto, CoursCriteria, CoursAdminService>  implements OnInit {
 
+    //
+
+    get viewcoursOk(): boolean {
+        return this.service.viewcoursOk;
+    }
+
+    set viewcoursOk(value: boolean) {
+        this.service.viewcoursOk = value;
+    }
+
+
+    set itemsCours(value: Array<CoursDto>) {
+        this.service.itemsCours = value;
+    }
+    get itemsCours():  Array<CoursDto> {
+        return this.service.itemsCours;
+    }
+
+
+//
+
     override fileName = 'Cours';
 
 
