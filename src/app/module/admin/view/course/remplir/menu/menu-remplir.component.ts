@@ -34,6 +34,10 @@ export class MenuRemplirComponent extends AbstractListController<SectionDto, Sec
     categorieSections: Array<CategorieSectionDto>;
     courss: Array<CoursDto>;
 
+    toggleRow(cour) {
+        cour.expanded = !cour.expanded;
+    }
+
 
     constructor( private sectionService: SectionAdminService  , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
         super(sectionService);
@@ -126,4 +130,6 @@ export class MenuRemplirComponent extends AbstractListController<SectionDto, Sec
             'Content Max': this.criteria.contentMax ? this.criteria.contentMax : environment.emptyForExport ,
         }];
     }
+
+    protected readonly first = first;
 }

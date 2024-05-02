@@ -90,9 +90,7 @@ imports: [
     FileUploadModule,
     SelectButtonModule,
 
-  AdminModule,
   AdminRoutingModule,
-    EditorModule,
 
   TranslateModule.forRoot({
   loader: {

@@ -56,6 +56,11 @@ import {DataViewModule} from "primeng/dataview";
 import {TagModule} from "primeng/tag";
 import {RatingModule} from "primeng/rating";
 import {TimelineModule} from "primeng/timeline";
+import {ScrollPanelModule} from "primeng/scrollpanel";
+import {SidebarModule} from "primeng/sidebar";
+import { PreviewComponent } from './remplir/editor/preview/preview.component';
+import { ListComponent } from './remplir/list/list.component';
+import {ListboxModule} from "primeng/listbox";
 
 
 
@@ -80,6 +85,8 @@ import {TimelineModule} from "primeng/timeline";
     SectionEditAdminComponent,
     MenuRemplirComponent,
     EditRemplirComponentComponent,
+    PreviewComponent,
+    ListComponent
   ],
     imports: [
         CommonModule,
@@ -118,6 +125,9 @@ import {TimelineModule} from "primeng/timeline";
         TagModule,
         RatingModule,
         TimelineModule,
+        ScrollPanelModule,
+        SidebarModule,
+        ListboxModule,
 
     ],
   exports: [

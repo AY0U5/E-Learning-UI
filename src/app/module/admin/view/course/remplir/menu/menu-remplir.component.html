@@ -3,21 +3,7 @@
     <div class="col col-8">
         <app-edit-remplir-component></app-edit-remplir-component>
     </div>
-    <div class="col col-4">
-        <p-table [value]="items" selectionMode="single">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Cours</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-section>
-                <tr>
-                    <td>{{section.libelle}}</td>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="footer">
-                <p-paginator [rows]="10" (onPageChange)="onPage($event)" [totalRecords]="totalRecords"></p-paginator>
-            </ng-template>
-        </p-table>
+    <div class="col col-4 mt-7">
+        <app-list></app-list>
     </div>
 </div>
