@@ -36,6 +36,10 @@
                         <label for="8">{{'parcours.centre' | translate}}</label>
                         <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'parcours.centre' | translate}}" autofocus  id="8" [ngModel]="item.centre?.ref">
                     </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'cours.etatParcours' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'cours.etatParcours' | translate}}" autofocus  id="5" [ngModel]="item.etatParcours?.libelle">
+                    </div>
                 </div>
             </p-tabPanel>
 
@@ -70,6 +74,8 @@
                                         <td>{{p.nombreLinkEnCours}}</td>
                                         <td>{{p.nombreLinkFinalise}}</td>
                                         <td>{{p.numeroOrder}}</td>
+                                        <td>{{p.nombreSection}}</td>
+
                                     </tr>
                                 </ng-template>
                             </p-table>

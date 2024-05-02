@@ -14,12 +14,17 @@ import {CoursDto} from 'src/app/shared/model/course/Cours.model';
 import {CoursAdminService} from 'src/app/shared/service/admin/course/CoursAdmin.service';
 import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
+import {EtatSectionAdminService} from "../../../../../../shared/service/admin/courseref/EtatSectionAdmin.service";
+import {EtatSectionDto} from "../../../../../../shared/model/courseref/EtatSection.model";
 
 @Component({
   selector: 'app-section-edit-admin',
   templateUrl: './section-edit-admin.component.html'
 })
 export class SectionEditAdminComponent extends AbstractEditController<SectionDto, SectionCriteria, SectionAdminService>   implements OnInit {
+
+    private _validEtatSectionCode = true;
+    private _validEtatSectionLibelle = true;
 
     private _sectionItemsElement = new SectionItemDto();
 
@@ -31,7 +36,7 @@ export class SectionEditAdminComponent extends AbstractEditController<SectionDto
 
 
 
-    constructor( private sectionService: SectionAdminService , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
+    constructor( private etatSectionService: EtatSectionAdminService, private sectionService: SectionAdminService , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
         super(sectionService);
     }
 
@@ -41,6 +46,9 @@ export class SectionEditAdminComponent extends AbstractEditController<SectionDto
         this.categorieSectionService.findAll().subscribe((data) => this.categorieSections = data);
         this.cours = new CoursDto();
         this.coursService.findAll().subscribe((data) => this.courss = data);
+
+        this.etatSection = new EtatSectionDto();
+        this.etatSectionService.findAll().subscribe((data) => this.etatSections = data);
     }
 
 
@@ -104,6 +112,37 @@ export class SectionEditAdminComponent extends AbstractEditController<SectionDto
         }
     }
 
+
+    get etatSection(): EtatSectionDto {
+        return this.etatSectionService.item;
+    }
+    set etatSection(value: EtatSectionDto) {
+        this.etatSectionService.item = value;
+    }
+    get etatSections(): Array<EtatSectionDto> {
+        return this.etatSectionService.items;
+    }
+    set etatSections(value: Array<EtatSectionDto>) {
+        this.etatSectionService.items = value;
+    }
+    get createEtatSectionDialog(): boolean {
+        return this.etatSectionService.createDialog;
+    }
+    set createEtatSectionDialog(value: boolean) {
+        this.etatSectionService.createDialog= value;
+    }
+    get validEtatSectionCode(): boolean {
+        return this._validEtatSectionCode;
+    }
+    set validEtatSectionCode(value: boolean) {
+        this._validEtatSectionCode = value;
+    }
+    get validEtatSectionLibelle(): boolean {
+        return this._validEtatSectionLibelle;
+    }
+    set validEtatSectionLibelle(value: boolean) {
+        this._validEtatSectionLibelle = value;
+    }
    get cours(): CoursDto {
        return this.coursService.item;
    }

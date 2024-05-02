@@ -2,6 +2,7 @@ import {BaseCriteria} from 'src/app/zynerator/criteria/BaseCriteria.model';
 import {CategorieSectionCriteria} from '../courseref/CategorieSectionCriteria.model';
 import {CoursCriteria} from './CoursCriteria.model';
 import {SectionItemCriteria} from './SectionItemCriteria.model';
+import {EtatSectionCriteria} from "../courseref/EtatSectionCriteria.model";
 
 export class SectionCriteria  extends BaseCriteria  {
 
@@ -33,6 +34,8 @@ export class SectionCriteria  extends BaseCriteria  {
      public content: number;
      public contentMin: number;
      public contentMax: number;
+    public etatSection: EtatSectionCriteria ;
+    public etatSections: Array<EtatSectionCriteria> ;
   public categorieSection: CategorieSectionCriteria ;
   public categorieSections: Array<CategorieSectionCriteria> ;
   public cours: CoursCriteria ;

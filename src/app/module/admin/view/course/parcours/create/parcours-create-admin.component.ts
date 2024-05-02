@@ -43,6 +43,8 @@ import {TeacherLocalityDto} from 'src/app/shared/model/inscriptionref/TeacherLoc
 import {TeacherLocalityAdminService} from 'src/app/shared/service/admin/inscriptionref/TeacherLocalityAdmin.service';
 import {NiveauEtudeDto} from 'src/app/shared/model/inscriptionref/NiveauEtude.model';
 import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionref/NiveauEtudeAdmin.service';
+import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/courseref/EtatParcoursAdmin.service";
+import {EtatParcoursDto} from "../../../../../../shared/model/courseref/EtatParcours.model";
 @Component({
   selector: 'app-parcours-create-admin',
   templateUrl: './parcours-create-admin.component.html'
@@ -53,15 +55,18 @@ export class ParcoursCreateAdminComponent extends AbstractCreateController<Parco
     private _etudiantsElement = new EtudiantDto();
 
 
+
    private _validParcoursCode = true;
    private _validParcoursLibelle = true;
+    private _validEtatParcoursCode = true;
+    private _validEtatParcoursLibelle = true;
     private _validCentreRef = true;
     private _validCourssCode = true;
     private _validCourssLibelle = true;
     private _validEtudiantsRef = true;
     private _groupeEtudiantDetails: Array<GroupeEtudiantDetailDto> = [];
 
-    constructor( private parcoursService: ParcoursAdminService , private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
+    constructor( private etatParcoursService: EtatParcoursAdminService, private parcoursService: ParcoursAdminService , private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
         super(parcoursService);
     }
 
@@ -89,6 +94,8 @@ export class ParcoursCreateAdminComponent extends AbstractCreateController<Parco
         this.etudiantsElement.langue = new LangueDto();
         this.langueService.findAll().subscribe((data) => this.langues = data);
          this.groupeEtudiantService.findAll().subscribe(data => this.prepareGroupeEtudiantDetails(data));
+        this.etatParcours = new EtatParcoursDto();
+        this.etatParcoursService.findAll().subscribe((data) => this.etatParcourss = data);
         this.centre = new CentreDto();
         this.centreService.findAll().subscribe((data) => this.centres = data);
     }
@@ -400,6 +407,44 @@ export class ParcoursCreateAdminComponent extends AbstractCreateController<Parco
     set createFonctionDialog(value: boolean) {
         this.fonctionService.createDialog= value;
     }
+    get etatParcours(): EtatParcoursDto {
+        return this.etatParcoursService.item;
+    }
+
+    set etatParcours(value: EtatParcoursDto) {
+        this.etatParcoursService.item = value;
+    }
+
+    get etatParcourss(): Array<EtatParcoursDto> {
+        return this.etatParcoursService.items;
+    }
+
+    set etatParcourss(value: Array<EtatParcoursDto>) {
+        this.etatParcoursService.items = value;
+    }
+    get createEtatParcoursDialog(): boolean {
+        return this.etatParcoursService.createDialog;
+    }
+
+    set createEtatParcoursDialog(value: boolean) {
+        this.etatParcoursService.createDialog = value;
+    }
+    get validEtatParcoursCode(): boolean {
+        return this._validEtatParcoursCode;
+    }
+
+    set validEtatParcoursCode(value: boolean) {
+        this._validEtatParcoursCode = value;
+    }
+
+    get validEtatParcoursLibelle(): boolean {
+        return this._validEtatParcoursLibelle;
+    }
+
+    set validEtatParcoursLibelle(value: boolean) {
+        this._validEtatParcoursLibelle = value;
+    }
+
     get centre(): CentreDto {
         return this.centreService.item;
     }

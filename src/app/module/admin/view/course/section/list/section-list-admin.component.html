@@ -6,7 +6,7 @@
                 <ng-template pTemplate="left">
                                         <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Section')" *ngIf="createActionIsValid"></button>
                     <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
-                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
+<!--                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>-->
                 </ng-template>
                <!-- <ng-template pTemplate="right">
                     <div class="flex">
@@ -91,6 +91,12 @@
                             <label  class="font-bold block mb-2" for="14-2">{{'section.contentMax' | translate}}</label>
                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.contentMax" id="14-2"></p-inputNumber>
                        </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="5-2">{{'section.etatSection' | translate}}</label>
+                            <p-dropdown [options]="etatSections" [(ngModel)]="criteria.etatSection" id="5" [filter]="true" class="p-fluid"
+                                        [showClear]="true"  placeholder="{{'section.etatSection' | translate}}" optionLabel="libelle">
+                            </p-dropdown>
+                        </div>
                     </div>
                     <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
                         <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
@@ -102,7 +108,7 @@
 
 
             <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['code', 'libelle', 'urlImage', 'urlImage2', 'urlImage3', 'urlVideo', 'contenu', 'questions', 'indicationProf', 'numeroOrder', 'categorieSectioncode', 'courslibelle', 'url', 'content']" [(selection)]="selections"
+                    [globalFilterFields]="['code', 'libelle', 'urlImage', 'urlImage2', 'urlImage3', 'urlVideo', 'contenu', 'questions', 'indicationProf', 'numeroOrder', 'categorieSectioncode', 'courslibelle', 'url', 'content','etatSectionlibelle']" [(selection)]="selections"
                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
                     currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
                     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
@@ -121,14 +127,14 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
 
-                        <th pSortableColumn="code">
+                     <!--   <th pSortableColumn="code">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.code' | translate}}</span>
                                 <p-sortIcon field="code"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.code" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-
+-->
 
                         <th pSortableColumn="libelle">
                             <div class="p-d-flex p-jc-between p-ai-center">
@@ -139,7 +145,7 @@
                         </th>
 
 
-                        <th pSortableColumn="urlImage">
+                       <!-- <th pSortableColumn="urlImage">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.urlImage' | translate}}</span>
                                 <p-sortIcon field="urlImage"></p-sortIcon>
@@ -181,10 +187,10 @@
                                 <p-sortIcon field="contenu"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.contenu" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
-                        </th>
+                        </th>-->
 
 
-                        <th pSortableColumn="questions">
+                        <!--<th pSortableColumn="questions">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.questions' | translate}}</span>
                                 <p-sortIcon field="questions"></p-sortIcon>
@@ -199,7 +205,7 @@
                                 <p-sortIcon field="indicationProf"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.indicationProf" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
-                        </th>
+                        </th>-->
 
                                 <!--
                         <th pSortableColumn="numeroOrder">
@@ -241,6 +247,12 @@
                             </div>
                         </th>
                                 -->
+                        <th pSortableColumn="etatSection">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'section.etatSection' | translate}}</span>
+                                <p-sortIcon field="etatSection"></p-sortIcon>
+                            </div>
+                        </th>
                         <th>Actions</th>
                     </tr>
                 </ng-template>
@@ -250,13 +262,13 @@
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
                         </td>
 
-                        <td>{{element.code}}</td>
+                       <!-- <td>{{element.code}}</td>-->
 
 
                         <td>{{element.libelle}}</td>
 
 
-                        <td>{{element.urlImage}}</td>
+                        <!--<td>{{element.urlImage}}</td>
 
 
                         <td>{{element.urlImage2}}</td>
@@ -274,7 +286,7 @@
                         <td>{{element.questions}}</td>
 
 
-                        <td>{{element.indicationProf}}</td>
+                        <td>{{element.indicationProf}}</td>-->
 
                              <!--
                         <td>{{element.numeroOrder}}</td>
@@ -291,6 +303,7 @@
                              <!--
                         <td>{{element.content}}</td>
                              -->
+                        <td>{{element.etatSection?.libelle}}</td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>

@@ -11,6 +11,8 @@ import {CoursDto} from 'src/app/shared/model/course/Cours.model';
 import {CoursAdminService} from 'src/app/shared/service/admin/course/CoursAdmin.service';
 import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
+import {EtatSectionDto} from "../../../../../../shared/model/courseref/EtatSection.model";
+import {EtatSectionAdminService} from "../../../../../../shared/service/admin/courseref/EtatSectionAdmin.service";
 
 
 @Component({
@@ -21,12 +23,13 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
 
     override fileName = 'Section';
 
+    etatSections: Array<EtatSectionDto>;
 
     categorieSections: Array<CategorieSectionDto>;
     courss: Array<CoursDto>;
 
 
-    constructor( private sectionService: SectionAdminService  , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
+    constructor( private etatSectionService: EtatSectionAdminService, private sectionService: SectionAdminService  , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
         super(sectionService);
     }
 
@@ -38,6 +41,7 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
                 this.initCol();
                 this.loadCategorieSection();
                 this.loadCours();
+                this.loadEtatSection();
             }
         });
     }
@@ -59,7 +63,12 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
             {field: 'cours?.libelle', header: 'Cours'},
             {field: 'url', header: 'Url'},
             {field: 'content', header: 'Content'},
+            {field: 'etatSection?.libelle', header: 'Etat section'},
         ];
+    }
+
+    public async loadEtatSection(){
+        this.etatSectionService.findAllOptimized().subscribe(etatSections => this.etatSections = etatSections, error => console.log(error))
     }
 
 
@@ -94,6 +103,7 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
                 'Cours': e.cours?.libelle ,
                  'Url': e.url ,
                  'Content': e.content ,
+                'Etat section': e.etatSection?.libelle ,
             }
         });
 

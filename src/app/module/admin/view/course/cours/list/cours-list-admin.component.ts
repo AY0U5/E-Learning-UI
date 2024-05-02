@@ -88,6 +88,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             {field: 'nombreLinkEnCours', header: 'Nombre link en cours'},
             {field: 'nombreLinkFinalise', header: 'Nombre link finalise'},
             {field: 'numeroOrder', header: 'Numero order'},
+            {field: 'nombreSection', header: 'Nombre Section'},
         ];
     }
 
@@ -123,6 +124,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
                  'Nombre link en cours': e.nombreLinkEnCours ,
                  'Nombre link finalise': e.nombreLinkFinalise ,
                  'Numero order': e.numeroOrder ,
+                'Nombre Section': e.nombreSection ,
             }
         });
 
@@ -143,6 +145,8 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             'Nombre link finalise Max': this.criteria.nombreLinkFinaliseMax ? this.criteria.nombreLinkFinaliseMax : environment.emptyForExport ,
             'Numero order Min': this.criteria.numeroOrderMin ? this.criteria.numeroOrderMin : environment.emptyForExport ,
             'Numero order Max': this.criteria.numeroOrderMax ? this.criteria.numeroOrderMax : environment.emptyForExport ,
+            'Nombre section Min': this.criteria.nombreSectionMin ? this.criteria.nombreSectionMin : environment.emptyForExport ,
+            'Nombre section Max': this.criteria.nombreSectionMax ? this.criteria.nombreSectionMax : environment.emptyForExport ,
         }];
       }
 }

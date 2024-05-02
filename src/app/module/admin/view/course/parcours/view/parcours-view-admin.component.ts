@@ -46,6 +46,8 @@ import {TeacherLocalityDto} from 'src/app/shared/model/inscriptionref/TeacherLoc
 import {TeacherLocalityAdminService} from 'src/app/shared/service/admin/inscriptionref/TeacherLocalityAdmin.service';
 import {NiveauEtudeDto} from 'src/app/shared/model/inscriptionref/NiveauEtude.model';
 import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionref/NiveauEtudeAdmin.service';
+import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/courseref/EtatParcoursAdmin.service";
+import {EtatParcoursDto} from "../../../../../../shared/model/courseref/EtatParcours.model";
 @Component({
   selector: 'app-parcours-view-admin',
   templateUrl: './parcours-view-admin.component.html'
@@ -57,7 +59,7 @@ export class ParcoursViewAdminComponent extends AbstractViewController<ParcoursD
     etudiants = new EtudiantDto();
     etudiantss: Array<EtudiantDto> = [];
 
-    constructor(private parcoursService: ParcoursAdminService, private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService){
+    constructor( private etatParcoursService: EtatParcoursAdminService,private parcoursService: ParcoursAdminService, private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService){
         super(parcoursService);
     }
 
@@ -185,6 +187,20 @@ export class ParcoursViewAdminComponent extends AbstractViewController<ParcoursD
     set fonctions(value: Array<FonctionDto>) {
         this.fonctionService.items = value;
     }
+
+    get etatParcours(): EtatParcoursDto {
+        return this.etatParcoursService.item;
+    }
+    set etatParcours(value: EtatParcoursDto) {
+        this.etatParcoursService.item = value;
+    }
+    get etatParcourss(): Array<EtatParcoursDto> {
+        return this.etatParcoursService.items;
+    }
+    set etatParcourss(value: Array<EtatParcoursDto>) {
+        this.etatParcoursService.items = value;
+    }
+
     get centre(): CentreDto {
        return this.centreService.item;
     }

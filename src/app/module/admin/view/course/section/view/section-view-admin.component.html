@@ -60,6 +60,10 @@
                         <label for="14">{{'section.content' | translate}}</label>
                         <p-inputNumber class="mb-2 mr-2" id="14" [disabled]="true" placeholder="{{'section.content' | translate}}" [ngModel]="item.content"></p-inputNumber>
                     </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'section.etatSection' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'section.etatSection' | translate}}" autofocus  id="5" [ngModel]="item.etatSection?.libelle">
+                    </div>
                 </div>
             </p-tabPanel>
 

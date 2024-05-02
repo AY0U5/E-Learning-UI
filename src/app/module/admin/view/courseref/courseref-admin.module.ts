@@ -52,11 +52,30 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MessageModule } from 'primeng/message';
 import {MessagesModule} from 'primeng/messages';
 import {PaginatorModule} from 'primeng/paginator';
+import {EtatSectionCreateAdminComponent} from "./etat-section/create/etat-section-create-admin.component";
+import {EtatSectionListAdminComponent} from "./etat-section/list/etat-section-list-admin.component";
+import {EtatSectionViewAdminComponent} from "./etat-section/view/etat-section-view-admin.component";
+import {EtatSectionEditAdminComponent} from "./etat-section/edit/etat-section-edit-admin.component";
+import {EtatParcoursCreateAdminComponent} from "./etat-parcours/create/etat-parcours-create-admin.component";
+import {EtatParcoursListAdminComponent} from "./etat-parcours/list/etat-parcours-list-admin.component";
+import {EtatParcoursViewAdminComponent} from "./etat-parcours/view/etat-parcours-view-admin.component";
+import {EtatParcoursEditAdminComponent} from "./etat-parcours/edit/etat-parcours-edit-admin.component";
 
 
 
 @NgModule({
   declarations: [
+
+      EtatSectionCreateAdminComponent,
+      EtatSectionListAdminComponent,
+      EtatSectionViewAdminComponent,
+      EtatSectionEditAdminComponent,
+
+
+      EtatParcoursCreateAdminComponent,
+      EtatParcoursListAdminComponent,
+      EtatParcoursViewAdminComponent,
+      EtatParcoursEditAdminComponent,
 
     EtatCoursCreateAdminComponent,
     EtatCoursListAdminComponent,
@@ -113,6 +132,16 @@ import {PaginatorModule} from 'primeng/paginator';
 
   ],
   exports: [
+      EtatSectionCreateAdminComponent,
+      EtatSectionListAdminComponent,
+      EtatSectionViewAdminComponent,
+      EtatSectionEditAdminComponent,
+
+
+      EtatParcoursCreateAdminComponent,
+      EtatParcoursListAdminComponent,
+      EtatParcoursViewAdminComponent,
+      EtatParcoursEditAdminComponent,
   EtatCoursCreateAdminComponent,
   EtatCoursListAdminComponent,
   EtatCoursViewAdminComponent,

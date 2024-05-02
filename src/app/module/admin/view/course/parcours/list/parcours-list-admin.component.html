@@ -9,7 +9,7 @@
                 <ng-template pTemplate="left">
                                         <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Parcours')" *ngIf="createActionIsValid"></button>
                     <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
-                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
+<!--                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>-->
                 </ng-template>
                <!-- <ng-template pTemplate="right">
                     <div class="flex">
@@ -78,6 +78,12 @@
                                         [showClear]="true"  placeholder="{{'parcours.centre' | translate}}" optionLabel="ref">
                             </p-dropdown>
                         </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="5-2">{{'Etat Parcours' | translate}}</label>
+                            <p-dropdown [options]="etatParcourss" [(ngModel)]="criteria.etatParcours" id="5" [filter]="true" class="p-fluid"
+                                        [showClear]="true"  placeholder="{{'Etat Parcours' | translate}}" optionLabel="libelle">
+                            </p-dropdown>
+                        </div>
                     </div>
                     <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
                         <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
@@ -89,7 +95,7 @@
 
 
             <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['datePublication', 'dateCreation', 'code', 'libelle', 'numeroOrder', 'nombreCours', 'centreref']" [(selection)]="selections"
+                    [globalFilterFields]="['datePublication', 'dateCreation', 'code', 'libelle', 'numeroOrder', 'nombreCours', 'centreref','etatParcourslibelle']" [(selection)]="selections"
                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
                     currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
                     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
@@ -108,7 +114,7 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
 
-                        <th pSortableColumn="datePublication">
+                        <!--<th pSortableColumn="datePublication">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.datePublication' | translate}}</span>
                                 <p-sortIcon field="datePublication"></p-sortIcon>
@@ -121,7 +127,7 @@
                                 <span>{{'parcours.dateCreation' | translate}}</span>
                                 <p-sortIcon field="dateCreation"></p-sortIcon>
                             </div>
-                        </th>
+                        </th>-->
 
 
                         <th pSortableColumn="code">
@@ -142,13 +148,13 @@
                         </th>
 
 
-                        <th pSortableColumn="numeroOrder">
+                       <!-- <th pSortableColumn="numeroOrder">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.numeroOrder' | translate}}</span>
                                 <p-sortIcon field="numeroOrder"></p-sortIcon>
                             </div>
                         </th>
-
+-->
 
                         <th pSortableColumn="nombreCours">
                             <div class="p-d-flex p-jc-between p-ai-center">
@@ -158,10 +164,17 @@
                         </th>
 
 
-                        <th pSortableColumn="centre">
+                        <!--<th pSortableColumn="centre">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.centre' | translate}}</span>
                                 <p-sortIcon field="centre"></p-sortIcon>
+                            </div>
+                        </th>-->
+
+                        <th pSortableColumn="etatParcours">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'Etat Parcours' | translate}}</span>
+                                <p-sortIcon field="etatParcours"></p-sortIcon>
                             </div>
                         </th>
 
@@ -174,10 +187,10 @@
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
                         </td>
 
-                        <td>{{element.datePublication | date :'dd/MM/yyyy HH:mm' }}</td>
+                       <!-- <td>{{element.datePublication | date :'dd/MM/yyyy HH:mm' }}</td>
 
 
-                        <td>{{element.dateCreation | date :'dd/MM/yyyy HH:mm' }}</td>
+                        <td>{{element.dateCreation | date :'dd/MM/yyyy HH:mm' }}</td>-->
 
 
                         <td>{{element.code}}</td>
@@ -186,13 +199,15 @@
                         <td>{{element.libelle}}</td>
 
 
-                        <td>{{element.numeroOrder}}</td>
+                       <!-- <td>{{element.numeroOrder}}</td>-->
 
 
                         <td>{{element.nombreCours}}</td>
 
 
-                        <td>{{element.centre?.ref}}</td>
+                        <!--<td>{{element.centre?.ref}}</td>-->
+
+                        <td>{{element.etatParcours?.libelle}}</td>
 
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>

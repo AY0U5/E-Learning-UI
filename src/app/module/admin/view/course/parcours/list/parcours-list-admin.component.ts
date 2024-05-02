@@ -44,6 +44,8 @@ import {TeacherLocalityAdminService} from 'src/app/shared/service/admin/inscript
 import {NiveauEtudeDto} from 'src/app/shared/model/inscriptionref/NiveauEtude.model';
 import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionref/NiveauEtudeAdmin.service';
 import * as events from "events";
+import {EtatParcoursDto} from "../../../../../../shared/model/courseref/EtatParcours.model";
+import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/courseref/EtatParcoursAdmin.service";
 
 
 @Component({
@@ -87,6 +89,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
         // console.log(this.itemsCours);
     }
 
+
     set itemParcour(value: ParcoursDto) {
         this.service.itemParcour = value;
     }
@@ -103,11 +106,11 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
 
     override fileName = 'Parcours';
 
-
+    etatParcourss: Array<EtatParcoursDto>;
     centres: Array<CentreDto>;
 
 
-    constructor( private parcoursService: ParcoursAdminService  , private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
+    constructor(private etatParcoursService: EtatParcoursAdminService, private parcoursService: ParcoursAdminService  , private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
         super(parcoursService);
     }
 
@@ -117,6 +120,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
                 this.findPaginatedByCriteria();
                 this.initExport();
                 this.initCol();
+                this.loadEtatParcours();
                 this.loadCentre();
             }
         });
@@ -132,10 +136,13 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
             {field: 'libelle', header: 'Libelle'},
             {field: 'numeroOrder', header: 'Numero order'},
             {field: 'nombreCours', header: 'Nombre cours'},
+            {field: 'etatParcours?.libelle', header: 'Etat parcours'},
             {field: 'centre?.ref', header: 'Centre'},
         ];
     }
-
+    public async loadEtatParcours(){
+        this.etatParcoursService.findAllOptimized().subscribe(etatParcourss => this.etatParcourss = etatParcourss, error => console.log(error))
+    }
 
     public async loadCentre(){
        this.centreService.findAllOptimized().subscribe(centres => this.centres = centres, error => console.log(error))
@@ -161,6 +168,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
                  'Libelle': e.libelle ,
                  'Numero order': e.numeroOrder ,
                  'Nombre cours': e.nombreCours ,
+                'Etat parcours': e.etatParcours?.libelle ,
                 'Centre': e.centre?.ref ,
             }
         });

@@ -22,6 +22,8 @@ import { SuperCategorieSectionListAdminComponent } from './super-categorie-secti
 import { CategorieSectionListAdminComponent } from './categorie-section/list/categorie-section-list-admin.component';
 import { CentreListAdminComponent } from './centre/list/centre-list-admin.component';
 import { LevelTestConfigurationListAdminComponent } from './level-test-configuration/list/level-test-configuration-list-admin.component';
+import {EtatParcoursListAdminComponent} from "./etat-parcours/list/etat-parcours-list-admin.component";
+import {EtatSectionListAdminComponent} from "./etat-section/list/etat-section-list-admin.component";
 @NgModule({
     imports: [
         RouterModule.forChild(
@@ -95,6 +97,28 @@ import { LevelTestConfigurationListAdminComponent } from './level-test-configura
                                 {
                                     path: 'list',
                                     component: EtatCoursListAdminComponent ,
+                                    canActivate: [AuthGuard]
+                                }
+                            ]
+                        },
+                        {
+
+                            path: 'etat-parcours',
+                            children: [
+                                {
+                                    path: 'list',
+                                    component: EtatParcoursListAdminComponent ,
+                                    canActivate: [AuthGuard]
+                                }
+                            ]
+                        },
+                        {
+
+                            path: 'etat-section',
+                            children: [
+                                {
+                                    path: 'list',
+                                    component: EtatSectionListAdminComponent ,
                                     canActivate: [AuthGuard]
                                 }
                             ]

@@ -217,6 +217,16 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									icon: 'pi pi-fw pi-plus-circle',
 									routerLink: ['/app/admin/courseref/etat-cours/list']
 								  },
+                            {
+                                label: 'Liste etat parcours',
+                                icon: 'pi pi-fw pi-plus-circle',
+                                routerLink: ['/app/admin/courseref/etat-parcours/list']
+                            },
+                            {
+                                label: 'Liste etat section',
+                                icon: 'pi pi-fw pi-plus-circle',
+                                routerLink: ['/app/admin/courseref/etat-section/list']
+                            },
 								  {
 									label: 'Liste super categorie section',
 									icon: 'pi pi-fw pi-plus-circle',
