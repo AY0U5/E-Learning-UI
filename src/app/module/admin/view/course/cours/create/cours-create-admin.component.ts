@@ -31,6 +31,55 @@ export class CoursCreateAdminComponent extends AbstractCreateController<CoursDto
 
     //add
 
+    set itemsCours(value: Array<CoursDto>) {
+        this.service.itemsCours = value;
+    }
+    get itemsCours():  Array<CoursDto> {
+        return this.service.itemsCours;
+    }
+    set itemPar(value: ParcoursDto) {
+        this.parcoursService.item = value;
+    }
+    get itemPar():  ParcoursDto {
+        return this.parcoursService.item;
+    }
+    public saveNewCours(): void {
+
+        this.item.parcours = this.itemParcour ;
+        /*console.log(this.itemParcour);
+        console.log(this.item);*/
+
+        this.submitted = true;
+        this.validateForm();
+        if (this.errorMessages.length === 0) {
+            this.saveWithShowOptionCours(false);
+        } else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+
+    public saveWithShowOptionCours(showList: boolean) {
+        this.service.save().subscribe(item => {
+            if (item != null) {
+                // this.itemPar.courss.push({...item});
+                this.itemsCours.push({...item});
+                this.createDialog = false;
+                this.submitted = false;
+                this.item = this.service.constrcutDto();
+            } else {
+                this.messageService.add({severity: 'error', summary: 'Erreurs', detail: 'Element existant'});
+            }
+
+        }, error => {
+            console.log(error);
+        });
+    }
+
+    //
 
     get itemParcour(): ParcoursDto {
         return this.parcoursService.itemParcour;
@@ -42,7 +91,7 @@ export class CoursCreateAdminComponent extends AbstractCreateController<CoursDto
 
     afficherparcour() {
         this.item.parcours = this.itemParcour ;
-        console.log(this.item.parcours);
+        console.log(this.itemParcour);
     }
 
     public validateEtatCoursCode() {

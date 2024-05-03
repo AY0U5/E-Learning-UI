@@ -33,6 +33,17 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
 
     //
 
+    set itemPar(value: ParcoursDto) {
+        this.parcoursService.item = value;
+    }
+    get itemPar():  ParcoursDto {
+        return this.parcoursService.item;
+    }
+    /*afficherliyaParcour() {
+        // this.item.parcours = this.itemPar;
+        console.log(this.itemPar);
+    }*/
+
     get viewcoursOk(): boolean {
         return this.service.viewcoursOk;
     }
@@ -50,6 +61,36 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
     }
 
 
+    public async deleteMultipleCours() {
+        this.confirmationService.confirm({
+            message: 'Voulez-vous supprimer ces éléments ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.deleteMultiple().subscribe(() => {
+                    this.itemsCours = this.itemsCours.filter(item => !this.selections.includes(item));
+                    this.selections = new Array<CoursDto>();
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Succès',
+                        detail: 'Les éléments sélectionnés ont été supprimés',
+                        life: 3000
+                    });
+
+                }, error => console.log(error));
+            }
+        });
+    }
+    public async editCours(dto: CoursDto) {
+        // this.item = dto;
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.item = res;
+            // this.itemsCours.push({...this.item}) ;
+            console.log(this.item);
+            this.editDialog = true;
+        });
+
+    }
 //
 
     override fileName = 'Cours';
@@ -149,4 +190,6 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             'Nombre section Max': this.criteria.nombreSectionMax ? this.criteria.nombreSectionMax : environment.emptyForExport ,
         }];
       }
+
+
 }

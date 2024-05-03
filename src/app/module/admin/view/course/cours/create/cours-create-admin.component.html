@@ -3,7 +3,7 @@
     <ng-template pTemplate="content">
         <p-tabView>
             <p-tabPanel header="{{'cours.tabPan' | translate}}">
-                <div class="grid" (click)="afficherparcour()">
+                <div class="grid" ><!--(click)="afficherparcour()"-->
 
                     <div class="field col-12 md:col-6">
                         <label for="1">{{ 'cours.code' | translate }}<span style="color: red;">*</span></label>
@@ -46,16 +46,16 @@
                                     [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
                                     placeholder="{{'cours.etatCours' | translate}}"
-                                    [ngClass]="{'ng-invalid ng-dirty' : !validEtatCoursCode}">
+                                    > <!--[ngClass]="{'ng-invalid ng-dirty' : !validEtatCoursCode}"-->
 
                         </p-dropdown>
-                        <small class='p-error' *ngIf='!validEtatCoursCode'>Etat de Cours est obligatoire.</small>
+<!--                        <small class='p-error' *ngIf='!validEtatCoursCode'>Etat de Cours est obligatoire.</small>-->
 
                     </div>
 
-                    <div class="field col-11 md:col-6">
+                    <div  class="field col-11 md:col-6">
                         <label for="6">{{ 'cours.parcours' | translate }}</label>
-                        <p-dropdown appendTo="body" [options]="parcourss" [(ngModel)]="item.parcours" id="6"
+                        <p-dropdown [disabled]="true" appendTo="body" [options]="parcourss" [(ngModel)]="item.parcours" id="6"
                                     [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
                                     placeholder="{{'cours.parcours' | translate}}">
@@ -348,7 +348,7 @@
     <ng-template pTemplate="footer">
         <div class="p-flexbox">
 
-            <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-check" (click)="save()"></button>
+            <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-check" (click)="saveNewCours()"></button>
 
 
             <button pButton pRipple label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined"

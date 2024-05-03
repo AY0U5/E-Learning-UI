@@ -56,6 +56,8 @@ import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/c
 })
 export class ParcoursListAdminComponent extends AbstractListController<ParcoursDto, ParcoursCriteria, ParcoursAdminService>  implements OnInit {
 
+
+
     //
     get itemsCours(): Array<CoursDto> {
         return this.coursService.itemsCours;
@@ -71,12 +73,20 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
     set viewcoursOk(value: boolean) {
         this.coursService.viewcoursOk = value;
     }
-    public async viewCourss(dto: ParcoursDto) {
+    /*public async viewCourss(dto: ParcoursDto) {
         this.service.findByIdWithAssociatedList(dto).subscribe(res => {
             this.itemsCours = res.courss;
             this.viewcoursOk = true;
             this.item = dto;
             console.log(this.service.item);
+        });*/
+    public  viewCourss(dto: ParcoursDto) {
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.item.courss = res.courss;
+            this.itemsCours = this.item.courss ;
+            this.viewcoursOk = true;
+            this.itemParcour = dto;
+            // console.log(this.service.item);
         });
 
 

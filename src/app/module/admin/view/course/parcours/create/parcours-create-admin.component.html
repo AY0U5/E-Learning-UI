@@ -73,9 +73,9 @@
                                     [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
                                     placeholder="{{'parcours.etatParcours' | translate}}"
-                                    [ngClass]="{'ng-invalid ng-dirty' : !validEtatParcoursLibelle}">
+                                   ><!-- [ngClass]="{'ng-invalid ng-dirty' : !validEtatParcoursLibelle}"-->
                         </p-dropdown>
-                        <small class='p-error' *ngIf='!validEtatParcoursLibelle'>Code est obligatoire.</small>
+<!--                        <small class='p-error' *ngIf='!validEtatParcoursLibelle'>Code est obligatoire.</small>-->
 
                     </div>
                     <div class="field col-11 md:col-6">
