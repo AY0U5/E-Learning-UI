@@ -72,8 +72,10 @@
                         <p-dropdown appendTo="body" [options]="etatParcourss" [(ngModel)]="item.etatParcours" id="99"
                                     [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
-                                    placeholder="{{'parcours.etatParcours' | translate}}">
+                                    placeholder="{{'parcours.etatParcours' | translate}}"
+                                    [ngClass]="{'ng-invalid ng-dirty' : !validEtatParcoursLibelle}">
                         </p-dropdown>
+                        <small class='p-error' *ngIf='!validEtatParcoursLibelle'>Code est obligatoire.</small>
 
                     </div>
                     <div class="field col-11 md:col-6">

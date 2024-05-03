@@ -45,8 +45,11 @@
                         <p-dropdown appendTo="body" [options]="etatCourss" [(ngModel)]="item.etatCours" id="5"
                                     [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
-                                    placeholder="{{'cours.etatCours' | translate}}">
+                                    placeholder="{{'cours.etatCours' | translate}}"
+                                    [ngClass]="{'ng-invalid ng-dirty' : !validEtatCoursCode}">
+
                         </p-dropdown>
+                        <small class='p-error' *ngIf='!validEtatCoursCode'>Etat de Cours est obligatoire.</small>
 
                     </div>
 

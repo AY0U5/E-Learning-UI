@@ -45,6 +45,14 @@ export class CoursCreateAdminComponent extends AbstractCreateController<CoursDto
         console.log(this.item.parcours);
     }
 
+    public validateEtatCoursCode() {
+        if (this.stringUtilService.isEmpty(this.item.etatCours)) {
+            this.errorMessages.push('etat de cours non definit');
+            this.validEtatCoursCode = false;
+        } else {
+            this.validEtatCoursCode = true;
+        }
+    }
     //
 
     private _sectionsElement = new SectionDto();

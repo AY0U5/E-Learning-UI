@@ -51,6 +51,17 @@ import {EtatParcoursDto} from "../../../../../../shared/model/courseref/EtatParc
 })
 export class ParcoursCreateAdminComponent extends AbstractCreateController<ParcoursDto, ParcoursCriteria, ParcoursAdminService>  implements OnInit {
 
+
+    //
+    public validateEtatParcoursCode(){
+        if (this.stringUtilService.isEmpty(this.item.etatParcours)) {
+            this.errorMessages.push('Etat parcour non indiquer');
+            this.validEtatParcoursLibelle = false;
+        } else {
+            this.validEtatParcoursLibelle = true;
+        }
+    }
+//
     private _courssElement = new CoursDto();
     private _etudiantsElement = new EtudiantDto();
 
@@ -119,6 +130,7 @@ export class ParcoursCreateAdminComponent extends AbstractCreateController<Parco
     validateEtudiants(){
         this.errorMessages = new Array();
         this.validateEtudiantsRef();
+
     }
 
 
