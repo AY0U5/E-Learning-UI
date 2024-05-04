@@ -120,7 +120,7 @@
                 </div>
             </p-tabPanel>
             <p-tabPanel header="{{'cours.sections' | translate}}">
-                <p-tabView [(activeIndex)]="activeTab">
+                <!--<p-tabView [(activeIndex)]="activeTab">
                     <p-tabPanel header="Création">
                         <div class="grid">
                             <div class="field col-12 md:col-6">
@@ -213,7 +213,7 @@
                             </div>
 
                         </div>
-                    </p-tabPanel>
+                    </p-tabPanel>-->
                     <p-tabPanel header="Liste {{item.sections?.length > 0 ? '(' + item.sections?.length + ')' : ''}}">
                         <div class="card">
                             <p-table [value]="item.sections" [scrollable]="true" scrollHeight="200px">
@@ -262,12 +262,13 @@
                         </div>
 
                     </p-tabPanel>
-                </p-tabView>
             </p-tabPanel>
+                </p-tabView>
+    </ng-template>
 
-            <p-tabPanel header="{{'cours.homeWorks' | translate}}">
+            <!--<p-tabPanel header="{{'cours.homeWorks' | translate}}">
                 <p-tabView [(activeIndex)]="activeTab">
-                    <p-tabPanel header="Création">
+                   &lt;!&ndash; <p-tabPanel header="Création">
                         <div class="grid">
                             <div class="field col-12 md:col-6">
                                 <label for="1">Libelle<span style="color: red;">*</span></label>
@@ -305,8 +306,8 @@
                             </div>
 
                         </div>
-                    </p-tabPanel>
-                    <p-tabPanel header="Liste {{item.homeWorks?.length > 0 ? '(' + item.homeWorks?.length + ')' : ''}}">
+                    </p-tabPanel>&ndash;&gt;
+                 &lt;!&ndash;   <p-tabPanel header="Liste {{item.homeWorks?.length > 0 ? '(' + item.homeWorks?.length + ')' : ''}}">
                         <div class="card">
                             <p-table [value]="item.homeWorks" [scrollable]="true" scrollHeight="200px">
                                 <ng-template pTemplate="header">
@@ -336,14 +337,12 @@
                             </p-table>
                         </div>
 
-                    </p-tabPanel>
+                    </p-tabPanel>&ndash;&gt;
                 </p-tabView>
-            </p-tabPanel>
+            </p-tabPanel>-->
 
 
-        </p-tabView>
 
-    </ng-template>
 
     <ng-template pTemplate="footer">
         <div class="p-flexbox">

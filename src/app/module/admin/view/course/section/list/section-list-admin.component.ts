@@ -20,6 +20,38 @@ import {EtatSectionAdminService} from "../../../../../../shared/service/admin/co
   templateUrl: './section-list-admin.component.html'
 })
 export class SectionListAdminComponent extends AbstractListController<SectionDto, SectionCriteria, SectionAdminService>  implements OnInit {
+    //
+
+    get itemsSections(): Array<SectionDto> {
+        return this.service.itemsSections;
+    }
+
+    set itemsSections(value: Array<SectionDto>) {
+        this.service.itemsSections = value;
+    }
+
+
+    public async deleteMultipleSections() {
+        this.confirmationService.confirm({
+            message: 'Voulez-vous supprimer ces éléments ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.deleteMultiple().subscribe(() => {
+                    this.itemsSections = this.itemsSections.filter(item => !this.selections.includes(item));
+                    this.selections = new Array<SectionDto>();
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Succès',
+                        detail: 'Les éléments sélectionnés ont été supprimés',
+                        life: 3000
+                    });
+
+                }, error => console.log(error));
+            }
+        });
+    }
+    //
 
     override fileName = 'Section';
 

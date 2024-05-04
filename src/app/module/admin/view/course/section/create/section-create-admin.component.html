@@ -107,7 +107,7 @@
 
                     <div class="field col-11 md:col-6">
                         <label for="12">{{ 'section.cours' | translate }}</label>
-                        <p-dropdown appendTo="body" [options]="courss" [(ngModel)]="item.cours" id="12" [filter]="true"
+                        <p-dropdown [disabled]="true" appendTo="body" [options]="courss" [(ngModel)]="item.cours" id="12" [filter]="true"
                                     filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
                                     placeholder="{{'section.cours' | translate}}">
@@ -246,7 +246,7 @@
     <ng-template pTemplate="footer">
         <div class="p-flexbox">
 
-            <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-check" (click)="save()"></button>
+            <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-check" (click)="saveNewSection()"></button>
 
 
             <button pButton pRipple label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined"

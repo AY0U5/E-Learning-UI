@@ -33,6 +33,54 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
 
     //
 
+
+    public findPaginatedByCriteriaCours() {
+        this.service.findPaginatedByCriteria(this.criteria).subscribe(paginatedItems => {
+            this.itemsCours = paginatedItems.list;
+            this.totalRecords = paginatedItems.dataSize;
+            this.selections = new Array<CoursDto>();
+        }, error => console.log(error));
+    }
+
+    public onPageCours(event: any) {
+        this.criteria.page = event.page;
+        this.criteria.maxResults = event.rows;
+        this.findPaginatedByCriteriaCours();
+    }
+    get itemCour(): CoursDto {
+        return this.service.itemCour;
+    }
+    set itemCour(value: CoursDto) {
+        this.service.itemCour = value;
+    }
+
+    //
+    get itemsSections(): Array<SectionDto> {
+        return this.sectionService.itemsSections;
+    }
+
+    set itemsSections(value: Array<SectionDto>) {
+        this.sectionService.itemsSections = value;
+    }
+    get viewSectionOk(): boolean {
+        return this.sectionService.viewSectionOk;
+    }
+
+    set viewSectionOk(value: boolean) {
+        this.sectionService.viewSectionOk = value;
+    }
+    public viewSection(dto: CoursDto) {
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.item = res;
+            this.itemsSections = this.item.sections ;
+            this.viewSectionOk = true;
+            this.itemCour = dto;
+            // console.log(this.service.item);
+        });
+    }
+
+    //
+
     set itemPar(value: ParcoursDto) {
         this.parcoursService.item = value;
     }
@@ -190,6 +238,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             'Nombre section Max': this.criteria.nombreSectionMax ? this.criteria.nombreSectionMax : environment.emptyForExport ,
         }];
       }
+
 
 
 }

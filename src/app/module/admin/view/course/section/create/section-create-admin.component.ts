@@ -13,11 +13,71 @@ import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
 import {EtatSectionAdminService} from "../../../../../../shared/service/admin/courseref/EtatSectionAdmin.service";
 import {EtatSectionDto} from "../../../../../../shared/model/courseref/EtatSection.model";
+import {ParcoursDto} from "../../../../../../shared/model/course/Parcours.model";
 @Component({
   selector: 'app-section-create-admin',
   templateUrl: './section-create-admin.component.html'
 })
 export class SectionCreateAdminComponent extends AbstractCreateController<SectionDto, SectionCriteria, SectionAdminService>  implements OnInit {
+
+    //
+
+    get itemsSections(): Array<SectionDto> {
+        return this.service.itemsSections;
+    }
+
+    set itemsSections(value: Array<SectionDto>) {
+        this.service.itemsSections = value;
+    }
+
+    get itemCour(): CoursDto {
+        return this.coursService.itemCour;
+    }
+
+    set itemCour(value: CoursDto) {
+        this.coursService.itemCour = value;
+    }
+    public saveNewSection(): void {
+
+        this.item.cours = this.itemCour ;
+        /*console.log(this.itemParcour);
+        console.log(this.item);*/
+
+        this.submitted = true;
+        this.validateForm();
+        if (this.errorMessages.length === 0) {
+            this.saveWithShowOptionSection(false);
+        } else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+
+    public saveWithShowOptionSection(showList: boolean) {
+        this.service.save().subscribe(item => {
+            if (item != null) {
+                // this.itemPar.courss.push({...item});
+                this.itemsSections.push({...item});
+                this.createDialog = false;
+                this.submitted = false;
+                this.item = this.service.constrcutDto();
+            } else {
+                this.messageService.add({severity: 'error', summary: 'Erreurs', detail: 'Element existant'});
+            }
+
+        }, error => {
+            console.log(error);
+        });
+    }
+
+
+
+
+
+    //
 
     private _sectionItemsElement = new SectionItemDto();
 

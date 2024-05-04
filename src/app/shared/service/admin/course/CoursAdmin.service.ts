@@ -18,6 +18,8 @@ import {ParcoursDto} from "../../../model/course/Parcours.model";
 export class CoursAdminService extends AbstractService<CoursDto, CoursCriteria> {
     //add
 
+
+    //
     private _itemCour: CoursDto;
     private _itemsCours: Array<CoursDto>;
 
