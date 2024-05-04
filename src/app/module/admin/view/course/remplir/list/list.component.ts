@@ -48,7 +48,7 @@ export class ListComponent extends AbstractListController<CategorieSectionDto, C
     }
 
 
-    public async viewsection(dto: CategorieSectionDto) {
+    public viewsection(dto: CategorieSectionDto) {
         this.service.findByIdWithAssociatedList(dto).subscribe(res => {
             this.item = res;
             this.itemseditorSec = this.item.sections;
@@ -67,7 +67,7 @@ export class ListComponent extends AbstractListController<CategorieSectionDto, C
         dto.contenu = this.htmlEditor
         this.itemS = dto
         console.log(this.itemS);
-        //this.serviceSection.edit()
+        this.sectionService.edit()
     }
 
     get itemS(): SectionDto {

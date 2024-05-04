@@ -2,11 +2,16 @@
     <div class="col col-12">
         <p-accordion>
             <p-accordionTab *ngFor="let tab of categorieSections; let i=index" (click)="viewsection(tab)" [header]="tab.libelle">
-                    <p-listbox
-                        [options]="itemseditorSec"
-                        optionLabel="libelle"
-                        class="justify-content-center">
-                    </p-listbox>
+                <p-listbox
+                    [options]="itemseditorSec"
+                    optionLabel="libelle"
+                    class="justify-content-center"
+                >
+                    <ng-template let-elem pTemplate="item">
+                        <div (click)="saveContent(elem)">{{elem.libelle}}</div>
+                    </ng-template>
+                </p-listbox>
+
             </p-accordionTab>
         </p-accordion>
     </div>
