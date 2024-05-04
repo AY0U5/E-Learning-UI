@@ -1,9 +1,14 @@
 <div class="flex flex-column">
     <div class="col col-12">
-        <p-listbox [style]="{height: '30rem'}"
-                   [options]="categorieSections"
-                   optionLabel="libelle">
-        </p-listbox>
+        <p-accordion>
+            <p-accordionTab *ngFor="let tab of categorieSections; let i=index" (click)="viewsection(tab)" [header]="tab.libelle">
+                    <p-listbox
+                        [options]="itemseditorSec"
+                        optionLabel="libelle"
+                        class="justify-content-center">
+                    </p-listbox>
+            </p-accordionTab>
+        </p-accordion>
     </div>
     <div class="flex mt-2">
         <button pButton class="col col-4 p-button-danger m-2" label="Previous" ></button>

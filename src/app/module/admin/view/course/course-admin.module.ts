@@ -61,6 +61,7 @@ import {SidebarModule} from "primeng/sidebar";
 import { PreviewComponent } from './remplir/editor/preview/preview.component';
 import { ListComponent } from './remplir/list/list.component';
 import {ListboxModule} from "primeng/listbox";
+import {AccordionModule} from "primeng/accordion";
 
 
 
@@ -128,6 +129,7 @@ import {ListboxModule} from "primeng/listbox";
         ScrollPanelModule,
         SidebarModule,
         ListboxModule,
+        AccordionModule,
 
     ],
   exports: [

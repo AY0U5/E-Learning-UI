@@ -4,6 +4,9 @@ import {ListComponent} from "../list/list.component";
 import {
     CategorieSectionAdminService
 } from "../../../../../../shared/service/admin/courseref/CategorieSectionAdmin.service";
+import {CategorieSectionDto} from "../../../../../../shared/model/courseref/CategorieSection.model";
+import {SectionDto} from "../../../../../../shared/model/course/Section.model";
+import {SectionAdminService} from "../../../../../../shared/service/admin/course/SectionAdmin.service";
 
 @Component({
   selector: 'app-edit-remplir-component',
@@ -14,15 +17,20 @@ import {
         ListComponent
     ]
 })
-export class EditRemplirComponentComponent {
+export class EditRemplirComponentComponent{
 
-    htmlEditor : string;
 
-    constructor(private listComponent : ListComponent, private catService: CategorieSectionAdminService) {
+    constructor(private listComponent : ListComponent,
+                private catService: CategorieSectionAdminService,
+                private  serviceSection:SectionAdminService) {
     }
 
-    public saveContent(){
-        return this.catService.save();
+    get htmlEditor(): string {
+        return this.serviceSection.htmlEditor;
+    }
+
+    set htmlEditor(value: string) {
+        this.serviceSection.htmlEditor = value;
     }
 
 }

@@ -13,6 +13,7 @@ import {
 } from "../../../../../../shared/service/admin/courseref/SuperCategorieSectionAdmin.service";
 import {CategorieSectionCriteria} from "../../../../../../shared/criteria/courseref/CategorieSectionCriteria.model";
 import {CdkStepper} from "@angular/cdk/stepper";
+import {SectionDto} from "../../../../../../shared/model/course/Section.model";
 
 @Component({
   selector: 'app-list',
@@ -25,6 +26,7 @@ export class ListComponent extends AbstractListController<CategorieSectionDto, C
     override fileName = 'CategorieSection';
 
     categorieSections: Array<CategorieSectionDto>;
+    sections: Array<SectionDto>;
 
 
 
@@ -43,5 +45,43 @@ export class ListComponent extends AbstractListController<CategorieSectionDto, C
         return this.categorieSectionService.findAll().subscribe(data => {
             this.categorieSections = data
         })
+    }
+
+
+    public async viewsection(dto: CategorieSectionDto) {
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.item = res;
+            this.itemseditorSec = this.item.sections;
+            // this.viewDialog = true;
+        });
+    }
+    get itemseditorSec(): Array<SectionDto> {
+        return this.sectionService.itemseditorSec;
+    }
+
+    set itemseditorSec(value: Array<SectionDto>) {
+        this.sectionService.itemseditorSec = value;
+    }
+
+    public async saveContent(dto: SectionDto) {
+        dto.contenu = this.htmlEditor
+        this.itemS = dto
+        console.log(this.itemS);
+        //this.serviceSection.edit()
+    }
+
+    get itemS(): SectionDto {
+        return this.sectionService.item;
+    }
+
+    set itemS(value: SectionDto) {
+        this.sectionService.item = value;
+    }
+    get htmlEditor(): string {
+        return this.sectionService.htmlEditor;
+    }
+
+    set htmlEditor(value: string) {
+        this.sectionService.htmlEditor = value;
     }
 }

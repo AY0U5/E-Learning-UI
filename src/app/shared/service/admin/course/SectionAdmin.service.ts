@@ -13,7 +13,18 @@ import {AbstractService} from 'src/app/zynerator/service/AbstractService';
   providedIn: 'root'
 })
 export class SectionAdminService extends AbstractService<SectionDto, SectionCriteria> {
-     constructor(private http: HttpClient) {
+    private _htmlEditor:string
+
+
+    get htmlEditor(): string {
+        return this._htmlEditor;
+    }
+
+    set htmlEditor(value: string) {
+        this._htmlEditor = value;
+    }
+
+    constructor(private http: HttpClient) {
         super();
         this.setHttp(http);
     }
@@ -28,5 +39,17 @@ export class SectionAdminService extends AbstractService<SectionDto, SectionCrit
 
     get API() {
         return environment.apiUrlAlcservice + 'admin/section/';
+    }
+
+    private _itemseditorSec : Array<SectionDto> ;
+    public get itemseditorSec(): Array<SectionDto> {
+        if (this._itemseditorSec == null) {
+            this._itemseditorSec = new Array<SectionDto>();
+        }
+        return this._itemseditorSec;
+    }
+
+    public set itemseditorSec(value: Array<SectionDto>) {
+        this._itemseditorSec = value;
     }
 }
