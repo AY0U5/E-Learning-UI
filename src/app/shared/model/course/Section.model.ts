@@ -33,7 +33,7 @@ export class SectionDto extends BaseDto{
     public categorieSection: CategorieSectionDto ;
     public cours: CoursDto ;
      public sectionItems: Array<SectionItemDto>;
-    
+
 
     constructor() {
         super();

@@ -7,6 +7,7 @@ import {environment} from 'src/environments/environment';
 import {SectionDto} from 'src/app/shared/model/course/Section.model';
 import {SectionCriteria} from 'src/app/shared/criteria/course/SectionCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
+// import * as http from "http";
 
 
 @Injectable({
@@ -14,8 +15,21 @@ import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 })
 export class SectionAdminService extends AbstractService<SectionDto, SectionCriteria> {
     private _htmlEditor:string
-
-
+    private _itemtoedit: SectionDto;
+    public httpeditor: HttpClient;
+   public get itemtoedit(): SectionDto {
+       if (this._itemtoedit == null) {
+           this._itemtoedit = this.constrcutDto();
+           //TODO : this._item = new DTO();
+       }
+       return this._itemtoedit;
+    }
+    public edithtmleditor(dto : SectionDto): Observable<SectionDto> {
+        return this.httpeditor.put<SectionDto>(this.API,dto );
+    }
+    public set itemtoedit(value: SectionDto) {
+        this._itemtoedit = value;
+    }
     get htmlEditor(): string {
         return this._htmlEditor;
     }

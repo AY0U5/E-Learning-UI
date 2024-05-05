@@ -63,19 +63,26 @@ export class ListComponent extends AbstractListController<CategorieSectionDto, C
         this.sectionService.itemseditorSec = value;
     }
 
-    public async saveContent(dto: SectionDto) {
-        dto.contenu = this.htmlEditor
+    public async affichersetion(dto: SectionDto) {
+        /*this.itemtoedit = dto;
+        console.log(this.itemtoedit);*/
+        this.sectionService.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.itemtoedit = res;
+            console.log(res);
+            // this.editDialog = true;
+        });
+     /*   dto.contenu = this.htmlEditor
         this.itemS = dto
         console.log(this.itemS);
-        this.sectionService.edit()
+        this.sectionService.edit()*/
     }
 
-    get itemS(): SectionDto {
-        return this.sectionService.item;
+    get itemtoedit(): SectionDto {
+        return this.sectionService.itemtoedit;
     }
 
-    set itemS(value: SectionDto) {
-        this.sectionService.item = value;
+    set itemtoedit(value: SectionDto) {
+        this.sectionService.itemtoedit = value;
     }
     get htmlEditor(): string {
         return this.sectionService.htmlEditor;
