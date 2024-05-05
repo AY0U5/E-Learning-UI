@@ -63,6 +63,7 @@ export class CoursCreateAdminComponent extends AbstractCreateController<CoursDto
     }
 
     public saveWithShowOptionCours(showList: boolean) {
+        console.log(this.item);
         this.service.save().subscribe(item => {
             if (item != null) {
                 // this.itemPar.courss.push({...item});
