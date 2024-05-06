@@ -14,6 +14,7 @@ import {
 import {CategorieSectionCriteria} from "../../../../../../shared/criteria/courseref/CategorieSectionCriteria.model";
 import {CdkStepper} from "@angular/cdk/stepper";
 import {SectionDto} from "../../../../../../shared/model/course/Section.model";
+import {SectionCriteria} from "../../../../../../shared/criteria/course/SectionCriteria.model";
 
 @Component({
   selector: 'app-list',
@@ -39,12 +40,37 @@ export class ListComponent extends AbstractListController<CategorieSectionDto, C
 
     ngOnInit(): void {
         this.findAllOrderBy();
+        this.findPaginatedByCriteriaSec();
+
     }
 
     public findAllOrderBy(){
         return this.categorieSectionService.findAll().subscribe(data => {
             this.categorieSections = data
         })
+    }
+
+    get criteriast(): SectionCriteria {
+        return this.sectionService.criteria;
+    }
+
+    set criteriast(value: SectionCriteria) {
+        this.sectionService.criteria = value;
+    }
+    get selectionsSt(): Array<SectionDto> {
+        return this.sectionService.selections;
+    }
+
+    set selectionsSt(value: Array<SectionDto>) {
+        this.sectionService.selections = value;
+    }
+
+    public findPaginatedByCriteriaSec() {
+        this.sectionService.findPaginatedByCriteria(this.criteriast).subscribe(paginatedItems => {
+            this.itemseditorSec = paginatedItems.list;
+            this.totalRecords = paginatedItems.dataSize;
+            this.selectionsSt = new Array<SectionDto>();
+        }, error => console.log(error));
     }
 
 
@@ -90,5 +116,9 @@ export class ListComponent extends AbstractListController<CategorieSectionDto, C
 
     set htmlEditor(value: string) {
         this.sectionService.htmlEditor = value;
+    }
+
+    public next(){
+
     }
 }
