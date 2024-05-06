@@ -135,7 +135,6 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
 
             }
         });
-        this.service.findAll();
 
     }
 

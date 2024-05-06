@@ -74,8 +74,18 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
                 this.loadCategorieSection();
                 this.loadCours();
                 this.loadEtatSection();
+                this.findPaginatedByCriteriaSection();
             }
         });
+    }
+
+
+    public findPaginatedByCriteriaSection() {
+        this.service.findPaginatedByCriteria(this.criteria).subscribe(paginatedItems => {
+            this.itemsSections = paginatedItems.list;
+            this.totalRecords = paginatedItems.dataSize;
+            this.selections = new Array<SectionDto>();
+        }, error => console.log(error));
     }
 
 

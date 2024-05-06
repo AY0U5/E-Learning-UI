@@ -57,6 +57,7 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
     }
 
     public saveWithShowOptionSection(showList: boolean) {
+        console.log(this.item);
         this.service.save().subscribe(item => {
             if (item != null) {
                 // this.itemPar.courss.push({...item});
