@@ -132,8 +132,10 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
                 this.initCol();
                 this.loadEtatParcours();
                 this.loadCentre();
+
             }
         });
+        this.service.findAll();
 
     }
 
