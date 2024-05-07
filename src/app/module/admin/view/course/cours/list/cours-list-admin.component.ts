@@ -74,7 +74,8 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             this.item = res;
             this.itemsSections = this.item.sections ;
             this.viewSectionOk = true;
-            this.itemCour = dto;
+            // this.itemCour = dto;
+            this.itemCour = this.item;
             // console.log(this.service.item);
         });
     }

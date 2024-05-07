@@ -85,7 +85,7 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
     private _validEtatSectionCode = true;
     private _validEtatSectionLibelle = true;
    private _validSectionCode = true;
-    private _validCategorieSectionCode = true;
+    // private _validCategorieSectionCode = true;
     private _validCoursCode = true;
     private _validCoursLibelle = true;
 
@@ -141,6 +141,9 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
     public override validateForm(): void{
         this.errorMessages = new Array<string>();
         this.validateSectionCode();
+        //
+        // this.validateCategorieSectionCode();
+        //
     }
 
     public validateSectionCode(){
@@ -151,6 +154,15 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
             this.validSectionCode = true;
         }
     }
+
+    // public validateCategorieSectionCode(){
+    //     if (this.stringUtilService.isEmpty(this.item.categorieSection)) {
+    //         this.errorMessages.push('categorie section est obligatoire');
+    //         this.validCategorieSectionCode = false;
+    //     } else {
+    //         this.validCategorieSectionCode = true;
+    //     }
+    // }
 
 
     public async openCreateCours(cours: string) {
@@ -250,12 +262,12 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
          this._validSectionCode = value;
     }
 
-    get validCategorieSectionCode(): boolean {
-        return this._validCategorieSectionCode;
-    }
-    set validCategorieSectionCode(value: boolean) {
-        this._validCategorieSectionCode = value;
-    }
+    // get validCategorieSectionCode(): boolean {
+    //     return this._validCategorieSectionCode;
+    // }
+    // set validCategorieSectionCode(value: boolean) {
+    //     this._validCategorieSectionCode = value;
+    // }
     get validCoursCode(): boolean {
         return this._validCoursCode;
     }

@@ -100,8 +100,10 @@
                         <p-dropdown appendTo="body" [options]="categorieSections" [(ngModel)]="item.categorieSection"
                                     id="11" [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="code"
-                                    placeholder="{{'section.categorieSection' | translate}}">
+                                    placeholder="{{'section.categorieSection' | translate}}"
+                                    >
                         </p-dropdown>
+<!--                        <small class='p-error' *ngIf='validateCategorieSectionCode'>categorie est obligatoire.</small>-->
 
                     </div>
 

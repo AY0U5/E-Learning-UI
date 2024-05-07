@@ -82,10 +82,11 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
         });*/
     public  viewCourss(dto: ParcoursDto) {
         this.service.findByIdWithAssociatedList(dto).subscribe(res => {
-            this.item.courss = res.courss;
+            this.item = res;
             this.itemsCours = this.item.courss ;
             this.viewcoursOk = true;
-            this.itemParcour = dto;
+            // this.itemParcour = dto;
+            this.itemParcour=this.item
             // console.log(this.service.item);
         });
 
