@@ -29,7 +29,30 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
     set itemsSections(value: Array<SectionDto>) {
         this.service.itemsSections = value;
     }
+    public async deleteSection(dto: SectionDto) {
 
+        this.confirmationService.confirm({
+            message: 'Voulez-vous supprimer cet élément ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delete(dto).subscribe(status => {
+                    if (status > 0) {
+                        const position = this.itemsSections.indexOf(dto);
+                        position > -1 ? this.itemsSections.splice(position, 1) : false;
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Succès',
+                            detail: 'Element Supprimé',
+                            life: 3000
+                        });
+                    }
+
+                }, error => console.log(error));
+            }
+        });
+
+    }
 
     public async deleteMultipleSections() {
         this.confirmationService.confirm({

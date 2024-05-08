@@ -32,7 +32,30 @@ import {SectionItemAdminService} from 'src/app/shared/service/admin/course/Secti
 export class CoursListAdminComponent extends AbstractListController<CoursDto, CoursCriteria, CoursAdminService>  implements OnInit {
 
     //
+    public async deleteCours(dto: CoursDto) {
 
+        this.confirmationService.confirm({
+            message: 'Voulez-vous supprimer cet élément ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delete(dto).subscribe(status => {
+                    if (status > 0) {
+                        const position = this.itemsCours.indexOf(dto);
+                        position > -1 ? this.itemsCours.splice(position, 1) : false;
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Succès',
+                            detail: 'Element Supprimé',
+                            life: 3000
+                        });
+                    }
+
+                }, error => console.log(error));
+            }
+        });
+
+    }
 
 
 
