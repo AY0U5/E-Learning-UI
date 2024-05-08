@@ -1,7 +1,10 @@
 <div class="layout-wrapper" [ngClass]="containerClass">
     <app-topbar></app-topbar>
-    <div class="layout-sidebar">
-        <app-sidebar></app-sidebar>
+    <div  [style]="{'background-color': '#ff725e', 'scrollbar-width': 'thin' , 'scrollbar-color':' white #ff725e'}" class="layout-sidebar">
+        <div >
+
+            <app-sidebar></app-sidebar>
+        </div>
     </div>
     <div class="layout-main-container">
         <div class="layout-main">

@@ -16,7 +16,16 @@ import {ParcoursDto} from "../../../model/course/Parcours.model";
   providedIn: 'root'
 })
 export class CoursAdminService extends AbstractService<CoursDto, CoursCriteria> {
+    get showCours(): boolean {
+        return this._showCours;
+    }
+
+    set showCours(value: boolean) {
+        this._showCours = value;
+    }
     //add
+
+    private _showCours : boolean = false;
 
 
     //

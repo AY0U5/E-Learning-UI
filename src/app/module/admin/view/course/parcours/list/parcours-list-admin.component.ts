@@ -56,6 +56,23 @@ import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/c
 })
 export class ParcoursListAdminComponent extends AbstractListController<ParcoursDto, ParcoursCriteria, ParcoursAdminService>  implements OnInit {
 
+    //
+    get showCours(): boolean {
+        return this.coursService.showCours;
+    }
+
+    set showCours(value: boolean) {
+        this.coursService.showCours = value;
+    }
+    get showSection(): boolean {
+        return this.sectionAdminService.showSection;
+    }
+
+    set showSection(value: boolean) {
+        this.sectionAdminService.showSection = value;
+    }
+
+    //
 
 
     //
@@ -98,6 +115,8 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
         //     this.itemsCours = res
         // )
         // console.log(this.itemsCours);
+        this.showCours = true ;
+        this.showSection = false;
     }
 
 
@@ -121,7 +140,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
     centres: Array<CentreDto>;
 
 
-    constructor(private etatParcoursService: EtatParcoursAdminService, private parcoursService: ParcoursAdminService  , private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
+    constructor(private  sectionAdminService:SectionAdminService,private etatParcoursService: EtatParcoursAdminService, private parcoursService: ParcoursAdminService  , private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
         super(parcoursService);
     }
 

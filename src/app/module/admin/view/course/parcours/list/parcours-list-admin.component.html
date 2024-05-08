@@ -4,21 +4,21 @@
         <div class="card">
             <div class="tables">
                 <div class="col col-4 table-container">
+                    <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
+                        <ng-template pTemplate="left">
+                            <div class="d-flex align-items-center">
+                                <button [style]="{'background-color': '#ff725e', 'height': '100%'}" pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button mr-2 mb-2 bouton" (click)="openCreate('Parcours')" *ngIf="createActionIsValid"></button>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="right">
+                         <span [style]="{'margin-top':'0px'  }"  class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                    <input [style]="{'background-color': 'white' , 'width' :'130px'}" pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                         </span>
+                        </ng-template>
+                    </p-toolbar>
 
-            <p-toolbar styleClass="mb-4">
-                <ng-template pTemplate="left">
-                    <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Parcours')" *ngIf="createActionIsValid"></button>
-<!--                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>-->
-<!--                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>-->
-                </ng-template>
-               <!-- <ng-template pTemplate="right">
-                    <div class="flex">
-                        <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
-                    </div>
-                </ng-template>-->
-
-            </p-toolbar>
-            <p-toolbar *ngIf="findByCriteriaShow">
+                    <p-toolbar *ngIf="findByCriteriaShow">
 
                 <div class="col-12">
                     <div class="flex flex-wrap p-fluid col-12">
@@ -102,10 +102,10 @@
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column flex-row justify-content-between table-header">
                         <h5 class="p-m-0">{{'parcours.header' | translate}}</h5>
-                        <span class="p-input-icon-left ml-auto">
+                       <!-- <span class="p-input-icon-left ml-auto">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>
+                        </span>-->
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">

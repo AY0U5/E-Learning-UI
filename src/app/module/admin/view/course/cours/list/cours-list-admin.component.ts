@@ -31,7 +31,25 @@ import {SectionItemAdminService} from 'src/app/shared/service/admin/course/Secti
 })
 export class CoursListAdminComponent extends AbstractListController<CoursDto, CoursCriteria, CoursAdminService>  implements OnInit {
 
+
+
     //
+    get showSection(): boolean {
+        return this.sectionService.showSection;
+    }
+
+    set showSection(value: boolean) {
+        this.sectionService.showSection = value;
+    }
+    get showCours(): boolean {
+        return this.coursService.showCours;
+    }
+
+    set showCours(value: boolean) {
+        this.coursService.showCours = value;
+    }
+    //
+
     public async deleteCours(dto: CoursDto) {
 
         this.confirmationService.confirm({
@@ -104,7 +122,9 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             // this.itemCour = dto;
             this.itemCour = this.item;
             // console.log(this.service.item);
+
         });
+        this.showSection = true;
     }
 
     //

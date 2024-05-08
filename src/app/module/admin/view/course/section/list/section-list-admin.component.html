@@ -2,18 +2,21 @@
     <div class="col-12">
         <p-toast></p-toast>
         <div ><!--class="card"-->
-            <p-toolbar styleClass="mb-4">
+            <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
                 <ng-template pTemplate="left">
-                                        <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Section')" *ngIf="createActionIsValid"></button>
-                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultipleSections()  *ngIf="deleteActionIsValid"></button>
-<!--                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>-->
-                </ng-template>
-               <!-- <ng-template pTemplate="right">
-                    <div class="flex">
-                        <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
-                    </div>
-                </ng-template>-->
+                    <div class="d-flex align-items-center" style="display: flex; flex-direction: column;">
 
+                    <button [style]="{'background-color': '#ff725e'}" [disabled]="!showSection" pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button mr-2 mb-2 bouton" (click)="openCreate('Section')" *ngIf="createActionIsValid"></button>
+                        <small class='p-error' *ngIf='!showSection'>Sélectionner un cours.</small>
+                     </div>
+
+                </ng-template>
+                <ng-template  pTemplate="right">
+                <span   [style]="{'margin-top':'0px'  }" class="p-input-icon-left ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input  [style]="{'background-color': 'white' , 'width' :'130px'}" pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                </ng-template>
             </p-toolbar>
             <p-toolbar *ngIf="findByCriteriaShow">
 
@@ -115,17 +118,17 @@
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column flex-row justify-content-between table-header">
                         <h5 class="p-m-0">{{'section.header' | translate}}</h5>
-                        <span class="p-input-icon-left ml-auto">
+                        <!--<span class="p-input-icon-left ml-auto">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>
+                        </span>-->
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
+                     <!--   <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
+                        </th>-->
 
                      <!--   <th pSortableColumn="code">
                             <div class="p-d-flex p-jc-between p-ai-center">
@@ -256,11 +259,11 @@
                         <th>Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-element>
+                <ng-template *ngIf="!showSection" pTemplate="body" let-element>
                     <tr>
-                        <td>
+                       <!-- <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>
+                        </td>-->
 
                        <!-- <td>{{element.code}}</td>-->
 

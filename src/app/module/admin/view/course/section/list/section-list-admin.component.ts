@@ -22,6 +22,15 @@ import {EtatSectionAdminService} from "../../../../../../shared/service/admin/co
 export class SectionListAdminComponent extends AbstractListController<SectionDto, SectionCriteria, SectionAdminService>  implements OnInit {
     //
 
+    get showSection(): boolean {
+        return this.service.showSection;
+    }
+
+    set showSection(value: boolean) {
+        this.service.showSection = value;
+    }
+
+    //
     get itemsSections(): Array<SectionDto> {
         return this.service.itemsSections;
     }

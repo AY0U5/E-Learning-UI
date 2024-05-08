@@ -17,6 +17,21 @@ import {CoursDto} from "../../../model/course/Cours.model";
 export class SectionAdminService extends AbstractService<SectionDto, SectionCriteria> {
 
 
+
+    get showSection(): boolean {
+        return this._showSection;
+    }
+
+    set showSection(value: boolean) {
+        this._showSection = value;
+    }
+    //add
+
+    private _showSection : boolean = false;
+
+
+    //
+
     //
 
     private _viewSectionOk: boolean = false ;

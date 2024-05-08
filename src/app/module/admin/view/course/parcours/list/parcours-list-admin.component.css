@@ -50,6 +50,18 @@
     border-color: #ff752e;
     opacity: 0.8;
 }*/
+.bouton{
+    border-color: #ff725e
+}
+
+
+.bouton:hover{
+    opacity: 0.5;
+    border-color: #ff725e
+}
+
+
+
 
 
 
