@@ -48,9 +48,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MessageModule } from 'primeng/message';
 import {MessagesModule} from 'primeng/messages';
 import {PaginatorModule} from 'primeng/paginator';
-import { MenuRemplirComponent } from './remplir/menu/menu-remplir.component';
 import {OrderListModule} from "primeng/orderlist";
-import { EditRemplirComponentComponent } from './remplir/editor/edit-remplir-component.component';
 import {EditorModule} from "primeng/editor";
 import {DataViewModule} from "primeng/dataview";
 import {TagModule} from "primeng/tag";
@@ -58,10 +56,9 @@ import {RatingModule} from "primeng/rating";
 import {TimelineModule} from "primeng/timeline";
 import {ScrollPanelModule} from "primeng/scrollpanel";
 import {SidebarModule} from "primeng/sidebar";
-import { PreviewComponent } from './remplir/editor/preview/preview.component';
-import { ListComponent } from './remplir/list/list.component';
 import {ListboxModule} from "primeng/listbox";
 import {AccordionModule} from "primeng/accordion";
+import { RemplirComponent } from './remplir/remplir.component';
 
 
 
@@ -84,10 +81,7 @@ import {AccordionModule} from "primeng/accordion";
     SectionListAdminComponent,
     SectionViewAdminComponent,
     SectionEditAdminComponent,
-    MenuRemplirComponent,
-    EditRemplirComponentComponent,
-    PreviewComponent,
-    ListComponent
+    RemplirComponent
   ],
     imports: [
         CommonModule,
