@@ -92,9 +92,9 @@
                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.contentMax" id="14-2"></p-inputNumber>
                        </div>
                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="5-2">{{'section.etatSection' | translate}}</label>
+                            <label  class="font-bold block mb-2" for="5-2">{{'Etat' | translate}}</label>
                             <p-dropdown [options]="etatSections" [(ngModel)]="criteria.etatSection" id="5" [filter]="true" class="p-fluid"
-                                        [showClear]="true"  placeholder="{{'section.etatSection' | translate}}" optionLabel="libelle">
+                                        [showClear]="true"  placeholder="{{'Etat' | translate}}" optionLabel="libelle">
                             </p-dropdown>
                         </div>
                     </div>
@@ -249,7 +249,7 @@
                                 -->
                         <th pSortableColumn="etatSection">
                             <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'section.etatSection' | translate}}</span>
+                                <span>{{'Etat' | translate}}</span>
                                 <p-sortIcon field="etatSection"></p-sortIcon>
                             </div>
                         </th>

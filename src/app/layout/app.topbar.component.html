@@ -1,8 +1,14 @@
-<div class="layout-topbar">
-    <a class="layout-topbar-logo" routerLink="">
+<div  class="layout-topbar">
+    <!--<a class="layout-topbar-logo" routerLink="">
         <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
         <span>SAKAI</span>
-    </a>
+    </a>-->
+    <nav class="layout-topbar-logo">
+        <div class="logo-container">
+            <img decoding="async" src="assets/layout/images/img_engflexy.webp" alt="logo">
+        </div>
+        <span class="brand-text">Eng<span class="brand-highlight">Flexy</span></span>
+    </nav>
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>

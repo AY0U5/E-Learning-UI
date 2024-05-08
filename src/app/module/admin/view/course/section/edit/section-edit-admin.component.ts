@@ -34,6 +34,47 @@ export class SectionEditAdminComponent extends AbstractEditController<SectionDto
     private _validCoursCode = true;
     private _validCoursLibelle = true;
 
+    //
+    get itemsSections(): Array<SectionDto> {
+        return this.service.itemsSections;
+    }
+
+    set itemsSections(value: Array<SectionDto>) {
+        this.service.itemsSections = value;
+    }
+    public editSection(): void {
+        this.submitted = true;
+        this.prepareEdit();
+        this.validateForm();
+        if (this.errorMessages.length === 0) {
+            this.editWithShowOptionSection(false);
+        } else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+
+    public editWithShowOptionSection(showList: boolean) {
+        this.service.edit().subscribe(religion=>{
+            const myIndex = this.itemsSections.findIndex(e => e.id === this.item.id);
+            this.itemsSections[myIndex] = religion;
+            this.editDialog = false;
+            this.submitted = false;
+            this.item = this.service.constrcutDto();
+        } , error =>{
+            console.log(error);
+        });
+    }
+
+
+
+    //
+
+
+
 
 
     constructor( private etatSectionService: EtatSectionAdminService, private sectionService: SectionAdminService , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {

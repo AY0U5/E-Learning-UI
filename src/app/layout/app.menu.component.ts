@@ -21,7 +21,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
       [
 
 				{
-                    label: 'Pages',
+                    label: 'Menu',
                     icon: 'pi pi-fw pi-briefcase',
                     items: [
 					  {

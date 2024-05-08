@@ -34,6 +34,10 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
     //
 
 
+
+
+    //
+
     public findPaginatedByCriteriaCours() {
         this.service.findPaginatedByCriteria(this.criteria).subscribe(paginatedItems => {
             this.itemsCours = paginatedItems.list;

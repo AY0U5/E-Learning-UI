@@ -7,8 +7,8 @@
 
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
-                                        <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Parcours')" *ngIf="createActionIsValid"></button>
-                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
+                    <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Parcours')" *ngIf="createActionIsValid"></button>
+<!--                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>-->
 <!--                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>-->
                 </ng-template>
                <!-- <ng-template pTemplate="right">
@@ -110,9 +110,9 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
+                    <!--    <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
+                        </th>-->
 
                         <!--<th pSortableColumn="datePublication">
                             <div class="p-d-flex p-jc-between p-ai-center">
@@ -173,7 +173,7 @@
 
                         <th pSortableColumn="etatParcours">
                             <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'Etat Parcours' | translate}}</span>
+                                <span><!--{{'Etat Parcours' | translate}}--> Etat</span>
                                 <p-sortIcon field="etatParcours"></p-sortIcon>
                             </div>
                         </th>
@@ -183,9 +183,9 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-element>
                     <tr>
-                        <td>
+                        <!--<td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>
+                        </td>-->
 
                        <!-- <td>{{element.datePublication | date :'dd/MM/yyyy HH:mm' }}</td>
 

@@ -10,7 +10,8 @@ import {UserDto} from "../zynerator/security/shared/model/User.model";
 
 @Component({
     selector: 'app-topbar',
-    templateUrl: './app.topbar.component.html'
+    templateUrl: './app.topbar.component.html',
+    styleUrls : ['./app.topbar.component.css']
 })
 export class AppTopBarComponent implements OnInit{
     roleAdmin = false;

@@ -142,7 +142,7 @@
 
                 </div>
             </p-tabPanel>
-            <p-tabPanel header="{{'section.sectionItems' | translate}}">
+           <!-- <p-tabPanel header="{{'section.sectionItems' | translate}}">
                 <p-tabView [(activeIndex)]="activeTab">
                     <p-tabPanel header="Création">
                         <div class="grid">
@@ -236,7 +236,7 @@
                     </p-tabPanel>
                 </p-tabView>
             </p-tabPanel>
-
+-->
 
         </p-tabView>
 
@@ -245,7 +245,7 @@
     <ng-template pTemplate="footer">
         <div class="p-flexbox">
 
-            <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-check" (click)="edit()"></button>
+            <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-check" (click)="editSection()"></button>
 
 
             <button pButton pRipple label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined"
