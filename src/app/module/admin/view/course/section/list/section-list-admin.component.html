@@ -110,7 +110,7 @@
             </p-toolbar>
 
 
-            <p-table #dt [value]="itemsSections" [columns]="cols" [rows]="8" [paginator]="false"
+            <p-table  #dt [value]="itemsSections" [columns]="cols" [rows]="8" [paginator]="false"
                     [globalFilterFields]="['code', 'libelle', 'urlImage', 'urlImage2', 'urlImage3', 'urlVideo', 'contenu', 'questions', 'indicationProf', 'numeroOrder', 'categorieSectioncode', 'courslibelle', 'url', 'content','etatSectionlibelle']" [(selection)]="selections"
                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
                     currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
@@ -143,7 +143,7 @@
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.libelle' | translate}}</span>
                                 <p-sortIcon field="libelle"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
+<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>-->
                             </div>
                         </th>
 
@@ -259,8 +259,8 @@
                         <th>Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template *ngIf="!showSection" pTemplate="body" let-element>
-                    <tr>
+                <ng-template  pTemplate="body" let-element>
+                    <tr *ngIf='showSection'>
                        <!-- <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
                         </td>-->
@@ -311,7 +311,6 @@
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteSection(element)"  *ngIf="deleteActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>
                         </td>
                     </tr>
                 </ng-template>

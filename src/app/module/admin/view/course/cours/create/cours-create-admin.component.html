@@ -40,34 +40,34 @@
                     </div>
 
 
-                    <div class="field col-11 md:col-6">
+                   <!-- <div class="field col-11 md:col-6">
                         <label for="5">{{ 'cours.etatCours' | translate }}</label>
                         <p-dropdown appendTo="body" [options]="etatCourss" [(ngModel)]="item.etatCours" id="5"
                                     [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
                                     placeholder="{{'cours.etatCours' | translate}}"
-                                    > <!--[ngClass]="{'ng-invalid ng-dirty' : !validEtatCoursCode}"-->
+                                    > &lt;!&ndash;[ngClass]="{'ng-invalid ng-dirty' : !validEtatCoursCode}"&ndash;&gt;
 
                         </p-dropdown>
-<!--                        <small class='p-error' *ngIf='!validEtatCoursCode'>Etat de Cours est obligatoire.</small>-->
+&lt;!&ndash;                        <small class='p-error' *ngIf='!validEtatCoursCode'>Etat de Cours est obligatoire.</small>&ndash;&gt;
 
-                    </div>
+                    </div>-->
 
-                    <div  class="field col-11 md:col-6">
+                   <!-- <div  class="field col-11 md:col-6">
                         <label for="6">{{ 'cours.parcours' | translate }}</label>
                         <p-dropdown [disabled]="true" appendTo="body" [options]="parcourss" [(ngModel)]="item.parcours" id="6"
                                     [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
                                     placeholder="{{'cours.parcours' | translate}}">
                         </p-dropdown>
-                    </div>
+                    </div>-->
                     <!--<div class="field col-11 md:col-6">
                         <label for="6">{{'cours.parcours' | translate}}</label>
                         <p-dropdown  appendTo="body"  [options]="parcourss" [ngModel]="itemParcour" id="6" [disabled]="true" optionLabel="libelle" placeholder="{{'cours.parcours' | translate}}"  >
                         </p-dropdown>
                     </div>-->
 
-                    <div class="field col-12 md:col-6">
+                    <!--<div class="field col-12 md:col-6">
                         <label for="7">{{ 'cours.nombreSectionFinalise' | translate }}</label>
                         <p-inputNumber class="mb-2 mr-2" id="7"
                                        placeholder="{{'cours.nombreSectionFinalise' | translate}}"
@@ -83,9 +83,9 @@
                                        [(ngModel)]="item.nombreSectionEnCours">
                         </p-inputNumber>
 
-                    </div>
+                    </div>-->
 
-                    <div class="field col-12 md:col-6">
+                   <!-- <div class="field col-12 md:col-6">
                         <label for="9">{{ 'cours.nombreLinkEnCours' | translate }}</label>
                         <p-inputNumber class="mb-2 mr-2" id="9" placeholder="{{'cours.nombreLinkEnCours' | translate}}"
                                        [(ngModel)]="item.nombreLinkEnCours">
@@ -100,7 +100,7 @@
                                        [(ngModel)]="item.nombreLinkFinalise">
                         </p-inputNumber>
 
-                    </div>
+                    </div>-->
 
                     <div class="field col-12 md:col-6">
                         <label for="11">{{ 'cours.numeroOrder' | translate }}</label>
@@ -109,13 +109,13 @@
                         </p-inputNumber>
 
                     </div>
-                    <div class="field col-12 md:col-6">
+                    <!--<div class="field col-12 md:col-6">
                         <label for="7">{{ 'parcours.nombreSection' | translate }}</label>
                         <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'parcours.nombreSection' | translate}}"
                                        [(ngModel)]="item.nombreSection">
                         </p-inputNumber>
 
-                    </div>
+                    </div>-->
 
                 </div>
             </p-tabPanel>

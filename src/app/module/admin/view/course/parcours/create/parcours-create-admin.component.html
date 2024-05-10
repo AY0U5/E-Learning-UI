@@ -5,17 +5,8 @@
             <p-tabPanel header="{{'parcours.tabPan' | translate}}">
                 <div class="grid">
 
-                    <div class="field col-12 md:col-6">
-                        <label for="1">{{ 'parcours.datePublication' | translate }}</label>
-                        <p-calendar appendTo="body" id="1" [showTime]="true" [showSeconds]="false"
-                                    placeholder="{{'parcours.datePublication' | translate}}"
-                                    [(ngModel)]="item.datePublication"
-                                    dateFormat="{{dateFormat}}">
-                        </p-calendar>
 
-                    </div>
-
-                    <div class="field col-12 md:col-6">
+                    <!--<div class="field col-12 md:col-6">
                         <label for="2">{{ 'parcours.dateCreation' | translate }}</label>
                         <p-calendar appendTo="body" id="2" [showTime]="true" [showSeconds]="false"
                                     placeholder="{{'parcours.dateCreation' | translate}}"
@@ -23,15 +14,8 @@
                                     dateFormat="{{dateFormat}}">
                         </p-calendar>
 
-                    </div>
+                    </div>-->
 
-                    <div class="field col-12 md:col-6">
-                        <label for="3">{{ 'parcours.description' | translate }}</label>
-                        <textarea id="3" pInputTextarea rows="5" cols="30"
-                                  placeholder="{{'parcours.description' | translate}}" [(ngModel)]="item.description"
-                        ></textarea>
-
-                    </div>
 
                     <div class="field col-12 md:col-6">
                         <label for="4">{{ 'parcours.code' | translate }}<span style="color: red;">*</span></label>
@@ -50,6 +34,22 @@
                         <small class='p-error' *ngIf='!validParcoursLibelle'>Libelle est obligatoire.</small>
                     </div>
 
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{ 'parcours.datePublication' | translate }}</label>
+                        <p-calendar appendTo="body" id="1" [showTime]="true" [showSeconds]="false"
+                                    placeholder="{{'parcours.datePublication' | translate}}"
+                                    [(ngModel)]="item.datePublication"
+                                    dateFormat="{{dateFormat}}">
+                        </p-calendar>
+
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{ 'parcours.description' | translate }}</label>
+                        <textarea id="3" pInputTextarea rows="5" cols="30"
+                                  placeholder="{{'parcours.description' | translate}}" [(ngModel)]="item.description"
+                        ></textarea>
+
+                    </div>
 
                     <div class="field col-12 md:col-6">
                         <label for="6">{{ 'parcours.numeroOrder' | translate }}</label>
@@ -67,17 +67,17 @@
 
                     </div>
 
-                    <div class="field col-11 md:col-6">
-                        <label for="99">{{ 'parcours.etatParcours' | translate }}</label>
+                    <!--<div class="field col-11 md:col-6">
+                        <label for="99">{{ 'Etat' | translate }}</label>
                         <p-dropdown appendTo="body" [options]="etatParcourss" [(ngModel)]="item.etatParcours" id="99"
                                     [filter]="true" filterMatchMode="contains"
                                     [showClear]="true" optionLabel="libelle"
-                                    placeholder="{{'parcours.etatParcours' | translate}}"
-                                   ><!-- [ngClass]="{'ng-invalid ng-dirty' : !validEtatParcoursLibelle}"-->
+                                    placeholder=" Choi"
+                                   >&lt;!&ndash; [ngClass]="{'ng-invalid ng-dirty' : !validEtatParcoursLibelle}"&ndash;&gt;
                         </p-dropdown>
-<!--                        <small class='p-error' *ngIf='!validEtatParcoursLibelle'>Code est obligatoire.</small>-->
+&lt;!&ndash;                        <small class='p-error' *ngIf='!validEtatParcoursLibelle'>Code est obligatoire.</small>&ndash;&gt;
 
-                    </div>
+                    </div>-->
                     <div class="field col-11 md:col-6">
                         <label for="8">{{ 'parcours.centre' | translate }}</label>
                         <p-dropdown appendTo="body" [options]="centres" [(ngModel)]="item.centre" id="8" [filter]="true"

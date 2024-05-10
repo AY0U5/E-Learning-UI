@@ -130,20 +130,20 @@
                         </th>-->
 
 
-                        <th pSortableColumn="code">
+                        <!--<th pSortableColumn="code">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.code' | translate}}</span>
                                 <p-sortIcon field="code"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.code" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
-                        </th>
+                        </th>-->
 
 
                         <th pSortableColumn="libelle">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.libelle' | translate}}</span>
                                 <p-sortIcon field="libelle"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
+<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>-->
                             </div>
                         </th>
 
@@ -182,7 +182,9 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-element>
+
                     <tr>
+
                         <!--<td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
                         </td>-->
@@ -193,7 +195,7 @@
                         <td>{{element.dateCreation | date :'dd/MM/yyyy HH:mm' }}</td>-->
 
 
-                        <td>{{element.code}}</td>
+                        <!--<td>{{element.code}}</td>-->
 
 
                         <td>{{element.libelle}}</td>
@@ -209,12 +211,14 @@
 
                         <td>{{element.etatParcours?.libelle}}</td>
 
+
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
+<!--                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>-->
+
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)"  *ngIf="deleteActionIsValid"></button>
 <!--                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>-->
-                            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(element)"   ></button><!--(mouseenter)="parcourview(element)"-->
+                            <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(element)"   ></button><!--(mouseenter)="parcourview(element)"-->
                         </td>
                     </tr>
                 </ng-template>
