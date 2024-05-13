@@ -13,6 +13,12 @@ export class RemplirComponent implements OnInit{
     indice: number
     sections: Array<SectionDto>
     okPreview: boolean = false;
+    okQuiz: boolean = false;
+    question: string
+    okOption: boolean = false;
+    okImage: boolean = false;
+    okVideo: boolean = false;
+    urlImage: string;
 
     ngOnInit() {
         this.findAll()
@@ -35,11 +41,12 @@ export class RemplirComponent implements OnInit{
         this.okPreview = true;
     }
 
-    public selectCard(dto : SectionDto ,index: number): void {
+    public selectCard(dto : SectionDto ,index: number): SectionDto {
         this.item = dto
         this.selectedCardIndex = index;
         this.indice = this.selectedCardIndex;
         console.log( index);
+        return this.item;
     }
 
     public nextCard(){
@@ -79,10 +86,10 @@ export class RemplirComponent implements OnInit{
         console.log(this.item);
        this.sectionService.edit().subscribe(() => {
              //Optional: Handle success or perform any additional actions
-            console.log('Content saved successfully');
+            alert('Content saved successfully');
         }, (error) => {
             // Optional: Handle error
-            console.error('Error saving content:', error);
+            alert('Error saving content:' + error.message);
         });
     }
 
@@ -98,6 +105,36 @@ export class RemplirComponent implements OnInit{
         for (var i = 0; i < liens.length; i++) {
             console.log(liens[i].getAttribute('href'));
         }
+        return liens;
+    }
+
+    public quizIsOk(){
+        return this.okQuiz = true;
+    }
+    public optionIsOk(){
+        return this.okOption = true;
+    }
+    public optionIshide(){
+        return this.okOption = false;
+    }
+    public imageIsOk(){
+        return this.okImage = true;
+    }
+    public videoIsOk(){
+        return this.okVideo = true;
+    }
+    public saveImage(urlImage : string){
+        let sec = this.selectCard(this.sections.at(this.indice),this.indice);
+        sec.urlImage = urlImage;
+        this.sectionService.edit().subscribe(
+            () => {
+                //Optional: Handle success or perform any additional actions
+                alert('Content saved successfully');
+            }, (error) => {
+                // Optional: Handle error
+                alert('Error saving content:' + error.message);
+            }
+        )
     }
 
 }

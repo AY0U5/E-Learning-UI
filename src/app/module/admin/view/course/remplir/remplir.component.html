@@ -2,9 +2,14 @@
 <div class="flex">
     <div class="col col-9">
         <div class="flex">
-            <button pButton class="col col-2 col-offset-10 mb-3" (click)="previewIsOk()" label="Preview"></button>
+            <div class="flex justify-content-center">
+                <button pButton class="m-2 col col-1 mb-3" icon="pi pi-image" (click)="imageIsOk()"></button>
+                <button pButton class="m-2 col col-1 mb-3" icon="pi pi-video" (click)="videoIsOk()"></button>
+                <button pButton class="m-2 col col-1 mb-3" icon="pi pi-plus-circle" (click)="quizIsOk()"></button>
+            </div>
+            <button pButton class="col col-2 col-offset-8 mb-3" (click)="previewIsOk()" label="Preview"></button>
         </div>
-        <p-editor id="editeur" [(ngModel)]="item.contenu" [style]="{height: '30rem'}" (click)="getLiens()"></p-editor>
+        <p-editor id="editeur" [(ngModel)]="item.contenu" [style]="{height: '30rem'}"></p-editor>
         <div class="flex mt-3">
             <button pButton (click)="saveContent()" class="col col-2 p-button-success" label="Save"></button>
             <button pButton (click)="prevCard()" class="col col-2 col-offset-5 p-button-danger" label="Previous"></button>
@@ -29,9 +34,9 @@
     <div class="flex">
         <div class="col col-8">
             <div id="htmlEditor" *ngFor="let cont of sections; let j=index">
-                <div id="contentWithoutTags" *ngIf="j === selectedCardIndex">
+                <div class="flex flex-column" id="contentWithoutTags" *ngIf="j === selectedCardIndex">
                     {{ stripHtmlTags(cont.contenu) }}
-                    <img src="{{ getLiens() }}"/>
+                    <img class="m-5 justify-content-center" *ngIf="cont.urlImage != null" src='{{cont.urlImage}}'/>
                 </div>
             </div>
         </div>
@@ -48,5 +53,67 @@
                 <button pButton (click)="nextCard()" class="col col-5 col-offset-2 p-button-warning" label="Next"></button>
             </div>
         </div>
+    </div>
+</p-dialog>
+
+
+<!-- ////////// add image \\\\\\\\\ -->
+<p-dialog [(visible)]="okImage" [style]="{width: '60vw'}">
+    <div class="flex flex-column gap-2">
+        <label for="image">Image</label>
+        <input
+            pInputText
+            id="image"
+            aria-describedby="username-help"
+            [(ngModel)]="urlImage" />
+    </div>
+    <div class="col col-2 col-offset-10">
+        <button pButton icon="pi pi-image" label="ajouter" (click)="saveImage(urlImage)"></button>
+    </div>
+</p-dialog>
+
+
+<!-- ////////// add video \\\\\\\\\ -->
+<p-dialog [(visible)]="okVideo" [style]="{width: '60vw'}">
+    <div>
+        <input type="url"/>
+    </div>
+</p-dialog>
+
+<!-- ////////// quiz \\\\\\\\\ -->
+<p-dialog [(visible)]="okQuiz" [style]="{width: '60vw'}">
+    <div class="flex flex-column gap-2">
+        <label for="question">Question</label>
+        <input
+            pInputText
+            id="question"
+            aria-describedby="username-help"
+            [(ngModel)]="question" />
+    </div>
+    <div class="flex flex-column mt-2">
+        <div class="flex flex-column gap-2">
+            <label for="option">Option 1</label>
+            <div class="row">
+                <input
+                    class="col col-9"
+                    pInputText
+                    id="option"
+                    [(ngModel)]="question" />
+                <button pButton class="col col-2 col-offset-1" icon="pi pi-times" style="font-size: 2rem" *ngIf="okOption" (click)="optionIshide()"></button>
+            </div>
+        </div>
+        <div class="flex flex-column gap-2" *ngIf="okOption">
+            <label for="optionS">Option 1</label>
+            <div class="row">
+                <input
+                    class="col col-9"
+                    pInputText
+                    id="optionS"
+                    [(ngModel)]="question" />
+                <button pButton class="col col-2 col-offset-1" icon="pi pi-times" style="font-size: 2rem" (click)="optionIshide()"></button>
+            </div>
+
+        </div>
+        <button pButton class="m-2 col col-4" icon="pi pi-plus" (click)="optionIsOk()" label="ajouter une option"></button>
     </div>
 </p-dialog>

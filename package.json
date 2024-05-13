@@ -33,6 +33,7 @@
         "@ngx-translate/http-loader": "^7.0.0",
         "@types/node": "^7.0.5",
         "angular-font-awesome": "^3.1.2",
+        "bootstrap": "^5.3.3",
         "chart.js": "^3.3.2",
         "exceljs": "^4.3.0",
         "file-saver": "^2.0.5",
