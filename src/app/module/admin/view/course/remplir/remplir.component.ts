@@ -19,6 +19,7 @@ export class RemplirComponent implements OnInit{
     okImage: boolean = false;
     okVideo: boolean = false;
     urlImage: string;
+    urlVideo: string
 
     ngOnInit() {
         this.findAll()
@@ -126,6 +127,20 @@ export class RemplirComponent implements OnInit{
     public saveImage(urlImage : string){
         let sec = this.selectCard(this.sections.at(this.indice),this.indice);
         sec.urlImage = urlImage;
+        this.sectionService.edit().subscribe(
+            () => {
+                //Optional: Handle success or perform any additional actions
+                alert('Content saved successfully');
+            }, (error) => {
+                // Optional: Handle error
+                alert('Error saving content:' + error.message);
+            }
+        )
+    }
+
+    public saveVideo(urlVideo : string){
+        let sec = this.selectCard(this.sections.at(this.indice),this.indice);
+        sec.urlVideo = urlVideo;
         this.sectionService.edit().subscribe(
             () => {
                 //Optional: Handle success or perform any additional actions

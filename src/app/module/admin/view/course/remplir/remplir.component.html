@@ -36,7 +36,14 @@
             <div id="htmlEditor" *ngFor="let cont of sections; let j=index">
                 <div class="flex flex-column" id="contentWithoutTags" *ngIf="j === selectedCardIndex">
                     {{ stripHtmlTags(cont.contenu) }}
-                    <img class="m-5 justify-content-center" *ngIf="cont.urlImage != null" src='{{cont.urlImage}}'/>
+                    <div>
+                        <img class="m-5 justify-content-center" *ngIf="cont.urlImage" src='{{cont.urlImage}}'/>
+                    </div>
+                    <div>
+                        <video class="m-5 justify-content-center" *ngIf="cont.urlVideo" controls>
+                            <source src="{{cont.urlVideo}}"/>
+                        </video>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,11 +67,10 @@
 <!-- ////////// add image \\\\\\\\\ -->
 <p-dialog [(visible)]="okImage" [style]="{width: '60vw'}">
     <div class="flex flex-column gap-2">
-        <label for="image">Image</label>
+        <label for="image">Image url</label>
         <input
             pInputText
             id="image"
-            aria-describedby="username-help"
             [(ngModel)]="urlImage" />
     </div>
     <div class="col col-2 col-offset-10">
@@ -75,8 +81,15 @@
 
 <!-- ////////// add video \\\\\\\\\ -->
 <p-dialog [(visible)]="okVideo" [style]="{width: '60vw'}">
-    <div>
-        <input type="url"/>
+    <div class="flex flex-column gap-2">
+        <label for="video">Video url</label>
+        <input
+            pInputText
+            id="video"
+            [(ngModel)]="urlVideo" />
+    </div>
+    <div class="col col-2 col-offset-10">
+        <button pButton icon="pi pi-video" label="ajouter" (click)="saveVideo(urlVideo)"></button>
     </div>
 </p-dialog>
 
@@ -87,7 +100,6 @@
         <input
             pInputText
             id="question"
-            aria-describedby="username-help"
             [(ngModel)]="question" />
     </div>
     <div class="flex flex-column mt-2">
