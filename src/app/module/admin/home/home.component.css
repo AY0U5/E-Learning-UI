@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "PT Sans", sans-serif;
+}
+
+.hero{
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(40, 40, 40, 0.6), rgba(40, 40, 40, 0.6)),
+    url('../../../../assets/demo/images/access/home-page.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    padding-left: 15%;
+    padding-right: 10%;
+}
+
+.pict{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+nav ul li a:hover{
+    color: #FF752E;
+    transition: .3s;
+}
+
+.button{
+    border: none;
+    background: #FF752E;
+    padding: 12px 30px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.button:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.container{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    margin-left: 30%;
+}
+
+
+.container h4{
+    color: white;
+}
+
+.text, .text2{
+    font-size: 3rem;
+    letter-spacing: 5px;
+    border-right: 5px solid white;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    animation:
+        typing 3.5s steps(28,end) infinite,
+        cursor .4s step-end infinite alternate;
+    margin-top: 50px;
+    color: white;
+}
+
+#text2 {
+    display: none; /* Hide text2 initially */
+}
+
+/* cursor blinking*/
+@keyframes cursor {
+    50% {border-color: transparent;}
+}
+/* typing effect */
+@keyframes typing {
+    0% { width: 0; }
+    25% { width: 100%; }
+    70% { width: 100%; } /* Pause for 5% of the animation duration */
+    100% { width: 0; } /* Reverse */
+}
+
+.bouton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 13%;
+    padding-left: 3%;
+}
+
+.section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+}
