@@ -22,7 +22,7 @@ export class QuestionCreateAdminComponent extends AbstractCreateController<Quest
     private _reponsesElement = new ReponseDto();
 
 
-   private _validQuestionRef = true;
+    private _validQuestionRef = true;
     private _validTypeDeQuestionRef = true;
     private _validTypeDeQuestionLib = true;
     private _validReponsesRef = true;

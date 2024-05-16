@@ -1,7 +1,7 @@
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div class="card">
+       <!-- <div class="card">
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                                         <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Reponse')" *ngIf="createActionIsValid"></button>
@@ -74,7 +74,7 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                                
+
                         <th pSortableColumn="ref">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'reponse.ref' | translate}}</span>
@@ -82,8 +82,8 @@
                                 <p-columnFilter type="text" field="element.ref" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="lib">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'reponse.lib' | translate}}</span>
@@ -91,8 +91,8 @@
                                 <p-columnFilter type="text" field="element.lib" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="etatReponse">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'reponse.etatReponse' | translate}}</span>
@@ -100,23 +100,23 @@
                                 <p-columnFilter type="text" field="element.etatReponse" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="numero">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'reponse.numero' | translate}}</span>
                                 <p-sortIcon field="numero"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="question">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'reponse.question' | translate}}</span>
                                 <p-sortIcon field="question"></p-sortIcon>
                             </div>
                         </th>
-                                
+
                         <th>Actions</th>
                     </tr>
                 </ng-template>
@@ -125,21 +125,21 @@
                         <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
                         </td>
-                            
+
                         <td>{{element.ref}}</td>
-                            
-                            
+
+
                         <td>{{element.lib}}</td>
-                            
-                            
+
+
                         <td>{{element.etatReponse}}</td>
-                            
-                            
+
+
                         <td>{{element.numero}}</td>
-                            
-                            
+
+
                         <td>{{element.question?.libelle}}</td>
-                            
+
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
@@ -156,7 +156,13 @@
                     </div>
                 </ng-template>
             </p-table>
+        </div>-->
+
+        <div *ngIf="this.reponseCourte" >
+            <input id="reponsecourte" type="text" placeholder="Reponse Courte"
+                   [(ngModel)]="item.lib"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
         </div>
+
 
         <app-reponse-create-admin  *ngIf="createDialog  && createActionIsValid"></app-reponse-create-admin>
         <app-reponse-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-reponse-edit-admin>

@@ -20,6 +20,36 @@ export class ReponseListAdminComponent extends AbstractListController<ReponseDto
 
     questions: Array<QuestionDto>;
 
+    get reponseCourte(): boolean {
+        return this.reponseService.reponseCourte;
+    }
+    set reponseCourte(value: boolean) {
+        this.reponseService.reponseCourte = value;
+    }
+    get paragraphe(): boolean {
+        return this.reponseService.paragraphe;
+    }
+
+    set paragraphe(value: boolean) {
+        this.reponseService.paragraphe = value;
+    }
+
+    get caseAcoche(): boolean {
+        return this.reponseService.caseAcoche;
+    }
+
+    set caseAcoche(value: boolean) {
+        this.reponseService.caseAcoche = value;
+    }
+
+    get choixMultiple(): boolean {
+        return this.reponseService.choixMultiple;
+    }
+
+    set choixMultiple(value: boolean) {
+        this.reponseService.choixMultiple = value;
+    }
+
 
     constructor( private reponseService: ReponseAdminService  , private questionService: QuestionAdminService) {
         super(reponseService);

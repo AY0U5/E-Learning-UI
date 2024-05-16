@@ -13,11 +13,13 @@ import {ReponseDto} from 'src/app/shared/model/quiz/Reponse.model';
 import {ReponseAdminService} from 'src/app/shared/service/admin/quiz/ReponseAdmin.service';
 import {HomeWorkDto} from 'src/app/shared/model/homework/HomeWork.model';
 import {HomeWorkAdminService} from 'src/app/shared/service/admin/homework/HomeWorkAdmin.service';
+import {MenuItem} from "primeng/api";
 
 
 @Component({
   selector: 'app-question-list-admin',
-  templateUrl: './question-list-admin.component.html'
+  templateUrl: './question-list-admin.component.html',
+    styleUrls : ['./question-list-admin.component.css']
 })
 export class QuestionListAdminComponent extends AbstractListController<QuestionDto, QuestionCriteria, QuestionAdminService>  implements OnInit {
 
@@ -27,11 +29,77 @@ export class QuestionListAdminComponent extends AbstractListController<QuestionD
     typeDeQuestions: Array<TypeDeQuestionDto>;
     quizs: Array<QuizDto>;
     homeWorks: Array<HomeWorkDto>;
+    typeReponse: MenuItem[] ;
+
+    get reponseCourte(): boolean {
+        return this.reponseService.reponseCourte;
+    }
+    set reponseCourte(value: boolean) {
+        this.reponseService.reponseCourte = value;
+    }
+    get paragraphe(): boolean {
+        return this.reponseService.paragraphe;
+    }
+
+    set paragraphe(value: boolean) {
+        this.reponseService.paragraphe = value;
+    }
+
+    get caseAcoche(): boolean {
+        return this.reponseService.caseAcoche;
+    }
+
+    set caseAcoche(value: boolean) {
+        this.reponseService.caseAcoche = value;
+    }
+
+    get choixMultiple(): boolean {
+        return this.reponseService.choixMultiple;
+    }
+
+    set choixMultiple(value: boolean) {
+        this.reponseService.choixMultiple = value;
+    }
 
 
     constructor( private questionService: QuestionAdminService  , private quizService: QuizAdminService, private typeDeQuestionService: TypeDeQuestionAdminService, private reponseService: ReponseAdminService, private homeWorkService: HomeWorkAdminService) {
         super(questionService);
+        this.typeReponse = [
+            {
+                label: 'Reponse Courte',
+                icon: 'pi pi-align-right',
+                command: () => {
+                this.reponseCourte = true;
+                }
+            },
+            {
+                label: 'Paragraphe',
+                icon: 'pi pi-align-left',
+                command: () => {
+
+                }
+            },
+            { separator: true },
+            {
+                label: 'Choix multiples',
+                icon: 'pi pi-circle',
+                command: () => {
+
+                }
+            },
+
+            {
+                label: 'Cases a cocher',
+                icon: 'pi pi-check-square',
+                command: () => {
+
+                }
+
+            }
+        ];
+
     }
+
 
     ngOnInit(): void {
         this.activateSecurityConstraint('Question').subscribe(() => {

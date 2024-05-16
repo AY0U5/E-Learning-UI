@@ -1,7 +1,7 @@
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div class="card">
+       <!-- <div class="card">
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                                         <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Question')" *ngIf="createActionIsValid"></button>
@@ -106,7 +106,7 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                                
+
                         <th pSortableColumn="ref">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.ref' | translate}}</span>
@@ -114,8 +114,8 @@
                                 <p-columnFilter type="text" field="element.ref" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="libelle">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.libelle' | translate}}</span>
@@ -123,8 +123,8 @@
                                 <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="urlImg">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.urlImg' | translate}}</span>
@@ -132,8 +132,8 @@
                                 <p-columnFilter type="text" field="element.urlImg" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="urlVideo">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.urlVideo' | translate}}</span>
@@ -141,55 +141,55 @@
                                 <p-columnFilter type="text" field="element.urlVideo" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="numero">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.numero' | translate}}</span>
                                 <p-sortIcon field="numero"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="pointReponseJuste">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.pointReponseJuste' | translate}}</span>
                                 <p-sortIcon field="pointReponseJuste"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="pointReponsefausse">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.pointReponsefausse' | translate}}</span>
                                 <p-sortIcon field="pointReponsefausse"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="typeDeQuestion">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.typeDeQuestion' | translate}}</span>
                                 <p-sortIcon field="typeDeQuestion"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="quiz">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.quiz' | translate}}</span>
                                 <p-sortIcon field="quiz"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                <!-- 
+
+                                &lt;!&ndash;
                         <th pSortableColumn="homeWork">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'question.homeWork' | translate}}</span>
                                 <p-sortIcon field="homeWork"></p-sortIcon>
                             </div>
                         </th>
-                                --> 
+                                &ndash;&gt;
                         <th>Actions</th>
                     </tr>
                 </ng-template>
@@ -198,36 +198,36 @@
                         <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
                         </td>
-                            
+
                         <td>{{element.ref}}</td>
-                            
-                            
+
+
                         <td>{{element.libelle}}</td>
-                            
-                            
+
+
                         <td>{{element.urlImg}}</td>
-                            
-                            
+
+
                         <td>{{element.urlVideo}}</td>
-                            
-                            
+
+
                         <td>{{element.numero}}</td>
-                            
-                            
+
+
                         <td>{{element.pointReponseJuste}}</td>
-                            
-                            
+
+
                         <td>{{element.pointReponsefausse}}</td>
-                            
-                            
+
+
                         <td>{{element.typeDeQuestion?.lib}}</td>
-                            
-                            
+
+
                         <td>{{element.quiz?.lib}}</td>
-                            
-                             <!-- 
+
+                             &lt;!&ndash;
                         <td>{{element.homeWork?.libelle}}</td>
-                             --> 
+                             &ndash;&gt;
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
@@ -244,6 +244,110 @@
                     </div>
                 </ng-template>
             </p-table>
+        </div>-->
+        <div class="flex-container">
+          <!--  <div class="left-container">
+        <div class="mb-4 shadow-2 hover:shadow-8 ">
+            <p-card [style]="{ 'border-left': '8px solid #FC965DFF'}" class="max-w-full">
+                <div class="formgrid grid">
+
+                <div class="field col-12 md:col-6 with-border">
+                    <input id="quizLabel" type="text" placeholder="Question ?"
+                           [(ngModel)]="item.libelle"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                </div>
+
+
+                    <div class="field col-12 md:col-2 ">
+
+                        <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
+
+                    </div>
+                    <div  style="float: right" class="field col-12 md:col-4">
+                        <p-splitButton label="Etat Reponse"   styleClass="p-button-text p-button-secondary mr-2 mb-2"  [model]="this.typeReponse"
+                                               [style]="{ 'border': 'none', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
+
+                        ></p-splitButton>
+
+                    </div>
+                    <div  style="float: right;" class="field col-12 md:col-6 with-border">
+                        <div >
+                            <p-dropdown  appendTo="body" [options]="typeDeQuestions" [(ngModel)]="item.typeDeQuestion" id="quizsection"
+                                        [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
+                                        [showClear]="true" optionLabel="lib" placeholder="type De Question"
+                            >
+                            </p-dropdown>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </p-card>
+
+        </div>
+
+
+            </div>-->
+            <div class="left-container">
+                <div class="mb-4 shadow-2 hover:shadow-8 ">
+                    <p-card [style]="{ 'border-left': '8px solid #FC965DFF'}" class="max-w-full">
+                        <div class="formgrid grid">
+
+                            <div class="field col-12 md:col-10 with-border">
+                                <input id="quizLabel" type="text" placeholder="Question ?"
+                                       [(ngModel)]="item.libelle" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                            </div>
+
+                         <!--   <div class="field col-12 md:col-2">
+                                <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
+                            </div>-->
+
+                            <div class="field col-12 md:col-2">
+                                <p-splitButton label="État Réponse" styleClass="p-button-text p-button-secondary mr-0 mb-2" [model]="this.typeReponse"
+                                               [style]="{ 'border': 'none', 'box-shadow': 'none' }">
+                                </p-splitButton>
+                            </div>
+                            <div class="field col-12 md:col-6 with-borders">
+
+                                <input id="ref" type="text" placeholder="Ref"
+                                       [(ngModel)]="item.ref"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                            </div>
+
+                            <div class="field col-12 md:col-6 with-border mb-3" >
+                                <div>
+                                    <p-dropdown appendTo="body" [options]="typeDeQuestions" [(ngModel)]="item.typeDeQuestion" id="typeDeQuestions"
+                                                [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
+                                                [showClear]="true" optionLabel="lib" placeholder="type De Question">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="field col-12 md:col-6 with-border" >
+                                <app-reponse-list-admin ></app-reponse-list-admin>
+                            </div>
+
+
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+
+            <div class="right-container">
+                <div class="button-container shadow-2 hover:shadow-5">
+                    <div class="button-group">
+                        <div class="button-row">
+                            <span class="icon-button pi pi-plus" style="font-size: 1.5rem" ></span>
+                        </div>
+                        <div class="button-row">
+                            <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
+                        </div>
+                        <div class="button-row">
+                            <span class="icon-button pi pi-video" style="font-size: 1.5rem"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <app-question-create-admin  *ngIf="createDialog  && createActionIsValid"></app-question-create-admin>

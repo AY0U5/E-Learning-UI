@@ -1,7 +1,7 @@
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div class="card">
+<!--        <div class="card">-->
             <div class="tables">
                 <div class="col col-4 table-container">
                     <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
@@ -240,7 +240,7 @@
                 </div>
             </div>
 
-        </div>
+<!--        </div>-->
 
         <app-parcours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-parcours-create-admin>
         <app-parcours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-parcours-edit-admin>

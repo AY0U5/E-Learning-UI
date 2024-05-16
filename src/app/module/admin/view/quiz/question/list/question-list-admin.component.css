@@ -1,0 +1,124 @@
+
+
+.tall-container {
+    height: 200px;
+    weidth: 100px; /* Définissez la hauteur souhaitée */
+}
+
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-button {
+    color: black; /* Changer la couleur des boutons en gris */
+    border: none;
+    font-size: 16px; /* Augmenter la taille du texte des boutons */
+    padding: 10px 20px; /* Ajuster le rembourrage pour agrandir la zone cliquable */
+}
+
+.icon-button:hover {
+    opacity: 0.7; /* Réduire légèrement l'opacité au survol */
+}
+
+.flex-container {
+    display: flex;
+}
+
+.left-container {
+    flex-grow: 1;
+    margin-right: 10px; /* Espace entre les deux conteneurs */
+    width: 100%;
+}
+
+.right-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    align-self: flex-end; /* Aligner le conteneur des boutons à droite */
+    width: 50px; /* Largeur du conteneur des boutons */
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+    height : 250px;
+}
+
+/*border dessous*/
+.with-border {
+    position: relative;
+}
+
+.with-border::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Positionner la bordure en dessous de l'input */
+    left: 50%;
+    transform: translateX(-50%); /* Centrer horizontalement */
+    width: 97%; /* Largeur de la bordure */
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+
+.with-border:focus-within::after {
+    background-color: orange;
+}
+
+.with-borderR {
+    position: relative;
+}
+
+.with-borderR::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Positionner la bordure en dessous de l'input */
+    left: 50%;
+    transform: translateX(-50%); /* Centrer horizontalement */
+    width: 94%; /* Largeur de la bordure */
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+
+.with-borderR:focus-within::after {
+    background-color: orange;
+}
+
+/*autre*/
+.with-borders {
+    position: relative;
+}
+
+.with-borders::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; /* Positionner la bordure en dessous de l'input */
+    left: 50%;
+    transform: translateX(-50%); /* Centrer horizontalement */
+    width: 94%; /* Largeur de la bordure */
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+
+.with-borders:focus-within::after {
+    background-color: orange;
+}
+
+
+/*drop*/

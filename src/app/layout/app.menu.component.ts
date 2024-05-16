@@ -13,10 +13,13 @@ import {AppLayoutComponent} from "./app.layout.component";
 })
 export class AppMenuComponent implements OnInit {
   model: any[];
-  modelanonymous: any[];
+    modelAnonymous: any[];
     modelAdmin: any[];
 constructor(public layoutService: LayoutService, public app: AppComponent, public appMain: AppLayoutComponent, private roleService: RoleService, private authService: AuthService, private router: Router) { }
-  ngOnInit() {
+
+    tabprofs: string[] = ['adel', 'ayoub', 'malo','hassan'];
+
+    ngOnInit() {
     this.modelAdmin =
       [
 
@@ -24,7 +27,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
                     label: 'Menu',
                     icon: 'pi pi-fw pi-briefcase',
                     items: [
-					  {
+					  /*{
 						label: 'Gestion Invitation',
 						icon: 'pi pi-wallet',
 						items: [
@@ -34,7 +37,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/inscriptionref/invite-student/list']
 								  },
 						]
-					  },
+					  },*/
 					  {
 						label: 'Gestion Cours',
 						icon: 'pi pi-wallet',
@@ -61,7 +64,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 								  },
 						]
 					  },
-					  {
+					  /*{
 						label: 'Gestion Groupe',
 						icon: 'pi pi-wallet',
 						items: [
@@ -91,8 +94,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/grpe/groupe-etat/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					 /* {
 						label: 'Gestion Inscription Referentiel',
 						icon: 'pi pi-wallet',
 						items: [
@@ -147,7 +150,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/inscriptionref/interet-etudiant/list']
 								  },
 						]
-					  },
+					  },*/
 					  {
 						label: 'Gestion Quiz Etudiant',
 						icon: 'pi pi-wallet',
@@ -164,7 +167,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 								  },
 						]
 					  },
-					  {
+					  /*{
 						label: 'Gestion Review',
 						icon: 'pi pi-wallet',
 						items: [
@@ -174,8 +177,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/review/prof-review/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					 /* {
 						label: 'Gestion Schedule',
 						icon: 'pi pi-wallet',
 						items: [
@@ -185,8 +188,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/inscriptionref/etat-etudiant-schedule/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					  /*{
 						label: 'Asssociation Prof Cours',
 						icon: 'pi pi-wallet',
 						items: [
@@ -196,8 +199,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/profetudiantcours/etudiant-cours/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					/*  {
 						label: 'Gestion Commande',
 						icon: 'pi pi-wallet',
 						items: [
@@ -207,7 +210,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/alc/admin/list']
 								  },
 						]
-					  },
+					  },*/
 					  {
 						label: 'Gestion Cours Referentiel',
 						icon: 'pi pi-wallet',
@@ -249,7 +252,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 								  },
 						]
 					  },
-					  {
+					 /* {
 						label: 'Gestion Free Trial',
 						icon: 'pi pi-wallet',
 						items: [
@@ -304,8 +307,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/freetrial/free-trial-teacher-whats-template/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					 /* {
 						label: 'Gestion Common',
 						icon: 'pi pi-wallet',
 						items: [
@@ -325,7 +328,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/common/news/list']
 								  },
 						]
-					  },
+					  },*/
 					  {
 						label: 'Gestion Vocabulary',
 						icon: 'pi pi-wallet',
@@ -342,7 +345,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 								  },
 						]
 					  },
-					  {
+					  /*{
 						label: 'Gestion Price',
 						icon: 'pi pi-wallet',
 						items: [
@@ -352,8 +355,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/price/price/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					  /*{
 						label: 'Gestion Etude',
 						icon: 'pi pi-wallet',
 						items: [
@@ -363,8 +366,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/learning/session-cours/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					  /*{
 						label: 'Gestion Homework',
 						icon: 'pi pi-wallet',
 						items: [
@@ -399,7 +402,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/homework/reponse-etudiant-home-work/list']
 								  },
 						]
-					  },
+					  },*/
 					  {
 						label: 'Gestion Quiz',
 						icon: 'pi pi-wallet',
@@ -432,7 +435,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 								  },
 						]
 					  },
-					  {
+					  /*{
 						label: 'Gestion Inscription',
 						icon: 'pi pi-wallet',
 						items: [
@@ -447,8 +450,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/inscription/etudiant/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					  /*{
 						label: 'Gestion Paiement',
 						icon: 'pi pi-wallet',
 						items: [
@@ -458,8 +461,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/paiement/paiement/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					 /* {
 						label: 'Recommendation/Reclamation',
 						icon: 'pi pi-wallet',
 						items: [
@@ -489,8 +492,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/recomrecla/type-reclamation-prof/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					  /*{
 						label: 'Gestion Salaire',
 						icon: 'pi pi-wallet',
 						items: [
@@ -510,8 +513,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/salary/salary/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					  /*{
 						label: 'Gestion ClassRoom',
 						icon: 'pi pi-wallet',
 						items: [
@@ -521,8 +524,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/classroom/class-room/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					  /*{
 						label: 'Gestion Faq',
 						icon: 'pi pi-wallet',
 						items: [
@@ -547,8 +550,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/faq/faq/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					  /*{
 						label: 'Gestion Pack',
 						icon: 'pi pi-wallet',
 						items: [
@@ -558,8 +561,8 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/pack/pack-student/list']
 								  },
 						]
-					  },
-					  {
+					  },*/
+					 /* {
 						label: 'Gestion Prof',
 						icon: 'pi pi-wallet',
 						items: [
@@ -599,7 +602,7 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 									routerLink: ['/app/admin/prof/type-teacher/list']
 								  },
 						]
-					  },
+					  },*/
 
 				   {
 					  label: 'Security Management',
@@ -625,6 +628,151 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
 			]
 	    }
     ];
+    this.modelAnonymous=[
+
+        {
+            label: 'Menu',
+            icon: 'pi pi-fw pi-briefcase',
+            items: [
+
+                {
+                    label: 'Gestion Cours',
+                    icon: 'pi pi-wallet',
+                    items: [
+                        {
+                            label: 'Liste section item',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/course/section-item/list']
+                        },
+                        {
+                            label: 'Liste cours',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/course/cours/list']
+                        },
+                        {
+                            label: 'Liste parcours',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/course/parcours/list']
+                        },
+                        {
+                            label: 'Liste section',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/course/section/list']
+                        },
+                    ]
+                },
+
+                {
+                    label: 'Gestion Quiz Etudiant',
+                    icon: 'pi pi-wallet',
+                    items: [
+                        {
+                            label: 'Liste reponse etudiant',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/quizetudiant/reponse-etudiant/list']
+                        },
+                        {
+                            label: 'Liste quiz etudiant',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/quizetudiant/quiz-etudiant/list']
+                        },
+                    ]
+                },
+
+                {
+                    label: 'Gestion Cours Referentiel',
+                    icon: 'pi pi-wallet',
+                    items: [
+                        {
+                            label: 'Liste etat cours',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/courseref/etat-cours/list']
+                        },
+                        {
+                            label: 'Liste etat parcours',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/courseref/etat-parcours/list']
+                        },
+                        {
+                            label: 'Liste etat section',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/courseref/etat-section/list']
+                        },
+                        {
+                            label: 'Liste super categorie section',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/courseref/super-categorie-section/list']
+                        },
+                        {
+                            label: 'Liste categorie section',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/courseref/categorie-section/list']
+                        },
+                        {
+                            label: 'Liste centre',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/courseref/centre/list']
+                        },
+                        {
+                            label: 'Liste level test configuration',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/courseref/level-test-configuration/list']
+                        },
+                    ]
+                },
+
+                {
+                    label: 'Gestion Vocabulary',
+                    icon: 'pi pi-wallet',
+                    items: [
+                        {
+                            label: 'Liste vocabulary quiz',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/vocab/vocabulary-quiz/list']
+                        },
+                        {
+                            label: 'Liste vocabulary',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/vocab/vocabulary/list']
+                        },
+                    ]
+                },
+
+                {
+                    label: 'Gestion Quiz',
+                    icon: 'pi pi-wallet',
+                    items: [
+                        {
+                            label: 'Liste question',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/quiz/question/list']
+                        },
+                        {
+                            label: 'Liste quiz',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/quiz/quiz/list']
+                        },
+                        {
+                            label: 'Liste reponse',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/quiz/reponse/list']
+                        },
+                    ]
+                },
+                {
+                    label: 'Gestion Quiz Referentiel',
+                    icon: 'pi pi-wallet',
+                    items: [
+                        {
+                            label: 'Liste type de question',
+                            icon: 'pi pi-fw pi-plus-circle',
+                            routerLink: ['/app/admin/quizref/type-de-question/list']
+                        },
+                    ]
+                }
+            ]
+        }
+    ];
 
         if (this.authService.authenticated) {
             if (this.authService.authenticatedUser.roleUsers) {
@@ -632,9 +780,23 @@ constructor(public layoutService: LayoutService, public app: AppComponent, publi
                   const roleName: string = this.getRole(role.role.authority);
                   this.roleService._role.next(roleName.toUpperCase());
                   eval('this.model = this.model' + this.getRole(role.role.authority));
+                  console.log( this.authService.authenticatedUser);
+                  // console.log( this);
+
               })
             }
         }
+
+        /*if (this.authService.authenticated) {
+            if (this.authService.authenticatedUser.roleUsers) {
+                const currentUser = this.authService.authenticatedUser.username;
+                if (this.tabprofs.includes(currentUser)) {
+                    this.model = this.modelAnonymous;
+                } else {
+                    this.model = this.modelAdmin;
+                }
+            }
+        }*/
   }
 
     getRole(text){

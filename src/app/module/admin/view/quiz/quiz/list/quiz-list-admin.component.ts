@@ -25,7 +25,8 @@ import {HomeWorkAdminService} from 'src/app/shared/service/admin/homework/HomeWo
 
 @Component({
   selector: 'app-quiz-list-admin',
-  templateUrl: './quiz-list-admin.component.html'
+  templateUrl: './quiz-list-admin.component.html',
+    styleUrls : ['./quiz-list-admin.component.css']
 })
 export class QuizListAdminComponent extends AbstractListController<QuizDto, QuizCriteria, QuizAdminService>  implements OnInit {
 
@@ -35,6 +36,31 @@ export class QuizListAdminComponent extends AbstractListController<QuizDto, Quiz
     sections: Array<SectionDto>;
 
 
+
+    //
+
+    get addquiz(): boolean {
+        return this.quizService.addquiz;
+    }
+
+    set addquiz(value: boolean) {
+        this.quizService.addquiz = value;
+    }
+
+    public get itemQuizShow(): QuizDto {
+        return this.quizService.itemQuizShow;
+    }
+
+    public set itemQuizShow(value: QuizDto) {
+        this.quizService.itemQuizShow = value;
+    }
+
+    protected showqst: boolean = false;
+    foraddQuestion() {
+    this.showqst = true ;
+    }
+
+    //
     constructor( private quizService: QuizAdminService  , private quizEtudiantService: QuizEtudiantAdminService, private typeDeQuestionService: TypeDeQuestionAdminService, private etudiantService: EtudiantAdminService, private questionService: QuestionAdminService, private sectionService: SectionAdminService, private homeWorkService: HomeWorkAdminService) {
         super(quizService);
     }
@@ -105,4 +131,7 @@ export class QuizListAdminComponent extends AbstractListController<QuizDto, Quiz
             'Seuil reussite Max': this.criteria.seuilReussiteMax ? this.criteria.seuilReussiteMax : environment.emptyForExport ,
         }];
       }
+
+
+
 }
