@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SectionDto} from "../../../../../shared/model/course/Section.model";
 import {SectionAdminService} from "../../../../../shared/service/admin/course/SectionAdmin.service";
+import {QuizAdminService} from "../../../../../shared/service/admin/quiz/QuizAdmin.service";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-remplir',
@@ -20,12 +22,19 @@ export class RemplirComponent implements OnInit{
     okVideo: boolean = false;
     urlImage: string;
     urlVideo: string
+    private _validQuizRef = true;
+    private _validQuizLib = true;
+    private _validQuestionsRef = true;
+    private _validQuizEtudiantsRef = true;
+    private _validSectionCode = true;
 
     ngOnInit() {
         this.findAll()
     }
 
-    constructor(private sectionService: SectionAdminService) {
+    constructor(private sectionService: SectionAdminService,
+                private quizService: QuizAdminService,
+                private sanitizer: DomSanitizer) {
     }
 
     public findAll(){
@@ -150,6 +159,67 @@ export class RemplirComponent implements OnInit{
                 alert('Error saving content:' + error.message);
             }
         )
+    }
+
+
+    get validQuizRef(): boolean {
+        return this._validQuizRef;
+    }
+
+    set validQuizRef(value: boolean) {
+        this._validQuizRef = value;
+    }
+
+    get validQuizLib(): boolean {
+        return this._validQuizLib;
+    }
+
+    set validQuizLib(value: boolean) {
+        this._validQuizLib = value;
+    }
+
+    get validQuestionsRef(): boolean {
+        return this._validQuestionsRef;
+    }
+
+    set validQuestionsRef(value: boolean) {
+        this._validQuestionsRef = value;
+    }
+
+    get validQuizEtudiantsRef(): boolean {
+        return this._validQuizEtudiantsRef;
+    }
+
+    set validQuizEtudiantsRef(value: boolean) {
+        this._validQuizEtudiantsRef = value;
+    }
+
+    get validSectionCode(): boolean {
+        return this._validSectionCode;
+    }
+
+    set validSectionCode(value: boolean) {
+        this._validSectionCode = value;
+    }
+
+    public getQuiz(){
+        return this.quizService.item
+    }
+
+    getYouTubeEmbedUrl(url: string): SafeResourceUrl {
+        // Extract the video ID from the YouTube URL
+        const videoId = this.extractVideoId(url);
+
+        // Construct the YouTube embed URL
+        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
+        // Return a safe URL for use in an iframe
+        return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+    }
+
+    extractVideoId(url: string): string {
+        const videoIdMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+        return videoIdMatch ? videoIdMatch[1] : '';
     }
 
 }

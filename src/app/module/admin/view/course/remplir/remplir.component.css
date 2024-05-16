@@ -25,3 +25,8 @@ video{
     width: 30rem;
     height: 20rem;
 }
+
+.cont{
+    height: 33rem; /* Adjust the height as needed */
+    overflow-y: auto;
+}

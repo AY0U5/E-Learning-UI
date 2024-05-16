@@ -32,17 +32,15 @@
 <!-- ////////// Preview \\\\\\\\\ -->
 <p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}">
     <div class="flex">
-        <div class="col col-8">
+        <div class="col col-8 cont">
             <div id="htmlEditor" *ngFor="let cont of sections; let j=index">
                 <div class="flex flex-column" id="contentWithoutTags" *ngIf="j === selectedCardIndex">
                     {{ stripHtmlTags(cont.contenu) }}
                     <div>
                         <img class="m-5 justify-content-center" *ngIf="cont.urlImage" src='{{cont.urlImage}}'/>
                     </div>
-                    <div>
-                        <video class="m-5 justify-content-center" *ngIf="cont.urlVideo" controls>
-                            <source src="{{cont.urlVideo}}"/>
-                        </video>
+                    <div class="justify-content-center" *ngIf="cont.urlVideo">
+                        <iframe width="500" height="400" [src]="getYouTubeEmbedUrl(cont.urlVideo)" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -95,37 +93,49 @@
 
 <!-- ////////// quiz \\\\\\\\\ -->
 <p-dialog [(visible)]="okQuiz" [style]="{width: '60vw'}">
-    <div class="flex flex-column gap-2">
-        <label for="question">Question</label>
-        <input
-            pInputText
-            id="question"
-            [(ngModel)]="question" />
-    </div>
-    <div class="flex flex-column mt-2">
-        <div class="flex flex-column gap-2">
-            <label for="option">Option 1</label>
-            <div class="row">
-                <input
-                    class="col col-9"
-                    pInputText
-                    id="option"
-                    [(ngModel)]="question" />
-                <button pButton class="col col-2 col-offset-1" icon="pi pi-times" style="font-size: 2rem" *ngIf="okOption" (click)="optionIshide()"></button>
-            </div>
+    <div class="grid">
+        <div class="field col-12 md:col-6">
+            <label for="1">{{'quiz.ref' | translate}}<span style="color: red;">*</span></label>
+            <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'quiz.ref' | translate}}" id="1" [(ngModel)]="getQuiz().ref"
+                   [ngClass]="{'ng-invalid ng-dirty' : !validQuizRef}"  />
+            <small class='p-error' *ngIf='!validQuizRef'>Ref est obligatoire.</small>
         </div>
-        <div class="flex flex-column gap-2" *ngIf="okOption">
-            <label for="optionS">Option 1</label>
-            <div class="row">
-                <input
-                    class="col col-9"
-                    pInputText
-                    id="optionS"
-                    [(ngModel)]="question" />
-                <button pButton class="col col-2 col-offset-1" icon="pi pi-times" style="font-size: 2rem" (click)="optionIshide()"></button>
-            </div>
+        <div class="field col-12 md:col-6">
+            <label for="2">{{'quiz.lib' | translate}}<span style="color: red;">*</span></label>
+            <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'quiz.lib' | translate}}" id="2" [(ngModel)]="getQuiz().lib"
+                   [ngClass]="{'ng-invalid ng-dirty' : !validQuizLib}"  />
+            <small class='p-error' *ngIf='!validQuizLib'>Lib est obligatoire.</small>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="3">{{'quiz.dateDebut' | translate}}</label>
+            <p-calendar appendTo="body" id="3"  [showTime]="true" [showSeconds]="false" placeholder="{{'quiz.dateDebut' | translate}}"  [(ngModel)]="getQuiz().dateDebut">
+            </p-calendar>
 
         </div>
-        <button pButton class="m-2 col col-4" icon="pi pi-plus" (click)="optionIsOk()" label="ajouter une option"></button>
+        <div class="field col-12 md:col-6">
+            <label for="4">{{'quiz.dateFin' | translate}}</label>
+            <p-calendar appendTo="body" id="4"  [showTime]="true" [showSeconds]="false" placeholder="{{'quiz.dateFin' | translate}}"  [(ngModel)]="getQuiz().dateFin">
+            </p-calendar>
+
+        </div>
+        <div class="field col-11 md:col-6">
+            <label for="7">{{'quiz.section' | translate}}</label>
+            <p-dropdown  appendTo="body"  [options]="sections" [(ngModel)]="getQuiz().section" id="7" [filter]="true" filterMatchMode="contains"
+                         [showClear]="true" optionLabel="code" placeholder="{{'quiz.section' | translate}}"  >
+            </p-dropdown>
+
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="8">{{'quiz.numero' | translate}}</label>
+            <p-inputNumber class="mb-2 mr-2" id="8" placeholder="{{'quiz.numero' | translate}}" [(ngModel)]="getQuiz().numero"  >
+            </p-inputNumber>
+
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="9">{{'quiz.seuilReussite' | translate}}</label>
+            <p-inputNumber class="mb-2 mr-2" id="9" placeholder="{{'quiz.seuilReussite' | translate}}" [(ngModel)]="getQuiz().seuilReussite"  >
+            </p-inputNumber>
+
+        </div>
     </div>
 </p-dialog>
