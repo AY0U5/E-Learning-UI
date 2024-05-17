@@ -1,1 +1,30 @@
- <app-menu></app-menu>
+<div class="contain add" id="container">
+    <div class="brand">
+        <h3>ENG<span class="text-orange-500">FLEXY</span></h3>
+        <a id="toggle"><i class="pi pi-list"></i></a>
+    </div>
+    <div class="head">
+        <img src="https://engflexy.com/wp-content/uploads/2023/12/cropped-eng-100-100-e1702544221888.webp">
+    </div>
+    <div class="navbar cont">
+        <ul>
+            <li *ngFor="let data of modelAdmin">
+                <a class="layout-menu-link" [routerLink]="data.routerLink">
+                    <i [class]="data.icon"></i>
+                    <span>{{data.label}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar log">
+        <ul>
+            <li>
+                <a (click)="logout()">
+                    <i class="pi pi-fw pi-sign-in"></i>
+                    <span>Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

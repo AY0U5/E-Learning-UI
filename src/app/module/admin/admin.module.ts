@@ -82,13 +82,15 @@ import {SecurityModule} from 'src/app/module/security/security.module';
 import {SecurityRoutingModule} from 'src/app/module/security/security-routing.module';
 import { HomeComponent } from './home/home.component';
 import {AppLayoutModule} from "../../layout/app.layout.module";
+import { NavComponent } from './nav/nav.component';
 
 
 @NgModule({
   declarations: [
    LoginAdminComponent,
    RegisterAdminComponent,
-   HomeComponent
+   HomeComponent,
+   NavComponent
   ],
     imports: [
         CommonModule,

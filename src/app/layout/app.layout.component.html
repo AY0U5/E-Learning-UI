@@ -1,3 +1,4 @@
+<!--
 <div class="layout-wrapper" [ngClass]="containerClass">
     <app-topbar></app-topbar>
     <div class="layout-sidebar">
@@ -12,3 +13,17 @@
     <app-config></app-config>
     <div class="layout-mask"></div>
 </div>
+-->
+
+<div class="flex flex-row layout-wrapper">
+    <div class="col col-2">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="col col-10 flex flex-column">
+        <div class="col col-10">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>
+
