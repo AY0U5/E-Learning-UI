@@ -23,11 +23,13 @@ import {HomeWorkDto} from 'src/app/shared/model/homework/HomeWork.model';
 import {HomeWorkAdminService} from 'src/app/shared/service/admin/homework/HomeWorkAdmin.service';
 import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
+import {TranslatePipe} from "@ngx-translate/core";
 
 
 @Component({
   selector: 'app-cours-list-admin',
-  templateUrl: './cours-list-admin.component.html'
+  templateUrl: './cours-list-admin.component.html',
+  styleUrls: ['./cours-list-admin.component.css']
 })
 export class CoursListAdminComponent extends AbstractListController<CoursDto, CoursCriteria, CoursAdminService>  implements OnInit {
 

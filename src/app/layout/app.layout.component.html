@@ -15,15 +15,18 @@
 </div>
 -->
 
-<div class="flex flex-row layout-wrapper">
-    <div class="col col-2">
+<div class="layout-wrapper flex flex-row">
+    <div >
         <app-sidebar></app-sidebar>
     </div>
-    <div class="col col-10 flex flex-column">
-        <div class="col col-10">
+    <div class="flex flex-column content-wrapper">
+        <div class="flex-grow-1 content">
             <router-outlet></router-outlet>
         </div>
-        <app-footer></app-footer>
+        <div class="footer">
+            <app-footer></app-footer>
+        </div>
     </div>
 </div>
+
 

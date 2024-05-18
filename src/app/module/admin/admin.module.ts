@@ -83,6 +83,7 @@ import {SecurityRoutingModule} from 'src/app/module/security/security-routing.mo
 import { HomeComponent } from './home/home.component';
 import {AppLayoutModule} from "../../layout/app.layout.module";
 import { NavComponent } from './nav/nav.component';
+import {AppModule} from "../../app.module";
 
 
 @NgModule({
@@ -168,7 +169,8 @@ import { NavComponent } from './nav/nav.component';
         QuizetudiantAdminRoutingModule,
         SecurityModule,
         SecurityRoutingModule,
-        AppLayoutModule
+        AppLayoutModule,
+        AppModule
     ],
   exports: [
   LoginAdminComponent,

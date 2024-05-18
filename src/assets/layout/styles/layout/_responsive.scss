@@ -116,13 +116,13 @@
 .contain {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 200px;
     height: 100vh;
-    border-radius: 10px;
     align-items: center;
     overflow: hidden;
     transition: 1s;
-    box-shadow: 0 8px 32px 0 rgba(49, 54, 115, 0.37);
+    box-shadow: 0 8px 32px 0 rgb(166, 166, 166);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(3px);
 }
@@ -270,11 +270,10 @@
     margin-left: 9px;
 }
 
-.contain .log{
-   margin-top: 80%;
+.hea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.contain .cont
-{
-    margin-top: 30%;
-}

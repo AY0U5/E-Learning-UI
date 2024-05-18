@@ -57,8 +57,9 @@ nav ul li a:hover{
 }
 
 .containe{
-    display: inline-flex;
+    display: inline-block;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-top: 10%;
     margin-left: 30%;
@@ -69,34 +70,11 @@ nav ul li a:hover{
     color: white;
 }
 
-.text, .text2{
-    font-size: 3rem;
-    letter-spacing: 5px;
-    border-right: 5px solid white;
-    white-space: nowrap;
-    width: 100%;
-    overflow: hidden;
-    animation:
-        typing 3.5s steps(28,end) infinite,
-        cursor .4s step-end infinite alternate;
+.text {
+    display: flex;
+    justify-content: center;
     margin-top: 50px;
     color: white;
-}
-
-#text2 {
-    display: none; /* Hide text2 initially */
-}
-
-/* cursor blinking*/
-@keyframes cursor {
-    50% {border-color: transparent;}
-}
-/* typing effect */
-@keyframes typing {
-    0% { width: 0; }
-    25% { width: 100%; }
-    75% { width: 100%; } /* Pause for 5% of the animation duration */
-    100% { width: 0; } /* Reverse */
 }
 
 .bouton{

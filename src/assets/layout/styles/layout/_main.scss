@@ -24,5 +24,16 @@ a {
 }
 
 .layout-wrapper {
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height of the viewport */
+    /*min-height: 100vh;*/
+}
+
+.content-wrapper{
+    width: 100%;
+}
+
+.content, .footer{
+    padding: 2rem;
 }

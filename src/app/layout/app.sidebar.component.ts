@@ -2,6 +2,8 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import { LayoutService } from "./service/app.layout.service";
 import {AuthService} from "../zynerator/security/shared/service/Auth.service";
 import {RoleService} from "../zynerator/security/shared/service/Role.service";
+import {UserDto} from "../zynerator/security/shared/model/User.model";
+import {UserService} from "../zynerator/security/shared/service/User.service";
 
 @Component({
     selector: 'app-sidebar',
@@ -11,10 +13,12 @@ export class AppSidebarComponent implements OnInit {
     collapsed: boolean = false;
     model: any[];
     modelAdmin: any[];
+    editDialog = false ;
     constructor(public layoutService: LayoutService,
                 public el: ElementRef,
                 private authService: AuthService,
-                private roleService: RoleService) { }
+                private roleService: RoleService,
+                private userService: UserService) { }
 
     ngOnInit() {
         this.hideSide()
@@ -33,17 +37,12 @@ export class AppSidebarComponent implements OnInit {
                 {
                     label: 'fill in',
                     icon: 'pi pi-pencil',
-                    routerLink: ['/app/admin/course/section/list'],
+                    routerLink: ['/app/admin/course/section/remplir'],
                 },
                 {
                     label: 'quiz',
                     icon: 'pi pi-shield',
                     routerLink: ['/app/admin/quiz/quiz/list'],
-                },
-                {
-                    label: 'Liste section',
-                    icon: 'pi pi-fw pi-plus-circle',
-                    routerLink: ['/app/admin/course/section/remplir']
                 },
             ]
 
@@ -78,6 +77,37 @@ export class AppSidebarComponent implements OnInit {
         toggle.onclick = function() {
             container.classList.toggle('active');
         };
+    }
+
+    public async edit(dto: UserDto) {
+        this.userService.findByUsername(dto.username).subscribe(res => {
+            this.item = res;
+            this.editDialog = true;
+            console.log(this.item);
+        });
+
+    }
+    get item(): UserDto {
+        return this.userService.item;
+    }
+
+    set item(value: UserDto) {
+        this.userService.item = value;
+    }
+    get authenticatedUser(): UserDto{
+        return this.authService.authenticatedUser;
+    }
+    set authenticatedUser(userDto: UserDto){
+        this.authService.authenticatedUser = userDto;
+    }
+    public editUser(){
+        this.userService.edit().subscribe(data => this.authenticatedUser = data);
+        this.authService.loadInfos();
+        this.editDialog = false;
+    }
+
+    public hideEditDialog() {
+        this.editDialog = false;
     }
 }
 
