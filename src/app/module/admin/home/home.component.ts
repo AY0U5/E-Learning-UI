@@ -16,33 +16,16 @@ export class HomeComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
-        this.scrolPage()
-    }
-
-
-
-    public scrolPage(){
-        let lastScrollTop = 0;
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const text1 = document.getElementById("text1");
-            const text2 = document.getElementById("text2");
-
-            window.addEventListener("scroll", () => {
-                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-                if (currentScroll > lastScrollTop){
-                    // Scrolling down
-                    text1.style.display = "block";
-                    text2.style.display = "none";
-                } else {
-                    // Scrolling up
-                    text1.style.display = "none";
-                    text2.style.display = "block";
-                }
-
-                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
-            });
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const heroImage = document.getElementById('hero-image') as HTMLImageElement;
+            if (window.scrollY > 0) { // Change 0 to the scroll value you prefer
+                navbar.classList.add('scrolled');
+                heroImage.src ='https://engflexy.com/wp-content/uploads/2023/12/cropped-eng-100-100-e1702544221888.webp'
+            } else {
+                heroImage.src ='https://engflexy.com/wp-content/uploads/2024/01/eng-white-e1704742061683.webp'
+                navbar.classList.remove('scrolled');
+            }
         });
     }
 }
