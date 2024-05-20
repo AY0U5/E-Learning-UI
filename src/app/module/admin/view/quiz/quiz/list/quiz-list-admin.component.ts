@@ -55,9 +55,25 @@ export class QuizListAdminComponent extends AbstractListController<QuizDto, Quiz
         this.quizService.itemQuizShow = value;
     }
 
-    protected showqst: boolean = false;
+    get showqst(): boolean {
+        return this.quizService.showqst;
+    }
+
+    set showqst(value: boolean) {
+        this.quizService.showqst= value;
+    }
     foraddQuestion() {
-    this.showqst = true ;
+        if (this.item.lib != "" ) {
+
+            this.showqst = true;
+
+        } else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
     }
 
     //

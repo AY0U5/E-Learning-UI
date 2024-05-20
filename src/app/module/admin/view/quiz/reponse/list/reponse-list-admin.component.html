@@ -158,11 +158,80 @@
             </p-table>
         </div>-->
 
-        <div *ngIf="this.reponseCourte" >
+        <div *ngIf="this.reponseCourte"  class="with-borderM">
             <input id="reponsecourte" type="text" placeholder="Reponse Courte"
-                   [(ngModel)]="item.lib"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                   [(ngModel)]="itemReponse.lib"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+        </div>
+        <div *ngIf="this.paragraphe" class="with-borderM" >
+            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="itemReponse.lib"
+                      placeholder="Pargraphe"     class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly ></textarea>
+
         </div>
 
+        <div *ngIf="this.caseAcoche" class="reponse-container">
+            <div *ngFor="let c of itemsRepForQuest" class="reponse">
+                <div class="ico">
+                    <span class="pi pi-circle" style="font-size: 1.5rem; color: gray;"></span>
+                </div>
+                <div class="with-borderM">
+                    <input id="reponcescase" type="text"
+                           [ngModel]="c.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                </div>
+            </div>
+
+            <div class="reponse">
+                <div class="ico">
+                    <span class="pi pi-circle" style="font-size: 1.5rem; color: gray;"></span>
+                </div>
+                <div class="with-borderM">
+                    <input id="caseAcoche" type="text" placeholder="Reponse"
+                           [(ngModel)]="itemReponse.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                </div>
+                <div >
+                    <app-reponse-create-admin></app-reponse-create-admin>
+                </div>
+            </div>
+
+        </div>
+<!--<div *ngFor="let c of divs">-->
+
+        <div *ngIf="choixMultiple" class="reponse-container">
+            <div *ngFor="let c of itemsRepForQuest" class="reponse">
+                <div class="ico">
+                    <span class="pi pi-stop" style="font-size: 1.5rem; color: gray;"></span>
+                </div>
+                <div class="with-borderM">
+                    <input id="reponces" name="reponces" type="text"
+                           [ngModel]="c.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                </div>
+            </div>
+            <div class="reponse">
+                <div class="ico">
+                    <span class="pi pi-stop" style="font-size: 1.5rem; color: gray;"></span>
+                </div>
+                <div class="with-borderM">
+                    <input id="choixmultiples" name="choixmultiples" type="text" placeholder="Reponse"
+                           [(ngModel)]="itemReponse.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                </div>
+                <div>
+                    <app-reponse-create-admin></app-reponse-create-admin>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--</div>-->
+
+        <!--<div *ngIf="this.choixMultiple">
+            <div class="form-group" *ngFor="let choix of choixMultiples; let i = index">
+                <input type="checkbox" disabled>
+                <input id="reponsecourte{{i}}" type="text" placeholder="Réponse" [(ngModel)]="choix.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+            </div>
+            &lt;!&ndash; Bouton pour ajouter un autre choix multiple &ndash;&gt;
+            <button class="btn btn-secondary" (click)="ajouterChoix()">Ajouter un autre choix</button>
+        </div>-->
 
         <app-reponse-create-admin  *ngIf="createDialog  && createActionIsValid"></app-reponse-create-admin>
         <app-reponse-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-reponse-edit-admin>
@@ -170,6 +239,35 @@
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>
+
+
+
+
+
+<p-dialog [(visible)]="showreponsenbr" [style]="{width: '70vw'}" header="{{'reponse.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="content" >
+        <div class="field col-12 justify-content-center">
+            <label for="4">{{'reponse.numero' | translate}}</label>
+            <p-inputNumber class="mb-2 mr-2" id="4" placeholder="saisi le nombre de reponse" [(ngModel)]="reponsenbr"  >
+            </p-inputNumber>
+
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+
+            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="nbrofreponse()"></button>
+
+
+            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+
+
+        </div>
+    </ng-template>
+
+</p-dialog>
 
 <p-card header="Permission not allowed" *ngIf="!listActionIsValid">
     <p class="m-0">

@@ -15,6 +15,17 @@ import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 export class QuizAdminService extends AbstractService<QuizDto, QuizCriteria> {
     private _itemQuizShow: QuizDto;
     private _addquiz : boolean = false;
+    private _showqst : boolean = false;
+    private _httpquiz: HttpClient;
+
+
+    get showqst(): boolean {
+        return this._showqst;
+    }
+
+    set showqst(value: boolean) {
+        this._showqst = value;
+    }
 
     get addquiz(): boolean {
         return this._addquiz;
@@ -36,8 +47,13 @@ export class QuizAdminService extends AbstractService<QuizDto, QuizCriteria> {
         this._itemQuizShow = value;
     }
 
+    public findByLib(item: QuizDto): Observable<QuizDto> {
+        return this.http.get<QuizDto>(this.API + 'lib/' + item.lib   );
+    }
 
-     constructor(private http: HttpClient) {
+
+
+    constructor(private http: HttpClient) {
         super();
         this.setHttp(http);
     }

@@ -26,7 +26,7 @@
                                                     <label for="3">{{'reponse.etatReponse' | translate}}</label>
                                                     <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'reponse.etatReponse' | translate}}" id="3" [(ngModel)]="item.etatReponse"
                                                              />
-                                                    
+
                                                 </div>
 
 
@@ -35,7 +35,7 @@
                                                     <label for="4">{{'reponse.numero' | translate}}</label>
                                                     <p-inputNumber class="mb-2 mr-2" id="4" placeholder="{{'reponse.numero' | translate}}" [(ngModel)]="item.numero"  >
                                                     </p-inputNumber>
-                                                    
+
                                                 </div>
 
                                             <div class="field col-11 md:col-6">
@@ -43,7 +43,7 @@
                                                 <p-dropdown  appendTo="body"  [options]="questions" [(ngModel)]="item.question" id="5" [filter]="true" filterMatchMode="contains"
                                                         [showClear]="true" optionLabel="libelle" placeholder="{{'reponse.question' | translate}}"  >
                                                 </p-dropdown>
-                                                
+
                                             </div>
 
                                 </div>
@@ -66,3 +66,8 @@
             </ng-template>
 
     </p-dialog>
+
+<div class="icon-container">
+
+    <span class="pi pi-plus-circle" style="font-size: 2rem" (click)="foraddReponsetoQuestion()"></span>
+</div>

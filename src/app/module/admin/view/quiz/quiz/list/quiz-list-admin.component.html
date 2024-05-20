@@ -27,7 +27,7 @@
             <div class="left-container">
                 <div class="mb-4 shadow-2 hover:shadow-5">
                     <p-card [style]="{ 'border-top': '10px solid #ff725e' , 'border-left': '8px solid #FC965DFF'}" class="max-w-full">
-                        <div *ngIf="!addquiz" class="formgrid grid">
+                        <div *ngIf="!this.addquiz" class="formgrid grid">
                             <div class="field col-12 with-border">
                                 <input id="quizLabel" type="text" placeholder="Quiz Label"
                                        [(ngModel)]="item.lib"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
@@ -67,15 +67,22 @@
 
                                 <div class="field col-12">
 <!--                                    <button [style]="{'background-color': '#ff725e' , 'height': '100%'}" pButton pRipple label="Ajouter Quiz" icon="pi pi-plus" class="p-button mr-2 mb-2 bouton" (click)="saveQuiz()" ></button>-->
-                                    <app-quiz-create-admin></app-quiz-create-admin>
                                 </div>
 
                         </div>
-                        <div  class="field col-12 md:col-6 with-border ">
+                    <!--    <div  class="field col-12 md:col-6 with-border ">
 
                         </div>
-                        <div class="field col-12 md:col-6"></div>
+                        <div class="field col-12 md:col-6"></div>-->
+
+                        <div *ngIf="this.addquiz" class="formgrid grid">
+                            <div class="field col-12 with-border">
+                                <input id="quizshow" type="text" placeholder="Quiz Label"
+                                       [ngModel]="itemQuizShow.lib"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                            </div>
+                        </div>
                     </p-card>
+
 
                 </div>
 
@@ -88,7 +95,9 @@
                 <div class="button-container shadow-2 hover:shadow-5">
                     <div class="button-group">
                         <div class="button-row">
-                            <span class="icon-button pi pi-plus" style="font-size: 1.5rem" (click)="foraddQuestion()" ></span>
+<!--                            <span class="icon-button pi pi-plus" style="font-size: 1.5rem" (click)="foraddQuestion()" ></span>-->
+                            <app-quiz-create-admin></app-quiz-create-admin>
+
                         </div>
                         <!--<div class="button-row">
                             <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>

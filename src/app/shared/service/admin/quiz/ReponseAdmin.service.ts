@@ -7,7 +7,7 @@ import {environment} from 'src/environments/environment';
 import {ReponseDto} from 'src/app/shared/model/quiz/Reponse.model';
 import {ReponseCriteria} from 'src/app/shared/criteria/quiz/ReponseCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
-// import * as http from "http";
+import {QuestionDto} from "../../../model/quiz/Question.model";
 
 
 @Injectable({
@@ -19,6 +19,39 @@ export class ReponseAdminService extends AbstractService<ReponseDto, ReponseCrit
     private _paragraphe : boolean = false ;
     private _caseAcoche : boolean = false ;
     private _choixMultiple : boolean = false ;
+    private _reponsenbr : number = 1 ;
+    private _showreponsenbr : boolean = false ;
+    private _itemsRepForQuest: Array<ReponseDto>;
+
+
+
+    public set itemsRepForQuest(value: Array<ReponseDto>) {
+        this._itemsRepForQuest = value;
+    }
+
+    public get itemsRepForQuest(): Array<ReponseDto> {
+        if (this._itemsRepForQuest == null) {
+            this._itemsRepForQuest = new Array<ReponseDto>();
+        }
+        return this._itemsRepForQuest;
+    }
+
+
+    get showreponsenbr(): boolean {
+        return this._showreponsenbr;
+    }
+
+    set showreponsenbr(value: boolean) {
+        this._showreponsenbr = value;
+    }
+
+    get reponsenbr(): number {
+        return this._reponsenbr;
+    }
+
+    set reponsenbr(value: number) {
+        this._reponsenbr = value;
+    }
 
     get reponseCourte(): boolean {
         return this._reponseCourte;
@@ -49,6 +82,11 @@ export class ReponseAdminService extends AbstractService<ReponseDto, ReponseCrit
     set choixMultiple(value: boolean) {
         this._choixMultiple = value;
     }
+    //
+    public findBylib(item: ReponseDto): Observable<ReponseDto> {
+        return this.http.get<ReponseDto>(this.API + 'lib/' + item.lib   );
+    }
+    //
 
      constructor(private http: HttpClient) {
         super();
