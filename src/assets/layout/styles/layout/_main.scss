@@ -26,8 +26,8 @@ a {
 .layout-wrapper {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Full height of the viewport */
-    /*min-height: 100vh;*/
+    /*height: 100vh; /* Full height of the viewport */
+    max-height: 100vh;
 }
 
 .content-wrapper{
@@ -35,5 +35,5 @@ a {
 }
 
 .content, .footer{
-    padding: 2rem;
+    padding: 1rem;
 }

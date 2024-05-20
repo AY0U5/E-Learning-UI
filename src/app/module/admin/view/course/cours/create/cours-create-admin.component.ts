@@ -23,9 +23,13 @@ import {HomeWorkDto} from 'src/app/shared/model/homework/HomeWork.model';
 import {HomeWorkAdminService} from 'src/app/shared/service/admin/homework/HomeWorkAdmin.service';
 import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
+import {TranslatePipe} from "@ngx-translate/core";
 @Component({
   selector: 'app-cours-create-admin',
-  templateUrl: './cours-create-admin.component.html'
+  templateUrl: './cours-create-admin.component.html',
+    providers:[
+        TranslatePipe
+    ]
 })
 export class CoursCreateAdminComponent extends AbstractCreateController<CoursDto, CoursCriteria, CoursAdminService>  implements OnInit {
 

@@ -38,10 +38,14 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
 
     etatCourss: Array<EtatCoursDto>;
     parcourss: Array<ParcoursDto>;
-
+    cours: Array<CoursDto>;
 
     constructor( private coursService: CoursAdminService  , private parcoursService: ParcoursAdminService, private categorieSectionService: CategorieSectionAdminService, private etatCoursService: EtatCoursAdminService, private sectionService: SectionAdminService, private typeHomeWorkService: TypeHomeWorkAdminService, private homeWorkService: HomeWorkAdminService) {
         super(coursService);
+    }
+
+    public findAllCours(){
+        return this.coursService.findAll().subscribe(data => this.cours = data);
     }
 
     ngOnInit(): void {
@@ -54,6 +58,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
                 this.loadParcours();
             }
         });
+        this.findAllCours()
     }
 
 
