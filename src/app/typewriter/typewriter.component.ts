@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TypewriterComponent implements OnInit {
     texts: string[] = [
         'Hello, this is your learning world',
-        'aaaa'
+        'practice , make you perfect!'
     ];
     displayedText: string = '';
     typingSpeed: number = 100; // Adjust typing speed here (milliseconds)
