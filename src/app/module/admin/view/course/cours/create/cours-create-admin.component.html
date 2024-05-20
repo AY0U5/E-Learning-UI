@@ -1,316 +1,360 @@
-        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'cours.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
-            <ng-template pTemplate="content" >
-                        <p-tabView>
-                            <p-tabPanel header="{{'cours.tabPan' | translate}}">
-                                <div class="grid">
+<p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'cours.tabPan' | translate}}" [modal]="true"
+          styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'cours.tabPan' | translate}}">
+                <div class="grid" ><!--(click)="afficherparcour()"-->
 
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="1">{{'cours.code' | translate}}<span style="color: red;">*</span></label>
-                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'cours.code' | translate}}" id="1" [(ngModel)]="item.code"
-                                                            [ngClass]="{'ng-invalid ng-dirty' : !validCoursCode}"  />
-                                                    <small class='p-error' *ngIf='!validCoursCode'>Code est obligatoire.</small>
-                                                </div>
-
-
-
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="2">{{'cours.libelle' | translate}}<span style="color: red;">*</span></label>
-                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'cours.libelle' | translate}}" id="2" [(ngModel)]="item.libelle"
-                                                            [ngClass]="{'ng-invalid ng-dirty' : !validCoursLibelle}"  />
-                                                    <small class='p-error' *ngIf='!validCoursLibelle'>Libelle est obligatoire.</small>
-                                                </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{ 'cours.code' | translate }}<span style="color: red;">*</span></label>
+                        <input class="mb-2 mr-2" type="text" pInputText placeholder="{{'cours.code' | translate}}"
+                               id="1" [(ngModel)]="item.code"
+                               [ngClass]="{'ng-invalid ng-dirty' : !validCoursCode}"/>
+                        <small class='p-error' *ngIf='!validCoursCode'>Code est obligatoire.</small>
+                    </div>
 
 
-
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="3">{{'cours.description' | translate}}</label>
-                                                    <textarea id="3" pInputTextarea rows="5" cols="30" placeholder="{{'cours.description' | translate}}"  [(ngModel)]="item.description"
-                                                             ></textarea>
-                                                    
-                                                </div>
-
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="4">{{'cours.image' | translate}}</label>
-                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'cours.image' | translate}}" id="4" [(ngModel)]="item.image"
-                                                             />
-                                                    
-                                                </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{ 'cours.libelle' | translate }}<span style="color: red;">*</span></label>
+                        <input class="mb-2 mr-2" type="text" pInputText placeholder="{{'cours.libelle' | translate}}"
+                               id="2" [(ngModel)]="item.libelle"
+                               [ngClass]="{'ng-invalid ng-dirty' : !validCoursLibelle}"/>
+                        <small class='p-error' *ngIf='!validCoursLibelle'>Libelle est obligatoire.</small>
+                    </div>
 
 
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{ 'cours.description' | translate }}</label>
+                        <textarea id="3" pInputTextarea rows="5" cols="30"
+                                  placeholder="{{'cours.description' | translate}}" [(ngModel)]="item.description"
+                        ></textarea>
 
-                                            <div class="field col-11 md:col-6">
-                                                <label for="5">{{'cours.etatCours' | translate}}</label>
-                                                <p-dropdown  appendTo="body"  [options]="etatCourss" [(ngModel)]="item.etatCours" id="5" [filter]="true" filterMatchMode="contains"
-                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'cours.etatCours' | translate}}"  >
-                                                </p-dropdown>
-                                                
-                                            </div>
+                    </div>
 
-                                            <div class="field col-11 md:col-6">
-                                                <label for="6">{{'cours.parcours' | translate}}</label>
-                                                <p-dropdown  appendTo="body"  [options]="parcourss" [(ngModel)]="item.parcours" id="6" [filter]="true" filterMatchMode="contains"
-                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'cours.parcours' | translate}}"  >
-                                                </p-dropdown>
-                                                
-                                            </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{ 'cours.image' | translate }}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText placeholder="{{'cours.image' | translate}}"
+                               id="4" [(ngModel)]="item.image"
+                        />
 
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="7">{{'cours.nombreSectionFinalise' | translate}}</label>
-                                                    <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'cours.nombreSectionFinalise' | translate}}" [(ngModel)]="item.nombreSectionFinalise"  >
-                                                    </p-inputNumber>
-                                                    
-                                                </div>
-
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="8">{{'cours.nombreSectionEnCours' | translate}}</label>
-                                                    <p-inputNumber class="mb-2 mr-2" id="8" placeholder="{{'cours.nombreSectionEnCours' | translate}}" [(ngModel)]="item.nombreSectionEnCours"  >
-                                                    </p-inputNumber>
-                                                    
-                                                </div>
-
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="9">{{'cours.nombreLinkEnCours' | translate}}</label>
-                                                    <p-inputNumber class="mb-2 mr-2" id="9" placeholder="{{'cours.nombreLinkEnCours' | translate}}" [(ngModel)]="item.nombreLinkEnCours"  >
-                                                    </p-inputNumber>
-                                                    
-                                                </div>
-
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="10">{{'cours.nombreLinkFinalise' | translate}}</label>
-                                                    <p-inputNumber class="mb-2 mr-2" id="10" placeholder="{{'cours.nombreLinkFinalise' | translate}}" [(ngModel)]="item.nombreLinkFinalise"  >
-                                                    </p-inputNumber>
-                                                    
-                                                </div>
-
-                                                <div class="field col-12 md:col-6">
-                                                    <label for="11">{{'cours.numeroOrder' | translate}}</label>
-                                                    <p-inputNumber class="mb-2 mr-2" id="11" placeholder="{{'cours.numeroOrder' | translate}}" [(ngModel)]="item.numeroOrder"  >
-                                                    </p-inputNumber>
-                                                    
-                                                </div>
-
-                                </div>
-                            </p-tabPanel>
-                                    <p-tabPanel header="{{'cours.sections' | translate}}">
-                                        <p-tabView [(activeIndex)]="activeTab">
-                                            <p-tabPanel header="Création">
-                                                    <div class="grid">
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="1">Code<span style="color: red;">*</span></label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Code"
-                                                                               id="1" [(ngModel)]="sectionsElement.code" autofocus  [ngClass]="{'ng-invalid ng-dirty' : !validSectionsCode}"  >
-                                                                        <small class='p-error' *ngIf='!validSectionsCode'>Code est obligatoire.</small>
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="2">Libelle</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Libelle"
-                                                                               id="2" [(ngModel)]="sectionsElement.libelle" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="3">Url image</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image"
-                                                                               id="3" [(ngModel)]="sectionsElement.urlImage" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="4">Url image2</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image2"
-                                                                               id="4" [(ngModel)]="sectionsElement.urlImage2" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="5">Url image3</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image3"
-                                                                               id="5" [(ngModel)]="sectionsElement.urlImage3" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="6">Url video</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Url video"
-                                                                               id="6" [(ngModel)]="sectionsElement.urlVideo" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="7">Contenu</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Contenu"
-                                                                               id="7" [(ngModel)]="sectionsElement.contenu" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="8">Questions</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Questions"
-                                                                               id="8" [(ngModel)]="sectionsElement.questions" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="9">Indication prof</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Indication prof"
-                                                                               id="9" [(ngModel)]="sectionsElement.indicationProf" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="10">Numero order</label>
-                                                                        <p-inputNumber class="mb-2 mr-2" id="numeroOrder" placeholder="Numero order"  [(ngModel)]="sectionsElement.numeroOrder"></p-inputNumber>
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-11 md:col-6">
-                                                                        <label>Categorie section</label>
-                                                                        <p-dropdown  appendTo="body"  [options]="categorieSections" [(ngModel)]="sectionsElement.categorieSection"
-                                                                                     id="11"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="code"
-                                                                                     placeholder="Categorie section"  >
-                                                                        </p-dropdown>
-                                                                        
-                                                                    </div>
-
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="13">Url</label>
-                                                                        <p-inputNumber class="mb-2 mr-2" id="url" placeholder="Url"  [(ngModel)]="sectionsElement.url"></p-inputNumber>
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="14">Content</label>
-                                                                        <p-inputNumber class="mb-2 mr-2" id="content" placeholder="Content"  [(ngModel)]="sectionsElement.content"></p-inputNumber>
-                                                                        
-                                                                    </div>
-                                                        <div class="field col-12 md:col-1">
-                                                            <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addSections()"></button>
-                                                        </div>
-
-                                                    </div>
-                                            </p-tabPanel>
-                                            <p-tabPanel header="Liste {{item.sections?.length > 0 ? '(' + item.sections?.length + ')' : ''}}">
-                                                    <div class="card">
-                                                        <p-table [value]="item.sections" [scrollable]="true" scrollHeight="200px">
-                                                            <ng-template pTemplate="header">
-                                                                <tr>
-                                                                                <th>Code</th>
-                                                                                <th>Libelle</th>
-                                                                                <th>Url image</th>
-                                                                                <th>Url image2</th>
-                                                                                <th>Url image3</th>
-                                                                                <th>Url video</th>
-                                                                                <th>Contenu</th>
-                                                                                <th>Questions</th>
-                                                                                <th>Indication prof</th>
-                                                                                <th>Numero order</th>
-                                                                                <th>Categorie section</th>
-                                                                                <th>Url</th>
-                                                                                <th>Content</th>
-                                                                    <th>Actions</th>
-                                                                </tr>
-                                                            </ng-template>
-                                                            <ng-template pTemplate="body" let-p>
-                                                                <tr>
-                                                                                <td>{{p.code}}</td>
-                                                                                <td>{{p.libelle}}</td>
-                                                                                <td>{{p.urlImage}}</td>
-                                                                                <td>{{p.urlImage2}}</td>
-                                                                                <td>{{p.urlImage3}}</td>
-                                                                                <td>{{p.urlVideo}}</td>
-                                                                                <td>{{p.contenu}}</td>
-                                                                                <td>{{p.questions}}</td>
-                                                                                <td>{{p.indicationProf}}</td>
-                                                                                <td>{{p.numeroOrder}}</td>
-                                                                            <td>{{p.categorieSection?.code}}</td>
-                                                                                <td>{{p.url}}</td>
-                                                                                <td>{{p.content}}</td>
-                                                                    <td>
-                                                                        <button (click)="deleteSections(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
-                                                                        <button (click)="editSections(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                                                    </td>
-                                                                </tr>
-                                                            </ng-template>
-                                                        </p-table>
-                                                    </div>
-
-                                            </p-tabPanel>
-                                        </p-tabView>
-                                    </p-tabPanel>
-
-                                    <p-tabPanel header="{{'cours.homeWorks' | translate}}">
-                                        <p-tabView [(activeIndex)]="activeTab">
-                                            <p-tabPanel header="Création">
-                                                    <div class="grid">
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="1">Libelle<span style="color: red;">*</span></label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Libelle"
-                                                                               id="1" [(ngModel)]="homeWorksElement.libelle" autofocus  [ngClass]="{'ng-invalid ng-dirty' : !validHomeWorksLibelle}"  >
-                                                                        <small class='p-error' *ngIf='!validHomeWorksLibelle'>Libelle est obligatoire.</small>
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="2">Url image</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image"
-                                                                               id="2" [(ngModel)]="homeWorksElement.urlImage" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-12 md:col-6">
-                                                                        <label for="3">Url video</label>
-                                                                        <input class="mb-2 mr-2" type="text" pInputText placeholder="Url video"
-                                                                               id="3" [(ngModel)]="homeWorksElement.urlVideo" autofocus   >
-                                                                        
-                                                                    </div>
-                                                                    <div class="field col-11 md:col-6">
-                                                                        <label>Type home work</label>
-                                                                        <p-dropdown  appendTo="body"  [options]="typeHomeWorks" [(ngModel)]="homeWorksElement.typeHomeWork"
-                                                                                     id="7"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="lib"
-                                                                                     placeholder="Type home work"  >
-                                                                        </p-dropdown>
-                                                                        
-                                                                    </div>
-
-                                                        <div class="field col-12 md:col-1">
-                                                            <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addHomeWorks()"></button>
-                                                        </div>
-
-                                                    </div>
-                                            </p-tabPanel>
-                                            <p-tabPanel header="Liste {{item.homeWorks?.length > 0 ? '(' + item.homeWorks?.length + ')' : ''}}">
-                                                    <div class="card">
-                                                        <p-table [value]="item.homeWorks" [scrollable]="true" scrollHeight="200px">
-                                                            <ng-template pTemplate="header">
-                                                                <tr>
-                                                                                <th>Libelle</th>
-                                                                                <th>Url image</th>
-                                                                                <th>Url video</th>
-                                                                                <th>Type home work</th>
-                                                                    <th>Actions</th>
-                                                                </tr>
-                                                            </ng-template>
-                                                            <ng-template pTemplate="body" let-p>
-                                                                <tr>
-                                                                                <td>{{p.libelle}}</td>
-                                                                                <td>{{p.urlImage}}</td>
-                                                                                <td>{{p.urlVideo}}</td>
-                                                                            <td>{{p.typeHomeWork?.lib}}</td>
-                                                                    <td>
-                                                                        <button (click)="deleteHomeWorks(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
-                                                                        <button (click)="editHomeWorks(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                                                    </td>
-                                                                </tr>
-                                                            </ng-template>
-                                                        </p-table>
-                                                    </div>
-
-                                            </p-tabPanel>
-                                        </p-tabView>
-                                    </p-tabPanel>
+                    </div>
 
 
-                        </p-tabView>
+                   <!-- <div class="field col-11 md:col-6">
+                        <label for="5">{{ 'cours.etatCours' | translate }}</label>
+                        <p-dropdown appendTo="body" [options]="etatCourss" [(ngModel)]="item.etatCours" id="5"
+                                    [filter]="true" filterMatchMode="contains"
+                                    [showClear]="true" optionLabel="libelle"
+                                    placeholder="{{'cours.etatCours' | translate}}"
+                                    > &lt;!&ndash;[ngClass]="{'ng-invalid ng-dirty' : !validEtatCoursCode}"&ndash;&gt;
 
-            </ng-template>
+                        </p-dropdown>
+&lt;!&ndash;                        <small class='p-error' *ngIf='!validEtatCoursCode'>Etat de Cours est obligatoire.</small>&ndash;&gt;
 
-            <ng-template pTemplate="footer" >
-                <div class="p-flexbox">
+                    </div>-->
 
-                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="save()"></button>
+                   <!-- <div  class="field col-11 md:col-6">
+                        <label for="6">{{ 'cours.parcours' | translate }}</label>
+                        <p-dropdown [disabled]="true" appendTo="body" [options]="parcourss" [(ngModel)]="item.parcours" id="6"
+                                    [filter]="true" filterMatchMode="contains"
+                                    [showClear]="true" optionLabel="libelle"
+                                    placeholder="{{'cours.parcours' | translate}}">
+                        </p-dropdown>
+                    </div>-->
+                    <!--<div class="field col-11 md:col-6">
+                        <label for="6">{{'cours.parcours' | translate}}</label>
+                        <p-dropdown  appendTo="body"  [options]="parcourss" [ngModel]="itemParcour" id="6" [disabled]="true" optionLabel="libelle" placeholder="{{'cours.parcours' | translate}}"  >
+                        </p-dropdown>
+                    </div>-->
 
+                    <!--<div class="field col-12 md:col-6">
+                        <label for="7">{{ 'cours.nombreSectionFinalise' | translate }}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="7"
+                                       placeholder="{{'cours.nombreSectionFinalise' | translate}}"
+                                       [(ngModel)]="item.nombreSectionFinalise">
+                        </p-inputNumber>
 
-                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+                    </div>
 
+                    <div class="field col-12 md:col-6">
+                        <label for="8">{{ 'cours.nombreSectionEnCours' | translate }}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="8"
+                                       placeholder="{{'cours.nombreSectionEnCours' | translate}}"
+                                       [(ngModel)]="item.nombreSectionEnCours">
+                        </p-inputNumber>
+
+                    </div>-->
+
+                   <!-- <div class="field col-12 md:col-6">
+                        <label for="9">{{ 'cours.nombreLinkEnCours' | translate }}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="9" placeholder="{{'cours.nombreLinkEnCours' | translate}}"
+                                       [(ngModel)]="item.nombreLinkEnCours">
+                        </p-inputNumber>
+
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label for="10">{{ 'cours.nombreLinkFinalise' | translate }}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="10"
+                                       placeholder="{{'cours.nombreLinkFinalise' | translate}}"
+                                       [(ngModel)]="item.nombreLinkFinalise">
+                        </p-inputNumber>
+
+                    </div>-->
+
+                    <div class="field col-12 md:col-6">
+                        <label for="11">{{ 'cours.numeroOrder' | translate }}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="11" placeholder="{{'cours.numeroOrder' | translate}}"
+                                       [(ngModel)]="item.numeroOrder">
+                        </p-inputNumber>
+
+                    </div>
+                    <!--<div class="field col-12 md:col-6">
+                        <label for="7">{{ 'parcours.nombreSection' | translate }}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'parcours.nombreSection' | translate}}"
+                                       [(ngModel)]="item.nombreSection">
+                        </p-inputNumber>
+
+                    </div>-->
 
                 </div>
-            </ng-template>
+            </p-tabPanel>
+           <!-- <p-tabPanel header="{{'cours.sections' | translate}}">
+                &lt;!&ndash;<p-tabView [(activeIndex)]="activeTab">
+                    <p-tabPanel header="Création">
+                        <div class="grid">
+                            <div class="field col-12 md:col-6">
+                                <label for="1">Code<span style="color: red;">*</span></label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Code"
+                                       id="1" [(ngModel)]="sectionsElement.code" autofocus
+                                       [ngClass]="{'ng-invalid ng-dirty' : !validSectionsCode}">
+                                <small class='p-error' *ngIf='!validSectionsCode'>Code est obligatoire.</small>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="2">Libelle</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Libelle"
+                                       id="2" [(ngModel)]="sectionsElement.libelle" autofocus>
 
-    </p-dialog>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="3">Url image</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image"
+                                       id="3" [(ngModel)]="sectionsElement.urlImage" autofocus>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="4">Url image2</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image2"
+                                       id="4" [(ngModel)]="sectionsElement.urlImage2" autofocus>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="5">Url image3</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image3"
+                                       id="5" [(ngModel)]="sectionsElement.urlImage3" autofocus>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="6">Url video</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Url video"
+                                       id="6" [(ngModel)]="sectionsElement.urlVideo" autofocus>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="7">Contenu</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Contenu"
+                                       id="7" [(ngModel)]="sectionsElement.contenu" autofocus>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="8">Questions</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Questions"
+                                       id="8" [(ngModel)]="sectionsElement.questions" autofocus>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="9">Indication prof</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Indication prof"
+                                       id="9" [(ngModel)]="sectionsElement.indicationProf" autofocus>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="10">Numero order</label>
+                                <p-inputNumber class="mb-2 mr-2" id="numeroOrder" placeholder="Numero order"
+                                               [(ngModel)]="sectionsElement.numeroOrder"></p-inputNumber>
+
+                            </div>
+                            <div class="field col-11 md:col-6">
+                                <label>Categorie section</label>
+                                <p-dropdown appendTo="body" [options]="categorieSections"
+                                            [(ngModel)]="sectionsElement.categorieSection"
+                                            id="11" [filter]="true" filterMatchMode="contains" [showClear]="true"
+                                            optionLabel="code"
+                                            placeholder="Categorie section">
+                                </p-dropdown>
+
+                            </div>
+
+                            <div class="field col-12 md:col-6">
+                                <label for="13">Url</label>
+                                <p-inputNumber class="mb-2 mr-2" id="url" placeholder="Url"
+                                               [(ngModel)]="sectionsElement.url"></p-inputNumber>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="14">Content</label>
+                                <p-inputNumber class="mb-2 mr-2" id="content" placeholder="Content"
+                                               [(ngModel)]="sectionsElement.content"></p-inputNumber>
+
+                            </div>
+                            <div class="field col-12 md:col-1">
+                                <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK"
+                                        (click)="addSections()"></button>
+                            </div>
+
+                        </div>
+                    </p-tabPanel>&ndash;&gt;
+                    <p-tabPanel header="Liste {{item.sections?.length > 0 ? '(' + item.sections?.length + ')' : ''}}">
+                        <div class="card">
+                            <p-table [value]="item.sections" [scrollable]="true" scrollHeight="200px">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Libelle</th>
+                                        <th>Url image</th>
+                                        <th>Url image2</th>
+                                        <th>Url image3</th>
+                                        <th>Url video</th>
+                                        <th>Contenu</th>
+                                        <th>Questions</th>
+                                        <th>Indication prof</th>
+                                        <th>Numero order</th>
+                                        <th>Categorie section</th>
+                                        <th>Url</th>
+                                        <th>Content</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-p>
+                                    <tr>
+                                        <td>{{ p.code }}</td>
+                                        <td>{{ p.libelle }}</td>
+                                        <td>{{ p.urlImage }}</td>
+                                        <td>{{ p.urlImage2 }}</td>
+                                        <td>{{ p.urlImage3 }}</td>
+                                        <td>{{ p.urlVideo }}</td>
+                                        <td>{{ p.contenu }}</td>
+                                        <td>{{ p.questions }}</td>
+                                        <td>{{ p.indicationProf }}</td>
+                                        <td>{{ p.numeroOrder }}</td>
+                                        <td>{{ p.categorieSection?.code }}</td>
+                                        <td>{{ p.url }}</td>
+                                        <td>{{ p.content }}</td>
+                                        <td>
+                                            <button (click)="deleteSections(p)" pButton type="button" icon="pi pi-times"
+                                                    class="p-button-rounded p-button-danger"></button>
+                                            <button (click)="editSections(p)" pButton type="button" icon="pi pi-pencil"
+                                                    class="p-button-rounded p-button-success mr-2"></button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+
+                    </p-tabPanel>
+            </p-tabPanel>-->
+                </p-tabView>
+    </ng-template>
+
+            <!--<p-tabPanel header="{{'cours.homeWorks' | translate}}">
+                <p-tabView [(activeIndex)]="activeTab">
+                   &lt;!&ndash; <p-tabPanel header="Création">
+                        <div class="grid">
+                            <div class="field col-12 md:col-6">
+                                <label for="1">Libelle<span style="color: red;">*</span></label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Libelle"
+                                       id="1" [(ngModel)]="homeWorksElement.libelle" autofocus
+                                       [ngClass]="{'ng-invalid ng-dirty' : !validHomeWorksLibelle}">
+                                <small class='p-error' *ngIf='!validHomeWorksLibelle'>Libelle est obligatoire.</small>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="2">Url image</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Url image"
+                                       id="2" [(ngModel)]="homeWorksElement.urlImage" autofocus>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="3">Url video</label>
+                                <input class="mb-2 mr-2" type="text" pInputText placeholder="Url video"
+                                       id="3" [(ngModel)]="homeWorksElement.urlVideo" autofocus>
+
+                            </div>
+                            <div class="field col-11 md:col-6">
+                                <label>Type home work</label>
+                                <p-dropdown appendTo="body" [options]="typeHomeWorks"
+                                            [(ngModel)]="homeWorksElement.typeHomeWork"
+                                            id="7" [filter]="true" filterMatchMode="contains" [showClear]="true"
+                                            optionLabel="lib"
+                                            placeholder="Type home work">
+                                </p-dropdown>
+
+                            </div>
+
+                            <div class="field col-12 md:col-1">
+                                <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK"
+                                        (click)="addHomeWorks()"></button>
+                            </div>
+
+                        </div>
+                    </p-tabPanel>&ndash;&gt;
+                 &lt;!&ndash;   <p-tabPanel header="Liste {{item.homeWorks?.length > 0 ? '(' + item.homeWorks?.length + ')' : ''}}">
+                        <div class="card">
+                            <p-table [value]="item.homeWorks" [scrollable]="true" scrollHeight="200px">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Libelle</th>
+                                        <th>Url image</th>
+                                        <th>Url video</th>
+                                        <th>Type home work</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-p>
+                                    <tr>
+                                        <td>{{ p.libelle }}</td>
+                                        <td>{{ p.urlImage }}</td>
+                                        <td>{{ p.urlVideo }}</td>
+                                        <td>{{ p.typeHomeWork?.lib }}</td>
+                                        <td>
+                                            <button (click)="deleteHomeWorks(p)" pButton type="button"
+                                                    icon="pi pi-times"
+                                                    class="p-button-rounded p-button-danger"></button>
+                                            <button (click)="editHomeWorks(p)" pButton type="button" icon="pi pi-pencil"
+                                                    class="p-button-rounded p-button-success mr-2"></button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+
+                    </p-tabPanel>&ndash;&gt;
+                </p-tabView>
+            </p-tabPanel>-->
+
+
+
+
+    <ng-template pTemplate="footer">
+        <div class="p-flexbox">
+
+            <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-check" (click)="saveNewCours()"></button>
+
+
+            <button pButton pRipple label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined"
+                    (click)="hideCreateDialog()"></button>
+
+
+        </div>
+    </ng-template>
+
+</p-dialog>

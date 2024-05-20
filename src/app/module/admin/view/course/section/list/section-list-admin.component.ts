@@ -11,6 +11,8 @@ import {CoursDto} from 'src/app/shared/model/course/Cours.model';
 import {CoursAdminService} from 'src/app/shared/service/admin/course/CoursAdmin.service';
 import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
+import {EtatSectionDto} from "../../../../../../shared/model/courseref/EtatSection.model";
+import {EtatSectionAdminService} from "../../../../../../shared/service/admin/courseref/EtatSectionAdmin.service";
 
 
 @Component({
@@ -18,15 +20,80 @@ import {SectionItemAdminService} from 'src/app/shared/service/admin/course/Secti
   templateUrl: './section-list-admin.component.html'
 })
 export class SectionListAdminComponent extends AbstractListController<SectionDto, SectionCriteria, SectionAdminService>  implements OnInit {
+    //
+
+    get showSection(): boolean {
+        return this.service.showSection;
+    }
+
+    set showSection(value: boolean) {
+        this.service.showSection = value;
+    }
+
+    //
+    get itemsSections(): Array<SectionDto> {
+        return this.service.itemsSections;
+    }
+
+    set itemsSections(value: Array<SectionDto>) {
+        this.service.itemsSections = value;
+    }
+    public async deleteSection(dto: SectionDto) {
+
+        this.confirmationService.confirm({
+            message: 'Voulez-vous supprimer cet élément ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delete(dto).subscribe(status => {
+                    if (status > 0) {
+                        const position = this.itemsSections.indexOf(dto);
+                        position > -1 ? this.itemsSections.splice(position, 1) : false;
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Succès',
+                            detail: 'Element Supprimé',
+                            life: 3000
+                        });
+                    }
+
+                }, error => console.log(error));
+            }
+        });
+
+    }
+
+    public async deleteMultipleSections() {
+        this.confirmationService.confirm({
+            message: 'Voulez-vous supprimer ces éléments ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.deleteMultiple().subscribe(() => {
+                    this.itemsSections = this.itemsSections.filter(item => !this.selections.includes(item));
+                    this.selections = new Array<SectionDto>();
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Succès',
+                        detail: 'Les éléments sélectionnés ont été supprimés',
+                        life: 3000
+                    });
+
+                }, error => console.log(error));
+            }
+        });
+    }
+    //
 
     override fileName = 'Section';
 
+    etatSections: Array<EtatSectionDto>;
 
     categorieSections: Array<CategorieSectionDto>;
     courss: Array<CoursDto>;
 
 
-    constructor( private sectionService: SectionAdminService  , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
+    constructor( private etatSectionService: EtatSectionAdminService, private sectionService: SectionAdminService  , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
         super(sectionService);
     }
 
@@ -38,8 +105,19 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
                 this.initCol();
                 this.loadCategorieSection();
                 this.loadCours();
+                this.loadEtatSection();
+                this.findPaginatedByCriteriaSection();
             }
         });
+    }
+
+
+    public findPaginatedByCriteriaSection() {
+        this.service.findPaginatedByCriteria(this.criteria).subscribe(paginatedItems => {
+            this.itemsSections = paginatedItems.list;
+            this.totalRecords = paginatedItems.dataSize;
+            this.selections = new Array<SectionDto>();
+        }, error => console.log(error));
     }
 
 
@@ -59,7 +137,12 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
             {field: 'cours?.libelle', header: 'Cours'},
             {field: 'url', header: 'Url'},
             {field: 'content', header: 'Content'},
+            {field: 'etatSection?.libelle', header: 'Etat section'},
         ];
+    }
+
+    public async loadEtatSection(){
+        this.etatSectionService.findAllOptimized().subscribe(etatSections => this.etatSections = etatSections, error => console.log(error))
     }
 
 
@@ -94,6 +177,7 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
                 'Cours': e.cours?.libelle ,
                  'Url': e.url ,
                  'Content': e.content ,
+                'Etat section': e.etatSection?.libelle ,
             }
         });
 

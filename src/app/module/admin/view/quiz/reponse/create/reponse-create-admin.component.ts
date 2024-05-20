@@ -9,9 +9,110 @@ import {QuestionDto} from 'src/app/shared/model/quiz/Question.model';
 import {QuestionAdminService} from 'src/app/shared/service/admin/quiz/QuestionAdmin.service';
 @Component({
   selector: 'app-reponse-create-admin',
-  templateUrl: './reponse-create-admin.component.html'
+  templateUrl: './reponse-create-admin.component.html',
+    styleUrls : ['./reponse-create-admin.component.css']
 })
 export class ReponseCreateAdminComponent extends AbstractCreateController<ReponseDto, ReponseCriteria, ReponseAdminService>  implements OnInit {
+
+    //
+    get itemReponse(): ReponseDto {
+        return this.reponseService.item;
+    }
+
+    set itemReponse(value: ReponseDto) {
+        this.reponseService.item = value;
+    }
+    public get itemQuestionshow(): QuestionDto {
+        return this.questionService.itemQuestionshow;
+    }
+
+    public set itemQuestionshow(value: QuestionDto) {
+        this.questionService.itemQuestionshow = value;
+    }
+    private saveReponse() {
+        // this.itemQuestionshow = this.item;
+
+        // this.saveWithShowOptionQuiz(false);
+        // this.itemReponse.question = this.itemQuestionshow;
+        let etat = this.itemReponse.etatReponse;
+        this.itemsRepForQuest.push(this.itemReponse)
+        this.itemReponse = new ReponseDto();
+        this.itemReponse.etatReponse = etat;
+        console.log(this.itemsRepForQuest);
+        // this.saveWithShowOptionReponse(false)
+        /* }else {
+             this.messageService.add({
+                 severity: 'error',
+                 summary: 'Erreurs',
+                 detail: 'Merci de corrigé les erreurs sur le formulaire'
+             });
+         }*/
+    }
+    public saveWithShowOptionReponse(showList: boolean) {
+       /* this.service.save().subscribe(item => {
+            if (item != null) {
+                this.itemsOfQuiz.push({...item});
+                // this.createDialog = false;
+                // this.submitted = false;
+                // this.addquiz = true;
+                this.item = this.service.constrcutDto();
+            } else {
+                this.messageService.add({severity: 'error', summary: 'Erreurs', detail: 'Element existant'});
+            }
+
+        }, error => {
+            console.log(error);
+        });*/
+    }
+    public set itemsRepForQuest(value: Array<ReponseDto>) {
+        this.reponseService.itemsRepForQuest = value;
+    }
+
+    public get itemsRepForQuest(): Array<ReponseDto> {
+        return this.reponseService.itemsRepForQuest;
+    }
+    foraddReponsetoQuestion() {
+        console.log('foraddReponsetoQuestion called');
+        console.log(this.itemsRepForQuest);
+        if (!this.stringUtilService.isEmpty(this.itemReponse.lib) && !this.stringUtilService.isEmpty(this.itemReponse.etatReponse)) {
+
+
+            console.log(this.itemReponse)
+            this.reponseService.findBylib(this.itemReponse).subscribe( res =>
+                {
+                    if (res == null){
+                        this.saveReponse();
+                    }/*else{
+                        this.errorMessages = new Array<string>();
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Erreurs',
+                            detail: 'la reponse deja ajouter'
+                        });
+                    }*//*else {
+                        this.itemQuizShow = res;
+                        this.addquiz = true;
+                        this.showqst = true;
+                        console.log(this.itemQuizShow);
+                    }*/
+                }
+
+            )
+            /*  if (this.checkquiz) {
+                  this.saveQuiz();
+                  this.showqst = true;
+              }*/
+        } else {
+            this.errorMessages = new Array<string>();
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+    //
+
 
 
 
@@ -117,6 +218,7 @@ export class ReponseCreateAdminComponent extends AbstractCreateController<Repons
     set validQuestionRef(value: boolean) {
         this._validQuestionRef = value;
     }
+
 
 
 }

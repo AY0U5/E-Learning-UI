@@ -31,6 +31,164 @@ import {SectionItemAdminService} from 'src/app/shared/service/admin/course/Secti
 })
 export class CoursListAdminComponent extends AbstractListController<CoursDto, CoursCriteria, CoursAdminService>  implements OnInit {
 
+
+
+    //
+    get showSection(): boolean {
+        return this.sectionService.showSection;
+    }
+
+    set showSection(value: boolean) {
+        this.sectionService.showSection = value;
+    }
+    get showCours(): boolean {
+        return this.coursService.showCours;
+    }
+
+    set showCours(value: boolean) {
+        this.coursService.showCours = value;
+    }
+    //
+
+    public async deleteCours(dto: CoursDto) {
+
+        this.confirmationService.confirm({
+            message: 'Voulez-vous supprimer cet élément ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delete(dto).subscribe(status => {
+                    if (status > 0) {
+                        const position = this.itemsCours.indexOf(dto);
+                        position > -1 ? this.itemsCours.splice(position, 1) : false;
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Succès',
+                            detail: 'Element Supprimé',
+                            life: 3000
+                        });
+                    }
+
+                }, error => console.log(error));
+            }
+        });
+
+    }
+
+
+
+    //
+
+    public findPaginatedByCriteriaCours() {
+        this.service.findPaginatedByCriteria(this.criteria).subscribe(paginatedItems => {
+            this.itemsCours = paginatedItems.list;
+            this.totalRecords = paginatedItems.dataSize;
+            this.selections = new Array<CoursDto>();
+        }, error => console.log(error));
+    }
+
+    public onPageCours(event: any) {
+        this.criteria.page = event.page;
+        this.criteria.maxResults = event.rows;
+        this.findPaginatedByCriteriaCours();
+    }
+    get itemCour(): CoursDto {
+        return this.service.itemCour;
+    }
+    set itemCour(value: CoursDto) {
+        this.service.itemCour = value;
+    }
+
+    //
+    get itemsSections(): Array<SectionDto> {
+        return this.sectionService.itemsSections;
+    }
+
+    set itemsSections(value: Array<SectionDto>) {
+        this.sectionService.itemsSections = value;
+    }
+    get viewSectionOk(): boolean {
+        return this.sectionService.viewSectionOk;
+    }
+
+    set viewSectionOk(value: boolean) {
+        this.sectionService.viewSectionOk = value;
+    }
+    public viewSection(dto: CoursDto) {
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.item = res;
+            this.itemsSections = this.item.sections ;
+            this.viewSectionOk = true;
+            // this.itemCour = dto;
+            this.itemCour = this.item;
+            // console.log(this.service.item);
+
+        });
+        this.showSection = true;
+    }
+
+    //
+
+    set itemPar(value: ParcoursDto) {
+        this.parcoursService.item = value;
+    }
+    get itemPar():  ParcoursDto {
+        return this.parcoursService.item;
+    }
+    /*afficherliyaParcour() {
+        // this.item.parcours = this.itemPar;
+        console.log(this.itemPar);
+    }*/
+
+    get viewcoursOk(): boolean {
+        return this.service.viewcoursOk;
+    }
+
+    set viewcoursOk(value: boolean) {
+        this.service.viewcoursOk = value;
+    }
+
+
+    set itemsCours(value: Array<CoursDto>) {
+        this.service.itemsCours = value;
+    }
+    get itemsCours():  Array<CoursDto> {
+        return this.service.itemsCours;
+    }
+
+
+    public async deleteMultipleCours() {
+        this.confirmationService.confirm({
+            message: 'Voulez-vous supprimer ces éléments ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.deleteMultiple().subscribe(() => {
+                    this.itemsCours = this.itemsCours.filter(item => !this.selections.includes(item));
+                    this.selections = new Array<CoursDto>();
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Succès',
+                        detail: 'Les éléments sélectionnés ont été supprimés',
+                        life: 3000
+                    });
+
+                }, error => console.log(error));
+            }
+        });
+    }
+    public async editCours(dto: CoursDto) {
+        // this.item = dto;
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.item = res;
+            // this.itemsCours.push({...this.item}) ;
+            console.log(this.item);
+            this.editDialog = true;
+        });
+
+    }
+//
+
     override fileName = 'Cours';
 
 
@@ -67,6 +225,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             {field: 'nombreLinkEnCours', header: 'Nombre link en cours'},
             {field: 'nombreLinkFinalise', header: 'Nombre link finalise'},
             {field: 'numeroOrder', header: 'Numero order'},
+            {field: 'nombreSection', header: 'Nombre Section'},
         ];
     }
 
@@ -102,6 +261,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
                  'Nombre link en cours': e.nombreLinkEnCours ,
                  'Nombre link finalise': e.nombreLinkFinalise ,
                  'Numero order': e.numeroOrder ,
+                'Nombre Section': e.nombreSection ,
             }
         });
 
@@ -122,6 +282,11 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             'Nombre link finalise Max': this.criteria.nombreLinkFinaliseMax ? this.criteria.nombreLinkFinaliseMax : environment.emptyForExport ,
             'Numero order Min': this.criteria.numeroOrderMin ? this.criteria.numeroOrderMin : environment.emptyForExport ,
             'Numero order Max': this.criteria.numeroOrderMax ? this.criteria.numeroOrderMax : environment.emptyForExport ,
+            'Nombre section Min': this.criteria.nombreSectionMin ? this.criteria.nombreSectionMin : environment.emptyForExport ,
+            'Nombre section Max': this.criteria.nombreSectionMax ? this.criteria.nombreSectionMax : environment.emptyForExport ,
         }];
       }
+
+
+
 }

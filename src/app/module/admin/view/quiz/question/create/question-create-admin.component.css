@@ -1,0 +1,10 @@
+.icon-button {
+    color: black; /* Changer la couleur des boutons en gris */
+    border: none;
+    font-size: 16px; /* Augmenter la taille du texte des boutons */
+    padding: 10px 20px; /* Ajuster le rembourrage pour agrandir la zone cliquable */
+}
+
+.icon-button:hover {
+    opacity: 0.7; /* Réduire légèrement l'opacité au survol */
+}

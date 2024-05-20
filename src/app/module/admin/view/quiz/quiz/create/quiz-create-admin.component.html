@@ -27,7 +27,7 @@
                                                     <p-calendar appendTo="body" id="3"  [showTime]="true" [showSeconds]="false" placeholder="{{'quiz.dateDebut' | translate}}"  [(ngModel)]="item.dateDebut"
                                                             dateFormat="{{dateFormat}}"  >
                                                     </p-calendar>
-                                                    
+
                                                 </div>
 
                                                 <div class="field col-12 md:col-6">
@@ -35,7 +35,7 @@
                                                     <p-calendar appendTo="body" id="4"  [showTime]="true" [showSeconds]="false" placeholder="{{'quiz.dateFin' | translate}}"  [(ngModel)]="item.dateFin"
                                                             dateFormat="{{dateFormat}}"  >
                                                     </p-calendar>
-                                                    
+
                                                 </div>
 
                                             <div class="field col-11 md:col-6">
@@ -43,21 +43,21 @@
                                                 <p-dropdown  appendTo="body"  [options]="sections" [(ngModel)]="item.section" id="7" [filter]="true" filterMatchMode="contains"
                                                         [showClear]="true" optionLabel="code" placeholder="{{'quiz.section' | translate}}"  >
                                                 </p-dropdown>
-                                                
+
                                             </div>
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="8">{{'quiz.numero' | translate}}</label>
                                                     <p-inputNumber class="mb-2 mr-2" id="8" placeholder="{{'quiz.numero' | translate}}" [(ngModel)]="item.numero"  >
                                                     </p-inputNumber>
-                                                    
+
                                                 </div>
 
                                                 <div class="field col-12 md:col-6">
                                                     <label for="9">{{'quiz.seuilReussite' | translate}}</label>
                                                     <p-inputNumber class="mb-2 mr-2" id="9" placeholder="{{'quiz.seuilReussite' | translate}}" [(ngModel)]="item.seuilReussite"  >
                                                     </p-inputNumber>
-                                                    
+
                                                 </div>
 
                                 </div>
@@ -76,34 +76,34 @@
                                                                         <label for="2">Libelle</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Libelle"
                                                                                id="2" [(ngModel)]="questionsElement.libelle" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="3">Url img</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Url img"
                                                                                id="3" [(ngModel)]="questionsElement.urlImg" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="4">Url video</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Url video"
                                                                                id="4" [(ngModel)]="questionsElement.urlVideo" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="5">Numero</label>
                                                                         <p-inputNumber class="mb-2 mr-2" id="numero" placeholder="Numero"  [(ngModel)]="questionsElement.numero"></p-inputNumber>
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="6">Point reponse juste</label>
                                                                         <p-inputNumber class="mb-2 mr-2" id="pointReponseJuste" placeholder="Point reponse juste"  [(ngModel)]="questionsElement.pointReponseJuste"></p-inputNumber>
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="7">Point reponsefausse</label>
                                                                         <p-inputNumber class="mb-2 mr-2" id="pointReponsefausse" placeholder="Point reponsefausse"  [(ngModel)]="questionsElement.pointReponsefausse"></p-inputNumber>
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-11 md:col-6">
                                                                         <label>Type de question</label>
@@ -111,7 +111,7 @@
                                                                                      id="8"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="lib"
                                                                                      placeholder="Type de question"  >
                                                                         </p-dropdown>
-                                                                        
+
                                                                     </div>
 
                                                                     <div class="field col-11 md:col-6">
@@ -120,7 +120,7 @@
                                                                                      id="11"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="libelle"
                                                                                      placeholder="Home work"  >
                                                                         </p-dropdown>
-                                                                        
+
                                                                     </div>
 
                                                         <div class="field col-12 md:col-1">
@@ -186,24 +186,24 @@
                                                                                      id="2"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="ref"
                                                                                      placeholder="Etudiant"  >
                                                                         </p-dropdown>
-                                                                        
+
                                                                     </div>
 
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="5">Note</label>
                                                                         <p-inputNumber class="mb-2 mr-2" id="note" placeholder="Note"  [(ngModel)]="quizEtudiantsElement.note"></p-inputNumber>
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="6">Resultat</label>
                                                                         <input class="mb-2 mr-2" type="text" pInputText placeholder="Resultat"
                                                                                id="6" [(ngModel)]="quizEtudiantsElement.resultat" autofocus   >
-                                                                        
+
                                                                     </div>
                                                                     <div class="field col-12 md:col-6">
                                                                         <label for="7">Question current</label>
                                                                         <p-inputNumber class="mb-2 mr-2" id="questionCurrent" placeholder="Question current"  [(ngModel)]="quizEtudiantsElement.questionCurrent"></p-inputNumber>
-                                                                        
+
                                                                     </div>
                                                         <div class="field col-12 md:col-1">
                                                             <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addQuizEtudiants()"></button>
@@ -262,3 +262,7 @@
             </ng-template>
 
     </p-dialog>
+
+<!--            <button [style]="{'background-color': '#ff725e' , 'height': '100%'}" pButton pRipple label="Ajouter Quiz" icon="pi pi-plus" class="p-button mr-2 mb-2 bouton" (click)="saveQuiz()" ></button>-->
+
+            <span class="icon-button pi pi-plus" style="font-size: 1.5rem" (click)="foraddQuestion()" ></span>

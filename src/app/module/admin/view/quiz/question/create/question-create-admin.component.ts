@@ -15,14 +15,15 @@ import {HomeWorkDto} from 'src/app/shared/model/homework/HomeWork.model';
 import {HomeWorkAdminService} from 'src/app/shared/service/admin/homework/HomeWorkAdmin.service';
 @Component({
   selector: 'app-question-create-admin',
-  templateUrl: './question-create-admin.component.html'
+  templateUrl: './question-create-admin.component.html',
+    styleUrls : ['./question-create-admin.component.css']
 })
 export class QuestionCreateAdminComponent extends AbstractCreateController<QuestionDto, QuestionCriteria, QuestionAdminService>  implements OnInit {
 
     private _reponsesElement = new ReponseDto();
 
 
-   private _validQuestionRef = true;
+    private _validQuestionRef = true;
     private _validTypeDeQuestionRef = true;
     private _validTypeDeQuestionLib = true;
     private _validReponsesRef = true;
@@ -30,6 +31,124 @@ export class QuestionCreateAdminComponent extends AbstractCreateController<Quest
     private _validQuizRef = true;
     private _validQuizLib = true;
     private _validHomeWorkLibelle = true;
+
+    //
+    get itemsOfQuiz(): Array<QuestionDto> {
+        return this.questionService.itemsOfQuiz;
+    }
+
+    set itemsOfQuiz(value: Array<QuestionDto>) {
+        this.questionService.itemsOfQuiz = value;
+    }
+
+    public get itemQuizShow(): QuizDto {
+        return this.quizService.itemQuizShow;
+    }
+
+    public set itemQuizShow(value: QuizDto) {
+        this.quizService.itemQuizShow = value;
+    }
+    public get itemQuestionshow(): QuestionDto {
+        return this.questionService.itemQuestionshow;
+    }
+
+    public set itemQuestionshow(value: QuestionDto) {
+        this.questionService.itemQuestionshow = value;
+    }
+    public set itemsRepForQuest(value: Array<ReponseDto>) {
+        this.reponseService.itemsRepForQuest = value;
+    }
+
+    public get itemsRepForQuest(): Array<ReponseDto> {
+        return this.reponseService.itemsRepForQuest;
+    }
+    public saveQuestion(): void {
+
+        this.itemQuestionshow = this.item;
+
+        // this.saveWithShowOptionQuiz(false);
+        this.item.quiz = this.itemQuizShow;
+        this.item.reponses = this.itemsRepForQuest;
+        console.log(this.item);
+        console.log(this.item.reponses);
+
+
+        this.saveWithShowOptionQuestion(false)
+        /* }else {
+             this.messageService.add({
+                 severity: 'error',
+                 summary: 'Erreurs',
+                 detail: 'Merci de corrigé les erreurs sur le formulaire'
+             });
+         }*/
+    }
+
+    public saveWithShowOptionQuestion(showList: boolean) {
+        this.service.save().subscribe(item => {
+            if (item != null) {
+                this.itemsOfQuiz.push({...item});
+                // this.createDialog = false;
+                // this.submitted = false;
+                // this.addquiz = true;
+                this.item = this.service.constrcutDto();
+                this.itemsRepForQuest = new Array<ReponseDto>();
+            } else {
+                this.messageService.add({severity: 'error', summary: 'Erreurs', detail: 'Element existant'});
+            }
+
+        }, error => {
+            console.log(error);
+        });
+    }
+
+    forMoreQuestion() {
+        if (!this.stringUtilService.isEmpty(this.item.libelle) && this.item.typeDeQuestion != null) {
+            if(this.stringUtilService.isEmpty(this.item.ref)){
+                this.errorMessages = new Array<string>();
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Erreurs',
+                    detail: 'Ajouter une reference pour la question'
+                });
+            }else {
+
+
+                // console.log(this.item)
+                this.questionService.findBylibelle(this.item).subscribe(res => {
+                        if (res == null) {
+                            this.saveQuestion();
+                        }else {
+                            this.errorMessages = new Array<string>();
+                            this.messageService.add({
+                                severity: 'error',
+                                summary: 'Erreurs',
+                                detail: 'la question deja existe'
+                            });
+                        }
+                        /*else {
+                        this.itemQuizShow = res;
+                        this.addquiz = true;
+                        this.showqst = true;
+                        console.log(this.itemQuizShow);
+                    }*/
+                    }
+                )
+            }
+            /*  if (this.checkquiz) {
+                  this.saveQuiz();
+                  this.showqst = true;
+              }*/
+        } else {
+            this.errorMessages = new Array<string>();
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+
+    //
 
     constructor( private questionService: QuestionAdminService , private quizService: QuizAdminService, private typeDeQuestionService: TypeDeQuestionAdminService, private reponseService: ReponseAdminService, private homeWorkService: HomeWorkAdminService) {
         super(questionService);
@@ -244,5 +363,7 @@ export class QuestionCreateAdminComponent extends AbstractCreateController<Quest
     set reponsesElement(value: ReponseDto) {
         this._reponsesElement = value;
     }
+
+
 
 }

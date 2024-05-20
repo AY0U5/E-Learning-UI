@@ -39,6 +39,7 @@ export class AuthService {
                 this.loadInfos();
                 console.log('you are logged in successfully');
                 this.router.navigate(['/' + environment.rootAppUrl + '/admin']);
+                console.log(this.tokenService.token())
             }, (error: HttpErrorResponse) => {
                 this.error = error.error.message;
                 if (error.status === 401) {

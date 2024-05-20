@@ -1,21 +1,24 @@
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div class="card">
-            <p-toolbar styleClass="mb-4">
-                <ng-template pTemplate="left">
-                                        <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Parcours')" *ngIf="createActionIsValid"></button>
-                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
-                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
-                </ng-template>
-                <ng-template pTemplate="right">
-                    <div class="flex">
-                        <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
-                    </div>
-                </ng-template>
+<!--        <div class="card">-->
+            <div class="tables">
+                <div class="col col-4 table-container">
+                    <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
+                        <ng-template pTemplate="left">
+                            <div class="d-flex align-items-center">
+                                <button [style]="{'background-color': '#ff725e', 'height': '100%'}" pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button mr-2 mb-2 bouton" (click)="openCreate('Parcours')" *ngIf="createActionIsValid"></button>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="right">
+                         <span [style]="{'margin-top':'0px'  }"  class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                    <input [style]="{'background-color': 'white' , 'width' :'130px'}" pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                         </span>
+                        </ng-template>
+                    </p-toolbar>
 
-            </p-toolbar>
-            <p-toolbar *ngIf="findByCriteriaShow">
+                    <p-toolbar *ngIf="findByCriteriaShow">
 
                 <div class="col-12">
                     <div class="flex flex-wrap p-fluid col-12">
@@ -75,6 +78,12 @@
                                         [showClear]="true"  placeholder="{{'parcours.centre' | translate}}" optionLabel="ref">
                             </p-dropdown>
                         </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="5-2">{{'Etat Parcours' | translate}}</label>
+                            <p-dropdown [options]="etatParcourss" [(ngModel)]="criteria.etatParcours" id="5" [filter]="true" class="p-fluid"
+                                        [showClear]="true"  placeholder="{{'Etat Parcours' | translate}}" optionLabel="libelle">
+                            </p-dropdown>
+                        </div>
                     </div>
                     <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
                         <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
@@ -86,116 +95,130 @@
 
 
             <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['datePublication', 'dateCreation', 'code', 'libelle', 'numeroOrder', 'nombreCours', 'centreref']" [(selection)]="selections"
+                    [globalFilterFields]="['datePublication', 'dateCreation', 'code', 'libelle', 'numeroOrder', 'nombreCours', 'centreref','etatParcourslibelle']" [(selection)]="selections"
                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
                     currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
                     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column flex-row justify-content-between table-header">
                         <h5 class="p-m-0">{{'parcours.header' | translate}}</h5>
-                        <span class="p-input-icon-left ml-auto">
+                       <!-- <span class="p-input-icon-left ml-auto">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>
+                        </span>-->
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
+                    <!--    <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                                
-                        <th pSortableColumn="datePublication">
+                        </th>-->
+
+                        <!--<th pSortableColumn="datePublication">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.datePublication' | translate}}</span>
                                 <p-sortIcon field="datePublication"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="dateCreation">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.dateCreation' | translate}}</span>
                                 <p-sortIcon field="dateCreation"></p-sortIcon>
                             </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="code">
+                        </th>-->
+
+
+                        <!--<th pSortableColumn="code">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.code' | translate}}</span>
                                 <p-sortIcon field="code"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.code" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
-                        </th>
-                                
-                                
+                        </th>-->
+
+
                         <th pSortableColumn="libelle">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.libelle' | translate}}</span>
                                 <p-sortIcon field="libelle"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
+<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>-->
                             </div>
                         </th>
-                                
-                                
-                        <th pSortableColumn="numeroOrder">
+
+
+                       <!-- <th pSortableColumn="numeroOrder">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.numeroOrder' | translate}}</span>
                                 <p-sortIcon field="numeroOrder"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+-->
+
                         <th pSortableColumn="nombreCours">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.nombreCours' | translate}}</span>
                                 <p-sortIcon field="nombreCours"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
-                        <th pSortableColumn="centre">
+
+
+                        <!--<th pSortableColumn="centre">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'parcours.centre' | translate}}</span>
                                 <p-sortIcon field="centre"></p-sortIcon>
                             </div>
+                        </th>-->
+
+                        <th pSortableColumn="etatParcours">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span><!--{{'Etat Parcours' | translate}}--> Etat</span>
+                                <p-sortIcon field="etatParcours"></p-sortIcon>
+                            </div>
                         </th>
-                                
+
                         <th>Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-element>
+
                     <tr>
-                        <td>
+
+                        <!--<td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>
-                            
-                        <td>{{element.datePublication | date :'dd/MM/yyyy HH:mm' }}</td>
-                            
-                            
-                        <td>{{element.dateCreation | date :'dd/MM/yyyy HH:mm' }}</td>
-                            
-                            
-                        <td>{{element.code}}</td>
-                            
-                            
+                        </td>-->
+
+                       <!-- <td>{{element.datePublication | date :'dd/MM/yyyy HH:mm' }}</td>
+
+
+                        <td>{{element.dateCreation | date :'dd/MM/yyyy HH:mm' }}</td>-->
+
+
+                        <!--<td>{{element.code}}</td>-->
+
+
                         <td>{{element.libelle}}</td>
-                            
-                            
-                        <td>{{element.numeroOrder}}</td>
-                            
-                            
+
+
+                       <!-- <td>{{element.numeroOrder}}</td>-->
+
+
                         <td>{{element.nombreCours}}</td>
-                            
-                            
-                        <td>{{element.centre?.ref}}</td>
-                            
+
+
+                        <!--<td>{{element.centre?.ref}}</td>-->
+
+                        <td>{{element.etatParcours?.libelle}}</td>
+
+
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
+<!--                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>-->
+
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)"  *ngIf="deleteActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>
+<!--                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>-->
+                            <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(element)"   ></button><!--(mouseenter)="parcourview(element)"-->
                         </td>
                     </tr>
                 </ng-template>
@@ -207,7 +230,17 @@
                     </div>
                 </ng-template>
             </p-table>
-        </div>
+                </div>
+                <div  class="col col-4 table-container">
+                    <!--                    <app-cours-list-admin></app-cours-list-admin>-->
+                    <app-cours-list-admin></app-cours-list-admin>
+                </div>
+                <div class="col col-4 table-container">
+                    <app-section-list-admin></app-section-list-admin>
+                </div>
+            </div>
+
+<!--        </div>-->
 
         <app-parcours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-parcours-create-admin>
         <app-parcours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-parcours-edit-admin>

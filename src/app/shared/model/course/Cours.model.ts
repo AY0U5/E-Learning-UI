@@ -25,11 +25,13 @@ export class CoursDto extends BaseDto{
 
     public numeroOrder: null | number;
 
+    public nombreSection: null | number;
+
     public etatCours: EtatCoursDto ;
     public parcours: ParcoursDto ;
      public sections: Array<SectionDto>;
      public homeWorks: Array<HomeWorkDto>;
-    
+
 
     constructor() {
         super();
@@ -43,6 +45,7 @@ export class CoursDto extends BaseDto{
         this.nombreLinkEnCours = null;
         this.nombreLinkFinalise = null;
         this.numeroOrder = null;
+        this.nombreSection = null;
         this.etatCours = new EtatCoursDto() ;
         this.sections = new Array<SectionDto>();
         this.homeWorks = new Array<HomeWorkDto>();

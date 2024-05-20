@@ -48,6 +48,46 @@ export class CoursEditAdminComponent extends AbstractEditController<CoursDto, Co
 
 
 
+
+    //
+
+
+    set itemsCours(value: Array<CoursDto>) {
+        this.service.itemsCours = value;
+    }
+    get itemsCours():  Array<CoursDto> {
+        return this.service.itemsCours;
+    }
+    public editCours(): void {
+        this.submitted = true;
+        this.prepareEdit();
+        this.validateForm();
+        if (this.errorMessages.length === 0) {
+            this.editWithShowOptionCours(false);
+        } else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+
+    public editWithShowOptionCours(showList: boolean) {
+        this.service.edit().subscribe(religion=>{
+            const myIndex = this.itemsCours.findIndex(e => e.id === this.item.id);
+            this.itemsCours[myIndex] = religion;
+            this.editDialog = false;
+            this.submitted = false;
+            this.item = this.service.constrcutDto();
+        } , error =>{
+            console.log(error);
+        });
+    }
+
+
+
+    //
     constructor( private coursService: CoursAdminService , private parcoursService: ParcoursAdminService, private categorieSectionService: CategorieSectionAdminService, private etatCoursService: EtatCoursAdminService, private sectionService: SectionAdminService, private typeHomeWorkService: TypeHomeWorkAdminService, private homeWorkService: HomeWorkAdminService) {
         super(coursService);
     }

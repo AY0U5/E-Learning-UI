@@ -11,21 +11,85 @@ import {CoursDto} from 'src/app/shared/model/course/Cours.model';
 import {CoursAdminService} from 'src/app/shared/service/admin/course/CoursAdmin.service';
 import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
+import {EtatSectionAdminService} from "../../../../../../shared/service/admin/courseref/EtatSectionAdmin.service";
+import {EtatSectionDto} from "../../../../../../shared/model/courseref/EtatSection.model";
+import {ParcoursDto} from "../../../../../../shared/model/course/Parcours.model";
 @Component({
   selector: 'app-section-create-admin',
   templateUrl: './section-create-admin.component.html'
 })
 export class SectionCreateAdminComponent extends AbstractCreateController<SectionDto, SectionCriteria, SectionAdminService>  implements OnInit {
 
+    //
+
+    get itemsSections(): Array<SectionDto> {
+        return this.service.itemsSections;
+    }
+
+    set itemsSections(value: Array<SectionDto>) {
+        this.service.itemsSections = value;
+    }
+
+    get itemCour(): CoursDto {
+        return this.coursService.itemCour;
+    }
+
+    set itemCour(value: CoursDto) {
+        this.coursService.itemCour = value;
+    }
+    public saveNewSection(): void {
+
+        this.item.cours = this.itemCour ;
+        /*console.log(this.itemParcour);
+        console.log(this.item);*/
+
+        this.submitted = true;
+        this.validateForm();
+        if (this.errorMessages.length === 0) {
+            this.saveWithShowOptionSection(false);
+        } else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+
+    public saveWithShowOptionSection(showList: boolean) {
+        console.log(this.item);
+        this.service.save().subscribe(item => {
+            if (item != null) {
+                // this.itemPar.courss.push({...item});
+                this.itemsSections.push({...item});
+                this.createDialog = false;
+                this.submitted = false;
+                this.item = this.service.constrcutDto();
+            } else {
+                this.messageService.add({severity: 'error', summary: 'Erreurs', detail: 'Element existant'});
+            }
+
+        }, error => {
+            console.log(error);
+        });
+    }
+
+
+
+
+
+    //
+
     private _sectionItemsElement = new SectionItemDto();
 
-
+    private _validEtatSectionCode = true;
+    private _validEtatSectionLibelle = true;
    private _validSectionCode = true;
-    private _validCategorieSectionCode = true;
+    // private _validCategorieSectionCode = true;
     private _validCoursCode = true;
     private _validCoursLibelle = true;
 
-    constructor( private sectionService: SectionAdminService , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
+    constructor( private etatSectionService: EtatSectionAdminService,private sectionService: SectionAdminService , private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService) {
         super(sectionService);
     }
 
@@ -34,6 +98,8 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
         this.categorieSectionService.findAll().subscribe((data) => this.categorieSections = data);
         this.cours = new CoursDto();
         this.coursService.findAll().subscribe((data) => this.courss = data);
+        this.etatSection = new EtatSectionDto();
+        this.etatSectionService.findAll().subscribe((data) => this.etatSections = data);
     }
 
 
@@ -75,6 +141,9 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
     public override validateForm(): void{
         this.errorMessages = new Array<string>();
         this.validateSectionCode();
+        //
+        // this.validateCategorieSectionCode();
+        //
     }
 
     public validateSectionCode(){
@@ -85,6 +154,15 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
             this.validSectionCode = true;
         }
     }
+
+    // public validateCategorieSectionCode(){
+    //     if (this.stringUtilService.isEmpty(this.item.categorieSection)) {
+    //         this.errorMessages.push('categorie section est obligatoire');
+    //         this.validCategorieSectionCode = false;
+    //     } else {
+    //         this.validCategorieSectionCode = true;
+    //     }
+    // }
 
 
     public async openCreateCours(cours: string) {
@@ -97,6 +175,44 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
         severity: 'error', summary: 'erreur', detail: 'problème de permission'
         });
      }
+    }
+    get etatSection(): EtatSectionDto {
+        return this.etatSectionService.item;
+    }
+
+    set etatSection(value: EtatSectionDto) {
+        this.etatSectionService.item = value;
+    }
+
+    get etatSections(): Array<EtatSectionDto> {
+        return this.etatSectionService.items;
+    }
+
+    set etatSections(value: Array<EtatSectionDto>) {
+        this.etatSectionService.items = value;
+    }
+
+    get createEtatSectionDialog(): boolean {
+        return this.etatSectionService.createDialog;
+    }
+
+    set createEtatSectionDialog(value: boolean) {
+        this.etatSectionService.createDialog = value;
+    }
+    get validEtatSectionCode(): boolean {
+        return this._validEtatSectionCode;
+    }
+
+    set validEtatSectionCode(value: boolean) {
+        this._validEtatSectionCode = value;
+    }
+
+    get validEtatSectionLibelle(): boolean {
+        return this._validEtatSectionLibelle;
+    }
+
+    set validEtatSectionLibelle(value: boolean) {
+        this._validEtatSectionLibelle = value;
     }
 
     get cours(): CoursDto {
@@ -146,12 +262,12 @@ export class SectionCreateAdminComponent extends AbstractCreateController<Sectio
          this._validSectionCode = value;
     }
 
-    get validCategorieSectionCode(): boolean {
-        return this._validCategorieSectionCode;
-    }
-    set validCategorieSectionCode(value: boolean) {
-        this._validCategorieSectionCode = value;
-    }
+    // get validCategorieSectionCode(): boolean {
+    //     return this._validCategorieSectionCode;
+    // }
+    // set validCategorieSectionCode(value: boolean) {
+    //     this._validCategorieSectionCode = value;
+    // }
     get validCoursCode(): boolean {
         return this._validCoursCode;
     }

@@ -1,18 +1,21 @@
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div class="card">
-            <p-toolbar styleClass="mb-4">
+        <div ><!--class="card"-->
+            <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
                 <ng-template pTemplate="left">
-                                        <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Cours')" *ngIf="createActionIsValid"></button>
-                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
-                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
-                </ng-template>
-                <ng-template pTemplate="right">
-                    <div class="flex">
-                        <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
+                    <div class="d-flex align-items-center" style="display: flex; flex-direction: column;">
+                        <button  [style]="{'background-color': '#ff725e'}" [disabled]="!showCours" pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button mr-2 mb-2 bouton" (click)="openCreate('Cours')" *ngIf="createActionIsValid"></button>
+                        <small class='p-error' *ngIf='!showCours'>Sélectionner un parcours.</small>
                     </div>
                 </ng-template>
+                <ng-template pTemplate="right">
+                <span  [style]="{'margin-top':'0px'  }" class="p-input-icon-left ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input [style]="{'background-color': 'white' , 'width' :'130px'}" pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                </ng-template>
+
 
             </p-toolbar>
             <p-toolbar *ngIf="findByCriteriaShow">
@@ -37,12 +40,12 @@
                                         [showClear]="true"  placeholder="{{'cours.etatCours' | translate}}" optionLabel="libelle">
                             </p-dropdown>
                         </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                        <!--<div class="lg:col-3 md:col-6 sm:col-12 mb-4">
                             <label  class="font-bold block mb-2" for="6-2">{{'cours.parcours' | translate}}</label>
                             <p-dropdown [options]="parcourss" [(ngModel)]="criteria.parcours" id="6" [filter]="true" class="p-fluid"
                                         [showClear]="true"  placeholder="{{'cours.parcours' | translate}}" optionLabel="libelle">
                             </p-dropdown>
-                        </div>
+                        </div>-->
                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
                             <label  class="font-bold block mb-2" for="7-1">{{'cours.nombreSectionFinaliseMin' | translate}}</label>
                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionFinaliseMin" id="7-1"></p-inputNumber>
@@ -83,6 +86,14 @@
                             <label  class="font-bold block mb-2" for="11-2">{{'cours.numeroOrderMax' | translate}}</label>
                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroOrderMax" id="11-2"></p-inputNumber>
                        </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="7-1">{{'parcours.nombreSectionMin' | translate}}</label>
+                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionMin" id="7-1"></p-inputNumber>
+                        </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                            <label  class="font-bold block mb-2" for="7-2">{{'parcours.nombreSectionMax' | translate}}</label>
+                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionMax" id="7-2"></p-inputNumber>
+                        </div>
                     </div>
                     <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
                         <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
@@ -93,159 +104,166 @@
             </p-toolbar>
 
 
-            <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['code', 'libelle', 'image', 'etatCourslibelle', 'parcourslibelle', 'nombreSectionFinalise', 'nombreSectionEnCours', 'nombreLinkEnCours', 'nombreLinkFinalise', 'numeroOrder']" [(selection)]="selections"
+            <p-table #dt [value]="itemsCours" [columns]="cols" [rows]="8" [paginator]="false"
+                    [globalFilterFields]="['code', 'libelle', 'image', 'etatCourslibelle', 'parcourslibelle', 'nombreSectionFinalise', 'nombreSectionEnCours', 'nombreLinkEnCours', 'nombreLinkFinalise', 'numeroOrder','nombreSection']" [(selection)]="selections"
                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
                     currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
                     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column flex-row justify-content-between table-header">
                         <h5 class="p-m-0">{{'cours.header' | translate}}</h5>
-                        <span class="p-input-icon-left ml-auto">
+                        <!--<span class="p-input-icon-left ml-auto">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>
+                        </span>-->
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
+                      <!--  <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                                
-                        <th pSortableColumn="code">
+                        </th>-->
+
+                     <!--   <th pSortableColumn="code">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.code' | translate}}</span>
                                 <p-sortIcon field="code"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.code" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+-->
+
                         <th pSortableColumn="libelle">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.libelle' | translate}}</span>
                                 <p-sortIcon field="libelle"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
+<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>-->
                             </div>
                         </th>
-                                
-                                
-                        <th pSortableColumn="image">
+
+
+                     <!--   <th pSortableColumn="image">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.image' | translate}}</span>
                                 <p-sortIcon field="image"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.image" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
-                        </th>
-                                
-                                
+                        </th>-->
+
+
                         <th pSortableColumn="etatCours">
                             <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.etatCours' | translate}}</span>
+                                <span>Etat</span>
                                 <p-sortIcon field="etatCours"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
-                        <th pSortableColumn="parcours">
+
+
+                        <!--<th pSortableColumn="parcours">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.parcours' | translate}}</span>
                                 <p-sortIcon field="parcours"></p-sortIcon>
                             </div>
-                        </th>
-                                
-                                
+                        </th>-->
+
+
                         <th pSortableColumn="nombreSectionFinalise">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.nombreSectionFinalise' | translate}}</span>
                                 <p-sortIcon field="nombreSectionFinalise"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
-                        <th pSortableColumn="nombreSectionEnCours">
+
+
+                        <!--<th pSortableColumn="nombreSectionEnCours">
                             <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.nombreSectionEnCours' | translate}}</span>
+                                <span>{{'Nombre de Section'}}</span>
                                 <p-sortIcon field="nombreSectionEnCours"></p-sortIcon>
                             </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="nombreLinkEnCours">
+                        </th>-->
+
+
+                        <!--<th pSortableColumn="nombreLinkEnCours">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.nombreLinkEnCours' | translate}}</span>
                                 <p-sortIcon field="nombreLinkEnCours"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="nombreLinkFinalise">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.nombreLinkFinalise' | translate}}</span>
                                 <p-sortIcon field="nombreLinkFinalise"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                <!-- 
+-->
+                                <!--
                         <th pSortableColumn="numeroOrder">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.numeroOrder' | translate}}</span>
                                 <p-sortIcon field="numeroOrder"></p-sortIcon>
                             </div>
                         </th>
-                                --> 
+                                -->
+
+                        <th pSortableColumn="nombreSection">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                <span>{{'Nombre de Section' | translate}}</span>
+                                <p-sortIcon field="nombreSection"></p-sortIcon>
+                            </div>
+                        </th>
                         <th>Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-element>
-                    <tr>
-                        <td>
+                <ng-template *ngIf="!showCours"  pTemplate="body" let-element>
+                    <tr >
+                       <!-- <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>
-                            
-                        <td>{{element.code}}</td>
-                            
-                            
+                        </td>-->
+
+                     <!--   <td>{{element.code}}</td>-->
+
+
                         <td>{{element.libelle}}</td>
-                            
-                            
-                        <td>{{element.image}}</td>
-                            
-                            
+
+
+                        <!--<td>{{element.image}}</td>-->
+
+
                         <td>{{element.etatCours?.libelle}}</td>
-                            
-                            
-                        <td>{{element.parcours?.libelle}}</td>
-                            
-                            
-                        <td>{{element.nombreSectionFinalise}}</td>
-                            
-                            
-                        <td>{{element.nombreSectionEnCours}}</td>
-                            
-                            
-                        <td>{{element.nombreLinkEnCours}}</td>
-                            
-                            
-                        <td>{{element.nombreLinkFinalise}}</td>
-                            
-                             <!-- 
+
+
+                        <!--<td>{{element.parcours?.libelle}}</td>-->
+
+
+                        <td>{{element.nombreSectionFinalise}} / {{element.nombreSection}}</td>
+
+
+                        <!--<td>{{element.nombreSectionEnCours}}</td>-->
+
+                        <td>{{element.nombreSection}}</td>
+                        <!--<td>{{element.nombreLinkEnCours}}</td>
+
+
+                        <td>{{element.nombreLinkFinalise}}</td>-->
+
+                             <!--
                         <td>{{element.numeroOrder}}</td>
-                             --> 
+                             -->
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)"  *ngIf="deleteActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteCours(element)"  *ngIf="deleteActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-warning mr-2"  (click)="viewSection(element)"></button>
                         </td>
                     </tr>
                 </ng-template>
 
-                <ng-template pTemplate="summary">
+                <ng-template  pTemplate="summary">
                     <p-paginator  [rows]="10" [totalRecords]="totalRecords" (onPageChange)="onPage($event)"></p-paginator>
                     <div class="p-d-flex p-ai-center p-jc-between">
-                        En totale il {{items ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{items ? totalRecords : 0 }} {{items ? totalRecords == 1 ? 'cours' : 'courss' : 0 }}.
+                        En totale il {{itemsCours ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{itemsCours ? totalRecords : 0 }} {{itemsCours ? totalRecords == 1 ? 'cours' : 'courss' : 0 }}.
                     </div>
                 </ng-template>
             </p-table>

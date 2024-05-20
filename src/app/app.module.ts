@@ -115,6 +115,7 @@ providers: [
   MessageService,
   ConfirmationService,
   DatePipe,
+
 ],
 bootstrap: [AppComponent],
   exports: [

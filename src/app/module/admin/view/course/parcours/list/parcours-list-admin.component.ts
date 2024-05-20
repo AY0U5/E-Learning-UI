@@ -43,21 +43,104 @@ import {TeacherLocalityDto} from 'src/app/shared/model/inscriptionref/TeacherLoc
 import {TeacherLocalityAdminService} from 'src/app/shared/service/admin/inscriptionref/TeacherLocalityAdmin.service';
 import {NiveauEtudeDto} from 'src/app/shared/model/inscriptionref/NiveauEtude.model';
 import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionref/NiveauEtudeAdmin.service';
+import * as events from "events";
+import {EtatParcoursDto} from "../../../../../../shared/model/courseref/EtatParcours.model";
+import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/courseref/EtatParcoursAdmin.service";
 
 
 @Component({
+
   selector: 'app-parcours-list-admin',
-  templateUrl: './parcours-list-admin.component.html'
+  templateUrl: './parcours-list-admin.component.html',
+    styleUrls : ['./parcours-list-admin.component.css']
 })
 export class ParcoursListAdminComponent extends AbstractListController<ParcoursDto, ParcoursCriteria, ParcoursAdminService>  implements OnInit {
 
+    //
+    get showCours(): boolean {
+        return this.coursService.showCours;
+    }
+
+    set showCours(value: boolean) {
+        this.coursService.showCours = value;
+    }
+    get showSection(): boolean {
+        return this.sectionAdminService.showSection;
+    }
+
+    set showSection(value: boolean) {
+        this.sectionAdminService.showSection = value;
+    }
+
+    //
+
+
+    //
+    get itemsCours(): Array<CoursDto> {
+        return this.coursService.itemsCours;
+    }
+
+    set itemsCours(value: Array<CoursDto>) {
+        this.coursService.itemsCours = value;
+    }
+    get viewcoursOk(): boolean {
+        return this.coursService.viewcoursOk;
+    }
+
+    set viewcoursOk(value: boolean) {
+        this.coursService.viewcoursOk = value;
+    }
+    /*public async viewCourss(dto: ParcoursDto) {
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.itemsCours = res.courss;
+            this.viewcoursOk = true;
+            this.item = dto;
+            console.log(this.service.item);
+        });*/
+    public  viewCourss(dto: ParcoursDto) {
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.item = res;
+            this.itemsCours = this.item.courss ;
+            this.viewcoursOk = true;
+            // this.itemParcour = dto;
+            this.itemParcour=this.item
+            // console.log(this.service.item);
+        });
+
+
+        // this.viewcoursOk = true;
+        // console.log(this.viewcoursOk);
+        // // console.log(element.courss);
+        // this.coursService.findByParcourId(element.id).subscribe( res =>
+        //     this.itemsCours = res
+        // )
+        // console.log(this.itemsCours);
+        this.showCours = true ;
+        this.showSection = false;
+    }
+
+
+    set itemParcour(value: ParcoursDto) {
+        this.service.itemParcour = value;
+    }
+    get itemParcour():  ParcoursDto {
+        return this.service.itemParcour;
+    }
+    parcourview(dto: ParcoursDto) {
+       this.itemParcour = dto ;
+       console.log(this.itemParcour);
+    }
+
+
+    //
+
     override fileName = 'Parcours';
 
-
+    etatParcourss: Array<EtatParcoursDto>;
     centres: Array<CentreDto>;
 
 
-    constructor( private parcoursService: ParcoursAdminService  , private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
+    constructor(private  sectionAdminService:SectionAdminService,private etatParcoursService: EtatParcoursAdminService, private parcoursService: ParcoursAdminService  , private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private etudiantService: EtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private etatCoursService: EtatCoursAdminService, private centreService: CentreAdminService, private coursService: CoursAdminService, private groupeEtudeService: GroupeEtudeAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
         super(parcoursService);
     }
 
@@ -67,9 +150,12 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
                 this.findPaginatedByCriteria();
                 this.initExport();
                 this.initCol();
+                this.loadEtatParcours();
                 this.loadCentre();
+
             }
         });
+
     }
 
 
@@ -81,10 +167,13 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
             {field: 'libelle', header: 'Libelle'},
             {field: 'numeroOrder', header: 'Numero order'},
             {field: 'nombreCours', header: 'Nombre cours'},
+            {field: 'etatParcours?.libelle', header: 'Etat parcours'},
             {field: 'centre?.ref', header: 'Centre'},
         ];
     }
-
+    public async loadEtatParcours(){
+        this.etatParcoursService.findAllOptimized().subscribe(etatParcourss => this.etatParcourss = etatParcourss, error => console.log(error))
+    }
 
     public async loadCentre(){
        this.centreService.findAllOptimized().subscribe(centres => this.centres = centres, error => console.log(error))
@@ -110,6 +199,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
                  'Libelle': e.libelle ,
                  'Numero order': e.numeroOrder ,
                  'Nombre cours': e.nombreCours ,
+                'Etat parcours': e.etatParcours?.libelle ,
                 'Centre': e.centre?.ref ,
             }
         });
@@ -129,4 +219,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
         //'Centre': this.criteria.centre?.ref ? this.criteria.centre?.ref : environment.emptyForExport ,
         }];
       }
+
+
+
 }

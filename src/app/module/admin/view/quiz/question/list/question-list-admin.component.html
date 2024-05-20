@@ -1,254 +1,469 @@
-<div class="grid"  *ngIf="listActionIsValid">
+<div class="grid" *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div class="card">
-            <p-toolbar styleClass="mb-4">
-                <ng-template pTemplate="left">
-                                        <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Question')" *ngIf="createActionIsValid"></button>
-                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
-                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
-                </ng-template>
-                <ng-template pTemplate="right">
-                    <div class="flex">
-                        <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
-                    </div>
-                </ng-template>
+        <!-- <div class="card">
+             <p-toolbar styleClass="mb-4">
+                 <ng-template pTemplate="left">
+                                         <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Question')" *ngIf="createActionIsValid"></button>
+                     <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
+                     <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
+                 </ng-template>
+                 <ng-template pTemplate="right">
+                     <div class="flex">
+                         <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
+                     </div>
+                 </ng-template>
 
-            </p-toolbar>
-            <p-toolbar *ngIf="findByCriteriaShow">
+             </p-toolbar>
+             <p-toolbar *ngIf="findByCriteriaShow">
 
-                <div class="col-12">
-                    <div class="flex flex-wrap p-fluid col-12">
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="1">{{'question.ref' | translate}}</label>
-                            <input  class="w-full"  pInputText id="1" type="text"  [(ngModel)]="criteria.refLike">
-                        </div>
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="2">{{'question.libelle' | translate}}</label>
-                            <input  class="w-full"  pInputText id="2" type="text"  [(ngModel)]="criteria.libelleLike">
-                        </div>
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="3">{{'question.urlImg' | translate}}</label>
-                            <input  class="w-full"  pInputText id="3" type="text"  [(ngModel)]="criteria.urlImgLike">
-                        </div>
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="4">{{'question.urlVideo' | translate}}</label>
-                            <input  class="w-full"  pInputText id="4" type="text"  [(ngModel)]="criteria.urlVideoLike">
-                        </div>
+                 <div class="col-12">
+                     <div class="flex flex-wrap p-fluid col-12">
                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="5-1">{{'question.numeroMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroMin" id="5-1"></p-inputNumber>
+                             <label  class="font-bold block mb-2" for="1">{{'question.ref' | translate}}</label>
+                             <input  class="w-full"  pInputText id="1" type="text"  [(ngModel)]="criteria.refLike">
+                         </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="2">{{'question.libelle' | translate}}</label>
+                             <input  class="w-full"  pInputText id="2" type="text"  [(ngModel)]="criteria.libelleLike">
+                         </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="3">{{'question.urlImg' | translate}}</label>
+                             <input  class="w-full"  pInputText id="3" type="text"  [(ngModel)]="criteria.urlImgLike">
+                         </div>
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="4">{{'question.urlVideo' | translate}}</label>
+                             <input  class="w-full"  pInputText id="4" type="text"  [(ngModel)]="criteria.urlVideoLike">
+                         </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="5-1">{{'question.numeroMin' | translate}}</label>
+                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroMin" id="5-1"></p-inputNumber>
+                         </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="5-2">{{'question.numeroMax' | translate}}</label>
+                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroMax" id="5-2"></p-inputNumber>
                         </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="5-2">{{'question.numeroMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroMax" id="5-2"></p-inputNumber>
-                       </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="6-1">{{'question.pointReponseJusteMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.pointReponseJusteMin" id="6-1"></p-inputNumber>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="6-1">{{'question.pointReponseJusteMin' | translate}}</label>
+                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.pointReponseJusteMin" id="6-1"></p-inputNumber>
+                         </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="6-2">{{'question.pointReponseJusteMax' | translate}}</label>
+                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.pointReponseJusteMax" id="6-2"></p-inputNumber>
                         </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="6-2">{{'question.pointReponseJusteMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.pointReponseJusteMax" id="6-2"></p-inputNumber>
-                       </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="7-1">{{'question.pointReponsefausseMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.pointReponsefausseMin" id="7-1"></p-inputNumber>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="7-1">{{'question.pointReponsefausseMin' | translate}}</label>
+                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.pointReponsefausseMin" id="7-1"></p-inputNumber>
+                         </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="7-2">{{'question.pointReponsefausseMax' | translate}}</label>
+                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.pointReponsefausseMax" id="7-2"></p-inputNumber>
                         </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="7-2">{{'question.pointReponsefausseMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.pointReponsefausseMax" id="7-2"></p-inputNumber>
-                       </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="8-2">{{'question.typeDeQuestion' | translate}}</label>
-                            <p-dropdown [options]="typeDeQuestions" [(ngModel)]="criteria.typeDeQuestion" id="8" [filter]="true" class="p-fluid"
-                                        [showClear]="true"  placeholder="{{'question.typeDeQuestion' | translate}}" optionLabel="lib">
-                            </p-dropdown>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="8-2">{{'question.typeDeQuestion' | translate}}</label>
+                             <p-dropdown [options]="typeDeQuestions" [(ngModel)]="criteria.typeDeQuestion" id="8" [filter]="true" class="p-fluid"
+                                         [showClear]="true"  placeholder="{{'question.typeDeQuestion' | translate}}" optionLabel="lib">
+                             </p-dropdown>
+                         </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="10-2">{{'question.quiz' | translate}}</label>
+                             <p-dropdown [options]="quizs" [(ngModel)]="criteria.quiz" id="10" [filter]="true" class="p-fluid"
+                                         [showClear]="true"  placeholder="{{'question.quiz' | translate}}" optionLabel="lib">
+                             </p-dropdown>
+                         </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="11-2">{{'question.homeWork' | translate}}</label>
+                             <p-dropdown [options]="homeWorks" [(ngModel)]="criteria.homeWork" id="11" [filter]="true" class="p-fluid"
+                                         [showClear]="true"  placeholder="{{'question.homeWork' | translate}}" optionLabel="libelle">
+                             </p-dropdown>
+                         </div>
+                     </div>
+                     <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
+                         <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
+                     </div>
+                 </div>
+
+
+             </p-toolbar>
+
+
+             <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
+                     [globalFilterFields]="['ref', 'libelle', 'urlImg', 'urlVideo', 'numero', 'pointReponseJuste', 'pointReponsefausse', 'typeDeQuestionlib', 'quizlib', 'homeWorklibelle']" [(selection)]="selections"
+                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                     currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
+                     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
+                 <ng-template pTemplate="caption">
+                     <div class="flex flex-column flex-row justify-content-between table-header">
+                         <h5 class="p-m-0">{{'question.header' | translate}}</h5>
+                         <span class="p-input-icon-left ml-auto">
+                             <i class="pi pi-search"></i>
+                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                         </span>
+                     </div>
+                 </ng-template>
+                 <ng-template pTemplate="header">
+                     <tr>
+                         <th style="width: 3rem">
+                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                         </th>
+
+                         <th pSortableColumn="ref">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.ref' | translate}}</span>
+                                 <p-sortIcon field="ref"></p-sortIcon>
+                                 <p-columnFilter type="text" field="element.ref" display="menu" class="ml-auto"></p-columnFilter>
+                             </div>
+                         </th>
+
+
+                         <th pSortableColumn="libelle">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.libelle' | translate}}</span>
+                                 <p-sortIcon field="libelle"></p-sortIcon>
+                                 <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
+                             </div>
+                         </th>
+
+
+                         <th pSortableColumn="urlImg">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.urlImg' | translate}}</span>
+                                 <p-sortIcon field="urlImg"></p-sortIcon>
+                                 <p-columnFilter type="text" field="element.urlImg" display="menu" class="ml-auto"></p-columnFilter>
+                             </div>
+                         </th>
+
+
+                         <th pSortableColumn="urlVideo">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.urlVideo' | translate}}</span>
+                                 <p-sortIcon field="urlVideo"></p-sortIcon>
+                                 <p-columnFilter type="text" field="element.urlVideo" display="menu" class="ml-auto"></p-columnFilter>
+                             </div>
+                         </th>
+
+
+                         <th pSortableColumn="numero">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.numero' | translate}}</span>
+                                 <p-sortIcon field="numero"></p-sortIcon>
+                             </div>
+                         </th>
+
+
+                         <th pSortableColumn="pointReponseJuste">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.pointReponseJuste' | translate}}</span>
+                                 <p-sortIcon field="pointReponseJuste"></p-sortIcon>
+                             </div>
+                         </th>
+
+
+                         <th pSortableColumn="pointReponsefausse">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.pointReponsefausse' | translate}}</span>
+                                 <p-sortIcon field="pointReponsefausse"></p-sortIcon>
+                             </div>
+                         </th>
+
+
+                         <th pSortableColumn="typeDeQuestion">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.typeDeQuestion' | translate}}</span>
+                                 <p-sortIcon field="typeDeQuestion"></p-sortIcon>
+                             </div>
+                         </th>
+
+
+                         <th pSortableColumn="quiz">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.quiz' | translate}}</span>
+                                 <p-sortIcon field="quiz"></p-sortIcon>
+                             </div>
+                         </th>
+
+                                 &lt;!&ndash;
+                         <th pSortableColumn="homeWork">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'question.homeWork' | translate}}</span>
+                                 <p-sortIcon field="homeWork"></p-sortIcon>
+                             </div>
+                         </th>
+                                 &ndash;&gt;
+                         <th>Actions</th>
+                     </tr>
+                 </ng-template>
+                 <ng-template pTemplate="body" let-element>
+                     <tr>
+                         <td>
+                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
+                         </td>
+
+                         <td>{{element.ref}}</td>
+
+
+                         <td>{{element.libelle}}</td>
+
+
+                         <td>{{element.urlImg}}</td>
+
+
+                         <td>{{element.urlVideo}}</td>
+
+
+                         <td>{{element.numero}}</td>
+
+
+                         <td>{{element.pointReponseJuste}}</td>
+
+
+                         <td>{{element.pointReponsefausse}}</td>
+
+
+                         <td>{{element.typeDeQuestion?.lib}}</td>
+
+
+                         <td>{{element.quiz?.lib}}</td>
+
+                              &lt;!&ndash;
+                         <td>{{element.homeWork?.libelle}}</td>
+                              &ndash;&gt;
+                         <td>
+                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
+                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
+                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)"  *ngIf="deleteActionIsValid"></button>
+                             <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>
+                         </td>
+                     </tr>
+                 </ng-template>
+
+                 <ng-template pTemplate="summary">
+                     <p-paginator  [rows]="10" [totalRecords]="totalRecords" (onPageChange)="onPage($event)"></p-paginator>
+                     <div class="p-d-flex p-ai-center p-jc-between">
+                         En totale il {{items ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{items ? totalRecords : 0 }} {{items ? totalRecords == 1 ? 'question' : 'questions' : 0 }}.
+                     </div>
+                 </ng-template>
+             </p-table>
+         </div>-->
+        <div class="left-container">
+            <div *ngFor="let elemt of itemsOfQuiz" class="mb-4 shadow-2 hover:shadow-8 relative">
+                <p-card class="max-w-full">
+                    <div class="formgrid grid">
+                        <div class="field col-12 md:col-8 ">
+                            <div class="with-border">
+
+                                <input id="quizshow" type="text" placeholder="Question ?"
+                                       [ngModel]="elemt.libelle"
+                                       class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full"
+                                       readonly>
+                            </div>
+                           <!-- <div *ngIf="elemt.urlVideo" class="field col-12">
+                                <iframe width="100%" height="315"
+                                        [src]="getEmbedUrl(elemt.urlVideo) | safeUrl"
+                                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>-->
+
+                            <!--<div *ngIf="elemt.urlVideo">
+                                <video #videoPlayer class="video-class" controls>
+                                    <source [src]="elemt.urlVideo" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="video-controls">
+                                    <button (click)="playVideo(videoPlayer)">Play</button>
+                                    <button (click)="pauseVideo(videoPlayer)">Pause</button>
+                                </div>
+                            </div>-->
+
                         </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="10-2">{{'question.quiz' | translate}}</label>
-                            <p-dropdown [options]="quizs" [(ngModel)]="criteria.quiz" id="10" [filter]="true" class="p-fluid"
-                                        [showClear]="true"  placeholder="{{'question.quiz' | translate}}" optionLabel="lib">
-                            </p-dropdown>
+                       <!-- <div *ngIf="elemt.urlVideo" class="field col-12">
+                            <iframe width="100%" height="315"
+                                    [src]="elemt.urlVideo"
+                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>-->
+
+                        <div class="field col-12 md:col-4 with-border mb-3">
+                            <div>
+                                <p-dropdown appendTo="body" [options]="typeDeQuestions" [ngModel]="elemt.typeDeQuestion"
+                                            id="quiztypeDeQuestions"
+                                            [style]="{
+              'border': 'none',
+              'border-bottom': '2px solid transparent',
+              'box-shadow': 'none',
+              'width': '100%',
+              'font-size': '2.5rem',
+              'font-weight': 'bold',
+              'color': '#000',
+              'opacity': '1',
+              'pointer-events': 'none'
+            }"
+                                            [showClear]="true" optionLabel="lib" [disabled]="true">
+                                </p-dropdown>
+                            </div>
                         </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="11-2">{{'question.homeWork' | translate}}</label>
-                            <p-dropdown [options]="homeWorks" [(ngModel)]="criteria.homeWork" id="11" [filter]="true" class="p-fluid"
-                                        [showClear]="true"  placeholder="{{'question.homeWork' | translate}}" optionLabel="libelle">
-                            </p-dropdown>
+                        <div *ngIf="elemt.urlVideo" class="field col-12  md:col-6">
+                            <iframe width="100%" height="400"
+                                    [src]="getEmbedUrl(elemt.urlVideo)"
+                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div *ngIf="elemt.urlImg" class="field col-12  md:col-6">
+                            <p-image [src]="elemt.urlImg" alt="Image" class="image-class" width="600" height="400" [preview]="true"></p-image>
+                        </div>
+
+                        <div *ngFor="let rep of elemt.reponses" class="field col-12  mb-3">
+                            <div *ngIf="rep.etatReponse == 'Reponse Courte'" class="with-border">
+                                <input id="repCourte" type="text" placeholder="Reponse Courte"
+                                       [disabled]="true"
+                                       class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                            </div>
+                            <div *ngIf="rep.etatReponse == 'Paragraphe'">
+                     <textarea rows="5" cols="30" pInputTextarea
+                               placeholder="Paragraphe"
+                               class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                    </textarea>
+                            </div>
+                            <div *ngIf="rep.etatReponse == 'Choix multiples'">
+                                <div class="reponse">
+                                    <div class="ico">
+                                        <span class="pi pi-stop" style="font-size: 1.5rem; color: gray;"></span>
+                                    </div>
+                                    <div class="with-borderChoix">
+                                        <input id="reponceschoix" type="text"
+                                               [ngModel]="rep.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="rep.etatReponse == 'Cases a cocher'">
+                                <!-- Cases a cocher content -->
+                            </div>
                         </div>
                     </div>
-                    <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
-                        <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
+                    <span class="pi pi-trash trash-icon" (click)="deleteqst(elemt)"></span>
+                </p-card>
+            </div>
+
+        </div>
+        <div class="flex-container">
+            <!--  <div class="left-container">
+          <div class="mb-4 shadow-2 hover:shadow-8 ">
+              <p-card [style]="{ 'border-left': '8px solid #FC965DFF'}" class="max-w-full">
+                  <div class="formgrid grid">
+
+                  <div class="field col-12 md:col-6 with-border">
+                      <input id="quizLabel" type="text" placeholder="Question ?"
+                             [(ngModel)]="item.libelle"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                  </div>
+
+
+                      <div class="field col-12 md:col-2 ">
+
+                          <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
+
+                      </div>
+                      <div  style="float: right" class="field col-12 md:col-4">
+                          <p-splitButton label="Etat Reponse"   styleClass="p-button-text p-button-secondary mr-2 mb-2"  [model]="this.typeReponse"
+                                                 [style]="{ 'border': 'none', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
+
+                          ></p-splitButton>
+
+                      </div>
+                      <div  style="float: right;" class="field col-12 md:col-6 with-border">
+                          <div >
+                              <p-dropdown  appendTo="body" [options]="typeDeQuestions" [(ngModel)]="item.typeDeQuestion" id="quizsection"
+                                          [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
+                                          [showClear]="true" optionLabel="lib" placeholder="type De Question"
+                              >
+                              </p-dropdown>
+                          </div>
+                      </div>
+
+
+                  </div>
+
+
+              </p-card>
+
+          </div>
+
+
+              </div>-->
+
+            <div class="left-container">
+                <div class="mb-4 shadow-2 hover:shadow-8 ">
+                    <p-card [style]="{ 'border-left': '8px solid #FC965DFF'}" class="max-w-full">
+
+                        <div class="formgrid grid">
+
+                            <div class="field col-12 md:col-10 with-border">
+                                <input type="text" placeholder="Question ?"
+                                       [(ngModel)]="item.libelle"
+                                   name="quizTitle"    class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                            </div>
+
+                            <!--   <div class="field col-12 md:col-2">
+                                   <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
+                               </div>-->
+
+                            <div class="field col-12 md:col-2">
+                                <p-splitButton label="État Réponse"
+                                               styleClass="p-button-text p-button-secondary mr-0 mb-2"
+                                               [model]="this.typeReponse"
+                                               [(ngModel)]="itemReponse.lib"
+                                               [style]="{ 'border': 'none', 'box-shadow': 'none' }">
+                                </p-splitButton>
+                            </div>
+                            <div class="field col-12 md:col-6 with-borders">
+
+                                <input id="ref" type="text" placeholder="Ref"
+                                       [(ngModel)]="item.ref"
+                                       class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                            </div>
+
+                            <div class="field col-12 md:col-6 with-border mb-3">
+                                <div>
+                                    <p-dropdown appendTo="body" [options]="typeDeQuestions"
+                                                [(ngModel)]="item.typeDeQuestion" id="typeDeQuestions"
+                                                [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
+                                                [showClear]="true" optionLabel="lib" placeholder="type De Question">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="marge field col-12 ">
+                                <app-reponse-list-admin></app-reponse-list-admin>
+                            </div>
+
+
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+
+            <div class="right-container">
+                <div class="button-container shadow-2 hover:shadow-5">
+                    <div class="button-group">
+                        <div class="button-row">
+                            <app-question-create-admin></app-question-create-admin>
+                        </div>
+                        <div class="button-row">
+                            <span (click)="addImage()" class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
+                        </div>
+                        <div  class="button-row">
+                            <span (click)="addvideo()" class="icon-button pi pi-video" style="font-size: 1.5rem"></span>
+                        </div>
                     </div>
                 </div>
 
-
-            </p-toolbar>
-
-
-            <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['ref', 'libelle', 'urlImg', 'urlVideo', 'numero', 'pointReponseJuste', 'pointReponsefausse', 'typeDeQuestionlib', 'quizlib', 'homeWorklibelle']" [(selection)]="selections"
-                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
-                    currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
-                    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column flex-row justify-content-between table-header">
-                        <h5 class="p-m-0">{{'question.header' | translate}}</h5>
-                        <span class="p-input-icon-left ml-auto">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                                
-                        <th pSortableColumn="ref">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.ref' | translate}}</span>
-                                <p-sortIcon field="ref"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.ref" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="libelle">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.libelle' | translate}}</span>
-                                <p-sortIcon field="libelle"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="urlImg">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.urlImg' | translate}}</span>
-                                <p-sortIcon field="urlImg"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.urlImg" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="urlVideo">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.urlVideo' | translate}}</span>
-                                <p-sortIcon field="urlVideo"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.urlVideo" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="numero">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.numero' | translate}}</span>
-                                <p-sortIcon field="numero"></p-sortIcon>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="pointReponseJuste">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.pointReponseJuste' | translate}}</span>
-                                <p-sortIcon field="pointReponseJuste"></p-sortIcon>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="pointReponsefausse">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.pointReponsefausse' | translate}}</span>
-                                <p-sortIcon field="pointReponsefausse"></p-sortIcon>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="typeDeQuestion">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.typeDeQuestion' | translate}}</span>
-                                <p-sortIcon field="typeDeQuestion"></p-sortIcon>
-                            </div>
-                        </th>
-                                
-                                
-                        <th pSortableColumn="quiz">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.quiz' | translate}}</span>
-                                <p-sortIcon field="quiz"></p-sortIcon>
-                            </div>
-                        </th>
-                                
-                                <!-- 
-                        <th pSortableColumn="homeWork">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'question.homeWork' | translate}}</span>
-                                <p-sortIcon field="homeWork"></p-sortIcon>
-                            </div>
-                        </th>
-                                --> 
-                        <th>Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-element>
-                    <tr>
-                        <td>
-                            <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>
-                            
-                        <td>{{element.ref}}</td>
-                            
-                            
-                        <td>{{element.libelle}}</td>
-                            
-                            
-                        <td>{{element.urlImg}}</td>
-                            
-                            
-                        <td>{{element.urlVideo}}</td>
-                            
-                            
-                        <td>{{element.numero}}</td>
-                            
-                            
-                        <td>{{element.pointReponseJuste}}</td>
-                            
-                            
-                        <td>{{element.pointReponsefausse}}</td>
-                            
-                            
-                        <td>{{element.typeDeQuestion?.lib}}</td>
-                            
-                            
-                        <td>{{element.quiz?.lib}}</td>
-                            
-                             <!-- 
-                        <td>{{element.homeWork?.libelle}}</td>
-                             --> 
-                        <td>
-                            <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)"  *ngIf="deleteActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>
-                        </td>
-                    </tr>
-                </ng-template>
-
-                <ng-template pTemplate="summary">
-                    <p-paginator  [rows]="10" [totalRecords]="totalRecords" (onPageChange)="onPage($event)"></p-paginator>
-                    <div class="p-d-flex p-ai-center p-jc-between">
-                        En totale il {{items ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{items ? totalRecords : 0 }} {{items ? totalRecords == 1 ? 'question' : 'questions' : 0 }}.
-                    </div>
-                </ng-template>
-            </p-table>
+            </div>
         </div>
 
-        <app-question-create-admin  *ngIf="createDialog  && createActionIsValid"></app-question-create-admin>
-        <app-question-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-question-edit-admin>
-        <app-question-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-question-view-admin>
+        <app-question-create-admin *ngIf="createDialog  && createActionIsValid"></app-question-create-admin>
+        <app-question-edit-admin *ngIf="editDialog  && editActionIsValid"></app-question-edit-admin>
+        <app-question-view-admin *ngIf="viewDialog  && viewActionIsValid"></app-question-view-admin>
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>
@@ -258,3 +473,34 @@
         You don't have permission to access !
     </p>
 </p-card>
+<p-dialog [(visible)]="toaddimage" [style]="{width: '70vw'}" header="{{'reponse.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+                <div class="grid">
+                    <div class="field col-12">
+                        <label for="image">Lien de l'image</label>
+                        <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'reponse.etatReponse' | translate}}" id="image" name="image" [(ngModel)]="item.urlImg"
+                        />
+                    </div>
+                </div>
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="hidedia()"></button>
+            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hidedia()"></button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="toaddimage" [style]="{width: '70vw'}" header="{{'reponse.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+    <div class="grid">
+        <div class="field col-12">
+            <label for="video">Lien de l'image</label>
+            <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'reponse.etatReponse' | translate}}" id="video" name="video" [(ngModel)]="item.urlVideo"
+            />
+        </div>
+    </div>
+    <ng-template pTemplate="footer" >
+        <div class="p-flexbox">
+            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check"  (click)="hidedia()"></button>
+            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hidedia()"></button>
+        </div>
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,30 @@
+.layout-topbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.layout-topbar-logo .logo-container {
+    width: 50px; /* ajustez la taille du logo en fonction de vos besoins */
+    height: 50px; /* ajustez la taille du logo en fonction de vos besoins */
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: black;
+}
+
+.layout-topbar-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.layout-topbar-logo .brand-text {
+    margin-left: 10px; /* ajustez la marge selon vos préférences */
+    color: white; /* Changer la couleur du texte "EngFlexy" en blanc */
+}
+
+.layout-topbar-logo .brand-highlight {
+    color: white; /* Changer la couleur de la partie "Flexy" en blanc */
+}
+
+.backo {
+    background-color: #ff725e; /* Ajouter une classe pour le changement de couleur de fond */
+}

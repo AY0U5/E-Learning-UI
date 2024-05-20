@@ -30,6 +30,9 @@ export class CoursCriteria  extends BaseCriteria  {
      public numeroOrder: number;
      public numeroOrderMin: number;
      public numeroOrderMax: number;
+    public nombreSection: number;
+    public nombreSectionMin: number;
+    public nombreSectionMax: number;
   public etatCours: EtatCoursCriteria ;
   public etatCourss: Array<EtatCoursCriteria> ;
       public sections: Array<SectionCriteria>;

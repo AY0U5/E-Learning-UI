@@ -11,7 +11,8 @@ import {QuestionAdminService} from 'src/app/shared/service/admin/quiz/QuestionAd
 
 @Component({
   selector: 'app-reponse-list-admin',
-  templateUrl: './reponse-list-admin.component.html'
+  templateUrl: './reponse-list-admin.component.html',
+    styleUrls:['reponse-list-admin.component.css']
 })
 export class ReponseListAdminComponent extends AbstractListController<ReponseDto, ReponseCriteria, ReponseAdminService>  implements OnInit {
 
@@ -19,6 +20,76 @@ export class ReponseListAdminComponent extends AbstractListController<ReponseDto
 
 
     questions: Array<QuestionDto>;
+
+
+    //
+
+    public set itemsRepForQuest(value: Array<ReponseDto>) {
+        this.reponseService.itemsRepForQuest = value;
+    }
+
+    public get itemsRepForQuest(): Array<ReponseDto> {
+        return this.reponseService.itemsRepForQuest;
+    }
+    get itemReponse(): ReponseDto {
+        return this.reponseService.item;
+    }
+
+    set itemReponse(value: ReponseDto) {
+        this.reponseService.item = value;
+    }
+
+
+    //
+
+    get showreponsenbr(): boolean {
+        return this.service.showreponsenbr;
+    }
+
+    set showreponsenbr(value: boolean) {
+        this.service.showreponsenbr = value;
+    }
+
+    get reponsenbr(): number {
+        return this.service.reponsenbr;
+    }
+
+    set reponsenbr(value: number) {
+        this.service.reponsenbr = value;
+    }
+
+
+    //
+
+    get reponseCourte(): boolean {
+        return this.reponseService.reponseCourte;
+    }
+    set reponseCourte(value: boolean) {
+        this.reponseService.reponseCourte = value;
+    }
+    get paragraphe(): boolean {
+        return this.reponseService.paragraphe;
+    }
+
+    set paragraphe(value: boolean) {
+        this.reponseService.paragraphe = value;
+    }
+
+    get caseAcoche(): boolean {
+        return this.reponseService.caseAcoche;
+    }
+
+    set caseAcoche(value: boolean) {
+        this.reponseService.caseAcoche = value;
+    }
+
+    get choixMultiple(): boolean {
+        return this.reponseService.choixMultiple;
+    }
+
+    set choixMultiple(value: boolean) {
+        this.reponseService.choixMultiple = value;
+    }
 
 
     constructor( private reponseService: ReponseAdminService  , private questionService: QuestionAdminService) {
@@ -74,4 +145,6 @@ export class ReponseListAdminComponent extends AbstractListController<ReponseDto
         //'Question': this.criteria.question?.libelle ? this.criteria.question?.libelle : environment.emptyForExport ,
         }];
       }
+
+
 }

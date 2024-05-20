@@ -3,6 +3,7 @@ import {BaseDto} from 'src/app/zynerator/dto/BaseDto.model';
 import {CategorieSectionDto} from '../courseref/CategorieSection.model';
 import {CoursDto} from './Cours.model';
 import {SectionItemDto} from './SectionItem.model';
+import {EtatSectionDto} from "../courseref/EtatSection.model";
 
 export class SectionDto extends BaseDto{
 
@@ -31,9 +32,10 @@ export class SectionDto extends BaseDto{
     public content: null | number;
 
     public categorieSection: CategorieSectionDto ;
+    public etatSection: EtatSectionDto ;
     public cours: CoursDto ;
      public sectionItems: Array<SectionItemDto>;
-    
+
 
     constructor() {
         super();
@@ -51,6 +53,7 @@ export class SectionDto extends BaseDto{
         this.url = null;
         this.content = null;
         this.categorieSection = new CategorieSectionDto() ;
+        this.etatSection = new EtatSectionDto() ;
         this.cours = new CoursDto() ;
         this.sectionItems = new Array<SectionItemDto>();
 

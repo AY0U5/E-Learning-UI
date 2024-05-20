@@ -23,9 +23,128 @@ import {HomeWorkDto} from 'src/app/shared/model/homework/HomeWork.model';
 import {HomeWorkAdminService} from 'src/app/shared/service/admin/homework/HomeWorkAdmin.service';
 @Component({
   selector: 'app-quiz-create-admin',
-  templateUrl: './quiz-create-admin.component.html'
+  templateUrl: './quiz-create-admin.component.html',
+    styleUrls : ['./quiz-create-admin.component.css']
 })
 export class QuizCreateAdminComponent extends AbstractCreateController<QuizDto, QuizCriteria, QuizAdminService>  implements OnInit {
+
+    public checkquiz : boolean = false ;
+
+    get showqst(): boolean {
+        return this.quizService.showqst;
+    }
+
+    set showqst(value: boolean) {
+        this.quizService.showqst= value;
+    }
+
+    //
+    get itemsOfQuiz(): Array<QuestionDto> {
+        return this.questionService.itemsOfQuiz;
+    }
+
+    set itemsOfQuiz(value: Array<QuestionDto>) {
+        this.questionService.itemsOfQuiz = value;
+    }
+
+    public showquizz(): void {
+        this.quizService.findByIdWithAssociatedList(this.itemQuizShow).subscribe( res =>
+            {
+                this.itemsOfQuiz = res.questions;
+            }
+
+        )
+    }
+    foraddQuestion() {
+        if (!this.stringUtilService.isEmpty(this.item.lib) && this.item.section != null) {
+
+
+            // console.log(this.item)
+            this.quizService.findByLib(this.item).subscribe( res =>
+                {
+                    if (res == null){
+                        this.saveQuiz();
+                        this.showqst = true;
+                        this.showquizz()
+                    }else {
+                        this.itemQuizShow = res;
+                        this.addquiz = true;
+                        this.showqst = true;
+                        console.log(this.itemQuizShow);
+                        this.showquizz()
+
+                    }
+                }
+
+            )
+          /*  if (this.checkquiz) {
+                this.saveQuiz();
+                this.showqst = true;
+            }*/
+        } else {
+            this.errorMessages = new Array<string>();
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+    //
+
+    //
+    get addquiz(): boolean {
+        return this.quizService.addquiz;
+    }
+
+    set addquiz(value: boolean) {
+        this.quizService.addquiz = value;
+    }
+
+    public get itemQuizShow(): QuizDto {
+        return this.quizService.itemQuizShow;
+    }
+
+    public set itemQuizShow(value: QuizDto) {
+        this.quizService.itemQuizShow = value;
+    }
+
+    public saveQuiz(): void {
+        // this.submitted = true;
+        // if (this.errorMessages.length === 0) {
+            //
+            this.itemQuizShow = this.item;
+            //
+            this.saveWithShowOptionQuiz(false);
+            console.log(this.itemQuizShow);
+       /* }else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }*/
+    }
+
+    public saveWithShowOptionQuiz(showList: boolean) {
+        this.service.save().subscribe(item => {
+            if (item != null) {
+                // this.items.push({...item});
+                // this.createDialog = false;
+                // this.submitted = false;
+                //
+                this.addquiz = true;
+                //
+                // this.item = this.service.constrcutDto();
+            } else {
+                this.messageService.add({severity: 'error', summary: 'Erreurs', detail: 'Element existant'});
+            }
+
+        }, error => {
+            console.log(error);
+        });
+    }
+    //
 
     private _questionsElement = new QuestionDto();
     private _quizEtudiantsElement = new QuizEtudiantDto();
@@ -287,5 +406,7 @@ export class QuizCreateAdminComponent extends AbstractCreateController<QuizDto, 
     set quizEtudiantsElement(value: QuizEtudiantDto) {
         this._quizEtudiantsElement = value;
     }
+
+
 
 }

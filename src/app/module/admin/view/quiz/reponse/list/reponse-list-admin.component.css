@@ -1,0 +1,120 @@
+/*
+.reponse{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ico {
+    display: inline-block;
+    margin-top: 10px; !* Ajuste la position verticale de l'icône vers le bas *!
+
+    margin-right: 7px; !* Espacement entre l'icône et l'entrée de texte *!
+}
+
+
+
+
+.with-borderM {
+    position: relative;
+}
+
+.with-borderM::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; !* Positionner la bordure en dessous de l'input *!
+    left: 50%;
+    transform: translateX(-50%); !* Centrer horizontalement *!
+    width: 97%; !* Largeur de la bordure *!
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.with-borderM:focus-within::after {
+    background-color: orange;
+}
+
+*/
+/*
+.reponse {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; !* Assure que l'input et l'icône plus sont espacés *!
+}
+
+.ico {
+    display: inline-block;
+    margin-top: 10px; !* Ajuste la position verticale de l'icône vers le bas *!
+    margin-right: 7px; !* Espacement entre l'icône et l'entrée de texte *!
+}
+
+.with-borderM {
+    position: relative;
+    flex-grow: 1; !* L'input prend toute la place disponible *!
+}
+
+.with-borderM::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; !* Positionner la bordure en dessous de l'input *!
+    left: 50%;
+    transform: translateX(-50%); !* Centrer horizontalement *!
+    width: 99%; !* Largeur de la bordure *!
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.with-borderM:focus-within::after {
+    background-color: orange;
+}
+
+.icon-container {
+    margin-left: 1rem; !* Ajoute un espace entre l'input et l'icône plus *!
+}
+*/
+.reponse-container {
+    display: flex;
+    flex-direction: column; /* Empile les éléments verticalement */
+}
+
+.reponse {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Assure que l'input et l'icône plus sont espacés */
+    margin-bottom: 10px; /* Ajoute un espace entre les éléments empilés */
+}
+
+.ico {
+    display: inline-block;
+    margin-top: 10px; /* Ajuste la position verticale de l'icône vers le bas */
+    margin-right: 7px; /* Espacement entre l'icône et l'entrée de texte */
+}
+
+.with-borderM {
+    position: relative;
+    flex-grow: 1; /* L'input prend toute la place disponible */
+}
+
+.with-borderM::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Positionner la bordure en dessous de l'input */
+    left: 50%;
+    transform: translateX(-50%); /* Centrer horizontalement */
+    width: 99%; /* Largeur de la bordure */
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.with-borderM:focus-within::after {
+    background-color: orange;
+}
+
+.icon-container {
+    margin-left: 1rem; /* Ajoute un espace entre l'input et l'icône plus */
+}

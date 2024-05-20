@@ -14,6 +14,8 @@ import {CoursDto} from 'src/app/shared/model/course/Cours.model';
 import {CoursAdminService} from 'src/app/shared/service/admin/course/CoursAdmin.service';
 import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
+import {EtatSectionAdminService} from "../../../../../../shared/service/admin/courseref/EtatSectionAdmin.service";
+import {EtatSectionDto} from "../../../../../../shared/model/courseref/EtatSection.model";
 @Component({
   selector: 'app-section-view-admin',
   templateUrl: './section-view-admin.component.html'
@@ -23,14 +25,25 @@ export class SectionViewAdminComponent extends AbstractViewController<SectionDto
     sectionItems = new SectionItemDto();
     sectionItemss: Array<SectionItemDto> = [];
 
-    constructor(private sectionService: SectionAdminService, private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService){
+    constructor(  private etatSectionService: EtatSectionAdminService,private sectionService: SectionAdminService, private categorieSectionService: CategorieSectionAdminService, private coursService: CoursAdminService, private sectionItemService: SectionItemAdminService){
         super(sectionService);
     }
 
     ngOnInit(): void {
     }
 
-
+    get etatSection(): EtatSectionDto {
+        return this.etatSectionService.item;
+    }
+    set etatSection(value: EtatSectionDto) {
+        this.etatSectionService.item = value;
+    }
+    get etatSections(): Array<EtatSectionDto> {
+        return this.etatSectionService.items;
+    }
+    set etatSections(value: Array<EtatSectionDto>) {
+        this.etatSectionService.items = value;
+    }
     get cours(): CoursDto {
        return this.coursService.item;
     }
