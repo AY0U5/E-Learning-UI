@@ -1,14 +1,8 @@
-<div  class="layout-topbar">
-    <!--<a class="layout-topbar-logo" routerLink="">
-        <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
-        <span>SAKAI</span>
-    </a>-->
-    <nav class="layout-topbar-logo">
-        <div class="logo-container">
-            <img decoding="async" src="assets/layout/images/img_engflexy.webp" alt="logo">
-        </div>
-        <span class="brand-text">Eng<span class="brand-highlight">Flexy</span></span>
-    </nav>
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" routerLink="">
+        <img src="https://engflexy.com/wp-content/uploads/2023/12/cropped-eng-100-100-e1702544221888.webp" alt="logo">
+        <span>ENG<span class="text-orange-500">FLEXY</span></span>
+    </a>
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
@@ -20,7 +14,7 @@
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
 
-<!--        <p-dropdown (onChange)="useLanguage(selectedLanguage)" [options]="languageOptions" [(ngModel)]="selectedLanguage"   [appendTo]="'body'"></p-dropdown>-->
+        <p-dropdown (onChange)="useLanguage(selectedLanguage)" [options]="languageOptions" [(ngModel)]="selectedLanguage"   [appendTo]="'body'"></p-dropdown>
 
         <button  class="p-link layout-topbar-button" (click)="edit(authenticatedUser)">
             <i class="pi pi-user"></i>

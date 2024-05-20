@@ -6,11 +6,12 @@ import {AppLayoutComponent} from "src/app/layout/app.layout.component";
 
 import {LoginAdminComponent} from 'src/app/module/admin/login-admin/login-admin.component';
 import {RegisterAdminComponent} from 'src/app/module/admin/register-admin/register-admin.component';
+import {HomeComponent} from "./module/admin/home/home.component";
 @NgModule({
     imports: [
         RouterModule.forRoot(
             [
-                {path: '', component: LoginAdminComponent},
+                {path: '', component: HomeComponent},
             {path: 'admin/login', component: LoginAdminComponent },
             {path: 'admin/register', component: RegisterAdminComponent },
             {

@@ -59,7 +59,7 @@ import {DropdownModule} from "primeng/dropdown";
         SplitButtonModule,
         DropdownModule
     ],
-    exports: [AppLayoutComponent]
+    exports: [AppLayoutComponent, AppMenuComponent, AppTopBarComponent]
 })
 export class AppLayoutModule {
 }

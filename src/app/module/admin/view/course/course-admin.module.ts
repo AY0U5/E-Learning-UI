@@ -48,6 +48,17 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MessageModule } from 'primeng/message';
 import {MessagesModule} from 'primeng/messages';
 import {PaginatorModule} from 'primeng/paginator';
+import {OrderListModule} from "primeng/orderlist";
+import {EditorModule} from "primeng/editor";
+import {DataViewModule} from "primeng/dataview";
+import {TagModule} from "primeng/tag";
+import {RatingModule} from "primeng/rating";
+import {TimelineModule} from "primeng/timeline";
+import {ScrollPanelModule} from "primeng/scrollpanel";
+import {SidebarModule} from "primeng/sidebar";
+import {ListboxModule} from "primeng/listbox";
+import {AccordionModule} from "primeng/accordion";
+import { RemplirComponent } from './remplir/remplir.component';
 
 
 
@@ -70,40 +81,51 @@ import {PaginatorModule} from 'primeng/paginator';
     SectionListAdminComponent,
     SectionViewAdminComponent,
     SectionEditAdminComponent,
+    RemplirComponent
   ],
-  imports: [
-    CommonModule,
-    ToastModule,
-    ToolbarModule,
-    TableModule,
-    ConfirmDialogModule,
-    DialogModule,
-    PasswordModule,
-    InputTextModule,
-    ButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    SplitButtonModule,
-    BrowserAnimationsModule,
-    DropdownModule,
-    TabViewModule,
-    InputSwitchModule,
-    InputTextareaModule,
-    CalendarModule,
-    PanelModule,
-    MessageModule,
-    MessagesModule,
-    InputNumberModule,
-    BadgeModule,
-    MultiSelectModule,
-    PaginatorModule,
-    TranslateModule,
-    FileUploadModule,
-    FullCalendarModule,
-    CardModule,
+    imports: [
+        CommonModule,
+        ToastModule,
+        ToolbarModule,
+        TableModule,
+        ConfirmDialogModule,
+        DialogModule,
+        PasswordModule,
+        InputTextModule,
+        ButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        SplitButtonModule,
+        BrowserAnimationsModule,
+        DropdownModule,
+        TabViewModule,
+        InputSwitchModule,
+        InputTextareaModule,
+        CalendarModule,
+        PanelModule,
+        MessageModule,
+        MessagesModule,
+        InputNumberModule,
+        BadgeModule,
+        MultiSelectModule,
+        PaginatorModule,
+        TranslateModule,
+        FileUploadModule,
+        FullCalendarModule,
+        CardModule,
+        OrderListModule,
+        EditorModule,
+        DataViewModule,
+        TagModule,
+        RatingModule,
+        TimelineModule,
+        ScrollPanelModule,
+        SidebarModule,
+        ListboxModule,
+        AccordionModule,
 
-  ],
+    ],
   exports: [
   SectionItemCreateAdminComponent,
   SectionItemListAdminComponent,

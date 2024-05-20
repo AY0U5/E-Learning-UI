@@ -2,7 +2,7 @@ import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {ToolbarModule} from "primeng/toolbar";
 import {InputTextareaModule} from "primeng/inputtextarea";
-
+import { EditorModule } from 'primeng/editor';
 import {FileUploadModule} from "primeng/fileupload";
 import {SelectButtonModule} from "primeng/selectbutton";
 import {PanelMenuModule} from "primeng/panelmenu";
@@ -53,6 +53,7 @@ import {AppLayoutComponent} from "./layout/app.layout.component";
 
 import {AdminModule} from './module/admin/admin.module';
 import {AdminRoutingModule} from './module/admin/admin-routing.module';
+import { TypewriterComponent } from './typewriter/typewriter.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -90,7 +91,6 @@ imports: [
     FileUploadModule,
     SelectButtonModule,
 
-  AdminModule,
   AdminRoutingModule,
 
   TranslateModule.forRoot({
@@ -104,6 +104,7 @@ imports: [
 declarations: [
     AppComponent,
     NotfoundComponent,
+    TypewriterComponent,
 
 ],
 providers: [
@@ -118,8 +119,9 @@ providers: [
 
 ],
 bootstrap: [AppComponent],
-  exports: [
-  ]
+    exports: [
+        TypewriterComponent
+    ]
 })
 export class AppModule{
   constructor(private injector: Injector) {

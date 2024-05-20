@@ -1,3 +1,4 @@
+<!--
 <div class="layout-wrapper" [ngClass]="containerClass">
     <app-topbar></app-topbar>
     <div  [style]="{'background-color': '#ff725e', 'scrollbar-width': 'thin' , 'scrollbar-color':' white #ff725e'}" class="layout-sidebar shadow-2 hover:shadow-8">
@@ -15,3 +16,20 @@
     <app-config></app-config>
     <div class="layout-mask"></div>
 </div>
+-->
+
+<div class="layout-wrapper flex flex-row">
+    <div >
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="flex flex-column content-wrapper">
+        <div class="flex-grow-1 content">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="footer">
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+
+

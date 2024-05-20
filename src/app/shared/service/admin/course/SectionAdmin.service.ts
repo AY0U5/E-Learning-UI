@@ -56,6 +56,34 @@ export class SectionAdminService extends AbstractService<SectionDto, SectionCrit
         this._viewSectionOk = value;
     }
     //
+
+
+
+
+
+    private _htmlEditor:string
+    private _itemtoedit: SectionDto;
+    public httpeditor: HttpClient;
+    public get itemtoedit(): SectionDto {
+        if (this._itemtoedit == null) {
+            this._itemtoedit = this.constrcutDto();
+            //TODO : this._item = new DTO();
+        }
+        return this._itemtoedit;
+    }
+    public edithtmleditor(dto : SectionDto): Observable<SectionDto> {
+        return this.httpeditor.put<SectionDto>(this.API,dto );
+    }
+    public set itemtoedit(value: SectionDto) {
+        this._itemtoedit = value;
+    }
+    get htmlEditor(): string {
+        return this._htmlEditor;
+    }
+
+    set htmlEditor(value: string) {
+        this._htmlEditor = value;
+    }
      constructor(private http: HttpClient) {
         super();
         this.setHttp(http);
@@ -71,5 +99,17 @@ export class SectionAdminService extends AbstractService<SectionDto, SectionCrit
 
     get API() {
         return environment.apiUrlAlcservice + 'admin/section/';
+    }
+
+    private _itemseditorSec : Array<SectionDto> ;
+    public get itemseditorSec(): Array<SectionDto> {
+        if (this._itemseditorSec == null) {
+            this._itemseditorSec = new Array<SectionDto>();
+        }
+        return this._itemseditorSec;
+    }
+
+    public set itemseditorSec(value: Array<SectionDto>) {
+        this._itemseditorSec = value;
     }
 }

@@ -12,27 +12,38 @@ import {LayoutService} from 'src/app/layout/service/app.layout.service';
   styleUrls: ['./login-admin.component.css']
 })
 export class LoginAdminComponent implements OnInit {
-  loginForm = new FormGroup({
-    username: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required)
-  });
+    loginForm = new FormGroup({
+        username: new FormControl('', Validators.required),
+        password: new FormControl('', Validators.required)
+    });
 
-  messages: Message[] = [];
+    messages: Message[] = [];
 
-  constructor(private authService: AuthService,public layoutService: LayoutService, private router: Router) { }
+    constructor(private authService: AuthService, public layoutService: LayoutService, private router: Router) {
+    }
 
-  ngOnInit(): void {
-    this.messages = [];
-  }
+    ngOnInit(): void {
+        this.messages = [];
+    }
 
-  submit(){
-    const formValues = this.loginForm.value;
-    const username = formValues.username;
-    const passowrd = formValues.password;
-    this.authService.login(username, passowrd);
+    submit() {
+        const formValues = this.loginForm.value;
+        const username = formValues.username;
+        const passowrd = formValues.password;
+        this.authService.login(username, passowrd);
 
-  }
-    register(){
-    this.router.navigate(['/admin/register']);
-  }
+    }
+
+    register() {
+        this.router.navigate(['/admin/register']);
+    }
+
+    toggleSignUpMode() {
+    const container = document.querySelector(".container");
+    if (container) {
+        container.classList.toggle("sign-up-mode");
+    }
+}
+
+
 }

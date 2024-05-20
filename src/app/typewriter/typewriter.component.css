@@ -1,0 +1,21 @@
+.typewriter p {
+    display: inline-block;
+    overflow: hidden;
+    border-right: .15em solid white; /* The cursor */
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: blink-caret .75s step-end infinite;
+    opacity: 1;
+    transition: opacity 0.5s ease-out; /* Adjust the transition duration to match fadeDuration */
+    font-size: 2.3rem;
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: white;
+    }
+}

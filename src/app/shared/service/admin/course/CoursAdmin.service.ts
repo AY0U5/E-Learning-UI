@@ -8,8 +8,8 @@ import {CoursDto} from 'src/app/shared/model/course/Cours.model';
 import {CoursCriteria} from 'src/app/shared/criteria/course/CoursCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 import {ParcoursDto} from "../../../model/course/Parcours.model";
-// import * as http from "http";
-// import * as http from "http";
+
+import {SectionDto} from "../../../model/course/Section.model";
 
 
 @Injectable({

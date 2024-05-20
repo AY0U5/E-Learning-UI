@@ -1,3 +1,4 @@
+<!--
 <div class="login-body">
     <div class="card login-panel p-fluid">
         <div class="mt-4">
@@ -28,31 +29,28 @@
                     </div>
                 </div>
                 <div class="col-12 username-container">
-                    <!-- <h:panelGroup> -->
+
                     <label>Username</label>
                     <div class="login-input">
                         <input formControlName="userName" class="mb-2 mr-2" type="text" pInputText id="1" required
                             autofocus />
                     </div>
-                    <!-- </h:panelGroup> -->
+
                 </div>
                 <div class="col-12 username-container">
-                    <!-- <h:panelGroup> -->
                     <label>Email</label>
                     <div class="login-input">
                         <input formControlName="email" class="mb-2 mr-2" type="email" pInputText id="1" required
                             autofocus />
                     </div>
-                    <!-- </h:panelGroup> -->
                 </div>
 
                 <div class="col-12 password-container">
-                    <!-- <h:panelGroup> -->
                     <label>Password</label>
                     <div class="login-input">
                         <input formControlName="password" pPassword type="password" />
                     </div>
-                    <!-- </h:panelGroup> -->
+
                 </div>
 
 
@@ -64,3 +62,34 @@
         </div>
     </div>
 </div>
+-->
+
+<form action="#" class="sign-up-form" [formGroup]="registerForm">
+    <h2 class="title">Sign up</h2>
+    <div class="input-field">
+        <i class="pi pi-user"></i>
+        <input type="text" placeholder="First name" formControlName="firstName"/>
+    </div>
+    <div class="input-field">
+        <i class="pi pi-user"></i>
+        <input type="text" placeholder="Last Name" formControlName="lastName"/>
+    </div>
+    <div class="input-field">
+        <i class="pi pi-phone"></i>
+        <input type="text" placeholder="Phone" formControlName="phone"/>
+    </div>
+    <div class="input-field">
+        <i class="pi pi-user"></i>
+        <input type="text" placeholder="User Name" formControlName="username"/>
+    </div>
+    <div class="input-field">
+        <i class="pi pi-envelope"></i>
+        <input type="email" placeholder="Email" formControlName="email"/>
+    </div>
+    <div class="input-field">
+        <i class="pi pi-lock"></i>
+        <input type="password" placeholder="Password" formControlName="password"/>
+    </div>
+    <input type="submit" class="btn" value="Sign up" (click)="submit()"/>
+    <p class="social-text">Or Sign up with social platforms</p>
+</form>

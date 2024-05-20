@@ -281,3 +281,62 @@
         You don't have permission to access !
     </p>
 </p-card>
+<!--
+<main class="table" id="customers_table">
+    <section class="table__header">
+        <div class="buttons">
+            <button pButton class="new" icon="pi pi-plus" (click)="openCreate('Cours')" *ngIf="createActionIsValid">
+                <span class="button-label">{{ 'new' | translate }}</span>
+            </button>
+
+            <button pButton class="delete" icon="pi pi-trash" (click)="deleteMultiple()" *ngIf="deleteActionIsValid">
+                <span class="button-label">{{ 'delete' | translate }}</span>
+            </button>
+        </div>
+        <div class="input-group">
+            <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()">
+            <i class="pi pi-search"></i>
+        </div>
+        <div class="export__file">
+            <label for="export-file" class="export__file-btn" title="Export File"></label>
+            <input type="checkbox" id="export-file">
+            <div class="export__file-options">
+                <label>Export As &nbsp; &#10140;</label>
+                <label for="export-file" id="toPDF">PDF <i class="pi pi-image"></i></label>
+                <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
+                <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
+                <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
+            </div>
+        </div>
+    </section>
+    <section class="table__body">
+        <table>
+            <thead>
+            <tr>
+                <th> N° <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Cours <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Etat cours <span class="icon-arrow">&UpArrow;</span></th>
+                <th> N° section en cours<span class="icon-arrow">&UpArrow;</span></th>
+                <th> N° section finalise<span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cour of cours">
+
+                <td> {{cour.numeroOrder}} </td>
+                <td> {{cour.libelle}} </td>
+                <td> {{cour.libelle}} </td>
+                <td>
+                    <p class="status delivered">{{cour.nombreSectionEnCours}}</p>
+                </td>
+                <td>
+                    <p class="status cancelled">{{cour.nombreSectionFinalise}}</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
+
+-->
