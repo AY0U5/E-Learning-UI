@@ -9,6 +9,7 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { RegisterAdminComponent } from './register-admin/register-admin.component';
 import {PageComponent} from "./view/page/page.component";
 import {TablesComponent} from "./view/tables/tables.component";
+import {AboutComponent} from "./view/about/about.component";
 
 @NgModule({
     imports: [
@@ -45,6 +46,11 @@ import {TablesComponent} from "./view/tables/tables.component";
                         {
                             path: 'tables',
                             component: TablesComponent ,
+                            canActivate: [AuthGuard]
+                        },
+                        {
+                            path: 'about',
+                            component: AboutComponent ,
                             canActivate: [AuthGuard]
                         },
                         {

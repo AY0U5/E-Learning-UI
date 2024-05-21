@@ -87,6 +87,7 @@ import { PageComponent } from './view/page/page.component';
 import { TablesComponent } from './view/tables/tables.component';
 import { ContactComponent } from './view/contact/contact.component';
 import { AboutComponent } from './view/about/about.component';
+import { ServComponent } from './view/serv/serv.component';
 
 
 @NgModule({
@@ -98,6 +99,7 @@ import { AboutComponent } from './view/about/about.component';
    TablesComponent,
    ContactComponent,
    AboutComponent,
+   ServComponent,
   ],
     imports: [
         CommonModule,
