@@ -27,5 +27,13 @@ export class HomeComponent implements OnInit {
                 navbar.classList.remove('scrolled');
             }
         });
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("contact-link").addEventListener("click", function(event) {
+                event.preventDefault();
+                document.getElementById("contact").scrollIntoView({
+                    behavior: "smooth"
+                });
+            });
+        });
     }
 }

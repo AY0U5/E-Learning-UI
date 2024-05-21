@@ -1,7 +1,8 @@
+<!--
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div ><!--class="card"-->
+        <div >class="card"
             <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="d-flex align-items-center" style="display: flex; flex-direction: column;">
@@ -40,12 +41,12 @@
                                         [showClear]="true"  placeholder="{{'cours.etatCours' | translate}}" optionLabel="libelle">
                             </p-dropdown>
                         </div>
-                        <!--<div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
                             <label  class="font-bold block mb-2" for="6-2">{{'cours.parcours' | translate}}</label>
                             <p-dropdown [options]="parcourss" [(ngModel)]="criteria.parcours" id="6" [filter]="true" class="p-fluid"
                                         [showClear]="true"  placeholder="{{'cours.parcours' | translate}}" optionLabel="libelle">
                             </p-dropdown>
-                        </div>-->
+                        </div>
                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
                             <label  class="font-bold block mb-2" for="7-1">{{'cours.nombreSectionFinaliseMin' | translate}}</label>
                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionFinaliseMin" id="7-1"></p-inputNumber>
@@ -115,7 +116,7 @@
                         <!--<span class="p-input-icon-left ml-auto">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>-->
+                        </span>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -131,13 +132,13 @@
                                 <p-columnFilter type="text" field="element.code" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
--->
+
 
                         <th pSortableColumn="libelle">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'cours.libelle' | translate}}</span>
                                 <p-sortIcon field="libelle"></p-sortIcon>
-<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>-->
+<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
 
@@ -148,7 +149,7 @@
                                 <p-sortIcon field="image"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.image" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
-                        </th>-->
+                        </th>
 
 
                         <th pSortableColumn="etatCours">
@@ -164,7 +165,7 @@
                                 <span>{{'cours.parcours' | translate}}</span>
                                 <p-sortIcon field="parcours"></p-sortIcon>
                             </div>
-                        </th>-->
+                        </th>
 
 
                         <th pSortableColumn="nombreSectionFinalise">
@@ -205,7 +206,7 @@
                                 <p-sortIcon field="numeroOrder"></p-sortIcon>
                             </div>
                         </th>
-                                -->
+
 
                         <th pSortableColumn="nombreSection">
                             <div class="p-d-flex p-jc-between p-ai-center">
@@ -220,27 +221,27 @@
                     <tr >
                        <!-- <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>-->
+                        </td>
 
-                     <!--   <td>{{element.code}}</td>-->
+                     <!--   <td>{{element.code}}</td>
 
 
                         <td>{{element.libelle}}</td>
 
 
-                        <!--<td>{{element.image}}</td>-->
+                        <!--<td>{{element.image}}</td>
 
 
                         <td>{{element.etatCours?.libelle}}</td>
 
 
-                        <!--<td>{{element.parcours?.libelle}}</td>-->
+                        <!--<td>{{element.parcours?.libelle}}</td>
 
 
                         <td>{{element.nombreSectionFinalise}} / {{element.nombreSection}}</td>
 
 
-                        <!--<td>{{element.nombreSectionEnCours}}</td>-->
+                        <!--<td>{{element.nombreSectionEnCours}}</td>
 
                         <td>{{element.nombreSection}}</td>
                         <!--<td>{{element.nombreLinkEnCours}}</td>
@@ -250,7 +251,7 @@
 
                              <!--
                         <td>{{element.numeroOrder}}</td>
-                             -->
+
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
@@ -281,11 +282,12 @@
         You don't have permission to access !
     </p>
 </p-card>
-<!--
+-->
+<p-toast></p-toast>
 <main class="table" id="customers_table">
     <section class="table__header">
         <div class="buttons">
-            <button pButton class="new" icon="pi pi-plus" (click)="openCreate('Cours')" *ngIf="createActionIsValid">
+            <button pButton class="new" icon="pi pi-plus" [disabled]="!showCours" (click)="openCreate('Cours')" *ngIf="createActionIsValid">
                 <span class="button-label">{{ 'new' | translate }}</span>
             </button>
 
@@ -297,40 +299,28 @@
             <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()">
             <i class="pi pi-search"></i>
         </div>
-        <div class="export__file">
-            <label for="export-file" class="export__file-btn" title="Export File"></label>
-            <input type="checkbox" id="export-file">
-            <div class="export__file-options">
-                <label>Export As &nbsp; &#10140;</label>
-                <label for="export-file" id="toPDF">PDF <i class="pi pi-image"></i></label>
-                <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
-                <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
-                <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
-            </div>
-        </div>
     </section>
     <section class="table__body">
         <table>
             <thead>
             <tr>
-                <th> N° <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Cours <span class="icon-arrow">&UpArrow;</span></th>
                 <th> Etat cours <span class="icon-arrow">&UpArrow;</span></th>
-                <th> N° section en cours<span class="icon-arrow">&UpArrow;</span></th>
-                <th> N° section finalise<span class="icon-arrow">&UpArrow;</span></th>
+                <th> N° section<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Action<span class="icon-arrow">&UpArrow;</span></th>
             </tr>
             </thead>
-            <tbody>
-            <tr *ngFor="let cour of cours">
-
-                <td> {{cour.numeroOrder}} </td>
+            <tbody *ngIf="!showCours">
+            <tr  *ngFor="let cour of itemsCours; let i = index">
                 <td> {{cour.libelle}} </td>
-                <td> {{cour.libelle}} </td>
+                <td> {{cour.etatCours?.libelle}} </td>
                 <td>
-                    <p class="status delivered">{{cour.nombreSectionEnCours}}</p>
+                    <p class="status delivered">{{cour.nombreSection}}</p>
                 </td>
                 <td>
-                    <p class="status cancelled">{{cour.nombreSectionFinalise}}</p>
+                    <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(i)"  *ngIf="editActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteCours(i)"  *ngIf="deleteActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-warning mr-2"  (click)="viewSection(i)"></button>
                 </td>
             </tr>
             </tbody>
@@ -338,5 +328,6 @@
     </section>
 </main>
 <app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
+<app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
+<app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>
 
--->

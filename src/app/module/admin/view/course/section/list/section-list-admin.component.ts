@@ -17,7 +17,8 @@ import {EtatSectionAdminService} from "../../../../../../shared/service/admin/co
 
 @Component({
   selector: 'app-section-list-admin',
-  templateUrl: './section-list-admin.component.html'
+  templateUrl: './section-list-admin.component.html',
+    styleUrls:['./section-list-admin.component.css']
 })
 export class SectionListAdminComponent extends AbstractListController<SectionDto, SectionCriteria, SectionAdminService>  implements OnInit {
     //

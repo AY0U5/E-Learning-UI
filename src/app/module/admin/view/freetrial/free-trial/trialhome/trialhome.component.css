@@ -1,0 +1,48 @@
+.tit{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.trial{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #474747;
+    border-radius: 5px;
+    box-shadow: 0 5px rgba(35, 35, 35, 0.1);
+}
+
+.carta{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 3rem;
+}
+
+.apply {
+    border: none;
+    background: #FF752E;
+    padding: 12px 30px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    transition: 0.4s;
+    margin: 1rem 1rem;
+}
+.apply:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.bout{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 1rem;
+}
+p{
+    font-size: 1.2rem;
+}

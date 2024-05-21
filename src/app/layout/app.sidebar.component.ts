@@ -27,12 +27,12 @@ export class AppSidebarComponent implements OnInit {
                 {
                     label: 'Page',
                     icon: 'pi pi-home',
-                    routerLink: ['/app/admin/course/'],
+                    routerLink: ['/app/admin/page'],
                 },
                 {
                     label: 'create',
                     icon: 'pi pi-folder',
-                    routerLink: ['/app/admin/course/cours/list'],
+                    routerLink: ['/app/admin/tables'],
                 },
                 {
                     label: 'fill in',

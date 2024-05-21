@@ -1,0 +1,25 @@
+<section>
+    <h2 class="titl">Contact</h2>
+    <div class="flex flex-row">
+        <div class="col col-6">
+            <img src="assets/demo/images/access/contac.svg" alt="contact">
+        </div>
+        <div class="col col-6">
+            <form>
+                <label for="name">User name</label>
+                <input  id="name" type="text">
+                <label for="email">Email</label>
+                <input id="email" type="email">
+                <label for="subject">Subject</label>
+                <input id="subject" type="text">
+                <label for="message">Message</label>
+                <textarea id="message" style="height: 50px;"></textarea>
+                <div>
+                    <button (click)="sendMail()" class="mes">Send message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+

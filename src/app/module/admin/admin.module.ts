@@ -83,6 +83,10 @@ import {SecurityRoutingModule} from 'src/app/module/security/security-routing.mo
 import { HomeComponent } from './home/home.component';
 import {AppLayoutModule} from "../../layout/app.layout.module";
 import {AppModule} from "../../app.module";
+import { PageComponent } from './view/page/page.component';
+import { TablesComponent } from './view/tables/tables.component';
+import { ContactComponent } from './view/contact/contact.component';
+import { AboutComponent } from './view/about/about.component';
 
 
 @NgModule({
@@ -90,6 +94,10 @@ import {AppModule} from "../../app.module";
    LoginAdminComponent,
    RegisterAdminComponent,
    HomeComponent,
+   PageComponent,
+   TablesComponent,
+   ContactComponent,
+   AboutComponent,
   ],
     imports: [
         CommonModule,

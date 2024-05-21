@@ -9,13 +9,13 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="#">Cours</a>
-                </li>
-                <li>
                     <a href="#">Free Trial</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a id="contact-link" href="#contact">Contact</a>
+                </li>
+                <li>
+                    <a href="#">About us</a>
                 </li>
             </ul>
             <a class="button" type="button" href="admin/login">
@@ -27,17 +27,22 @@
     <div class="containe">
         <app-typewriter class="text"></app-typewriter>
     </div>
-    <div class="bouton">
+    <div class="boutton">
         <button class="button">Get Course</button>
     </div>
 </div>
 
 <div class="section">
-    <app-section-list-admin></app-section-list-admin>
-    <app-section-list-admin></app-section-list-admin>
-    <app-section-list-admin></app-section-list-admin>
-    <app-section-list-admin></app-section-list-admin>
-    <app-section-list-admin></app-section-list-admin>
-    <app-section-list-admin></app-section-list-admin>
+    <app-trialhome></app-trialhome>
 </div>
+
+<div class="section">
+    <app-about></app-about>
+</div>
+
+<div id="contact" class="section con">
+    <app-contact></app-contact>
+</div>
+
+
 

@@ -1,7 +1,8 @@
+<!--
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div ><!--class="card"-->
+        <div ><!--class="card"--
             <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="d-flex align-items-center" style="display: flex; flex-direction: column;">
@@ -121,7 +122,7 @@
                         <!--<span class="p-input-icon-left ml-auto">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>-->
+                        </span>--
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -137,13 +138,13 @@
                                 <p-columnFilter type="text" field="element.code" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
--->
+--
 
                         <th pSortableColumn="libelle">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.libelle' | translate}}</span>
                                 <p-sortIcon field="libelle"></p-sortIcon>
-<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>-->
+<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>--
                             </div>
                         </th>
 
@@ -249,7 +250,7 @@
                                 <p-sortIcon field="content"></p-sortIcon>
                             </div>
                         </th>
-                                -->
+                                --
                         <th pSortableColumn="etatSection">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'Etat' | translate}}</span>
@@ -265,7 +266,7 @@
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
                         </td>-->
 
-                       <!-- <td>{{element.code}}</td>-->
+                       <!-- <td>{{element.code}}</td>--
 
 
                         <td>{{element.libelle}}</td>
@@ -305,7 +306,7 @@
                              -->
                              <!--
                         <td>{{element.content}}</td>
-                             -->
+                             --
                         <td>{{element.etatSection?.libelle}}</td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
@@ -336,3 +337,49 @@
         You don't have permission to access !
     </p>
 </p-card>
+-->
+
+
+
+<main class="table" id="customers_table">
+    <section class="table__header">
+        <div class="buttons">
+            <button pButton class="new" icon="pi pi-plus" [disabled]="!showSection" (click)="openCreate()" *ngIf="createActionIsValid">
+                <span class="button-label">{{ 'new' | translate }}</span>
+            </button>
+
+            <button pButton class="delete" icon="pi pi-trash" (click)="deleteMultiple()" *ngIf="deleteActionIsValid">
+                <span class="button-label">{{ 'delete' | translate }}</span>
+            </button>
+        </div>
+        <div class="input-group">
+            <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()">
+            <i class="pi pi-search"></i>
+        </div>
+    </section>
+    <section class="table__body">
+        <table>
+            <thead>
+            <tr>
+                <th> Section <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Etat cours <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Action<span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+            </thead>
+            <tbody *ngIf="!showSection">
+            <tr  *ngFor="let cour of items; let i = index">
+                <td> {{cour.libelle}} </td>
+                <td> {{cour.etatSection?.libelle}} </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(cour)"  *ngIf="editActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(cour)"  *ngIf="deleteActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(cour)"   ></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
+<app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
+<app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>

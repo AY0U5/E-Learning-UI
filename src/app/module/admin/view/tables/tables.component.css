@@ -1,0 +1,4 @@
+.tableaux{
+    display: flex;
+    flex-direction: row;
+}

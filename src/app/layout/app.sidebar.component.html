@@ -10,7 +10,7 @@
     </div>
     <div class="navbar cont">
         <ul>
-            <li *ngFor="let data of modelAdmin">
+            <li *ngFor="let data of modelAdmin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="layout-menu-link" [routerLink]="data.routerLink">
                     <i [class]="data.icon"></i>
                     <span>{{data.label}}</span>

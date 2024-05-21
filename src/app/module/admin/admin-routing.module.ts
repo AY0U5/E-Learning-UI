@@ -7,6 +7,8 @@ import {AuthGuard} from 'src/app/zynerator/security/guards/auth.guard';
 
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { RegisterAdminComponent } from './register-admin/register-admin.component';
+import {PageComponent} from "./view/page/page.component";
+import {TablesComponent} from "./view/tables/tables.component";
 
 @NgModule({
     imports: [
@@ -34,6 +36,16 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
                                     canActivate: [AuthGuard]
                                 }
                               ]
+                        },
+                        {
+                            path: 'page',
+                            component: PageComponent ,
+                            canActivate: [AuthGuard]
+                        },
+                        {
+                            path: 'tables',
+                            component: TablesComponent ,
+                            canActivate: [AuthGuard]
                         },
                         {
                             path: 'quiz',
