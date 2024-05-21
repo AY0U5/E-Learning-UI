@@ -2,14 +2,31 @@
 <div class="flex">
     <div class="col col-9">
         <div class="flex">
-            <div class="flex justify-content-center">
+           <!-- <div class="flex justify-content-center">
                 <button pButton class="m-2 col col-1 mb-3" icon="pi pi-image" (click)="imageIsOk()"></button>
                 <button pButton class="m-2 col col-1 mb-3" icon="pi pi-video" (click)="videoIsOk()"></button>
                 <button pButton class="m-2 col col-1 mb-3" icon="pi pi-plus-circle" (click)="quizIsOk()"></button>
-            </div>
-            <button pButton class="col col-2 col-offset-8 mb-3" (click)="previewIsOk()" label="Preview"></button>
+            </div>-->
+<!--            <button pButton class="col col-2 col-offset-8 mb-3" (click)="previewIsOk()" label="Preview"></button>-->
+<!--            <button pButton class="col col-2 col-offset-8 mb-3" (click)="previewIsOk()" label="Preview"></button>-->
+
         </div>
-        <p-editor id="editeur" [(ngModel)]="item.contenu" [style]="{height: '30rem'}"></p-editor>
+        <app-preview-dialog></app-preview-dialog>
+        <!--<div>
+            <angular-editor [(ngModel)]="item.contenu" [config]="editorConfig"></angular-editor>
+            <button (click)="insertVideo()">Insert Video</button>
+            <button (click)="printContent()">Print</button>
+        </div>-->
+<!--                <p-editor id="editeur" [(ngModel)]="item.contenu" [style]="{height: '30rem'}"></p-editor>-->
+      <!--  <ckeditor [(ngModel)]="item.contenu" ></ckeditor>-->
+        <!--<div>
+            <ckeditor [(ngModel)]="item.contenu"></ckeditor>
+            <button pButton class="col col-2 col-offset-8 mb-3" (click)="previewIsOk()" label="Preview"></button>
+            <p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}" header="Preview">
+                <div [innerHTML]="item.contenu" class="content-preview"></div>
+            </p-dialog>
+        </div>-->
+
         <div class="flex mt-3">
             <button pButton (click)="saveContent()" class="col col-2 p-button-success" label="Save"></button>
             <button pButton (click)="prevCard()" class="col col-2 col-offset-5 p-button-danger" label="Previous"></button>
@@ -19,7 +36,7 @@
     <div class="col col-3 mt-8 catre-container">
         <div class="m-3 catre"
              *ngFor="let cat of sections; let i = index"
-             [ngStyle]="{'background-color': i === selectedCardIndex? 'rgba(246,161,255,0.49)' : 'white'}"
+             [ngStyle]="{'background-color': i === selectedCardIndex? 'rgb(252,141,93)' : 'white'}"
              (click)="selectCard(cat,i)">
             <span class="col col-2">{{cat.numeroOrder}}</span>
             <span class="col col-6">{{cat.categorieSection.libelle}}</span>
@@ -28,6 +45,12 @@
 </div>
 
 
+<!--<p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}">
+
+
+
+
+</p-dialog>-->
 
 <!-- ////////// Preview \\\\\\\\\ -->
 <p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}">
@@ -35,20 +58,22 @@
         <div class="col col-8 cont">
             <div id="htmlEditor" *ngFor="let cont of sections; let j=index">
                 <div class="flex flex-column" id="contentWithoutTags" *ngIf="j === selectedCardIndex">
-                    {{ stripHtmlTags(cont.contenu) }}
-                    <div>
+                    <!--                    {{ stripHtmlTags(cont.contenu) }}-->
+                    <div [innerHTML]="sanitizeHtml(cont.contenu)" ></div>
+                    <!--<div>
                         <img class="m-5 justify-content-center" *ngIf="cont.urlImage" src='{{cont.urlImage}}'/>
                     </div>
                     <div class="justify-content-center" *ngIf="cont.urlVideo">
                         <iframe width="500" height="400" [src]="getYouTubeEmbedUrl(cont.urlVideo)" frameborder="0" allowfullscreen></iframe>
-                    </div>
+                    </div>-->
+
                 </div>
             </div>
         </div>
         <div class="col col-4 catre-container">
             <div class="m-3 catre"
                  *ngFor="let cat of sections; let i = index"
-                 [ngStyle]="{'background-color': i === selectedCardIndex? 'rgba(246,161,255,0.49)' : 'white'}"
+                 [ngStyle]="{'background-color': i === selectedCardIndex? 'rgb(255,111,101)' : 'white'}"
                  (click)="selectCard(cat,i)">
                 <span class="col col-2">{{cat.numeroOrder}}</span>
                 <span class="col col-5">{{cat.categorieSection.libelle}}</span>
@@ -60,6 +85,36 @@
         </div>
     </div>
 </p-dialog>
+<!--<p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}">
+    <div class="flex">
+        <div class="col col-8 cont">
+            <div id="htmlEditor" *ngFor="let cont of sections; let j=index">
+                <div class="flex flex-column" id="contentWithoutTags" *ngIf="j === selectedCardIndex">
+&lt;!&ndash;                    {{ stripHtmlTags(cont.contenu) }}&ndash;&gt;
+                    &lt;!&ndash;<div>
+                        <img class="m-5 justify-content-center" *ngIf="cont.urlImage" src='{{cont.urlImage}}'/>
+                    </div>
+                    <div class="justify-content-center" *ngIf="cont.urlVideo">
+                        <iframe width="500" height="400" [src]="getYouTubeEmbedUrl(cont.urlVideo)" frameborder="0" allowfullscreen></iframe>
+                    </div>&ndash;&gt;
+                </div>
+            </div>
+        </div>
+        <div class="col col-4 catre-container">
+            <div class="m-3 catre"
+                 *ngFor="let cat of sections; let i = index"
+                 [ngStyle]="{'background-color': i === selectedCardIndex? 'rgb(255,111,101)' : 'white'}"
+                 (click)="selectCard(cat,i)">
+                <span class="col col-2">{{cat.numeroOrder}}</span>
+                <span class="col col-5">{{cat.categorieSection.libelle}}</span>
+            </div>
+            <div class="flex mt-3">
+                <button pButton (click)="prevCard()" class="col col-5 p-button-danger" label="Previous"></button>
+                <button pButton (click)="nextCard()" class="col col-5 col-offset-2 p-button-warning" label="Next"></button>
+            </div>
+        </div>
+    </div>
+</p-dialog>-->
 
 
 <!-- ////////// add image \\\\\\\\\ -->

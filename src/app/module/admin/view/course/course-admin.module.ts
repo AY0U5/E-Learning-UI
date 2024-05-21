@@ -59,6 +59,15 @@ import {SidebarModule} from "primeng/sidebar";
 import {ListboxModule} from "primeng/listbox";
 import {AccordionModule} from "primeng/accordion";
 import { RemplirComponent } from './remplir/remplir.component';
+import {AngularEditorConfig, AngularEditorModule} from "@kolkov/angular-editor";
+import {HttpClientModule} from "@angular/common/http";
+// import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import {CKEditorModule} from "ng2-ckeditor";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { PreviewDialogComponent } from './remplir/preview-dialog/preview-dialog.component';
+// import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+
+
 
 
 
@@ -81,7 +90,8 @@ import { RemplirComponent } from './remplir/remplir.component';
     SectionListAdminComponent,
     SectionViewAdminComponent,
     SectionEditAdminComponent,
-    RemplirComponent
+    RemplirComponent,
+    PreviewDialogComponent
   ],
     imports: [
         CommonModule,
@@ -124,6 +134,10 @@ import { RemplirComponent } from './remplir/remplir.component';
         SidebarModule,
         ListboxModule,
         AccordionModule,
+        AngularEditorModule,
+        HttpClientModule,
+        CKEditorModule,
+        CKEditorModule
 
     ],
   exports: [
@@ -145,4 +159,28 @@ import { RemplirComponent } from './remplir/remplir.component';
   SectionEditAdminComponent,
   ],
 })
-export class CourseAdminModule { }
+export class CourseAdminModule {
+
+    public Editor = ClassicEditor;
+    public editorConfig = {
+        toolbar: [
+            'heading', '|',
+            'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+            'outdent', 'indent', '|',
+            'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo'
+        ],
+        height: '30rem'
+    };
+
+    config: AngularEditorConfig = {
+        editable: true,
+        spellcheck: true,
+        height: '50rem',
+        minHeight: '5rem',
+        placeholder: 'Enter  here...',
+        translate: 'no',
+        defaultParagraphSeparator: 'p',
+        defaultFontName: 'Arial',
+
+    };
+}

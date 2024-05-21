@@ -54,6 +54,7 @@ import {AppLayoutComponent} from "./layout/app.layout.component";
 import {AdminModule} from './module/admin/admin.module';
 import {AdminRoutingModule} from './module/admin/admin-routing.module';
 import { TypewriterComponent } from './typewriter/typewriter.component';
+import {AngularEditorConfig, AngularEditorModule} from "@kolkov/angular-editor";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -90,8 +91,9 @@ imports: [
     ToastModule,
     FileUploadModule,
     SelectButtonModule,
+    AngularEditorModule,
 
-  AdminRoutingModule,
+    AdminRoutingModule,
 
   TranslateModule.forRoot({
   loader: {
@@ -124,6 +126,8 @@ bootstrap: [AppComponent],
     ]
 })
 export class AppModule{
+
+
   constructor(private injector: Injector) {
     ServiceLocator.injector = this.injector;
   }
