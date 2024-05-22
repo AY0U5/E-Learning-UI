@@ -149,5 +149,4 @@ export class QuizListAdminComponent extends AbstractListController<QuizDto, Quiz
       }
 
 
-
 }

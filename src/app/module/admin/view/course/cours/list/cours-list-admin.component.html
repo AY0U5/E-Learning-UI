@@ -296,7 +296,7 @@
             </button>
         </div>
         <div class="input-group">
-            <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()">
+            <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()" (input)="filterGlobal($event.target.value)">
             <i class="pi pi-search"></i>
         </div>
     </section>
@@ -310,17 +310,17 @@
                 <th> Action<span class="icon-arrow">&UpArrow;</span></th>
             </tr>
             </thead>
-            <tbody *ngIf="!showCours">
-            <tr  *ngFor="let cour of itemsCours; let i = index">
+            <tbody>
+            <tr  *ngFor="let cour of filteredItems; let i = index">
                 <td> {{cour.libelle}} </td>
                 <td> {{cour.etatCours?.libelle}} </td>
                 <td>
                     <p class="status delivered">{{cour.nombreSection}}</p>
                 </td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(i)"  *ngIf="editActionIsValid"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteCours(i)"  *ngIf="deleteActionIsValid"></button>
-                    <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-warning mr-2"  (click)="viewSection(i)"></button>
+                    <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(cour)"  *ngIf="editActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteCours(cour)"  *ngIf="deleteActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-warning mr-2"  (click)="viewSection(cour)"></button>
                 </td>
             </tr>
             </tbody>

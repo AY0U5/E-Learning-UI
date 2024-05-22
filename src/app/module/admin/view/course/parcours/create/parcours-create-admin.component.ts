@@ -45,9 +45,13 @@ import {NiveauEtudeDto} from 'src/app/shared/model/inscriptionref/NiveauEtude.mo
 import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionref/NiveauEtudeAdmin.service';
 import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/courseref/EtatParcoursAdmin.service";
 import {EtatParcoursDto} from "../../../../../../shared/model/courseref/EtatParcours.model";
+import {TranslatePipe} from "@ngx-translate/core";
 @Component({
   selector: 'app-parcours-create-admin',
-  templateUrl: './parcours-create-admin.component.html'
+  templateUrl: './parcours-create-admin.component.html',
+    providers:[
+    TranslatePipe
+]
 })
 export class ParcoursCreateAdminComponent extends AbstractCreateController<ParcoursDto, ParcoursCriteria, ParcoursAdminService>  implements OnInit {
 

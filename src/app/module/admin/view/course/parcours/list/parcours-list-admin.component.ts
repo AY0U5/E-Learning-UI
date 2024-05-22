@@ -43,9 +43,9 @@ import {TeacherLocalityDto} from 'src/app/shared/model/inscriptionref/TeacherLoc
 import {TeacherLocalityAdminService} from 'src/app/shared/service/admin/inscriptionref/TeacherLocalityAdmin.service';
 import {NiveauEtudeDto} from 'src/app/shared/model/inscriptionref/NiveauEtude.model';
 import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionref/NiveauEtudeAdmin.service';
-import * as events from "events";
 import {EtatParcoursDto} from "../../../../../../shared/model/courseref/EtatParcours.model";
 import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/courseref/EtatParcoursAdmin.service";
+import {TranslatePipe} from "@ngx-translate/core";
 
 
 @Component({
@@ -55,6 +55,27 @@ import {EtatParcoursAdminService} from "../../../../../../shared/service/admin/c
     styleUrls : ['./parcours-list-admin.component.css']
 })
 export class ParcoursListAdminComponent extends AbstractListController<ParcoursDto, ParcoursCriteria, ParcoursAdminService>  implements OnInit {
+
+    // Filtered list of items
+    filteredItems: ParcoursDto[] = [];
+    data: ParcoursDto[] = [];
+
+
+    filterGlobal(searchTerm: string) {
+        if (!searchTerm) {
+            this.filteredItems = [...this.items];
+            return;
+        }
+
+        searchTerm = searchTerm.toLowerCase();
+
+        this.filteredItems = this.items.filter(item =>
+            Object.values(item).some(value =>
+                value.toString().toLowerCase().includes(searchTerm)
+            )
+        );
+    }
+
 
     //
     get showCours(): boolean {
@@ -72,10 +93,6 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
         this.sectionAdminService.showSection = value;
     }
 
-    //
-
-
-    //
     get itemsCours(): Array<CoursDto> {
         return this.coursService.itemsCours;
     }
@@ -155,7 +172,11 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
 
             }
         });
-
+        this.parcoursService.findAll().subscribe((data: ParcoursDto[]) => {
+            this.data = data;
+            // Initialize filteredItems with the same data as items
+            this.filteredItems = [...this.data];
+        });
     }
 
 

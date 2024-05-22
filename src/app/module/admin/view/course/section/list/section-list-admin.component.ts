@@ -13,14 +13,37 @@ import {SectionItemDto} from 'src/app/shared/model/course/SectionItem.model';
 import {SectionItemAdminService} from 'src/app/shared/service/admin/course/SectionItemAdmin.service';
 import {EtatSectionDto} from "../../../../../../shared/model/courseref/EtatSection.model";
 import {EtatSectionAdminService} from "../../../../../../shared/service/admin/courseref/EtatSectionAdmin.service";
+import {TranslatePipe} from "@ngx-translate/core";
+import {ParcoursDto} from "../../../../../../shared/model/course/Parcours.model";
 
 
 @Component({
   selector: 'app-section-list-admin',
   templateUrl: './section-list-admin.component.html',
-    styleUrls:['./section-list-admin.component.css']
+    styleUrls:['./section-list-admin.component.css'],
+    providers: [TranslatePipe]
 })
 export class SectionListAdminComponent extends AbstractListController<SectionDto, SectionCriteria, SectionAdminService>  implements OnInit {
+
+
+    filteredItems: SectionDto[] = [];
+    data: SectionDto[] = [];
+
+
+    filterGlobal(searchTerm: string) {
+        if (!searchTerm) {
+            this.filteredItems = [...this.items];
+            return;
+        }
+
+        searchTerm = searchTerm.toLowerCase();
+
+        this.filteredItems = this.items.filter(item =>
+            Object.values(item).some(value =>
+                value.toString().toLowerCase().includes(searchTerm)
+            )
+        );
+    }
     //
 
     get showSection(): boolean {
@@ -109,6 +132,11 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
                 this.loadEtatSection();
                 this.findPaginatedByCriteriaSection();
             }
+        });
+        this.sectionService.findAll().subscribe((data: SectionDto[]) => {
+            this.data = data;
+            // Initialize filteredItems with the same data as items
+            this.filteredItems = [...this.data];
         });
     }
 

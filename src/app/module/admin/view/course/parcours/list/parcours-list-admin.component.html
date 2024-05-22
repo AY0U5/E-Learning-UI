@@ -252,11 +252,11 @@
 
 
 
-
+<p-toast></p-toast>
 <main class="table" id="customers_table">
     <section class="table__header">
         <div class="buttons">
-            <button pButton class="new" icon="pi pi-plus" (click)="openCreate()" *ngIf="createActionIsValid">
+            <button pButton class="new" icon="pi pi-plus" (click)="openCreate('parcours')" *ngIf="createActionIsValid">
                 <span class="button-label">{{ 'new' | translate }}</span>
             </button>
 
@@ -264,8 +264,8 @@
                 <span class="button-label">{{ 'delete' | translate }}</span>
             </button>
         </div>
-        <div class="input-group">
-            <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()">
+        <div #dt class="input-group">
+            <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()" (input)="filterGlobal($event.target.value)">
             <i class="pi pi-search"></i>
         </div>
     </section>
@@ -279,8 +279,8 @@
                 <th> Action<span class="icon-arrow">&UpArrow;</span></th>
             </tr>
             </thead>
-            <tbody *ngIf="!showCours">
-            <tr  *ngFor="let cour of items; let i = index">
+            <tbody>
+            <tr *ngFor="let cour of filteredItems; let i = index">
                 <td> {{cour.libelle}} </td>
                 <td> {{cour.etatParcours?.libelle}} </td>
                 <td>
@@ -296,6 +296,6 @@
         </table>
     </section>
 </main>
-<app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
-<app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
-<app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>
+<app-parcours-create-admin  *ngIf="createDialog"></app-parcours-create-admin>
+<app-parcours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-parcours-edit-admin>
+<app-parcours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-parcours-view-admin>

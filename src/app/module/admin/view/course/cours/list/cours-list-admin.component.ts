@@ -33,7 +33,23 @@ import {TranslatePipe} from "@ngx-translate/core";
 })
 export class CoursListAdminComponent extends AbstractListController<CoursDto, CoursCriteria, CoursAdminService>  implements OnInit {
 
+    filteredItems: CoursDto[] = [];
 
+
+    filterGlobal(searchTerm: string) {
+        if (!searchTerm) {
+            this.filteredItems = [...this.itemsCours];
+            return;
+        }
+
+        searchTerm = searchTerm.toLowerCase();
+
+        this.filteredItems = this.itemsCours.filter(item =>
+            Object.values(item).some(value =>
+                value.toString().toLowerCase().includes(searchTerm)
+            )
+        );
+    }
 
     //
     get showSection(): boolean {
@@ -155,7 +171,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
         this.service.itemsCours = value;
     }
     get itemsCours():  Array<CoursDto> {
-        return this.service.itemsCours;
+        return  this.service.itemsCours;
     }
 
 
@@ -217,6 +233,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             }
         });
         this.findAllCours()
+        this.filteredItems = this.itemsCours
     }
 
 

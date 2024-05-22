@@ -32,6 +32,7 @@
 
 .flex-container {
     display: flex;
+    flex-direction: row;
 }
 
 .left-container {
@@ -44,6 +45,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .button-container {
@@ -74,7 +76,7 @@
 
 
 .with-border:focus-within::after {
-    background-color: orange;
+    background-color: #555555;
 }
 
 .with-borderR {
@@ -214,3 +216,15 @@
     height: 400px;
     object-fit: cover;
 }
+.conn{
+    width: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iinp{
+    font-size: 1.2rem;
+    border: 0;
+}
+

@@ -25,30 +25,30 @@
  -->
         <div class="flex-container">
             <div class="left-container">
-                <div class="mb-4 shadow-2 hover:shadow-5">
-                    <p-card [style]="{ 'border-top': '10px solid #ff725e' , 'border-left': '8px solid #FC965DFF'}" class="max-w-full">
+                <div class="mb-4 connn">
+                    <p-card  [style]="{width: '100%'}">
                         <div *ngIf="!this.addquiz" class="formgrid grid">
                             <div class="field col-12 with-border">
                                 <input id="quizLabel" type="text" placeholder="Quiz Label"
-                                       [(ngModel)]="item.lib"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                                       [(ngModel)]="item.lib"   class="iiiinp surface-overlay p-2 border-0 outline-none w-full">
                             </div>
 
-                            <div class="field col-12 md:col-6 with-borders">
+                            <div class="field col-12 md:col-6 with-border">
                                 <!--<label for="ref">Ref</label>
                                 <input id="ref" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">-->
                                 <input id="ref" type="text" placeholder="Ref"
-                                       [(ngModel)]="item.ref"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                                       [(ngModel)]="item.ref"   class="iiiinp surface-overlay p-2 border-0 outline-none w-full">
                             </div>
 
-                            <div class="field col-12 md:col-6 with-borders">
+                            <div class="field col-12 md:col-6 with-border">
                                 <input id="numero" type="text" placeholder="Numero"
-                                       [(ngModel)]="item.numero"    class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                                       [(ngModel)]="item.numero"    class="iiiinp surface-overlay p-2 outline-none w-full">
                             </div>
 
                             <div class="field col-12 md:col-6 with-border">
                                 <div >
                                     <p-dropdown appendTo="body" [options]="sections" [(ngModel)]="item.section" id="quizsection" [filter]="true" filterMatchMode="contains"
-                                                [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
+                                                [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '1.2rem'}"
                                                 [showClear]="true" optionLabel="code" placeholder="{{ 'quiz.section' | translate }}"
                                               >
                                     </p-dropdown>
@@ -56,13 +56,9 @@
                             </div>
 
 
-
-
-
-
-                            <div class="field col-12 md:col-6 with-borderR">
-                                <input id="seuilReussite" type="text" placeholder="Seui de Reussite"
-                                       [(ngModel)]="item.seuilReussite"    class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                            <div class="field col-12 md:col-6 with-border">
+                                <input id="seuilReussite" type="text" placeholder="Seuil de Reussite"
+                                       [(ngModel)]="item.seuilReussite"    class="iiiinp surface-overlay p-2 border-0 outline-none w-full">
                             </div>
 
                                 <div class="field col-12">
@@ -70,20 +66,14 @@
                                 </div>
 
                         </div>
-                    <!--    <div  class="field col-12 md:col-6 with-border ">
-
-                        </div>
-                        <div class="field col-12 md:col-6"></div>-->
 
                         <div *ngIf="this.addquiz" class="formgrid grid">
                             <div class="field col-12 with-border">
                                 <input id="quizshow" type="text" placeholder="Quiz Label"
-                                       [ngModel]="itemQuizShow.lib"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                                       [ngModel]="itemQuizShow.lib"   class="iiiinp surface-overlay p-2 border-0 outline-none w-full" readonly>
                             </div>
                         </div>
                     </p-card>
-
-
                 </div>
 
                 <app-question-list-admin *ngIf="showqst"></app-question-list-admin>
@@ -97,12 +87,7 @@
                         <div class="button-row">
 <!--                            <span class="icon-button pi pi-plus" style="font-size: 1.5rem" (click)="foraddQuestion()" ></span>-->
                             <app-quiz-create-admin></app-quiz-create-admin>
-
                         </div>
-                        <!--<div class="button-row">
-                            <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
-                        </div>-->
-
                     </div>
                 </div>
 
