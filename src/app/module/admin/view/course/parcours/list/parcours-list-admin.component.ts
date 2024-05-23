@@ -177,6 +177,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
             // Initialize filteredItems with the same data as items
             this.filteredItems = [...this.data];
         });
+
     }
 
 

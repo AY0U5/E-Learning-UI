@@ -273,10 +273,10 @@
         <table>
             <thead>
             <tr>
-                <th> Parcours <span class="icon-arrow">&UpArrow;</span></th>
-                <th> Etat cours <span class="icon-arrow">&UpArrow;</span></th>
-                <th> N° Cours<span class="icon-arrow">&UpArrow;</span></th>
-                <th> Action<span class="icon-arrow">&UpArrow;</span></th>
+                <th> Parcours</th>
+                <th> Etat cours</th>
+                <th> N° Cours</th>
+                <th> Action</th>
             </tr>
             </thead>
             <tbody>
@@ -299,3 +299,4 @@
 <app-parcours-create-admin  *ngIf="createDialog"></app-parcours-create-admin>
 <app-parcours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-parcours-edit-admin>
 <app-parcours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-parcours-view-admin>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

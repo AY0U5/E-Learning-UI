@@ -118,3 +118,8 @@
 .icon-container {
     margin-left: 1rem; /* Ajoute un espace entre l'input et l'icône plus */
 }
+
+.iiinp{
+    font-size: 1.2rem;
+    border: 0;
+}

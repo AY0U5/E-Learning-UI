@@ -36,7 +36,7 @@ import {AboutComponent} from "./view/about/about.component";
                                     component: RegisterAdminComponent ,
                                     canActivate: [AuthGuard]
                                 }
-                              ]
+                            ]
                         },
                         {
                             path: 'page',

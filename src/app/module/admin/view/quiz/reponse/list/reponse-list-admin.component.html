@@ -1,166 +1,166 @@
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-       <!-- <div class="card">
-            <p-toolbar styleClass="mb-4">
-                <ng-template pTemplate="left">
-                                        <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Reponse')" *ngIf="createActionIsValid"></button>
-                    <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
-                    <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
-                </ng-template>
-                <ng-template pTemplate="right">
-                    <div class="flex">
-                        <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
-                    </div>
-                </ng-template>
+        <!-- <div class="card">
+             <p-toolbar styleClass="mb-4">
+                 <ng-template pTemplate="left">
+                                         <button pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button-info mr-2 mb-2" (click)="openCreate('Reponse')" *ngIf="createActionIsValid"></button>
+                     <button [disabled]="isSelectionDisabled()" pButton pRipple label=" {{'delete' | translate}}" icon="pi pi-trash" class="p-button-danger mr-2 mb-2" (click)=deleteMultiple()  *ngIf="deleteActionIsValid"></button>
+                     <button pButton pRipple label=" {{'search' | translate}}" icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}" class="p-button-secondary mr-2 mb-2" (click)="this.showSearch()"></button>
+                 </ng-template>
+                 <ng-template pTemplate="right">
+                     <div class="flex">
+                         <p-splitButton label=" {{'export' | translate}}" icon="pi pi-download" styleClass="p-button-secondary" [model]="excelPdfButons"></p-splitButton>
+                     </div>
+                 </ng-template>
 
-            </p-toolbar>
-            <p-toolbar *ngIf="findByCriteriaShow">
+             </p-toolbar>
+             <p-toolbar *ngIf="findByCriteriaShow">
 
-                <div class="col-12">
-                    <div class="flex flex-wrap p-fluid col-12">
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="1">{{'reponse.ref' | translate}}</label>
-                            <input  class="w-full"  pInputText id="1" type="text"  [(ngModel)]="criteria.refLike">
-                        </div>
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="2">{{'reponse.lib' | translate}}</label>
-                            <input  class="w-full"  pInputText id="2" type="text"  [(ngModel)]="criteria.libLike">
-                        </div>
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="3">{{'reponse.etatReponse' | translate}}</label>
-                            <input  class="w-full"  pInputText id="3" type="text"  [(ngModel)]="criteria.etatReponseLike">
-                        </div>
+                 <div class="col-12">
+                     <div class="flex flex-wrap p-fluid col-12">
                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="4-1">{{'reponse.numeroMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroMin" id="4-1"></p-inputNumber>
-                        </div>
+                             <label  class="font-bold block mb-2" for="1">{{'reponse.ref' | translate}}</label>
+                             <input  class="w-full"  pInputText id="1" type="text"  [(ngModel)]="criteria.refLike">
+                         </div>
                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="4-2">{{'reponse.numeroMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroMax" id="4-2"></p-inputNumber>
-                       </div>
+                             <label  class="font-bold block mb-2" for="2">{{'reponse.lib' | translate}}</label>
+                             <input  class="w-full"  pInputText id="2" type="text"  [(ngModel)]="criteria.libLike">
+                         </div>
                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="5-2">{{'reponse.question' | translate}}</label>
-                            <p-dropdown [options]="questions" [(ngModel)]="criteria.question" id="5" [filter]="true" class="p-fluid"
-                                        [showClear]="true"  placeholder="{{'reponse.question' | translate}}" optionLabel="libelle">
-                            </p-dropdown>
+                             <label  class="font-bold block mb-2" for="3">{{'reponse.etatReponse' | translate}}</label>
+                             <input  class="w-full"  pInputText id="3" type="text"  [(ngModel)]="criteria.etatReponseLike">
+                         </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="4-1">{{'reponse.numeroMin' | translate}}</label>
+                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroMin" id="4-1"></p-inputNumber>
+                         </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="4-2">{{'reponse.numeroMax' | translate}}</label>
+                             <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroMax" id="4-2"></p-inputNumber>
                         </div>
-                    </div>
-                    <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
-                        <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
-                    </div>
-                </div>
+                         <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+                             <label  class="font-bold block mb-2" for="5-2">{{'reponse.question' | translate}}</label>
+                             <p-dropdown [options]="questions" [(ngModel)]="criteria.question" id="5" [filter]="true" class="p-fluid"
+                                         [showClear]="true"  placeholder="{{'reponse.question' | translate}}" optionLabel="libelle">
+                             </p-dropdown>
+                         </div>
+                     </div>
+                     <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
+                         <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
+                     </div>
+                 </div>
 
 
-            </p-toolbar>
+             </p-toolbar>
 
 
-            <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['ref', 'lib', 'etatReponse', 'numero', 'questionlibelle']" [(selection)]="selections"
-                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
-                    currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
-                    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column flex-row justify-content-between table-header">
-                        <h5 class="p-m-0">{{'reponse.header' | translate}}</h5>
-                        <span class="p-input-icon-left ml-auto">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
+             <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="false"
+                     [globalFilterFields]="['ref', 'lib', 'etatReponse', 'numero', 'questionlibelle']" [(selection)]="selections"
+                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                     currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
+                     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
+                 <ng-template pTemplate="caption">
+                     <div class="flex flex-column flex-row justify-content-between table-header">
+                         <h5 class="p-m-0">{{'reponse.header' | translate}}</h5>
+                         <span class="p-input-icon-left ml-auto">
+                             <i class="pi pi-search"></i>
+                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                         </span>
+                     </div>
+                 </ng-template>
+                 <ng-template pTemplate="header">
+                     <tr>
+                         <th style="width: 3rem">
+                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                         </th>
 
-                        <th pSortableColumn="ref">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'reponse.ref' | translate}}</span>
-                                <p-sortIcon field="ref"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.ref" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
-
-
-                        <th pSortableColumn="lib">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'reponse.lib' | translate}}</span>
-                                <p-sortIcon field="lib"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.lib" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
+                         <th pSortableColumn="ref">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'reponse.ref' | translate}}</span>
+                                 <p-sortIcon field="ref"></p-sortIcon>
+                                 <p-columnFilter type="text" field="element.ref" display="menu" class="ml-auto"></p-columnFilter>
+                             </div>
+                         </th>
 
 
-                        <th pSortableColumn="etatReponse">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'reponse.etatReponse' | translate}}</span>
-                                <p-sortIcon field="etatReponse"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.etatReponse" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
+                         <th pSortableColumn="lib">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'reponse.lib' | translate}}</span>
+                                 <p-sortIcon field="lib"></p-sortIcon>
+                                 <p-columnFilter type="text" field="element.lib" display="menu" class="ml-auto"></p-columnFilter>
+                             </div>
+                         </th>
 
 
-                        <th pSortableColumn="numero">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'reponse.numero' | translate}}</span>
-                                <p-sortIcon field="numero"></p-sortIcon>
-                            </div>
-                        </th>
+                         <th pSortableColumn="etatReponse">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'reponse.etatReponse' | translate}}</span>
+                                 <p-sortIcon field="etatReponse"></p-sortIcon>
+                                 <p-columnFilter type="text" field="element.etatReponse" display="menu" class="ml-auto"></p-columnFilter>
+                             </div>
+                         </th>
 
 
-                        <th pSortableColumn="question">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'reponse.question' | translate}}</span>
-                                <p-sortIcon field="question"></p-sortIcon>
-                            </div>
-                        </th>
-
-                        <th>Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-element>
-                    <tr>
-                        <td>
-                            <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>
-
-                        <td>{{element.ref}}</td>
+                         <th pSortableColumn="numero">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'reponse.numero' | translate}}</span>
+                                 <p-sortIcon field="numero"></p-sortIcon>
+                             </div>
+                         </th>
 
 
-                        <td>{{element.lib}}</td>
+                         <th pSortableColumn="question">
+                             <div class="p-d-flex p-jc-between p-ai-center">
+                                 <span>{{'reponse.question' | translate}}</span>
+                                 <p-sortIcon field="question"></p-sortIcon>
+                             </div>
+                         </th>
+
+                         <th>Actions</th>
+                     </tr>
+                 </ng-template>
+                 <ng-template pTemplate="body" let-element>
+                     <tr>
+                         <td>
+                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
+                         </td>
+
+                         <td>{{element.ref}}</td>
 
 
-                        <td>{{element.etatReponse}}</td>
+                         <td>{{element.lib}}</td>
 
 
-                        <td>{{element.numero}}</td>
+                         <td>{{element.etatReponse}}</td>
 
 
-                        <td>{{element.question?.libelle}}</td>
+                         <td>{{element.numero}}</td>
 
-                        <td>
-                            <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)"  *ngIf="deleteActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>
-                        </td>
-                    </tr>
-                </ng-template>
 
-                <ng-template pTemplate="summary">
-                    <p-paginator  [rows]="10" [totalRecords]="totalRecords" (onPageChange)="onPage($event)"></p-paginator>
-                    <div class="p-d-flex p-ai-center p-jc-between">
-                        En totale il {{items ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{items ? totalRecords : 0 }} {{items ? totalRecords == 1 ? 'reponse' : 'reponses' : 0 }}.
-                    </div>
-                </ng-template>
-            </p-table>
-        </div>-->
+                         <td>{{element.question?.libelle}}</td>
+
+                         <td>
+                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
+                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
+                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)"  *ngIf="deleteActionIsValid"></button>
+                             <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="duplicate(element)"  *ngIf="duplicateActionIsValid"></button>
+                         </td>
+                     </tr>
+                 </ng-template>
+
+                 <ng-template pTemplate="summary">
+                     <p-paginator  [rows]="10" [totalRecords]="totalRecords" (onPageChange)="onPage($event)"></p-paginator>
+                     <div class="p-d-flex p-ai-center p-jc-between">
+                         En totale il {{items ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{items ? totalRecords : 0 }} {{items ? totalRecords == 1 ? 'reponse' : 'reponses' : 0 }}.
+                     </div>
+                 </ng-template>
+             </p-table>
+         </div>-->
 
         <div *ngIf="this.reponseCourte"  class="with-borderM">
             <input id="reponsecourte" type="text" placeholder="Reponse Courte"
-                   [(ngModel)]="itemReponse.lib"   class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                   [(ngModel)]="itemReponse.lib"   class="iiinp surface-overlay p-2 border-0 outline-none w-full" readonly>
         </div>
         <div *ngIf="this.paragraphe" class="with-borderM" >
             <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="itemReponse.lib"
@@ -193,7 +193,7 @@
             </div>
 
         </div>
-<!--<div *ngFor="let c of divs">-->
+        <!--<div *ngFor="let c of divs">-->
 
         <div *ngIf="choixMultiple" class="reponse-container">
             <div *ngFor="let c of itemsRepForQuest" class="reponse">

@@ -89,7 +89,6 @@ import { ContactComponent } from './view/contact/contact.component';
 import { AboutComponent } from './view/about/about.component';
 import { ServComponent } from './view/serv/serv.component';
 
-
 @NgModule({
   declarations: [
    LoginAdminComponent,
