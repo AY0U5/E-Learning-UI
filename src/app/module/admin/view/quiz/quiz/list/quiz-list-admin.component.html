@@ -79,7 +79,7 @@
                 <app-question-list-admin *ngIf="showqst"></app-question-list-admin>
             </div>
 
-            <div class="right-container">
+            <div *ngIf="!this.addquiz" class="right-container">
 
 
                 <div class="button-container shadow-2 hover:shadow-5">
