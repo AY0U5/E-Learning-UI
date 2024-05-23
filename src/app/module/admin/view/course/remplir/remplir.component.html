@@ -2,12 +2,7 @@
 <div class="flex">
     <div class="col col-9">
         <div class="flex">
-            <div class="flex justify-content-center">
-                <button pButton class="m-2 col col-1 mb-3" icon="pi pi-image" (click)="imageIsOk()"></button>
-                <button pButton class="m-2 col col-1 mb-3" icon="pi pi-video" (click)="videoIsOk()"></button>
-                <button pButton class="m-2 col col-1 mb-3" icon="pi pi-plus-circle" (click)="quizIsOk()"></button>
-            </div>
-            <button pButton class="col col-2 col-offset-8 mb-3" (click)="previewIsOk()" label="Preview"></button>
+            <button pButton class="col col-2 col-offset-10 mb-3" (click)="previewIsOk()" label="Preview"></button>
         </div>
         <p-editor id="editeur" [(ngModel)]="item.contenu" [style]="{height: '30rem'}"></p-editor>
         <div class="flex mt-3">
@@ -36,12 +31,6 @@
             <div id="htmlEditor" *ngFor="let cont of sections; let j=index">
                 <div class="flex flex-column" id="contentWithoutTags" *ngIf="j === selectedCardIndex">
                     {{ stripHtmlTags(cont.contenu) }}
-                    <div>
-                        <img class="m-5 justify-content-center" *ngIf="cont.urlImage" src='{{cont.urlImage}}'/>
-                    </div>
-                    <div class="justify-content-center" *ngIf="cont.urlVideo">
-                        <iframe width="500" height="400" [src]="getYouTubeEmbedUrl(cont.urlVideo)" frameborder="0" allowfullscreen></iframe>
-                    </div>
                 </div>
             </div>
         </div>
