@@ -75,23 +75,21 @@
                 </p-card>
             </div>
         </div>
-        <div class="left-container">
-            <div class="flex-container conn">
+        <div class="left-container flex flex-row">
+            <div class="flex-container conn col col-10">
                 <div class="mb-4">
                     <p-card [style]="{width: '100%'}">
-
                         <div class="formgrid grid">
-                            <div class="field col-12 md:col-10 with-border">
+                            <div class="field col-12 md:col-6 with-border">
                                 <input type="text" placeholder="Question ?"
                                        [(ngModel)]="item.libelle"
-                                   name="quizTitle"    class="iinp surface-overlay p-2 border-0 outline-none w-full">
+                                       name="quizTitle"    class="iinp surface-overlay p-2 border-0 outline-none w-full">
                             </div>
+                                <!--   <div class="field col-12 md:col-2">
+                                       <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
+                                   </div>-->
 
-                            <!--   <div class="field col-12 md:col-2">
-                                   <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
-                               </div>-->
-
-                            <div class="field col-12 md:col-2">
+                            <div class="field col-12 md:col-4">
                                 <p-splitButton label="État Réponse"
                                                styleClass="p-button-text p-button-secondary mr-0 mb-2"
                                                [model]="this.typeReponse"
@@ -100,48 +98,47 @@
                                 </p-splitButton>
                             </div>
                             <div class="field col-12 md:col-6 with-borders">
-
-                                <input id="ref" type="text" placeholder="Ref"
-                                       [(ngModel)]="item.ref"
-                                       class="iinp surface-overlay p-2 border-0 outline-none w-full">
-                            </div>
-
-                            <div class="field col-12 md:col-6 with-border mb-3">
-                                <div>
-                                    <p-dropdown appendTo="body" [options]="typeDeQuestions"
-                                                [(ngModel)]="item.typeDeQuestion" id="typeDeQuestions"
-                                                [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
-                                                [showClear]="true" optionLabel="lib" placeholder="type De Question">
-                                    </p-dropdown>
+                                    <input id="ref" type="text" placeholder="Ref"
+                                           [(ngModel)]="item.ref"
+                                           class="iinp surface-overlay p-2 border-0 outline-none w-full">
                                 </div>
+
+                                <div class="field col-12 md:col-6 with-border mb-3">
+                                    <div>
+                                        <p-dropdown appendTo="body" [options]="typeDeQuestions"
+                                                    [(ngModel)]="item.typeDeQuestion" id="typeDeQuestions"
+                                                    [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '2.5rem' , 'font-weight': 'bold' }"
+                                                    [showClear]="true" optionLabel="lib" placeholder="type De Question">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="marge field col-12 ">
+                                    <app-reponse-list-admin></app-reponse-list-admin>
+                                </div>
+
+
                             </div>
-                            <div class="marge field col-12 ">
-                                <app-reponse-list-admin></app-reponse-list-admin>
-                            </div>
-
-
-                        </div>
-                    </p-card>
-                </div>
-            </div>
-
-            <div class="right-container">
-                <div class="button-container shadow-2 hover:shadow-5">
-                    <div class="button-group">
-                        <div class="button-row">
-                            <app-question-create-admin></app-question-create-admin>
-                        </div>
-                        <div class="button-row">
-                            <span (click)="addImage()" class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
-                        </div>
-                        <div  class="button-row">
-                            <span (click)="addvideo()" class="icon-button pi pi-video" style="font-size: 1.5rem"></span>
-                        </div>
+                        </p-card>
                     </div>
                 </div>
 
+                <div class="right-container col col-2">
+                    <div class="button-container">
+                        <div class="button-group">
+                            <div class="button-row">
+                                <app-question-create-admin></app-question-create-admin>
+                            </div>
+                            <div class="button-row">
+                                <span (click)="addImage()" class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
+                            </div>
+                            <div  class="button-row">
+                                <span (click)="addvideo()" class="icon-button pi pi-video" style="font-size: 1.5rem"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
     </div>
 </div>
 
