@@ -1,288 +1,4 @@
-<!--
-<div class="grid"  *ngIf="listActionIsValid">
-    <div class="col-12">
-        <p-toast></p-toast>
-        <div >class="card"
-            <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
-                <ng-template pTemplate="left">
-                    <div class="d-flex align-items-center" style="display: flex; flex-direction: column;">
-                        <button  [style]="{'background-color': '#ff725e'}" [disabled]="!showCours" pButton pRipple label=" {{'new' | translate}}" icon="pi pi-plus" class="p-button mr-2 mb-2 bouton" (click)="openCreate('Cours')" *ngIf="createActionIsValid"></button>
-                        <small class='p-error' *ngIf='!showCours'>Sélectionner un parcours.</small>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="right">
-                <span  [style]="{'margin-top':'0px'  }" class="p-input-icon-left ml-auto">
-                            <i class="pi pi-search"></i>
-                            <input [style]="{'background-color': 'white' , 'width' :'130px'}" pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>
-                </ng-template>
 
-
-            </p-toolbar>
-            <p-toolbar *ngIf="findByCriteriaShow">
-
-                <div class="col-12">
-                    <div class="flex flex-wrap p-fluid col-12">
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="1">{{'cours.code' | translate}}</label>
-                            <input  class="w-full"  pInputText id="1" type="text"  [(ngModel)]="criteria.codeLike">
-                        </div>
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="2">{{'cours.libelle' | translate}}</label>
-                            <input  class="w-full"  pInputText id="2" type="text"  [(ngModel)]="criteria.libelleLike">
-                        </div>
-                       <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="4">{{'cours.image' | translate}}</label>
-                            <input  class="w-full"  pInputText id="4" type="text"  [(ngModel)]="criteria.imageLike">
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="5-2">{{'cours.etatCours' | translate}}</label>
-                            <p-dropdown [options]="etatCourss" [(ngModel)]="criteria.etatCours" id="5" [filter]="true" class="p-fluid"
-                                        [showClear]="true"  placeholder="{{'cours.etatCours' | translate}}" optionLabel="libelle">
-                            </p-dropdown>
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="6-2">{{'cours.parcours' | translate}}</label>
-                            <p-dropdown [options]="parcourss" [(ngModel)]="criteria.parcours" id="6" [filter]="true" class="p-fluid"
-                                        [showClear]="true"  placeholder="{{'cours.parcours' | translate}}" optionLabel="libelle">
-                            </p-dropdown>
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="7-1">{{'cours.nombreSectionFinaliseMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionFinaliseMin" id="7-1"></p-inputNumber>
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="7-2">{{'cours.nombreSectionFinaliseMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionFinaliseMax" id="7-2"></p-inputNumber>
-                       </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="8-1">{{'cours.nombreSectionEnCoursMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionEnCoursMin" id="8-1"></p-inputNumber>
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="8-2">{{'cours.nombreSectionEnCoursMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionEnCoursMax" id="8-2"></p-inputNumber>
-                       </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="9-1">{{'cours.nombreLinkEnCoursMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreLinkEnCoursMin" id="9-1"></p-inputNumber>
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="9-2">{{'cours.nombreLinkEnCoursMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreLinkEnCoursMax" id="9-2"></p-inputNumber>
-                       </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="10-1">{{'cours.nombreLinkFinaliseMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreLinkFinaliseMin" id="10-1"></p-inputNumber>
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="10-2">{{'cours.nombreLinkFinaliseMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreLinkFinaliseMax" id="10-2"></p-inputNumber>
-                       </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="11-1">{{'cours.numeroOrderMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroOrderMin" id="11-1"></p-inputNumber>
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="11-2">{{'cours.numeroOrderMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.numeroOrderMax" id="11-2"></p-inputNumber>
-                       </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="7-1">{{'parcours.nombreSectionMin' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionMin" id="7-1"></p-inputNumber>
-                        </div>
-                        <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
-                            <label  class="font-bold block mb-2" for="7-2">{{'parcours.nombreSectionMax' | translate}}</label>
-                            <p-inputNumber  mode="decimal" [(ngModel)]="criteria.nombreSectionMax" id="7-2"></p-inputNumber>
-                        </div>
-                    </div>
-                    <div [style]="{ marginTop : '1rem', display: 'flex', justifyContent: 'flex-end' }">
-                        <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-sort-amount-down" class="p-button-info mr-2" (click)="findPaginatedByCriteria()"></button>
-                    </div>
-                </div>
-
-
-            </p-toolbar>
-
-
-            <p-table #dt [value]="itemsCours" [columns]="cols" [rows]="8" [paginator]="false"
-                    [globalFilterFields]="['code', 'libelle', 'image', 'etatCourslibelle', 'parcourslibelle', 'nombreSectionFinalise', 'nombreSectionEnCours', 'nombreLinkEnCours', 'nombreLinkFinalise', 'numeroOrder','nombreSection']" [(selection)]="selections"
-                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
-                    currentPageReportTemplate="{{'les éléments de {first} à {last} sur {totalRecords} ' | translate}}"
-                    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" selectionMode="multiple">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column flex-row justify-content-between table-header">
-                        <h5 class="p-m-0">{{'cours.header' | translate}}</h5>
-                        <!--<span class="p-input-icon-left ml-auto">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                      <!--  <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>-->
-
-                     <!--   <th pSortableColumn="code">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.code' | translate}}</span>
-                                <p-sortIcon field="code"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.code" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
-
-
-                        <th pSortableColumn="libelle">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.libelle' | translate}}</span>
-                                <p-sortIcon field="libelle"></p-sortIcon>
-<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
-
-
-                     <!--   <th pSortableColumn="image">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.image' | translate}}</span>
-                                <p-sortIcon field="image"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.image" display="menu" class="ml-auto"></p-columnFilter>
-                            </div>
-                        </th>
-
-
-                        <th pSortableColumn="etatCours">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>Etat</span>
-                                <p-sortIcon field="etatCours"></p-sortIcon>
-                            </div>
-                        </th>
-
-
-                        <!--<th pSortableColumn="parcours">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.parcours' | translate}}</span>
-                                <p-sortIcon field="parcours"></p-sortIcon>
-                            </div>
-                        </th>
-
-
-                        <th pSortableColumn="nombreSectionFinalise">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.nombreSectionFinalise' | translate}}</span>
-                                <p-sortIcon field="nombreSectionFinalise"></p-sortIcon>
-                            </div>
-                        </th>
-
-
-                        <!--<th pSortableColumn="nombreSectionEnCours">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'Nombre de Section'}}</span>
-                                <p-sortIcon field="nombreSectionEnCours"></p-sortIcon>
-                            </div>
-                        </th>-->
-
-
-                        <!--<th pSortableColumn="nombreLinkEnCours">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.nombreLinkEnCours' | translate}}</span>
-                                <p-sortIcon field="nombreLinkEnCours"></p-sortIcon>
-                            </div>
-                        </th>
-
-
-                        <th pSortableColumn="nombreLinkFinalise">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.nombreLinkFinalise' | translate}}</span>
-                                <p-sortIcon field="nombreLinkFinalise"></p-sortIcon>
-                            </div>
-                        </th>
--->
-                                <!--
-                        <th pSortableColumn="numeroOrder">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'cours.numeroOrder' | translate}}</span>
-                                <p-sortIcon field="numeroOrder"></p-sortIcon>
-                            </div>
-                        </th>
-
-
-                        <th pSortableColumn="nombreSection">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                <span>{{'Nombre de Section' | translate}}</span>
-                                <p-sortIcon field="nombreSection"></p-sortIcon>
-                            </div>
-                        </th>
-                        <th>Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template *ngIf="!showCours"  pTemplate="body" let-element>
-                    <tr >
-                       <!-- <td>
-                            <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>
-
-                     <!--   <td>{{element.code}}</td>
-
-
-                        <td>{{element.libelle}}</td>
-
-
-                        <!--<td>{{element.image}}</td>
-
-
-                        <td>{{element.etatCours?.libelle}}</td>
-
-
-                        <!--<td>{{element.parcours?.libelle}}</td>
-
-
-                        <td>{{element.nombreSectionFinalise}} / {{element.nombreSection}}</td>
-
-
-                        <!--<td>{{element.nombreSectionEnCours}}</td>
-
-                        <td>{{element.nombreSection}}</td>
-                        <!--<td>{{element.nombreLinkEnCours}}</td>
-
-
-                        <td>{{element.nombreLinkFinalise}}</td>-->
-
-                             <!--
-                        <td>{{element.numeroOrder}}</td>
-
-                        <td>
-                            <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(element)"  *ngIf="editActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteCours(element)"  *ngIf="deleteActionIsValid"></button>
-                            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-warning mr-2"  (click)="viewSection(element)"></button>
-                        </td>
-                    </tr>
-                </ng-template>
-
-                <ng-template  pTemplate="summary">
-                    <p-paginator  [rows]="10" [totalRecords]="totalRecords" (onPageChange)="onPage($event)"></p-paginator>
-                    <div class="p-d-flex p-ai-center p-jc-between">
-                        En totale il {{itemsCours ? totalRecords == 1 ? 'y a' : 'y a' : 'y a' }} {{itemsCours ? totalRecords : 0 }} {{itemsCours ? totalRecords == 1 ? 'cours' : 'courss' : 0 }}.
-                    </div>
-                </ng-template>
-            </p-table>
-        </div>
-
-        <app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
-        <app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
-        <app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>
-        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
-    </div>
-</div>
-
-<p-card header="Permission not allowed" *ngIf="!listActionIsValid">
-    <p class="m-0">
-        You don't have permission to access !
-    </p>
-</p-card>
--->
 <p-toast></p-toast>
 <main class="table" id="customers_table">
     <section class="table__header">
@@ -295,13 +11,84 @@
                 <span class="button-label">{{ 'delete' | translate }}</span>
             </button>
         </div>
+        <!--<div class="input-group">
+            <input type="search" class="pi pi-plus" placeholder="Search Data..." (input)="filterGlobal($event.target.value)">
+            <i class="pi pi-search"></i>
+        </div>-->
+        <span class="input-group">
+                            <i class="pi pi-search"></i>
+                            <input  type="search" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+        </span>
+    </section>
+    <section class="table__body">
+
+            <p-table #dt [value]="itemsCours"  class="p-datatable-thead p-datatable-tbody"
+                    [globalFilterFields]="['code', 'libelle', 'image', 'etatCourslibelle', 'parcourslibelle', 'nombreSectionFinalise', 'nombreSectionEnCours', 'nombreLinkEnCours', 'nombreLinkFinalise', 'numeroOrder','nombreSection']" [(selection)]="selections"
+            >
+                <ng-template  pTemplate="header"	>
+
+
+                    <tr >
+                        <th>Cours</th>
+                        <th>Etat</th>
+                        <th>N° section</th>
+                        <th>Action</th>
+                    </tr>
+
+                </ng-template>
+                <ng-template *ngIf="!showCours"  pTemplate="body" let-element>
+
+                    <tr  >
+                        <!--<td>
+                            <p-tableCheckbox [value]="element"></p-tableCheckbox>
+                        </td>-->
+
+                        <td>  {{element.libelle}} </td>
+                        <td> {{element.etatCours?.libelle}} </td>
+                        <td>
+                            <p class="status delivered">{{element.nombreSection}}</p>
+                        </td>
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(element)"  *ngIf="editActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteCours(element)"  *ngIf="deleteActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-warning mr-2"  (click)="viewSection(element)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+
+
+            </p-table>
+
+            </section>
+            </main>
+        <app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
+        <app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
+        <app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+
+<!--<p-toast></p-toast>
+<main class="table" id="customers_table">
+    <section class="table__header">
+        <div class="buttons">
+            <button pButton class="new" icon="pi pi-plus" [disabled]="!showCours" (click)="openCreate('Cours')" *ngIf="createActionIsValid">
+                <span class="button-label">{{ 'new' | translate }}</span>
+            </button>
+
+            <button pButton class="delete" icon="pi pi-trash" (click)="deleteMultiple()" *ngIf="deleteActionIsValid">
+                <span class="button-label">{{ 'delete' | translate }}</span>
+            </button>
+        </div>
         <div class="input-group">
-            <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()" (input)="filterGlobal($event.target.value)">
+            <input type="search" class="pi pi-plus" placeholder="Search Data..." (input)="filterGlobal($event.target.value)">
             <i class="pi pi-search"></i>
         </div>
     </section>
     <section class="table__body">
-        <table>
+        <table >
             <thead>
             <tr>
                 <th> Cours</th>
@@ -311,7 +98,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr  *ngFor="let cour of filteredItems; let i = index">
+            <tr   *ngFor="let cour of itemsCours; let i = index">
                 <td> {{cour.libelle}} </td>
                 <td> {{cour.etatCours?.libelle}} </td>
                 <td>
@@ -329,5 +116,5 @@
 </main>
 <app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
 <app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
-<app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>
+<app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>-->
 

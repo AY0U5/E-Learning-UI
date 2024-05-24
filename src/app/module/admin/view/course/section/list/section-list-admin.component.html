@@ -1,8 +1,7 @@
-<!--
-<div class="grid"  *ngIf="listActionIsValid">
+<!--<div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
-        <div ><!--class="card"--
+        <div >
             <p-toolbar [style]="{'background-color': 'white'}" styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="d-flex align-items-center" style="display: flex; flex-direction: column;">
@@ -119,37 +118,37 @@
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column flex-row justify-content-between table-header">
                         <h5 class="p-m-0">{{'section.header' | translate}}</h5>
-                        <!--<span class="p-input-icon-left ml-auto">
+                        <span class="p-input-icon-left ml-auto">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>--
+                        </span>&#45;&#45;
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                     <!--   <th style="width: 3rem">
+                        <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>-->
+                        </th>
 
-                     <!--   <th pSortableColumn="code">
+                        <th pSortableColumn="code">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.code' | translate}}</span>
                                 <p-sortIcon field="code"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.code" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
---
+&#45;&#45;
 
                         <th pSortableColumn="libelle">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.libelle' | translate}}</span>
                                 <p-sortIcon field="libelle"></p-sortIcon>
-<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>--
+                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>&#45;&#45;
                             </div>
                         </th>
 
 
-                       <!-- <th pSortableColumn="urlImage">
+                        <th pSortableColumn="urlImage">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.urlImage' | translate}}</span>
                                 <p-sortIcon field="urlImage"></p-sortIcon>
@@ -191,10 +190,10 @@
                                 <p-sortIcon field="contenu"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.contenu" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
-                        </th>-->
+                        </th>
 
 
-                        <!--<th pSortableColumn="questions">
+                        <th pSortableColumn="questions">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.questions' | translate}}</span>
                                 <p-sortIcon field="questions"></p-sortIcon>
@@ -209,48 +208,39 @@
                                 <p-sortIcon field="indicationProf"></p-sortIcon>
                                 <p-columnFilter type="text" field="element.indicationProf" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
-                        </th>-->
+                        </th>
 
-                                <!--
                         <th pSortableColumn="numeroOrder">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.numeroOrder' | translate}}</span>
                                 <p-sortIcon field="numeroOrder"></p-sortIcon>
                             </div>
                         </th>
-                                -->
-                                <!--
                         <th pSortableColumn="categorieSection">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.categorieSection' | translate}}</span>
                                 <p-sortIcon field="categorieSection"></p-sortIcon>
                             </div>
                         </th>
-                                -->
-                                <!--
                         <th pSortableColumn="cours">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.cours' | translate}}</span>
                                 <p-sortIcon field="cours"></p-sortIcon>
                             </div>
                         </th>
-                                -->
-                                <!--
                         <th pSortableColumn="url">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.url' | translate}}</span>
                                 <p-sortIcon field="url"></p-sortIcon>
                             </div>
                         </th>
-                                -->
-                                <!--
                         <th pSortableColumn="content">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.content' | translate}}</span>
                                 <p-sortIcon field="content"></p-sortIcon>
                             </div>
                         </th>
-                                --
+                                &#45;&#45;
                         <th pSortableColumn="etatSection">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'Etat' | translate}}</span>
@@ -262,17 +252,17 @@
                 </ng-template>
                 <ng-template  pTemplate="body" let-element>
                     <tr *ngIf='showSection'>
-                       <!-- <td>
+                        <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                        </td>-->
+                        </td>
 
-                       <!-- <td>{{element.code}}</td>--
+                        <td>{{element.code}}</td>&#45;&#45;
 
 
                         <td>{{element.libelle}}</td>
 
 
-                        <!--<td>{{element.urlImage}}</td>
+                        <td>{{element.urlImage}}</td>
 
 
                         <td>{{element.urlImage2}}</td>
@@ -290,23 +280,14 @@
                         <td>{{element.questions}}</td>
 
 
-                        <td>{{element.indicationProf}}</td>-->
+                        <td>{{element.indicationProf}}</td>
 
-                             <!--
                         <td>{{element.numeroOrder}}</td>
-                             -->
-                             <!--
                         <td>{{element.categorieSection?.code}}</td>
-                             -->
-                             <!--
                         <td>{{element.cours?.libelle}}</td>
-                             -->
-                             <!--
                         <td>{{element.url}}</td>
-                             -->
-                             <!--
                         <td>{{element.content}}</td>
-                             --
+                             &#45;&#45;
                         <td>{{element.etatSection?.libelle}}</td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
@@ -336,11 +317,75 @@
     <p class="m-0">
         You don't have permission to access !
     </p>
-</p-card>
--->
-
-
+</p-card>-->
+<!---->
 <p-toast></p-toast>
+<main class="table" id="customers_table">
+    <section class="table__header">
+        <div class="buttons">
+            <button pButton class="new" icon="pi pi-plus" [disabled]="!showSection" (click)="openCreate('Section')" *ngIf="createActionIsValid">
+                <span class="button-label">{{ 'new' | translate }}</span>
+            </button>
+
+            <button pButton class="delete" icon="pi pi-trash" (click)="deleteMultiple()" *ngIf="deleteActionIsValid">
+                <span class="button-label">{{ 'delete' | translate }}</span>
+            </button>
+        </div>
+        <!--<div class="input-group">
+            <input type="search" class="pi pi-plus" placeholder="Search Data..." (input)="filterGlobal($event.target.value)">
+            <i class="pi pi-search"></i>
+        </div>-->
+        <span class="input-group">
+                            <i class="pi pi-search"></i>
+                            <input  type="search" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+        </span>
+    </section>
+    <section class="table__body">
+
+        <p-table #dt [value]="itemsSections"  class="p-datatable-thead p-datatable-tbody"
+                 [globalFilterFields]="['code', 'libelle', 'urlImage', 'urlImage2', 'urlImage3', 'urlVideo', 'contenu', 'questions', 'indicationProf', 'numeroOrder', 'categorieSectioncode', 'courslibelle', 'url', 'content','etatSectionlibelle']" [(selection)]="selections"
+        >
+            <ng-template  pTemplate="header"	>
+
+
+                <tr >
+                    <th> Section</th>
+                    <th> Etat cours</th>
+                    <th> Action</th>
+                </tr>
+
+            </ng-template>
+            <ng-template pTemplate="body" let-element>
+
+                <tr *ngIf="showSection"  >
+                    <!--<td>
+                        <p-tableCheckbox [value]="element"></p-tableCheckbox>
+                    </td>-->
+
+                    <td> {{element.libelle}} </td>
+                    <td> {{element.etatSection?.libelle}} </td>
+
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteSection(element)"  *ngIf="deleteActionIsValid"></button>
+<!--                        <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-warning mr-2"  (click)="view(element)"></button>-->
+                    </td>
+                </tr>
+            </ng-template>
+
+
+        </p-table>
+
+    </section>
+</main>
+<app-section-create-admin  *ngIf="createDialog  && createActionIsValid"></app-section-create-admin>
+<app-section-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-section-edit-admin>
+<app-section-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-section-view-admin>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+<!--<p-toast></p-toast>
 <main class="table" id="customers_table">
     <section class="table__header">
         <div class="buttons">
@@ -382,4 +427,4 @@
 </main>
 <app-section-create-admin  *ngIf="createDialog  && createActionIsValid"></app-section-create-admin>
 <app-section-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-section-edit-admin>
-<app-section-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-section-view-admin>
+<app-section-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-section-view-admin>-->

@@ -59,6 +59,7 @@ import {SidebarModule} from "primeng/sidebar";
 import {ListboxModule} from "primeng/listbox";
 import {AccordionModule} from "primeng/accordion";
 import { RemplirComponent } from './remplir/remplir.component';
+import {StyleClassModule} from "primeng/styleclass";
 
 
 
@@ -124,6 +125,7 @@ import { RemplirComponent } from './remplir/remplir.component';
         SidebarModule,
         ListboxModule,
         AccordionModule,
+        StyleClassModule,
 
     ],
   exports: [

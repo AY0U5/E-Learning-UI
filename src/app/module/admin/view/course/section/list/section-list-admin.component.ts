@@ -130,7 +130,7 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
                 this.loadCategorieSection();
                 this.loadCours();
                 this.loadEtatSection();
-                this.findPaginatedByCriteriaSection();
+                // this.findPaginatedByCriteriaSection();
             }
         });
         this.sectionService.findAll().subscribe((data: SectionDto[]) => {
@@ -138,16 +138,18 @@ export class SectionListAdminComponent extends AbstractListController<SectionDto
             // Initialize filteredItems with the same data as items
             this.filteredItems = [...this.data];
         });
+        console.log(this.showSection)
+        this.showSection;
     }
 
 
-    public findPaginatedByCriteriaSection() {
+   /* public findPaginatedByCriteriaSection() {
         this.service.findPaginatedByCriteria(this.criteria).subscribe(paginatedItems => {
             this.itemsSections = paginatedItems.list;
             this.totalRecords = paginatedItems.dataSize;
             this.selections = new Array<SectionDto>();
         }, error => console.log(error));
-    }
+    }*/
 
 
     public override  initCol() {

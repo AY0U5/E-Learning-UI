@@ -114,13 +114,13 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
             this.item = dto;
             console.log(this.service.item);
         });*/
-    public  viewCourss(dto: ParcoursDto) {
+    public async viewCourss(dto: ParcoursDto) {
         this.service.findByIdWithAssociatedList(dto).subscribe(res => {
             this.item = res;
             this.itemsCours = this.item.courss ;
             this.viewcoursOk = true;
             // this.itemParcour = dto;
-            this.itemParcour=this.item
+            this.itemParcour=this.item;
             // console.log(this.service.item);
         });
 

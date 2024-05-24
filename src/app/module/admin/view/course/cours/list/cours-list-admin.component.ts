@@ -36,7 +36,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
     filteredItems: CoursDto[] = [];
 
 
-    filterGlobal(searchTerm: string) {
+    /*filterGlobal(searchTerm: string) {
         if (!searchTerm) {
             this.filteredItems = [...this.itemsCours];
             return;
@@ -49,7 +49,22 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
                 value.toString().toLowerCase().includes(searchTerm)
             )
         );
+    }*/
+    filterGlobal(searchTerm: string) {
+        if (!searchTerm) {
+            this.filteredItems = [...this.itemsCours];
+            return ;
+        }
+
+        searchTerm = searchTerm.toLowerCase();
+
+        this.filteredItems = this.itemsCours.filter(item =>
+            Object.values(item).some(value =>
+                value.toString().toLowerCase().includes(searchTerm)
+            )
+        );
     }
+    filteredItemsCours = [];
 
     //
     get showSection(): boolean {
@@ -132,7 +147,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
     set viewSectionOk(value: boolean) {
         this.sectionService.viewSectionOk = value;
     }
-    public viewSection(dto: CoursDto) {
+    public async viewSection(dto: CoursDto) {
         this.service.findByIdWithAssociatedList(dto).subscribe(res => {
             this.item = res;
             this.itemsSections = this.item.sections ;
@@ -232,8 +247,10 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
                 this.loadParcours();
             }
         });
-        this.findAllCours()
-        this.filteredItems = this.itemsCours
+
+
+        this.itemsCours = this.filteredItemsCours;
+        this.showSection;
     }
 
 
