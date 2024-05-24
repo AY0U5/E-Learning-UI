@@ -160,11 +160,11 @@
 
         <div *ngIf="this.reponseCourte"  class="with-borderM">
             <input id="reponsecourte" type="text" placeholder="Reponse Courte"
-                   [(ngModel)]="itemReponse.lib"   class="iiinp surface-overlay p-2 border-0 outline-none w-full" readonly>
+                   [(ngModel)]="itemReponse.lib"   class="iiinp surface-overlay p-2 border-0 outline-none w-full">
         </div>
         <div *ngIf="this.paragraphe" class="with-borderM" >
             <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="itemReponse.lib"
-                      placeholder="Pargraphe"     class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly ></textarea>
+                      placeholder="Pargraphe"     class="iiinp surface-overlay p-2 border-0 appearance-none outline-none w-full"></textarea>
 
         </div>
 
@@ -175,7 +175,7 @@
                 </div>
                 <div class="with-borderM">
                     <input id="reponcescase" type="text"
-                           [ngModel]="c.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                           [ngModel]="c.lib" class="iiinpr surface-overlay p-2 border-0 appearance-none outline-none w-full">
                 </div>
             </div>
 
@@ -185,7 +185,7 @@
                 </div>
                 <div class="with-borderM">
                     <input id="caseAcoche" type="text" placeholder="Reponse"
-                           [(ngModel)]="itemReponse.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                           [(ngModel)]="itemReponse.lib" class="iiinp surface-overlay p-2 border-0 appearance-none outline-none w-full">
                 </div>
                 <div >
                     <app-reponse-create-admin></app-reponse-create-admin>
@@ -202,7 +202,7 @@
                 </div>
                 <div class="with-borderM">
                     <input id="reponces" name="reponces" type="text"
-                           [ngModel]="c.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                           [ngModel]="c.lib" class="iiinp surface-overlay p-2 border-0 ppearance-none outline-none w-full">
                 </div>
             </div>
             <div class="reponse">
@@ -211,7 +211,7 @@
                 </div>
                 <div class="with-borderM">
                     <input id="choixmultiples" name="choixmultiples" type="text" placeholder="Reponse"
-                           [(ngModel)]="itemReponse.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                           [(ngModel)]="itemReponse.lib" class="iiinp p-2 border-0 appearance-none outline-none w-full">
                 </div>
                 <div>
                     <app-reponse-create-admin></app-reponse-create-admin>

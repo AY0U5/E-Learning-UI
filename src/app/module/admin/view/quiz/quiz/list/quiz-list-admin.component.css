@@ -118,7 +118,7 @@
 
 .tall-container {
     height: 200px;
-    weidth: 100px; /* Définissez la hauteur souhaitée */
+    width: 100px; /* Définissez la hauteur souhaitée */
 }
 
 /*.button-container {
@@ -259,4 +259,8 @@
 
 .st{
     height: 2rem;
+}
+
+.qqq{
+    text-align: center;
 }
