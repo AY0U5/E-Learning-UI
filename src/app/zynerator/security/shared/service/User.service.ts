@@ -20,7 +20,7 @@ export class UserService extends AbstractService<UserDto, UserCriteria> {
     }
 
     findByUsername(username: string): Observable<UserDto> {
-        return this.http.get<UserDto>( this.API + 'Username/' + username);
+        return this.http.get<UserDto>( this.API + 'user-name/' + username);
     }
     public constrcutDto(): UserDto {
         return new UserDto();

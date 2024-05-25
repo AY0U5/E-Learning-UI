@@ -22,6 +22,7 @@ import { CoursListAdminComponent } from './cours/list/cours-list-admin.component
 import { ParcoursListAdminComponent } from './parcours/list/parcours-list-admin.component';
 import { SectionListAdminComponent } from './section/list/section-list-admin.component';
 import {RemplirComponent} from "./remplir/remplir.component";
+import {ProfileComponent} from "./profile/profile.component";
 @NgModule({
     imports: [
         RouterModule.forChild(
@@ -108,6 +109,17 @@ import {RemplirComponent} from "./remplir/remplir.component";
                                     path: 'list',
                                     component: CoursListAdminComponent ,
                                     canActivate: [AuthGuard]
+                                }
+                            ]
+                        },
+                        {
+
+                            path: 'profile',
+                            children: [
+                                {
+                                    path: 'list',
+                                    component: ProfileComponent ,
+
                                 }
                             ]
                         },

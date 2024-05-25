@@ -22,10 +22,15 @@
     <div class="navbar log">
         <ul>
             <li>
-                <a (click)="edit(authenticatedUser)">
+                <!--<a (click)="edit(authenticatedUser)">
+                    <i class="pi pi-user"></i>
+                    <span>Profile</span>
+                </a>-->
+                <a routerLink='/app/admin/course/profile/list'>
                     <i class="pi pi-user"></i>
                     <span>Profile</span>
                 </a>
+
             </li>
             <li>
                 <a (click)="logout()">

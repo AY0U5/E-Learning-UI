@@ -12,6 +12,7 @@ import {AboutComponent} from "./module/admin/view/about/about.component";
     imports: [
         RouterModule.forRoot(
             [
+
                 {path: '', component: HomeComponent},
             {path: 'admin/login', component: LoginAdminComponent },
             {path: 'admin/register', component: RegisterAdminComponent },

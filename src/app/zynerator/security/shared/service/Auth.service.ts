@@ -12,6 +12,7 @@ import {UserDto} from '../model/User.model';
 import {RoleDto} from '../model/Role.model';
 import {RoleUserDto} from '../model/RoleUser.model';
 import {MessageService} from 'primeng/api';
+import {UserService} from "./User.service";
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +27,15 @@ export class AuthService {
     public error: string = null;
 
 
-    constructor(private http: HttpClient, private tokenService: TokenService, private router: Router, private messageService: MessageService) {
+    constructor(private http: HttpClient, private tokenService: TokenService, private router: Router, private messageService: MessageService ,private userService :UserService) {
+    }
+    public get itemuser(): UserDto {
+
+        return this.userService.item;
+    }
+
+    public set itemuser(value: UserDto) {
+        this.userService.item = value;
     }
 
     public login(username: string, password: string) {
@@ -40,6 +49,16 @@ export class AuthService {
                 console.log('you are logged in successfully');
                 this.router.navigate(['/' + environment.rootAppUrl + '/admin']);
                 console.log(this.tokenService.token())
+                //
+               this.userService.findByUsername(this.authenticatedUser.username).subscribe(
+                   res =>
+                   {
+                       this.itemuser = res ;
+                       console.log(this.itemuser);
+
+                   }
+               );
+                //
             }, (error: HttpErrorResponse) => {
                 this.error = error.error.message;
                 if (error.status === 401) {

@@ -60,6 +60,7 @@ import {ListboxModule} from "primeng/listbox";
 import {AccordionModule} from "primeng/accordion";
 import { RemplirComponent } from './remplir/remplir.component';
 import {StyleClassModule} from "primeng/styleclass";
+import {ProfileComponent} from "./profile/profile.component";
 
 
 
@@ -82,7 +83,8 @@ import {StyleClassModule} from "primeng/styleclass";
     SectionListAdminComponent,
     SectionViewAdminComponent,
     SectionEditAdminComponent,
-    RemplirComponent
+    RemplirComponent,
+      ProfileComponent
   ],
     imports: [
         CommonModule,
@@ -145,6 +147,7 @@ import {StyleClassModule} from "primeng/styleclass";
   SectionListAdminComponent,
   SectionViewAdminComponent,
   SectionEditAdminComponent,
+      // ProfileComponent
   ],
 })
 export class CourseAdminModule { }

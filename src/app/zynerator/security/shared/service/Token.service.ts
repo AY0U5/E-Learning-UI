@@ -10,6 +10,7 @@ export class TokenService {
 
     public saveToken(token: string) {
         localStorage.setItem('token', token);
+
     }
 
     public decode() {
@@ -29,5 +30,6 @@ export class TokenService {
         const tokenDecoded = this.decode();
         return tokenDecoded.sub;
     }xx
+
 
 }
