@@ -9,6 +9,8 @@ import { ProfAdminService } from 'src/app/shared/service/admin/prof/ProfAdmin.se
 import { ProfDto } from 'src/app/shared/model/prof/Prof.model';
 import { EtudiantAdminService } from 'src/app/shared/service/admin/inscription/EtudiantAdmin.service';
 import { EtudiantDto } from 'src/app/shared/model/inscription/Etudiant.model';
+import { UserService } from 'src/app/zynerator/security/shared/service/User.service';
+import { UserDto } from 'src/app/zynerator/security/shared/model/User.model';
 
 @Component({
   selector: 'app-page',
@@ -21,6 +23,7 @@ export class PageComponent implements OnInit{
     sections: Array<SectionDto>;
     profs: Array<ProfDto>;
     students: Array<EtudiantDto>;
+    admins: Array<UserDto>;
 
     ngOnInit() {
         this.findAllCours()
@@ -32,7 +35,8 @@ export class PageComponent implements OnInit{
                  private parcService: ParcoursAdminService,
                  private sectionService: SectionAdminService,
                  private profService: ProfAdminService, 
-                 private studentService: EtudiantAdminService){
+                 private studentService: EtudiantAdminService,
+                 private adminService: UserService){
 
     }
 
@@ -50,5 +54,8 @@ export class PageComponent implements OnInit{
     }
     public findAllStudent(){
         return this.studentService.findAll().subscribe(data => this.students = data)
+    }
+    public findAllAdmin(){
+        return this.adminService.findAll().subscribe(data => this.admins = data)
     }
 }

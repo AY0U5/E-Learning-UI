@@ -86,11 +86,6 @@ export class ProfListAdminComponent extends AbstractListController<ProfDto, Prof
                 this.yesOrNoPasswordChanged =  [{label: 'PasswordChanged', value: null},{label: 'Oui', value: 1},{label: 'Non', value: 0}];
             }
         });
-        this.profService.findAll().subscribe((data: ProfDto[]) => {
-            this.data = data;
-            // Initialize filteredItems with the same data as items
-            this.filteredItems = [...this.data];
-        });
     }
 
 
