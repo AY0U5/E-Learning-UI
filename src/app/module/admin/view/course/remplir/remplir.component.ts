@@ -22,9 +22,10 @@ export class RemplirComponent implements OnInit{
 
 
     selectedCardIndex: number = -1 // Initialize with 1 to indicate no card is selected initially
+    selectedCardIndexP: number = -1 // Initialize with 1 to indicate no card is selected initially
     indice: number
+    indiceP: number
     sections: Array<SectionDto>;
-    okPreview: boolean = false;
     okQuiz: boolean = false;
     question: string
     okOption: boolean = false;
@@ -101,6 +102,14 @@ export class RemplirComponent implements OnInit{
         }
     }
 */
+    get items(): Array<SectionDto> {
+        return this.sectionService.items;
+    }
+
+    set items(value: Array<SectionDto>) {
+        this.sectionService.items = value;
+    }
+
     extractVideoId(url: string): string | null {
         const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
         const match = url.match(regex);
@@ -117,13 +126,17 @@ export class RemplirComponent implements OnInit{
 
 
     ngOnInit() {
-        this.findAll()
+        this.findAll();
+
+        // this.findAllPreview();
     }
 
     constructor(private sectionService: SectionAdminService,
                 private quizService: QuizAdminService,
                 private sanitizer: DomSanitizer ,private http: HttpClient) {
     }
+
+
 
     public findAll(){
         this.sectionService.findAll().subscribe(
@@ -136,11 +149,18 @@ export class RemplirComponent implements OnInit{
     }
     safeHtml: SafeHtml;
 
+    get okPreview(): boolean {
+        return this.sectionService.okPreview;
+    }
 
+    set okPreview(value: boolean) {
+        this.sectionService.okPreview = value;
+    }
     public previewIsOk(){
         // this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(this.item.contenu);
-    console.log(this.item.contenu);
+    // console.log(this.item);
         this.okPreview = true;
+
     }
 
     public selectCard(dto : SectionDto ,index: number): SectionDto {
@@ -188,14 +208,34 @@ export class RemplirComponent implements OnInit{
         return this.safeHtml;
     }
 
-    public saveContent(){
+
+    public findsecbyId():void {
+        // let sec : SectionDto ;
         console.log(this.item);
-       this.sectionService.edit().subscribe(() => {
+        let lecontenu : string = this.item.contenu ;
+        this.sectionService.findByIdWithAssociatedList(this.item).subscribe(res=>
+            {
+                this.item = res;
+                this.item.contenu = lecontenu;
+                this.saveContent()
+            }
+
+        );
+    }
+
+    public saveContent(){
+        // this.findsecbyId()
+        console.log(this.item);
+
+
+       this.sectionService.edit().subscribe(res => {
              //Optional: Handle success or perform any additional actions
             alert('Content saved successfully');
+           // this.items.push({...res});
         }, (error) => {
             // Optional: Handle error
             alert('Error saving content:' + error.message);
+
         });
     }
 
@@ -318,4 +358,31 @@ export class RemplirComponent implements OnInit{
         return videoIdMatch ? videoIdMatch[1] : '';
     }*/
 
+    /**/
+
+    public selectCardP(dto : SectionDto ,index: number): SectionDto {
+        this.item = dto
+        this.selectedCardIndexP = index;
+        this.indiceP = this.selectedCardIndexP;
+        console.log(index);
+        return this.item;
+    }
+
+    public nextCardP(){
+        if(this.selectedCardIndexP < this.items.length - 1){
+            this.indiceP ++;
+            this.selectCardP(this.items.at(this.indiceP),this.indiceP)
+        }
+        console.log(this.indiceP);
+        console.log(this.items.at(this.indiceP));
+    }
+
+    public prevCardP() {
+        if (this.selectedCardIndexP > 0) {
+            this.indiceP--;
+            this.selectCardP(this.items.at(this.indiceP),this.indiceP)
+        }
+        console.log(this.indiceP);
+        console.log(this.items.at(this.indiceP));
+    }
 }
