@@ -9,6 +9,7 @@ import {SectionCriteria} from 'src/app/shared/criteria/course/SectionCriteria.mo
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 import {CoursDto} from "../../../model/course/Cours.model";
 // import * as http from "http";
+// import * as http from "http";
 
 
 @Injectable({
@@ -17,6 +18,16 @@ import {CoursDto} from "../../../model/course/Cours.model";
 export class SectionAdminService extends AbstractService<SectionDto, SectionCriteria> {
 
 
+   private _okPreview: boolean = false;
+
+
+    get okPreview(): boolean {
+        return this._okPreview;
+    }
+
+    set okPreview(value: boolean) {
+        this._okPreview = value;
+    }
 
     get showSection(): boolean {
         return this._showSection;

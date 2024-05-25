@@ -70,6 +70,7 @@ import { PreviewDialogComponent } from './remplir/preview-dialog/preview-dialog.
 
 import {StyleClassModule} from "primeng/styleclass";
 import {ProfileComponent} from "./profile/profile.component";
+import {SafeHtmlPipe} from "./remplir/preview-dialog/SafeHtmlPipe";
 
 
 
@@ -94,7 +95,8 @@ import {ProfileComponent} from "./profile/profile.component";
     SectionEditAdminComponent,
     RemplirComponent,
       ProfileComponent,
-    PreviewDialogComponent
+    PreviewDialogComponent,
+      SafeHtmlPipe
   ],
     imports: [
         CommonModule,
