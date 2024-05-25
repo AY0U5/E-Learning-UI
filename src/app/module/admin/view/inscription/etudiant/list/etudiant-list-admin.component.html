@@ -1,3 +1,4 @@
+<!--
 <div class="grid"  *ngIf="listActionIsValid">
     <div class="col-12">
         <p-toast></p-toast>
@@ -329,7 +330,7 @@
                                 <p-columnFilter type="text" field="element.password" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                --> 
+                             
                         <th>Actions</th>
                     </tr>
                 </ng-template>
@@ -407,7 +408,7 @@
                              --> 
                              <!-- 
                         <td>{{element.password}}</td>
-                             --> 
+                             
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
@@ -438,3 +439,51 @@
         You don't have permission to access !
     </p>
 </p-card>
+-->
+
+<p-toast></p-toast>
+<main class="table" id="customers_table">
+    <section class="table__header">
+        <div class="top">
+            <div class="buttons">
+            <button pButton class="new" icon="pi pi-plus" (click)="openCreate('parcours')" *ngIf="createActionIsValid">
+                <span class="button-label">{{ 'new' | translate }}</span>
+            </button>
+            </div>
+            <div #dt class="input-group">
+                <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()" (input)="filterGlobal($event.target.value)">
+                <i class="pi pi-search"></i>
+            </div>
+        </div>
+        <h2 style="text-align: center;">List Students</h2>
+    </section>
+    <section class="table__body">
+        <table>
+            <thead>
+            <tr>
+                <th>Student</th>
+                <th> etatEtudiantSchedule</th>
+                <th> Parcours</th>
+                <th>langue</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let st of items; let i = index"> 
+                <td>{{st.username}}</td>          
+                <td>{{st.etatEtudiantSchedule?.libelle}}</td>
+                <td>{{st.parcours?.libelle}}</td>
+                <td>{{st.langue?.libelle}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(st)"  *ngIf="editActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(st)"  *ngIf="deleteActionIsValid"></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<app-etudiant-create-admin  *ngIf="createDialog  && createActionIsValid"></app-etudiant-create-admin>
+        <app-etudiant-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-etudiant-edit-admin>
+        <app-etudiant-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-etudiant-view-admin>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

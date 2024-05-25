@@ -25,6 +25,7 @@ import {TrancheHoraireProfDto} from 'src/app/shared/model/prof/TrancheHorairePro
 import {TrancheHoraireProfAdminService} from 'src/app/shared/service/admin/prof/TrancheHoraireProfAdmin.service';
 import {ClassRoomDto} from 'src/app/shared/model/classroom/ClassRoom.model';
 import {ClassRoomAdminService} from 'src/app/shared/service/admin/classroom/ClassRoomAdmin.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-prof-create-admin',
   templateUrl: './prof-create-admin.component.html'

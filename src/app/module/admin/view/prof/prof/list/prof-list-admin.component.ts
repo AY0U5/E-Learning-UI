@@ -29,7 +29,8 @@ import {ClassRoomAdminService} from 'src/app/shared/service/admin/classroom/Clas
 
 @Component({
   selector: 'app-prof-list-admin',
-  templateUrl: './prof-list-admin.component.html'
+  templateUrl: './prof-list-admin.component.html',
+  styleUrls:['./prof-list-admin.component.css']
 })
 export class ProfListAdminComponent extends AbstractListController<ProfDto, ProfCriteria, ProfAdminService>  implements OnInit {
 
@@ -50,6 +51,25 @@ export class ProfListAdminComponent extends AbstractListController<ProfDto, Prof
         super(profService);
     }
 
+    filteredItems: ProfDto[] = [];
+    data: ProfDto[] = [];
+
+
+    filterGlobal(searchTerm: string) {
+        if (!searchTerm) {
+            this.filteredItems = [...this.items];
+            return;
+        }
+
+        searchTerm = searchTerm.toLowerCase();
+
+        this.filteredItems = this.items.filter(item =>
+            Object.values(item).some(value =>
+                value.toString().toLowerCase().includes(searchTerm)
+            )
+        );
+    }
+
     ngOnInit(): void {
         this.activateSecurityConstraint('Prof').subscribe(() => {
             if (true || this.listActionIsValid){
@@ -65,6 +85,11 @@ export class ProfListAdminComponent extends AbstractListController<ProfDto, Prof
                 this.yesOrNoAccountNonLocked =  [{label: 'AccountNonLocked', value: null},{label: 'Oui', value: 1},{label: 'Non', value: 0}];
                 this.yesOrNoPasswordChanged =  [{label: 'PasswordChanged', value: null},{label: 'Oui', value: 1},{label: 'Non', value: 0}];
             }
+        });
+        this.profService.findAll().subscribe((data: ProfDto[]) => {
+            this.data = data;
+            // Initialize filteredItems with the same data as items
+            this.filteredItems = [...this.data];
         });
     }
 

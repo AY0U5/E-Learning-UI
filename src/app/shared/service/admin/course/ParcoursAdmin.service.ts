@@ -8,6 +8,7 @@ import {ParcoursDto} from 'src/app/shared/model/course/Parcours.model';
 import {ParcoursCriteria} from 'src/app/shared/criteria/course/ParcoursCriteria.model';
 import {AbstractService} from 'src/app/zynerator/service/AbstractService';
 import {CoursDto} from "../../../model/course/Cours.model";
+import { AbstractCreateController } from 'src/app/zynerator/controller/AbstractCreateController';
 // import * as http from "http";
 
 
@@ -15,7 +16,6 @@ import {CoursDto} from "../../../model/course/Cours.model";
   providedIn: 'root'
 })
 export class ParcoursAdminService extends AbstractService<ParcoursDto, ParcoursCriteria> {
-
     //add
     private _itemParcour: ParcoursDto;
     public get itemParcour(): ParcoursDto {

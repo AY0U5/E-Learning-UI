@@ -343,7 +343,8 @@
 <p-toast></p-toast>
 <main class="table" id="customers_table">
     <section class="table__header">
-        <div class="buttons">
+        <div class="top">
+            <div class="buttons">
             <button pButton class="new" icon="pi pi-plus" [disabled]="!showSection" (click)="openCreate()" *ngIf="createActionIsValid">
                 <span class="button-label">{{ 'new' | translate }}</span>
             </button>
@@ -356,6 +357,8 @@
             <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()" (input)="filterGlobal($event.target.value)">
             <i class="pi pi-search"></i>
         </div>
+        </div>
+        <h2 style="text-align: center;">Sections</h2>
     </section>
     <section class="table__body">
         <table>
