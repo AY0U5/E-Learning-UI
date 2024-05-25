@@ -59,6 +59,15 @@ import {SidebarModule} from "primeng/sidebar";
 import {ListboxModule} from "primeng/listbox";
 import {AccordionModule} from "primeng/accordion";
 import { RemplirComponent } from './remplir/remplir.component';
+import {AngularEditorConfig, AngularEditorModule} from "@kolkov/angular-editor";
+import {HttpClientModule} from "@angular/common/http";
+// import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import {CKEditorModule} from "ng2-ckeditor";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { PreviewDialogComponent } from './remplir/preview-dialog/preview-dialog.component';
+// import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+
+
 import {StyleClassModule} from "primeng/styleclass";
 import {ProfileComponent} from "./profile/profile.component";
 
@@ -84,7 +93,8 @@ import {ProfileComponent} from "./profile/profile.component";
     SectionViewAdminComponent,
     SectionEditAdminComponent,
     RemplirComponent,
-      ProfileComponent
+      ProfileComponent,
+    PreviewDialogComponent
   ],
     imports: [
         CommonModule,
@@ -128,6 +138,10 @@ import {ProfileComponent} from "./profile/profile.component";
         ListboxModule,
         AccordionModule,
         StyleClassModule,
+        AngularEditorModule,
+        HttpClientModule,
+        CKEditorModule,
+        CKEditorModule
 
     ],
   exports: [
@@ -150,4 +164,28 @@ import {ProfileComponent} from "./profile/profile.component";
       // ProfileComponent
   ],
 })
-export class CourseAdminModule { }
+export class CourseAdminModule {
+
+    public Editor = ClassicEditor;
+    public editorConfig = {
+        toolbar: [
+            'heading', '|',
+            'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+            'outdent', 'indent', '|',
+            'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo'
+        ],
+        height: '30rem'
+    };
+
+    config: AngularEditorConfig = {
+        editable: true,
+        spellcheck: true,
+        height: '50rem',
+        minHeight: '5rem',
+        placeholder: 'Enter  here...',
+        translate: 'no',
+        defaultParagraphSeparator: 'p',
+        defaultFontName: 'Arial',
+
+    };
+}

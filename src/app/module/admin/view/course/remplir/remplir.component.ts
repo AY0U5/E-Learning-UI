@@ -1,19 +1,29 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {SectionDto} from "../../../../../shared/model/course/Section.model";
 import {SectionAdminService} from "../../../../../shared/service/admin/course/SectionAdmin.service";
 import {QuizAdminService} from "../../../../../shared/service/admin/quiz/QuizAdmin.service";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {DomSanitizer, SafeHtml, SafeResourceUrl} from "@angular/platform-browser";
+/*import {AngularEditorConfig, UploadResponse} from "@kolkov/angular-editor";
+import {Observable} from "rxjs";*/
+import {HttpClient, HttpEvent} from "@angular/common/http";
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import  ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 @Component({
   selector: 'app-remplir',
   templateUrl: './remplir.component.html',
-  styleUrls: ['./remplir.component.css']
+  styleUrls: ['./remplir.component.css'],
+    // encapsulation: ViewEncapsulation.None // Désactive l'encapsulation des styles
+
 })
 export class RemplirComponent implements OnInit{
 
+
+
+
     selectedCardIndex: number = -1 // Initialize with 1 to indicate no card is selected initially
     indice: number
-    sections: Array<SectionDto>
+    sections: Array<SectionDto>;
     okPreview: boolean = false;
     okQuiz: boolean = false;
     question: string
@@ -28,13 +38,91 @@ export class RemplirComponent implements OnInit{
     private _validQuizEtudiantsRef = true;
     private _validSectionCode = true;
 
+    /*config: AngularEditorConfig = {
+        editable: true,
+        spellcheck: true,
+        height: '50rem',
+        minHeight: '5rem',
+        placeholder: 'Enter  here...',
+        translate: 'no',
+        defaultParagraphSeparator: 'p',
+        defaultFontName: 'Arial',
+
+    };*/
+  /*  editorConfig: AngularEditorConfig = {
+        editable: true,
+        spellcheck: true,
+        height: 'auto',
+        minHeight: '0',
+        maxHeight: 'auto',
+        width: 'auto',
+        minWidth: '0',
+        translate: 'yes',
+        enableToolbar: true,
+        showToolbar: true,
+        placeholder: 'Enter text here...',
+        defaultParagraphSeparator: '',
+        defaultFontName: '',
+        defaultFontSize: '',
+        fonts: [
+            { class: 'arial', name: 'Arial' },
+            { class: 'times-new-roman', name: 'Times New Roman' },
+            { class: 'calibri', name: 'Calibri' },
+            { class: 'comic-sans-ms', name: 'Comic Sans MS' }
+        ],
+        customClasses: [
+            {
+                name: 'quote',
+                class: 'quote',
+            },
+            {
+                name: 'redText',
+                class: 'redText'
+            },
+            {
+                name: 'titleText',
+                class: 'titleText',
+                tag: 'h1',
+            },
+        ],
+
+    };
+
+
+    insertVideo() {
+        const url = prompt('Enter video URL');
+        if (url) {
+            const videoId = this.extractVideoId(url);
+            if (videoId) {
+                this.item.contenu += `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+                alert('Invalid YouTube URL');
+            }
+        }
+    }
+*/
+    extractVideoId(url: string): string | null {
+        const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    }
+
+    printContent() {
+        const printWindow = window.open('', '_blank');
+        printWindow.document.open();
+        printWindow.document.write(`<html><head><title>Print</title></head><body>${this.item.contenu}</body></html>`);
+        printWindow.document.close();
+        printWindow.print();
+    }
+
+
     ngOnInit() {
         this.findAll()
     }
 
     constructor(private sectionService: SectionAdminService,
                 private quizService: QuizAdminService,
-                private sanitizer: DomSanitizer) {
+                private sanitizer: DomSanitizer ,private http: HttpClient) {
     }
 
     public findAll(){
@@ -46,8 +134,12 @@ export class RemplirComponent implements OnInit{
 
         )
     }
+    safeHtml: SafeHtml;
+
 
     public previewIsOk(){
+        // this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(this.item.contenu);
+    console.log(this.item.contenu);
         this.okPreview = true;
     }
 
@@ -90,6 +182,10 @@ export class RemplirComponent implements OnInit{
 
     set itemedit(value: SectionDto) {
         this.sectionService.item = value;
+    }
+    sanitizeHtml(html: string): SafeHtml {
+        this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(html)
+        return this.safeHtml;
     }
 
     public saveContent(){
@@ -217,9 +313,9 @@ export class RemplirComponent implements OnInit{
         return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
     }
 
-    extractVideoId(url: string): string {
+  /*  extractVideoId(url: string): string {
         const videoIdMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
         return videoIdMatch ? videoIdMatch[1] : '';
-    }
+    }*/
 
 }
