@@ -68,9 +68,9 @@
                         </div>
 
                         <div *ngIf="this.addquiz" class="formgrid grid">
-                            <div class="field col-12 with-border">
+                            <div class="field st">
                                 <input id="quizshow" type="text" placeholder="Quiz Label"
-                                       [ngModel]="itemQuizShow.lib"   class="iiiinp surface-overlay p-2 border-0 outline-none w-full" readonly>
+                                       [ngModel]="itemQuizShow.lib"   class="iiiinp qqq border-0 outline-none" readonly>
                             </div>
                         </div>
                     </p-card>
@@ -79,10 +79,10 @@
                 <app-question-list-admin *ngIf="showqst"></app-question-list-admin>
             </div>
 
-            <div class="right-container">
+            <div *ngIf="!this.addquiz" class="right-container">
 
 
-                <div class="button-container shadow-2 hover:shadow-5">
+                <div class="button-container shadow-2">
                     <div class="button-group">
                         <div class="button-row">
 <!--                            <span class="icon-button pi pi-plus" style="font-size: 1.5rem" (click)="foraddQuestion()" ></span>-->

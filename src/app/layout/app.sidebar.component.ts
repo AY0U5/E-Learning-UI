@@ -44,6 +44,21 @@ export class AppSidebarComponent implements OnInit {
                     icon: 'pi pi-shield',
                     routerLink: ['/app/admin/quiz/quiz/list'],
                 },
+                {
+                    label: 'List User',
+                    icon: 'pi pi-fw pi-plus-circle',
+                    routerLink: ['/app/admin/security/user/list']
+                },
+                {
+                    label: 'Liste prof',
+                    icon: 'pi pi-fw pi-plus-circle',
+                    routerLink: ['/app/admin/prof/prof/list']
+                },
+                {
+                    label: 'Liste etudiant',
+                    icon: 'pi pi-fw pi-plus-circle',
+                    routerLink: ['/app/admin/inscription/etudiant/list']
+                }
             ]
 
         if (this.authService.authenticated) {

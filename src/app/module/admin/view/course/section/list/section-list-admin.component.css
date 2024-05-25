@@ -25,6 +25,14 @@ body {
     align-items: center;
 }
 
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 main.table {
     background-color: #fff5;
 
@@ -42,6 +50,7 @@ main.table {
     padding: .8rem 1rem;
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }

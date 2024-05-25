@@ -118,10 +118,10 @@
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column flex-row justify-content-between table-header">
                         <h5 class="p-m-0">{{'section.header' | translate}}</h5>
-                        <span class="p-input-icon-left ml-auto">
+                        <!--<span class="p-input-icon-left ml-auto">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
-                        </span>&#45;&#45;
+                        </span>--
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -143,7 +143,7 @@
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'section.libelle' | translate}}</span>
                                 <p-sortIcon field="libelle"></p-sortIcon>
-                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>&#45;&#45;
+<!--                                <p-columnFilter type="text" field="element.libelle" display="menu" class="ml-auto"></p-columnFilter>--
                             </div>
                         </th>
 
@@ -322,6 +322,7 @@
 <p-toast></p-toast>
 <main class="table" id="customers_table">
     <section class="table__header">
+        <div class="top">
         <div class="buttons">
             <button pButton class="new" icon="pi pi-plus" [disabled]="!showSection" (click)="openCreate('Section')" *ngIf="createActionIsValid">
                 <span class="button-label">{{ 'new' | translate }}</span>
@@ -388,7 +389,8 @@
 <!--<p-toast></p-toast>
 <main class="table" id="customers_table">
     <section class="table__header">
-        <div class="buttons">
+        <div class="top">
+            <div class="buttons">
             <button pButton class="new" icon="pi pi-plus" [disabled]="!showSection" (click)="openCreate()" *ngIf="createActionIsValid">
                 <span class="button-label">{{ 'new' | translate }}</span>
             </button>
@@ -401,6 +403,8 @@
             <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()" (input)="filterGlobal($event.target.value)">
             <i class="pi pi-search"></i>
         </div>
+        </div>
+        <h2 style="text-align: center;">Sections</h2>
     </section>
     <section class="table__body">
         <table>
@@ -427,4 +431,4 @@
 </main>
 <app-section-create-admin  *ngIf="createDialog  && createActionIsValid"></app-section-create-admin>
 <app-section-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-section-edit-admin>
-<app-section-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-section-view-admin>-->
+<app-section-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-section-view-admin>

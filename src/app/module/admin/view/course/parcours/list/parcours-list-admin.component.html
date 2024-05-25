@@ -263,11 +263,12 @@
             <button pButton class="delete" icon="pi pi-trash" (click)="deleteMultiple()" *ngIf="deleteActionIsValid">
                 <span class="button-label">{{ 'delete' | translate }}</span>
             </button>
-        </div>
-        <div  class="input-group">
-            <input type="search" class="pi pi-plus" placeholder="Search Data..."  (input)="filterGlobal($event.target.value)">
+        <</div>
+        <div #dt class="input-group">
+            <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()" (input)="filterGlobal($event.target.value)">
             <i class="pi pi-search"></i>
         </div>
+        <h2 style="text-align: center;">Parcours</h2>
     </section>
     <section class="table__body">
         <table>

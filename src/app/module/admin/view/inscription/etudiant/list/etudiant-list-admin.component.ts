@@ -41,7 +41,8 @@ import {NiveauEtudeAdminService} from 'src/app/shared/service/admin/inscriptionr
 
 @Component({
   selector: 'app-etudiant-list-admin',
-  templateUrl: './etudiant-list-admin.component.html'
+  templateUrl: './etudiant-list-admin.component.html',
+  styleUrls:['./etudiant-list-admin.component.css']
 })
 export class EtudiantListAdminComponent extends AbstractListController<EtudiantDto, EtudiantCriteria, EtudiantAdminService>  implements OnInit {
 
@@ -68,6 +69,24 @@ export class EtudiantListAdminComponent extends AbstractListController<EtudiantD
 
     constructor( private etudiantService: EtudiantAdminService  , private parcoursService: ParcoursAdminService, private quizEtudiantService: QuizEtudiantAdminService, private etatEtudiantScheduleService: EtatEtudiantScheduleAdminService, private interetEtudiantService: InteretEtudiantAdminService, private statutSocialService: StatutSocialAdminService, private groupeEtudiantService: GroupeEtudiantAdminService, private langueService: LangueAdminService, private groupeEtudeService: GroupeEtudeAdminService, private quizService: QuizAdminService, private skillService: SkillAdminService, private fonctionService: FonctionAdminService, private groupeEtudiantDetailService: GroupeEtudiantDetailAdminService, private packStudentService: PackStudentAdminService, private teacherLocalityService: TeacherLocalityAdminService, private niveauEtudeService: NiveauEtudeAdminService) {
         super(etudiantService);
+    }
+
+    filteredItems: EtudiantDto[] = [];
+
+
+    filterGlobal(searchTerm: string) {
+        if (!searchTerm) {
+            this.filteredItems = [...this.items];
+            return;
+        }
+
+        searchTerm = searchTerm.toLowerCase();
+
+        this.filteredItems = this.items.filter(item =>
+            Object.values(item).some(value =>
+                value.toString().toLowerCase().includes(searchTerm)
+            )
+        );
     }
 
     ngOnInit(): void {

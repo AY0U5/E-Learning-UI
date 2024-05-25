@@ -118,7 +118,7 @@
 
 .tall-container {
     height: 200px;
-    weidth: 100px; /* Définissez la hauteur souhaitée */
+    width: 100px; /* Définissez la hauteur souhaitée */
 }
 
 /*.button-container {
@@ -255,4 +255,12 @@
 .iiiinp{
     font-size: 1.2rem;
     border: 0;
+}
+
+.st{
+    height: 2rem;
+}
+
+.qqq{
+    text-align: center;
 }

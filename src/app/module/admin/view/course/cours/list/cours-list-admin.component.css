@@ -42,8 +42,17 @@ main.table {
     padding: .8rem 1rem;
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .table__header .input-group {
@@ -110,15 +119,6 @@ main.table {
 
 table {
     width: 100%;
-}
-
-td img {
-    width: 36px;
-    height: 36px;
-    margin-right: .5rem;
-    border-radius: 50%;
-
-    vertical-align: middle;
 }
 
 table, th, td {

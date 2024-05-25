@@ -112,7 +112,7 @@
 }
 
 .with-borderM:focus-within::after {
-    background-color: orange;
+    background-color: #555555;
 }
 
 .icon-container {
