@@ -88,26 +88,28 @@
         <h2 style="text-align: center;">Sections</h2>
     </section>
     <section class="table__body">
-        <table>
-            <thead>
-            <tr>
-                <th> Section</th>
-                <th> Etat cours</th>
-                <th> Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr  *ngFor="let cour of filteredItems; let i = index">
-                <td> {{cour.libelle}} </td>
-                <td> {{cour.etatSection?.libelle}} </td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(cour)"  *ngIf="editActionIsValid"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(cour)"  *ngIf="deleteActionIsValid"></button>
-                    <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="view(cour)"   ></button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table__wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th> Section</th>
+                    <th> Etat cours</th>
+                    <th> Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  *ngFor="let cour of filteredItems; let i = index">
+                    <td> {{cour.libelle}} </td>
+                    <td> {{cour.etatSection?.libelle}} </td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(cour)"  *ngIf="editActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(cour)"  *ngIf="deleteActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="view(cour)"   ></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </main>
 <app-section-create-admin  *ngIf="createDialog  && createActionIsValid"></app-section-create-admin>

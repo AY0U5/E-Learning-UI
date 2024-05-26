@@ -315,31 +315,33 @@
         <h2 style="text-align: center;">Liste Prof</h2>
     </section>
     <section class="table__body">
-        <table>
-            <thead>
-            <tr>
-                <th>Prof</th>
-                <th> About</th>
-                <th> Parcours</th>
-                <th>CategorieProf</th>
-                <th>TypeTeacher</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let item of filteredItems; let i = index"> 
-                <td>{{item.username}}</td>          
-                <td>{{item.about}}</td>
-                <td>{{item.parcours?.libelle}}</td>
-                <td>{{item.categorieProf?.code}}</td>
-                <td>{{item.typeTeacher?.libelle}}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(item)"  *ngIf="editActionIsValid"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(item)"  *ngIf="deleteActionIsValid"></button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table__wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Prof</th>
+                    <th> About</th>
+                    <th> Parcours</th>
+                    <th>CategorieProf</th>
+                    <th>TypeTeacher</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of items; let i = index"> 
+                    <td>{{item.username}}</td>          
+                    <td>{{item.about}}</td>
+                    <td>{{item.parcours?.libelle}}</td>
+                    <td>{{item.categorieProf?.code}}</td>
+                    <td>{{item.typeTeacher?.libelle}}</td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(item)"  *ngIf="editActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(item)"  *ngIf="deleteActionIsValid"></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </main>
 <app-prof-create-admin  *ngIf="createDialog  && createActionIsValid"></app-prof-create-admin>

@@ -97,7 +97,7 @@ main.table {
     margin: .8rem auto;
     border-radius: .6rem;
 
-    overflow: auto;
+    overflow-y: auto;
 }
 
 
@@ -445,3 +445,9 @@ thead th.active,tbody td.active {
 }
 
 
+.table__wrapper {
+    max-height: 70vh; /* Set a fixed height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd; /* Optional: Add border for better visual */
+  }
+  

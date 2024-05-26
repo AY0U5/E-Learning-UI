@@ -13,7 +13,8 @@ import {ActionPermissionService} from 'src/app/zynerator/security/shared/service
 
 @Component({
     selector: 'app-user-list',
-    templateUrl: './user-list.component.html'
+    templateUrl: './user-list.component.html',
+    styleUrls:['./user-list.component.css']
 })
 export class UserListComponent extends AbstractListController<UserDto, UserCriteria, UserService> implements OnInit {
 

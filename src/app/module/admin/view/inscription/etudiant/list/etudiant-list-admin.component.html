@@ -458,30 +458,33 @@
         <h2 style="text-align: center;">List Students</h2>
     </section>
     <section class="table__body">
-        <table>
+        <div class="table__wrapper">
+          <table>
             <thead>
-            <tr>
+              <tr>
                 <th>Student</th>
                 <th> etatEtudiantSchedule</th>
                 <th> Parcours</th>
                 <th>langue</th>
                 <th>Action</th>
-            </tr>
+              </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let st of items; let i = index"> 
-                <td>{{st.username}}</td>          
+              <tr *ngFor="let st of items; let i = index">
+                <td>{{st.username}}</td>
                 <td>{{st.etatEtudiantSchedule?.libelle}}</td>
                 <td>{{st.parcours?.libelle}}</td>
                 <td>{{st.langue?.libelle}}</td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(st)"  *ngIf="editActionIsValid"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(st)"  *ngIf="deleteActionIsValid"></button>
+                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="edit(st)" *ngIf="editActionIsValid"></button>
+                  <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(st)" *ngIf="deleteActionIsValid"></button>
                 </td>
-            </tr>
+              </tr>
             </tbody>
-        </table>
-    </section>
+          </table>
+        </div>
+      </section>
+      
 </main>
 <app-etudiant-create-admin  *ngIf="createDialog  && createActionIsValid"></app-etudiant-create-admin>
         <app-etudiant-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-etudiant-edit-admin>
