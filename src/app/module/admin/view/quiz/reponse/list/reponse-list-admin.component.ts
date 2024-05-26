@@ -218,7 +218,7 @@ export class ReponseListAdminComponent extends AbstractListController<ReponseDto
               }*/
         } else {
             this.errorMessages = new Array<string>();
-            this.messageService.add({
+            this.msgService.add({
                 severity: 'error',
                 summary: 'Erreurs',
                 detail: 'Merci de corrigé les erreurs sur le formulaire'

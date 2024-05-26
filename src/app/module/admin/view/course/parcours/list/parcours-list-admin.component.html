@@ -252,9 +252,9 @@
 
 
 
-<p-toast></p-toast>
+<!--<p-toast></p-toast>
 <main class="table" id="customers_table">
-    <section class="table__header">
+    &lt;!&ndash;<section class="table__header">
         <div class="buttons">
             <button pButton class="new" icon="pi pi-plus" (click)="openCreate('parcours')" *ngIf="createActionIsValid">
                 <span class="button-label">{{ 'new' | translate }}</span>
@@ -263,43 +263,126 @@
             <button pButton class="delete" icon="pi pi-trash" (click)="deleteMultiple()" *ngIf="deleteActionIsValid">
                 <span class="button-label">{{ 'delete' | translate }}</span>
             </button>
-        <</div>
+        </div>
         <div #dt class="input-group">
             <input type="search" class="pi pi-plus" placeholder="Search Data..." (click)="this.showSearch()" (input)="filterGlobal($event.target.value)">
             <i class="pi pi-search"></i>
         </div>
         <h2 style="text-align: center;">Parcours</h2>
-    </section>
+    </section>&ndash;&gt;
+    <section class="table__header">
+        <div class="top">
+            <div class="buttons">
+                <button pButton class="new" icon="pi pi-plus" (click)="openCreate('Parcours')" *ngIf="createActionIsValid">
+                    <span class="button-label">{{ 'new' | translate }}</span>
+                </button>
+
+                &lt;!&ndash;   <button pButton class="delete" icon="pi pi-trash" (click)="deleteMultiple()" *ngIf="deleteActionIsValid">
+                       <span class="button-label">{{ 'delete' | translate }}</span>
+                   </button>&ndash;&gt;
+            </div>
+            <div class="input-group">
+                <input type="search" class="pi pi-plus" placeholder="Search Data..." (input)="filterGlobal($event.target.value)">
+                <i class="pi pi-search"></i>
+            </div>
+        </div>
+        <h2 style="text-align: center;">Parcours</h2>
+    </section> &lt;!&ndash; Corrected closing tag for the table__header section &ndash;&gt;
     <section class="table__body">
         <div class="table__wrapper">
-                <table>
-                    <thead>
-                    <tr>
-                        <th> Parcours</th>
-                        <th> Etat cours</th>
-                        <th> N° Cours</th>
-                        <th> Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let cour of filteredItems; let i = index">
-                            <td> {{cour.libelle}} </td>
-                            <td> {{cour.etatParcours?.libelle}} </td>
-                            <td>
-                                <p class="status delivered">{{cour.nombreCours}}</p>
-                            </td>
-                            <td>
-                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(cour)"  *ngIf="editActionIsValid"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(cour)"  *ngIf="deleteActionIsValid"></button>
-                                <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(cour)"   ></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <table>
+                <thead>
+                <tr>
+                    <th>Parcours</th>
+                    <th>Etat cours</th>
+                    <th>N° Cours</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let cour of filteredItems; let i = index">
+                    <td>{{cour.libelle}}</td>
+                    <td>{{cour.etatParcours?.libelle}}</td>
+                    <td>
+                        <p class="status delivered">{{cour.nombreCours}}</p>
+                    </td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="edit(cour)" *ngIf="editActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(cour)" *ngIf="deleteActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(cour)"></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 </main>
-<app-parcours-create-admin  *ngIf="createDialog"></app-parcours-create-admin>
-<app-parcours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-parcours-edit-admin>
-<app-parcours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-parcours-view-admin>
+<app-parcours-create-admin *ngIf="createDialog"></app-parcours-create-admin>
+<app-parcours-edit-admin *ngIf="editDialog && editActionIsValid"></app-parcours-edit-admin>
+<app-parcours-view-admin *ngIf="viewDialog && viewActionIsValid"></app-parcours-view-admin>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>-->
+
+<p-toast></p-toast>
+<main class="table" id="customers_table">
+
+    <section class="table__header">
+        <div class="top">
+            <div class="buttons">
+                <button pButton class="new" icon="pi pi-plus" (click)="openCreate('parcours')" *ngIf="createActionIsValid">
+                    <span class="button-label">{{ 'new' | translate }}</span>
+                </button>
+
+
+            </div>
+            <div class="input-group">
+                <input type="search" class="pi pi-plus" placeholder="Search Data..." (input)="dt.filterGlobal($event.target.value , 'contains')">
+                <i class="pi pi-search"></i>
+            </div>
+        </div>
+        <h2 style="text-align: center;">Parcours</h2>
+    </section>
+    <section class="table__body">
+
+        <p-table #dt [value]="items"  class="p-datatable-thead p-datatable-tbody"
+                 [globalFilterFields]="['datePublication', 'dateCreation', 'code', 'libelle', 'numeroOrder', 'nombreCours', 'centreref','etatParcourslibelle']" [(selection)]="selections"
+        >
+            <ng-template  pTemplate="header"	>
+
+
+                <tr>
+                    <th>Parcours</th>
+                    <th>Etat cours</th>
+                    <th>N° Cours</th>
+                    <th>Action</th>
+                </tr>
+
+            </ng-template>
+            <ng-template  pTemplate="body" let-element>
+
+                <tr  >
+                    <!--<td>
+                        <p-tableCheckbox [value]="element"></p-tableCheckbox>
+                    </td>-->
+
+                    <td>{{element.libelle}}</td>
+                    <td>{{element.etatParcours?.libelle}}</td>
+                    <td>
+                        <p class="status delivered">{{element.nombreCours}}</p>
+                    </td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="edit(element)" *ngIf="editActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deletepa(element)" *ngIf="deleteActionIsValid"></button>
+                        <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(element)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+
+
+        </p-table>
+
+    </section>
+</main>
+<app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
+<app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
+<app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

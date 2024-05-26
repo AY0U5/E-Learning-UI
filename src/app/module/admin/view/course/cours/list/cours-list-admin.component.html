@@ -1,7 +1,7 @@
 
 <p-toast></p-toast>
 <main class="table" id="customers_table">
-    <section class="table__header">
+    <!--<section class="table__header">
         <div class="top">
             <div class="buttons">
             <button pButton class="new" icon="pi pi-plus" [disabled]="!showCours" (click)="openCreate('Cours')" *ngIf="createActionIsValid">
@@ -12,15 +12,33 @@
                 <span class="button-label">{{ 'delete' | translate }}</span>
             </button>
         </div>
-        <!--<div class="input-group">
+        &lt;!&ndash;<div class="input-group">
             <input type="search" class="pi pi-plus" placeholder="Search Data..." (input)="filterGlobal($event.target.value)">
             <i class="pi pi-search"></i>
-        </div>-->
+        </div>&ndash;&gt;
         <span class="input-group">
                             <i class="pi pi-search"></i>
                             <input  type="search" placeholder="{{'searchInput' | translate}}" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
         </span>
         </div>
+    </section>-->
+    <section class="table__header">
+        <div class="top">
+            <div class="buttons">
+                <button pButton class="new" icon="pi pi-plus" [disabled]="!showCours" (click)="openCreate('Cours')" *ngIf="createActionIsValid">
+                    <span class="button-label">{{ 'new' | translate }}</span>
+                </button>
+
+                <!--<button pButton class="delete" icon="pi pi-trash" (click)="deleteMultiple()" *ngIf="deleteActionIsValid">
+                    <span class="button-label">{{ 'delete' | translate }}</span>
+                </button>-->
+            </div>
+            <div class="input-group">
+                <input type="search" class="pi pi-plus" placeholder="Search Data..." (input)="dt.filterGlobal($event.target.value , 'contains')">
+                <i class="pi pi-search"></i>
+            </div>
+        </div>
+        <h2 style="text-align: center;">Cours</h2>
     </section>
     <section class="table__body">
 

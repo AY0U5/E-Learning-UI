@@ -113,7 +113,7 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                                
+
                         <th pSortableColumn="ref">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.ref' | translate}}</span>
@@ -121,8 +121,8 @@
                                 <p-columnFilter type="text" field="element.ref" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="about">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.about' | translate}}</span>
@@ -130,72 +130,72 @@
                                 <p-columnFilter type="text" field="element.about" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="parcours">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.parcours' | translate}}</span>
                                 <p-sortIcon field="parcours"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="categorieProf">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.categorieProf' | translate}}</span>
                                 <p-sortIcon field="categorieProf"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="typeTeacher">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.typeTeacher' | translate}}</span>
                                 <p-sortIcon field="typeTeacher"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="credentialsNonExpired">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.credentialsNonExpired' | translate}}</span>
                                 <p-sortIcon field="credentialsNonExpired"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="enabled">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.enabled' | translate}}</span>
                                 <p-sortIcon field="enabled"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="accountNonExpired">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.accountNonExpired' | translate}}</span>
                                 <p-sortIcon field="accountNonExpired"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                
+
+
                         <th pSortableColumn="accountNonLocked">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.accountNonLocked' | translate}}</span>
                                 <p-sortIcon field="accountNonLocked"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                <!-- 
+
+                                <!--
                         <th pSortableColumn="passwordChanged">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.passwordChanged' | translate}}</span>
                                 <p-sortIcon field="passwordChanged"></p-sortIcon>
                             </div>
                         </th>
-                                
-                                <!-- 
+
+                                <!--
                         <th pSortableColumn="username">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.username' | translate}}</span>
@@ -203,8 +203,8 @@
                                 <p-columnFilter type="text" field="element.username" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                --> 
-                                <!-- 
+                                -->
+                                <!--
                         <th pSortableColumn="password">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 <span>{{'prof.password' | translate}}</span>
@@ -212,7 +212,7 @@
                                 <p-columnFilter type="text" field="element.password" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                                
+
                         <th>Actions</th>
                     </tr>
                 </ng-template>
@@ -221,52 +221,52 @@
                         <td>
                             <p-tableCheckbox [value]="element"></p-tableCheckbox>
                         </td>
-                            
+
                         <td>{{element.ref}}</td>
-                            
-                            
+
+
                         <td>{{element.about}}</td>
-                            
-                            
+
+
                         <td>{{element.parcours?.libelle}}</td>
-                            
-                            
+
+
                         <td>{{element.categorieProf?.code}}</td>
-                            
-                            
+
+
                         <td>{{element.typeTeacher?.libelle}}</td>
-                            
-                            
+
+
                         <td><i *ngIf="element.credentialsNonExpired" class="pi pi-check checked-toogle"></i>
                             <i *ngIf="!element.credentialsNonExpired" class="pi pi-times unchecked-toogle"></i>
                         </td>
-                            
-                            
+
+
                         <td><i *ngIf="element.enabled" class="pi pi-check checked-toogle"></i>
                             <i *ngIf="!element.enabled" class="pi pi-times unchecked-toogle"></i>
                         </td>
-                            
-                            
+
+
                         <td><i *ngIf="element.accountNonExpired" class="pi pi-check checked-toogle"></i>
                             <i *ngIf="!element.accountNonExpired" class="pi pi-times unchecked-toogle"></i>
                         </td>
-                            
-                            
+
+
                         <td><i *ngIf="element.accountNonLocked" class="pi pi-check checked-toogle"></i>
                             <i *ngIf="!element.accountNonLocked" class="pi pi-times unchecked-toogle"></i>
                         </td>
-                            
-                             <!-- 
+
+                             <!--
                         <td><i *ngIf="element.passwordChanged" class="pi pi-check checked-toogle"></i>
                             <i *ngIf="!element.passwordChanged" class="pi pi-times unchecked-toogle"></i>
                         </td>
-                             --> 
-                             <!-- 
+                             -->
+                             <!--
                         <td>{{element.username}}</td>
-                             --> 
-                             <!-- 
+                             -->
+                             <!--
                         <td>{{element.password}}</td>
-                              
+
                         <td>
                             <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-secondary mr-2" (click)="view(element)"  *ngIf="viewActionIsValid"></button>
@@ -321,19 +321,19 @@
                 <tr>
                     <th>Prof</th>
                     <th> About</th>
-                    <th> Parcours</th>
-                    <th>CategorieProf</th>
-                    <th>TypeTeacher</th>
+<!--                    <th> Parcours</th>-->
+<!--                    <th>CategorieProf</th>-->
+<!--                    <th>TypeTeacher</th>-->
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let item of items; let i = index"> 
-                    <td>{{item.username}}</td>          
+                <tr *ngFor="let item of items; let i = index">
+                    <td>{{item.username}}</td>
                     <td>{{item.about}}</td>
-                    <td>{{item.parcours?.libelle}}</td>
-                    <td>{{item.categorieProf?.code}}</td>
-                    <td>{{item.typeTeacher?.libelle}}</td>
+<!--                    <td>{{item.parcours?.libelle}}</td>-->
+<!--                    <td>{{item.categorieProf?.code}}</td>-->
+<!--                    <td>{{item.typeTeacher?.libelle}}</td>-->
                     <td>
                         <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="edit(item)"  *ngIf="editActionIsValid"></button>
                         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(item)"  *ngIf="deleteActionIsValid"></button>
