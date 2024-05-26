@@ -436,3 +436,8 @@ thead th.active,tbody td.active {
 }
 
 
+.table__wrapper{
+    max-height: 60vh; /* Set a fixed height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd; /* Optional: Add border for better visual */
+}

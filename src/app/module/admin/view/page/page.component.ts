@@ -18,17 +18,20 @@ import { UserDto } from 'src/app/zynerator/security/shared/model/User.model';
   styleUrls: ['./page.component.css']
 })
 export class PageComponent implements OnInit{
-    cours: Array<CoursDto>;
-    parcours: Array<ParcoursDto>;
-    sections: Array<SectionDto>;
-    profs: Array<ProfDto>;
-    students: Array<EtudiantDto>;
-    admins: Array<UserDto>;
+    cours: Array<CoursDto>= [];
+    parcours: Array<ParcoursDto>= [];
+    sections: Array<SectionDto>= [];
+    profs: Array<ProfDto> = [];
+    students: Array<EtudiantDto>= [];
+    admins: Array<UserDto>= [];
 
     ngOnInit() {
         this.findAllCours()
         this.findAllParcours()
         this.findAllSections()
+        this.findAllProf()
+        this.findAllAdmin()
+        this.findAllStudent()
     }
 
     constructor( private coursService: CoursAdminService,
@@ -36,9 +39,8 @@ export class PageComponent implements OnInit{
                  private sectionService: SectionAdminService,
                  private profService: ProfAdminService, 
                  private studentService: EtudiantAdminService,
-                 private adminService: UserService){
-
-    }
+                 private adminService: UserService
+    ){}
 
     public findAllCours(){
         return this.coursService.findAll().subscribe(data => this.cours = data);

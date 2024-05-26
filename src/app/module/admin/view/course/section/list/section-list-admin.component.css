@@ -444,4 +444,25 @@ thead th.active,tbody td.active {
     }
 }
 
+.table__wrapper{
+    border: 1px solid #ddd; /* Optional: Add border for better visual */
+}
 
+thead{
+    overflow: hidden;
+}
+
+thead table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  tbody {
+    max-height: 400px; /* Set a fixed height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+  tbody table {
+    width: 100%;
+    border-collapse: collapse;
+  }
