@@ -31,8 +31,11 @@
                     <input id="caseAcoche" type="text" placeholder="Reponse"
                            [(ngModel)]="itemReponse.lib" class="iiinp surface-overlay p-2 border-0 appearance-none outline-none w-full">
                 </div>
-                <div >
+               <!-- <div >
                     <app-reponse-create-admin></app-reponse-create-admin>
+                </div>-->
+                <div class="icon-container">
+                    <span class="pi pi-plus-circle" style="font-size: 2rem" (click)="foraddReponsetoQuestion()"></span>
                 </div>
             </div>
         </div>
@@ -54,9 +57,12 @@
                     <input id="choixmultiples" name="choixmultiples" type="text" placeholder="Reponse"
                            [(ngModel)]="itemReponse.lib" class="iiinp p-2 border-0 appearance-none outline-none w-full">
                 </div>
-                <div>
-                    <app-reponse-create-admin></app-reponse-create-admin>
+                <div class="icon-container">
+                    <span class="pi pi-plus-circle" style="font-size: 2rem" (click)="foraddReponsetoQuestion()"></span>
                 </div>
+               <!-- <div>
+                    <app-reponse-create-admin></app-reponse-create-admin>
+                </div>-->
             </div>
         </div>
 

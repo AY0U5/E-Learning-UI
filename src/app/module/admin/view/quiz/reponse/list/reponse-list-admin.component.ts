@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 
 import {QuestionDto} from 'src/app/shared/model/quiz/Question.model';
 import {QuestionAdminService} from 'src/app/shared/service/admin/quiz/QuestionAdmin.service';
+import {MessageService} from "primeng/api";
+import {ServiceLocator} from "../../../../../../zynerator/service/ServiceLocator";
 
 
 @Component({
@@ -92,8 +94,11 @@ export class ReponseListAdminComponent extends AbstractListController<ReponseDto
     }
 
 
-    constructor( private reponseService: ReponseAdminService  , private questionService: QuestionAdminService) {
+    constructor(private msgService: MessageService, private reponseService: ReponseAdminService  , private questionService: QuestionAdminService) {
+
         super(reponseService);
+        this.msgService = ServiceLocator.injector.get(MessageService);
+
     }
 
     ngOnInit(): void {
@@ -146,5 +151,83 @@ export class ReponseListAdminComponent extends AbstractListController<ReponseDto
         }];
       }
 
+      //
+
+    private saveReponse() {
+        // this.itemQuestionshow = this.item;
+
+        // this.saveWithShowOptionQuiz(false);
+        // this.itemReponse.question = this.itemQuestionshow;
+        let etat = this.itemReponse.etatReponse;
+        this.itemsRepForQuest.push(this.itemReponse)
+        this.itemReponse = new ReponseDto();
+        this.itemReponse.etatReponse = etat;
+        console.log(this.itemsRepForQuest);
+        // this.saveWithShowOptionReponse(false)
+        /* }else {
+             this.messageService.add({
+                 severity: 'error',
+                 summary: 'Erreurs',
+                 detail: 'Merci de corrigé les erreurs sur le formulaire'
+             });
+         }*/
+    }
+    protected _errorMessages = new Array<string>();
+
+    get errorMessages(): string[] {
+        if (this._errorMessages == null) {
+            this._errorMessages = new Array<string>();
+        }
+        return this._errorMessages;
+    }
+
+    set errorMessages(value: string[]) {
+        this._errorMessages = value;
+    }
+
+    foraddReponsetoQuestion() {
+        console.log('foraddReponsetoQuestion called');
+        console.log(this.itemsRepForQuest);
+        if (!this.isEmpty(this.itemReponse.lib) && !this.isEmpty(this.itemReponse.etatReponse)) {
+
+
+            console.log(this.itemReponse)
+            this.reponseService.findBylib(this.itemReponse).subscribe( res =>
+                {
+                    if (res == null){
+                        this.saveReponse();
+                    }/*else{
+                        this.errorMessages = new Array<string>();
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Erreurs',
+                            detail: 'la reponse deja ajouter'
+                        });
+                    }*//*else {
+                        this.itemQuizShow = res;
+                        this.addquiz = true;
+                        this.showqst = true;
+                        console.log(this.itemQuizShow);
+                    }*/
+                }
+
+            )
+            /*  if (this.checkquiz) {
+                  this.saveQuiz();
+                  this.showqst = true;
+              }*/
+        } else {
+            this.errorMessages = new Array<string>();
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Erreurs',
+                detail: 'Merci de corrigé les erreurs sur le formulaire'
+            });
+        }
+    }
+    isEmpty(value: string): boolean {
+        return !value || value.trim().length === 0;
+    }
+    //
 
 }
