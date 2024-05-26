@@ -49,11 +49,14 @@
                                        [disabled]="true"
                                        class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
                             </div>
-                            <div *ngIf="rep.etatReponse == 'Paragraphe'">
-                     <textarea rows="5" cols="30" pInputTextarea
-                               placeholder="Paragraphe"
+                            <div *ngIf="rep.etatReponse == 'Paragraphe'" class="with-border">
+                   <!--  <textarea rows="5" cols="30" type="text"
+                               placeholder="Paragraphe"  [disabled]="true"
                                class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
-                    </textarea>
+                    </textarea>-->
+                                <textarea rows="5" cols="30" pInputTextarea
+                                          [disabled]="true"
+                                          placeholder="Pargraphe"     class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full"></textarea>
                             </div>
                             <div *ngIf="rep.etatReponse == 'Choix multiples'">
                                 <div class="reponse">
@@ -67,7 +70,15 @@
                                 </div>
                             </div>
                             <div *ngIf="rep.etatReponse == 'Cases a cocher'">
-                                <!-- Cases a cocher content -->
+                                <div class="reponse">
+                                    <div class="ico">
+                                        <span class="pi pi-circle" style="font-size: 1.5rem; color: gray;"></span>
+                                    </div>
+                                    <div class="with-borderChoix">
+                                        <input id="reponcescases" type="text"
+                                               [ngModel]="rep.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

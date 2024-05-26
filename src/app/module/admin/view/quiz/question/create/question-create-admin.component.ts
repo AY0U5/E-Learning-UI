@@ -62,16 +62,31 @@ export class QuestionCreateAdminComponent extends AbstractCreateController<Quest
     public get itemsRepForQuest(): Array<ReponseDto> {
         return this.reponseService.itemsRepForQuest;
     }
+
+    /*pour paragraphe and courte*/
+    get itemReponse(): ReponseDto {
+        return this.reponseService.item;
+    }
+
+    set itemReponse(value: ReponseDto) {
+        this.reponseService.item = value;
+    }
+   public itemsforRepAndPara : Array<ReponseDto> ;
+
     public saveQuestion(): void {
 
         this.itemQuestionshow = this.item;
 
         // this.saveWithShowOptionQuiz(false);
         this.item.quiz = this.itemQuizShow;
-        this.item.reponses = this.itemsRepForQuest;
-        console.log(this.item);
-        console.log(this.item.reponses);
 
+        if(this.itemReponse.etatReponse == 'Reponse Courte' || this.itemReponse.etatReponse == 'Paragraphe' ){
+            this.itemReponse.ref = this.item.ref;
+            this.itemsRepForQuest.push(this.itemReponse);
+        }
+        this.item.reponses = this.itemsRepForQuest;
+        console.log(this.itemsRepForQuest);
+        // console.log(this.item.reponses);
 
         this.saveWithShowOptionQuestion(false)
         /* }else {
