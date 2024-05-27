@@ -11,7 +11,19 @@ import {UserService} from "../../../../../zynerator/security/shared/service/User
 })
 export class ProfileComponent implements OnInit{
 
-    public curUser : UserDto;
+    public curUser = {
+        credentialsNonExpired: null,
+        enabled: null,
+        email: null,
+        accountNonExpired: null,
+        firstName: null,
+        lastName: null,
+        phone: null,
+        accountNonLocked: null,
+        username: null,
+        password: null,
+        passwordChanged: null
+    };
 
 
 

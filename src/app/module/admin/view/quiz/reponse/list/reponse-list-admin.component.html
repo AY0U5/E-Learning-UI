@@ -3,13 +3,14 @@
         <p-toast></p-toast>
 
 
-        <div *ngIf="this.reponseCourte"  class="with-borderM">
-            <input id="reponsecourte" type="text" placeholder="Reponse Courte"
-                   [(ngModel)]="itemReponse.lib"   class="iiinp surface-overlay p-2 border-0 outline-none w-full">
+        <div *ngIf="this.reponseCourte"  class="input-data">
+            <input id="reponsecourte" type="text" [(ngModel)]="itemReponse.lib"   class="outline-none" required>
+            <div class="underline"></div>
+            <label>Reponse Courte</label>
         </div>
         <div *ngIf="this.paragraphe" class="with-borderM" >
             <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="itemReponse.lib"
-                      placeholder="Pargraphe"     class="iiinp surface-overlay p-2 border-0 appearance-none outline-none w-full"></textarea>
+            placeholder="Pargraphe" class="iiinp surface-overlay p-2 border-0 appearance-none outline-none w-full"></textarea>
 
         </div>
 
@@ -27,13 +28,11 @@
                 <div class="ico">
                     <span class="pi pi-circle" style="font-size: 1.5rem; color: gray;"></span>
                 </div>
-                <div class="with-borderM">
-                    <input id="caseAcoche" type="text" placeholder="Reponse"
-                           [(ngModel)]="itemReponse.lib" class="iiinp surface-overlay p-2 border-0 appearance-none outline-none w-full">
+                <div class="input-data" style="width: 100%;">
+                    <input id="caseAcoche" type="text" [(ngModel)]="itemReponse.lib" class="outline-none" required>
+                    <div class="underline"></div>
+                    <label>Reponse</label>
                 </div>
-               <!-- <div >
-                    <app-reponse-create-admin></app-reponse-create-admin>
-                </div>-->
                 <div class="icon-container">
                     <span class="pi pi-plus-circle" style="font-size: 2rem" (click)="foraddReponsetoQuestion()"></span>
                 </div>
@@ -53,9 +52,10 @@
                 <div class="ico">
                     <span class="pi pi-stop" style="font-size: 1.5rem; color: gray;"></span>
                 </div>
-                <div class="with-borderM">
-                    <input id="choixmultiples" name="choixmultiples" type="text" placeholder="Reponse"
-                           [(ngModel)]="itemReponse.lib" class="iiinp p-2 border-0 appearance-none outline-none w-full">
+                <div class="input-data" style="width: 100%;">
+                    <input id="choixmultiples" name="choixmultiples" type="text" [(ngModel)]="itemReponse.lib" class="outline-none" required>
+                    <div class="underline"></div>
+                    <label>Reponse</label>
                 </div>
                 <div class="icon-container">
                     <span class="pi pi-plus-circle" style="font-size: 2rem" (click)="foraddReponsetoQuestion()"></span>

@@ -1,36 +1,23 @@
 <div class="grid" *ngIf="listActionIsValid">
     <div class="flex-container">
         <p-toast></p-toast>
-        <div class="left-container">
+        <div class="left-container" style="margin-left: 1rem;">
             <div *ngFor="let elemt of itemsOfQuiz" class="conn">
-                <p-card >
+                <p-card class="carta" style="margin-bottom: 1rem;">
                     <div class="formgrid grid">
-                        <div class="field col-12 md:col-8 ">
+                        <div class="field col-12 md:col-6 ">
                             <div>
-                                <input id="quizshow" type="text" placeholder="Question ?"
+                                <input id="quizshow" type="text"
                                        [ngModel]="elemt.libelle"
                                        class="iinp surface-overlay p-2 border-0 outline-none w-full"
                                        readonly>
                             </div>
                         </div>
-                        <div class="field col-12 md:col-4 mb-3">
-                            <div>
-                                <p-dropdown appendTo="body" [options]="typeDeQuestions" [ngModel]="elemt.typeDeQuestion"
-                                            id="quiztypeDeQuestions"
-                                            [style]="{
-                                                          'border': 'none',
-                                                          'border-bottom': '2px solid transparent',
-                                                          'box-shadow': 'none',
-                                                          'width': '100%',
-                                                          'font-size': '2.5rem',
-                                                          'font-weight': 'bold',
-                                                          'color': '#000',
-                                                          'opacity': '1',
-                                                          'pointer-events': 'none'
-                                                        }"
-                                            [showClear]="true" optionLabel="lib" [disabled]="true">
-                                </p-dropdown>
-                            </div>
+                        <div class="field col-12 md:col-4">
+                            <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'question.typeDeQuestion' | translate}}" autofocus  id="888" [ngModel]="elemt.typeDeQuestion.lib">
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="pi pi-times trash-icon" (click)="deleteqst(elemt)"></span>
                         </div>
                         <div *ngIf="elemt.urlVideo" class="field col-12  md:col-6">
                             <iframe width="100%" height="400"
@@ -47,13 +34,9 @@
                             <div *ngIf="rep.etatReponse == 'Reponse Courte'" class="with-border">
                                 <input id="repCourte" type="text" placeholder="Reponse Courte"
                                        [disabled]="true"
-                                       class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
+                                       class="iinp surface-overlay p-2 border-0 outline-none w-full">
                             </div>
                             <div *ngIf="rep.etatReponse == 'Paragraphe'" class="with-border">
-                   <!--  <textarea rows="5" cols="30" type="text"
-                               placeholder="Paragraphe"  [disabled]="true"
-                               class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full">
-                    </textarea>-->
                                 <textarea rows="5" cols="30" pInputTextarea
                                           [disabled]="true"
                                           placeholder="Pargraphe"     class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full"></textarea>
@@ -65,7 +48,8 @@
                                     </div>
                                     <div class="with-borderChoix">
                                         <input id="reponceschoix" type="text"
-                                               [ngModel]="rep.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                                               [ngModel]="rep.lib" 
+                                               class="iinp surface-overlay p-2 border-0 outline-none w-full" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -76,30 +60,25 @@
                                     </div>
                                     <div class="with-borderChoix">
                                         <input id="reponcescases" type="text"
-                                               [ngModel]="rep.lib" class="text-2xl font-bold text-color surface-overlay p-2 border-0 border-b-2 border-solid border-primary appearance-none outline-none w-full" readonly>
+                                               [ngModel]="rep.lib" class="iinp surface-overlay p-2 border-0 outline-none w-full" readonly>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <span class="pi pi-trash trash-icon" (click)="deleteqst(elemt)"></span>
                 </p-card>
             </div>
         </div>
-        <div class="left-container flex flex-row">
-            <div class="flex-container conn col col-10">
+        <div class="left-container flex flex-row" style="margin-left: 1rem;">
+            <div class="flex-container conn">
                 <div class="mb-4">
                     <p-card [style]="{width: '100%'}">
                         <div class="formgrid grid">
-                            <div class="field col-12 md:col-6 with-border">
-                                <input type="text" placeholder="Question ?"
-                                       [(ngModel)]="item.libelle"
-                                       name="quizTitle"    class="iinp surface-overlay p-2 border-0 outline-none w-full">
+                            <div class="field col-12 md:col-6 input-data" style="width: 50%;">
+                                <input type="text" [(ngModel)]="item.libelle" name="quizTitle" class="outline-none" required>
+                                <div class="underline"></div>
+                                <label>Question ?</label>
                             </div>
-                                <!--   <div class="field col-12 md:col-2">
-                                       <span class="icon-button pi pi-image" style="font-size: 1.5rem"></span>
-                                   </div>-->
-
                             <div class="field col-12 md:col-4">
                                 <p-splitButton label="État Réponse"
                                                styleClass="p-button-text p-button-secondary mr-0 mb-2"
@@ -108,13 +87,13 @@
                                                [style]="{ 'border': 'none', 'box-shadow': 'none' }">
                                 </p-splitButton>
                             </div>
-                            <div class="field col-12 md:col-6 with-border">
-                                    <input id="ref" type="text" placeholder="Ref"
-                                           [(ngModel)]="item.ref"
-                                           class="iinp surface-overlay p-2 border-0 outline-none w-full">
-                                </div>
+                            <div class="field col-12 md:col-6 input-data" style="width: 50%;">
+                                <input id="ref" type="text" [(ngModel)]="item.ref" class="outline-none" required>
+                                <div class="underline"></div>
+                                <label>Ref</label>
+                            </div>
 
-                                <div class="field col-12 md:col-6 with-border mb-3">
+                                <div class="field col-12 md:col-6 mb-3">
                                     <div>
                                         <p-dropdown appendTo="body" [options]="typeDeQuestions"
                                                     [(ngModel)]="item.typeDeQuestion" id="typeDeQuestions"
@@ -126,14 +105,12 @@
                                 <div class="marge field col-12 ">
                                     <app-reponse-list-admin></app-reponse-list-admin>
                                 </div>
-
-
                             </div>
                         </p-card>
                     </div>
                 </div>
 
-                <div class="right-container col col-2">
+                <div class="right-container" style="margin-left: 1rem;">
                     <div class="button-container">
                         <div class="button-group">
                             <div class="button-row">

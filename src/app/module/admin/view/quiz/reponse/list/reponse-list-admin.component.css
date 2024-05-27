@@ -123,3 +123,54 @@
     font-size: 1.2rem;
     border: 0;
 }
+
+.input-data{
+    height: 40px;
+    width: auto;
+    position: relative;
+}
+
+.input-data input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid silver;
+}
+
+.input-data input:focus ~ label,
+.input-data input:valid ~ label{
+    transform: translateY(-15px);
+    font-size: 10px;
+}
+
+.input-data label{
+    position: absolute;
+    bottom: 10px;
+    left:15px;
+    color: grey;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-data .underline{
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+}
+
+.input-data .underline::before{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: #ff725e;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.input-data input:focus ~ .underline::before,
+.input-data input:valid ~ .underline::before{
+    transform: scaleX(1);
+}

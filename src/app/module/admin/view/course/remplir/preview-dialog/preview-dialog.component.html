@@ -1,40 +1,5 @@
 <div>
-    <ckeditor [(ngModel)]="item.contenu"></ckeditor>
-    <!--<p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}" header="Preview">
-        <div [innerHTML]="safeHtml" ></div>
-    </p-dialog>-->
-    <!--<p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}">
-        <div class="flex">
-            <div class="col col-8 cont">
-                <div id="htmlEditor" *ngFor="let cont of sections; let j=index">
-                    <div class="flex flex-column" id="contentWithoutTags" *ngIf="j === selectedCardIndex">
-                        &lt;!&ndash;                    {{ stripHtmlTags(cont.contenu) }}&ndash;&gt;
-                        <div [innerHTML]="sanitizeHtml(cont.contenu)" ></div>
-                        &lt;!&ndash;<div>
-                            <img class="m-5 justify-content-center" *ngIf="cont.urlImage" src='{{cont.urlImage}}'/>
-                        </div>
-                        <div class="justify-content-center" *ngIf="cont.urlVideo">
-                            <iframe width="500" height="400" [src]="getYouTubeEmbedUrl(cont.urlVideo)" frameborder="0" allowfullscreen></iframe>
-                        </div>&ndash;&gt;
-
-                    </div>
-                </div>
-            </div>
-            <div class="col col-4 catre-container">
-                <div class="m-3 catre"
-                     *ngFor="let cat of sections; let i = index"
-                     [ngStyle]="{'background-color': i === selectedCardIndex? 'rgb(255,111,101)' : 'white'}"
-                     (click)="selectCard(cat,i)">
-                    <span class="col col-2">{{cat.numeroOrder}}</span>
-                    <span class="col col-5">{{cat.categorieSection.libelle}}</span>
-                </div>
-                <div class="flex mt-3">
-                    <button pButton (click)="prevCard()" class="col col-5 p-button-danger" label="Previous"></button>
-                    <button pButton (click)="nextCard()" class="col col-5 col-offset-2 p-button-warning" label="Next"></button>
-                </div>
-            </div>
-        </div>
-    </p-dialog>-->
+    <ckeditor [(ngModel)]="item.contenu" style="max-height: 60vh;"></ckeditor>
     <p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}">
         <div class="flex">
             <div class="col col-8 cont">
