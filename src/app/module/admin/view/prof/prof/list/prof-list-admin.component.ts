@@ -86,6 +86,7 @@ export class ProfListAdminComponent extends AbstractListController<ProfDto, Prof
                 this.yesOrNoPasswordChanged =  [{label: 'PasswordChanged', value: null},{label: 'Oui', value: 1},{label: 'Non', value: 0}];
             }
         });
+        console.log(this.items);
     }
 
 

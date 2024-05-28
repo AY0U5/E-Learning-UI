@@ -11,13 +11,15 @@ import { EtudiantAdminService } from 'src/app/shared/service/admin/inscription/E
 import { EtudiantDto } from 'src/app/shared/model/inscription/Etudiant.model';
 import { UserService } from 'src/app/zynerator/security/shared/service/User.service';
 import { UserDto } from 'src/app/zynerator/security/shared/model/User.model';
+import {AbstractListController} from "../../../../zynerator/controller/AbstractListController";
+import {UserCriteria} from "../../../../zynerator/security/shared/criteria/UserCriteria.model";
 
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.css']
 })
-export class PageComponent implements OnInit{
+export class PageComponent extends AbstractListController<UserDto, UserCriteria, UserService> implements OnInit{
     cours: Array<CoursDto>= [];
     parcours: Array<ParcoursDto>= [];
     sections: Array<SectionDto>= [];
@@ -26,21 +28,41 @@ export class PageComponent implements OnInit{
     admins: Array<UserDto>= [];
 
     ngOnInit() {
-        this.findAllCours()
+     /*   this.findAllCours()
         this.findAllParcours()
         this.findAllSections()
-        this.findAllProf()
-        this.findAllAdmin()
-        this.findAllStudent()
+        // this.findAllProf()
+        // this.findAllAdmin()
+        this.findAllStudent();
+        this.findPaginatedByCriteria();
+
+        console.log(this.items);*/
+        this.activateSecurityConstraint('User').subscribe(() => {
+            if (this.listActionIsValid) {
+                this.findPaginatedByCriteria();
+                // this.initExport();
+                // this.initCol();
+            }
+        });
+        this.findAllProf();
+        this.findAllCours();
+        this.findAllParcours();
+        this.findAllSections();
+
+
+
     }
 
     constructor( private coursService: CoursAdminService,
                  private parcService: ParcoursAdminService,
                  private sectionService: SectionAdminService,
-                 private profService: ProfAdminService, 
+                 private profService: ProfAdminService,
                  private studentService: EtudiantAdminService,
-                 private adminService: UserService
-    ){}
+                 private userservice: UserService
+    ){
+        super(userservice);
+
+    }
 
     public findAllCours(){
         return this.coursService.findAll().subscribe(data => this.cours = data);
@@ -57,7 +79,14 @@ export class PageComponent implements OnInit{
     public findAllStudent(){
         return this.studentService.findAll().subscribe(data => this.students = data)
     }
-    public findAllAdmin(){
-        return this.adminService.findAll().subscribe(data => this.admins = data)
+    /*public findAllAdmin(){
+        return this.userservice.findAll().subscribe(data => this.userservice = data)
+    }*/
+    /*get items(): Array<UserDto> {
+        return this.userservice.items;
     }
+
+    set items(value: Array<UserDto>) {
+        this.userservice.items = value;
+    }*/
 }
