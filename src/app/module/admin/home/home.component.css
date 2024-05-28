@@ -233,7 +233,7 @@ nav ul li a:hover{
 }
 
 .content--sticky {
-    width: 100vw;
+    width: 100%;
     position: sticky;
     top: 0;
     --offset: 0px;

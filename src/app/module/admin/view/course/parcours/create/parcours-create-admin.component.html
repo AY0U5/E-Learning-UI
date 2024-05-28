@@ -73,11 +73,11 @@
     <ng-template pTemplate="footer">
         <div class="p-flexbox">
 
-            <button pButton pRipple label="{{'validate' | translate}}" icon="pi pi-check" (click)="save()"></button>
+            <button pButton pRipple class="border-0" style="background-color: #FF725E;" label="{{'validate' | translate}}" icon="pi pi-check" (click)="save()"></button>
 
 
             <button pButton pRipple label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined"
-                    (click)="hideCreateDialog()"></button>
+                    (click)="hideCreateDialog()" style="color: #FF725E;"></button>
 
 
         </div>
