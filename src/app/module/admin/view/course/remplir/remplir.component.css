@@ -31,23 +31,32 @@ video{
     overflow-y: auto;
 }
 
-/*.content-preview {
-    word-break: break-word;
-}
-.content-preview p{
-    margin: 0;
-    padding: 0;
-}
-.content-preview {
-    width: 100%;
-    word-break: break-word;
+ul{
+    position: relative;
+    margin: 100px auto O;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.content-preview h1 {
-    text-align: center !important;
-    font-family: "Comic Sans MS", cursive !important;
+ul li{
+    display: flex;
+    padding: 10px 20px;
+    transition: .5s;
 }
 
-.content-preview strong {
-    font-weight: bold;
-}*/
+ul li span{
+    padding-left: 1.5rem;
+    text-align: center;
+}
+
+ul li:hover{
+    transform: scale(1.06);
+    color: white;
+    background-color: #ff8c53;
+}
+
+.liiiiiiste{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}

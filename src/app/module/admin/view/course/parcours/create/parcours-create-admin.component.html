@@ -45,24 +45,6 @@
                         </p-inputNumber>
 
                     </div>
-
-                    <div class="field col-12 md:col-6">
-                        <label for="7">{{ 'parcours.nombreCours' | translate }}</label>
-                        <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'parcours.nombreCours' | translate}}"
-                                       [(ngModel)]="item.nombreCours">
-                        </p-inputNumber>
-
-                    </div>
-                    <div class="field col-11 md:col-6">
-                        <label for="8">{{ 'parcours.centre' | translate }}</label>
-                        <p-dropdown appendTo="body" [options]="centres" [(ngModel)]="item.centre" id="8" [filter]="true"
-                                    filterMatchMode="contains"
-                                    [showClear]="true" optionLabel="ref"
-                                    placeholder="{{'parcours.centre' | translate}}">
-                        </p-dropdown>
-
-                    </div>
-
                 </div>
             </p-tabPanel>
 

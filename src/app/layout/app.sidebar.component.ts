@@ -19,7 +19,7 @@ export class AppSidebarComponent implements OnInit {
                 private authService: AuthService,
                 private roleService: RoleService,
                 private userService: UserService) { }
-                
+
     ngOnInit() {
         this.hideSide()
         this.modelAdmin =
@@ -46,7 +46,7 @@ export class AppSidebarComponent implements OnInit {
                 },
                 {
                     label: 'List User',
-                    icon: 'pi pi-fw pi-plus-circle',
+                    icon: 'pi pi-user',
                     routerLink: ['/app/admin/security/user/list']
                 },
                 {

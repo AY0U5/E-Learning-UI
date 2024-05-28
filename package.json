@@ -38,6 +38,7 @@
         "angular-font-awesome": "^3.1.2",
         "angular-froala-wysiwyg": "^4.2.0",
         "bootstrap": "^5.3.3",
+        "bootstrap-icons": "^1.11.3",
         "chart.js": "^3.3.2",
         "emailjs": "^4.0.3",
         "emailjs-com": "^3.2.0",

@@ -11,13 +11,15 @@
             <button pButton (click)="nextCard()" class="col col-2 col-offset-1 p-button-warning" label="Next"></button>
         </div>
     </div>
-    <div class="col col-3 mt-8 catre-container">
-        <div class="m-3 catre"
+    <div class="liiiiiiste mt-8 col col-3">
+        <ul
              *ngFor="let cat of sections; let i = index"
-             [ngStyle]="{'background-color': i === selectedCardIndex? 'rgb(252,141,93)' : 'white'}"
+             [ngStyle]="{'background-color': i === selectedCardIndex? '#ff752e' : 'white', color: i === selectedCardIndex? 'white' : 'black'}"
              (click)="selectCard(cat,i)">
-            <span class="col col-2">{{cat.numeroOrder}}</span>
-            <span class="col col-6">{{cat.categorieSection.libelle}}</span>
-        </div>
+            <li>
+                {{cat.numeroOrder}}
+                <span>{{cat.libelle}}</span>
+            </li>
+        </ul>
     </div>
 </div>
