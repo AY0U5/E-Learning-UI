@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit {
         } else {
             this.finduser(); // Appel de la fonction finduser lors de l'initialisation du composant si curUser n'est pas déjà stocké
         }
+        console.log(localStorage);
     }
 
     public async finduser() {

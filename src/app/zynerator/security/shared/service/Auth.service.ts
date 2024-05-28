@@ -47,7 +47,7 @@ export class AuthService {
                 jwt != null ? this.tokenService.saveToken(jwt) : false;
                 this.loadInfos();
                 console.log('you are logged in successfully');
-                this.router.navigate(['/' + environment.rootAppUrl + '/admin']);
+                this.router.navigate(['/' + environment.rootAppUrl + '/admin/page']);
                 console.log(this.tokenService.token())
                 //
                this.userService.findByUsername(this.authenticatedUser.username).subscribe(
@@ -123,9 +123,9 @@ export class AuthService {
     }
 
     public registerAdmin() {
-        this.http.post<any>(this.API + 'api/admin/user/', this.user, {observe: 'response'}).subscribe(
+        this.http.post<any>(this.API + 'api/user/', this.user, {observe: 'response'}).subscribe(
             resp => {
-                this.router.navigate(['admin/admin']);
+                this.router.navigate(['']);
             }, (error: HttpErrorResponse) => {
                 console.log(error.error);
             }

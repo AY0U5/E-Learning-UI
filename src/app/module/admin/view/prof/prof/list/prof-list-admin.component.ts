@@ -164,4 +164,8 @@ export class ProfListAdminComponent extends AbstractListController<ProfDto, Prof
             'Password': this.criteria.password ? this.criteria.password : environment.emptyForExport ,
         }];
       }
+
+    afficheprof(item: ProfDto) {
+        console.log(item)
+    }
 }

@@ -327,8 +327,8 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr *ngFor="let item of items; let i = index">
+                <tbody *ngFor="let item of items; let i = index">
+                <tr (click)="afficheprof(item)" >
                     <td>{{item.username}}</td>
                     <td>{{item.about}}</td>
 <!--                    <td>{{item.parcours?.libelle}}</td>-->
