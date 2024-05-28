@@ -4,12 +4,6 @@ import {UserDto} from 'src/app/zynerator/security/shared/model/User.model';
 import {UserCriteria} from 'src/app/zynerator/security/shared/criteria/UserCriteria.model';
 import {AbstractListController} from 'src/app/zynerator/controller/AbstractListController';
 import {environment} from 'src/environments/environment';
-import {RoleUserService} from 'src/app/zynerator/security/shared/service/RoleUser.service';
-import {ModelPermissionService} from 'src/app/zynerator/security/shared/service/ModelPermission.service';
-import {RoleService} from 'src/app/zynerator/security/shared/service/Role.service';
-import {ModelPermissionUserService} from 'src/app/zynerator/security/shared/service/ModelPermissionUser.service';
-import {ActionPermissionService} from 'src/app/zynerator/security/shared/service/ActionPermission.service';
-
 
 @Component({
     selector: 'app-user-list',
@@ -75,7 +69,6 @@ export class UserListComponent extends AbstractListController<UserDto, UserCrite
             {field: 'passwordChanged', header: 'Password changed'},
         ];
     }
-
 
     public override initDuplicate(res: UserDto) {
         if (res.modelPermissionUsers != null) {
