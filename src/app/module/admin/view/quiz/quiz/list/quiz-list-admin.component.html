@@ -4,48 +4,53 @@
         <div class="flex-container">
             <div class="left-container">
                 <div class="mb-4 connn">
-                    <div class="side"></div>
-                    <p-card [style]="{width: '100%'}">
-                        <div *ngIf="!this.addquiz" class="formgrid grid">
-                            <div class="field col-12 md:col-12 input-data" style="width: 100%;">
-                                <input id="quizLabel" type="text" class="outline-none" [(ngModel)]="item.lib" required>
-                                <div class="underline"></div>
-                                <label>Quiz Label</label>
-                            </div>
-
-                            <div class="field col-12 md:col-6 input-data" style="width: 50%;">
-                                <input id="ref" type="text" [(ngModel)]="item.ref" class="outline-none" required>
-                                <div class="underline"></div>
-                                <label>Ref</label>
-                            </div>
-
-                            <div class="field col-12 md:col-6  input-data" style="width: 50%;">
-                                <input id="numero" type="text" [(ngModel)]="item.numero"  class="outline-none" required>
-                                <div class="underline"></div>
-                                <label>Numero</label>
-                            </div>
-
-                            <div class="field col-12 md:col-6">
-                                <div >
-                                    <p-dropdown appendTo="body" [options]="sections" [(ngModel)]="item.section" id="quizsection" [filter]="true" filterMatchMode="contains"
-                                                [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '1.2rem'}"
-                                                [showClear]="true" optionLabel="code" placeholder="{{ 'quiz.section' | translate }}"
-                                              >
-                                    </p-dropdown>
+                    <div class="sss" *ngIf="!this.addquiz">
+                        <div class="side"></div>
+                        <div class="carta" [style]="{width: '100%'}">
+                            <div class="formgrid grid">
+                                <div class="field col-12 md:col-12 input-data" style="width: 100%;">
+                                    <input id="quizLabel" type="text" class="outline-none" [(ngModel)]="item.lib" required>
+                                    <div class="underline"></div>
+                                    <label>Quiz Label</label>
+                                </div>
+    
+                                <div class="field col-12 md:col-6 input-data" style="width: 50%;">
+                                    <input id="ref" type="text" [(ngModel)]="item.ref" class="outline-none" required>
+                                    <div class="underline"></div>
+                                    <label>Ref</label>
+                                </div>
+    
+                                <div class="field col-12 md:col-6  input-data" style="width: 50%;">
+                                    <input id="numero" type="text" [(ngModel)]="item.numero"  class="outline-none" required>
+                                    <div class="underline"></div>
+                                    <label>Numero</label>
+                                </div>
+    
+                                <div class="field col-12 md:col-6">
+                                    <div >
+                                        <p-dropdown appendTo="body" [options]="sections" [(ngModel)]="item.section" id="quizsection" [filter]="true" filterMatchMode="contains"
+                                                    [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '1.2rem'}"
+                                                    [showClear]="true" optionLabel="code" placeholder="{{ 'quiz.section' | translate }}"
+                                                  >
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+    
+    
+                                <div class="field col-12 md:col-6 input-data" style="width: 50%;">
+                                    <input id="seuilReussite" type="text" [(ngModel)]="item.seuilReussite" class="outline-none" required>
+                                    <div class="underline"></div>
+                                    <label>Seuil de Reussite</label>
                                 </div>
                             </div>
-
-
-                            <div class="field col-12 md:col-6 input-data" style="width: 50%;">
-                                <input id="seuilReussite" type="text" [(ngModel)]="item.seuilReussite" class="outline-none" required>
-                                <div class="underline"></div>
-                                <label>Seuil de Reussite</label>
-                            </div>
                         </div>
-                        <div *ngIf="this.addquiz" style="display: flex; justify-content: center; width: 100%;">
+                    </div>
+                    <div *ngIf="this.addquiz" style="width: 100%;">
+                        <div class="toop"></div>
+                        <div class="carta ccccc">
                             <h3>{{itemQuizShow.lib}}</h3>
                         </div>
-                    </p-card>
+                    </div>
                 </div>
 
                 <app-question-list-admin *ngIf="showqst"></app-question-list-admin>
