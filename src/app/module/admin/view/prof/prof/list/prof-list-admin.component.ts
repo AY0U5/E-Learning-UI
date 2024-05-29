@@ -47,6 +47,7 @@ export class ProfListAdminComponent extends AbstractListController<ProfDto, Prof
     typeTeachers: Array<TypeTeacherDto>;
 
 
+
     constructor( private profService: ProfAdminService  , private parcoursService: ParcoursAdminService, private quizService: QuizAdminService, private typeTeacherService: TypeTeacherAdminService, private etudiantService: EtudiantAdminService, private recommendTeacherService: RecommendTeacherAdminService, private categorieProfService: CategorieProfAdminService, private trancheHoraireProfService: TrancheHoraireProfAdminService, private classRoomService: ClassRoomAdminService) {
         super(profService);
     }

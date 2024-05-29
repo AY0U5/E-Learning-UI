@@ -49,7 +49,7 @@ export class AppSidebarComponent implements OnInit {
                     icon: 'pi pi-user',
                     routerLink: ['/app/admin/security/user/list']
                 },
-                {
+                /*{
                     label: 'Liste prof',
                     icon: 'pi pi-fw pi-plus-circle',
                     routerLink: ['/app/admin/prof/prof/list']
@@ -58,7 +58,7 @@ export class AppSidebarComponent implements OnInit {
                     label: 'Liste etudiant',
                     icon: 'pi pi-fw pi-plus-circle',
                     routerLink: ['/app/admin/inscription/etudiant/list']
-                }
+                }*/
             ]
 
         if (this.authService.authenticated) {

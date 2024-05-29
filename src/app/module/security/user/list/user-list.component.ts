@@ -111,4 +111,15 @@ export class UserListComponent extends AbstractListController<UserDto, UserCrite
             'Password changed': this.criteria.passwordChanged ? (this.criteria.passwordChanged ? environment.trueValue : environment.falseValue) : environment.emptyForExport,
         }];
     }
+
+    public async edituser(element: UserDto) {
+        this.item = element ;
+            this.service.edit().subscribe(res => {
+                this.item = res;
+                console.log(res);
+                this.editDialog = true;
+            });
+
+    }
+
 }

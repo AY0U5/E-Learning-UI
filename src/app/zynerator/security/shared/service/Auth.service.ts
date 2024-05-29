@@ -27,6 +27,7 @@ export class AuthService {
     public error: string = null;
 
 
+
     constructor(private http: HttpClient, private tokenService: TokenService, private router: Router, private messageService: MessageService ,private userService :UserService) {
     }
     public get itemuser(): UserDto {
@@ -84,7 +85,8 @@ export class AuthService {
                         detail: 'Method Not Allowed: Please check your request method'
                     });
                 } else {
-                    this.messageService.add({severity: 'error', summary: 'Error ' + error.status, detail: 'An unexpected error occurred'});
+                    // this.messageService.add({severity: 'error', summary: 'Error ' + error.status, detail: 'Le administrateur ne vous donne pas encore l accès. Lisez votre message dans le contact. '});
+                    this.messageService.add({severity: 'error', summary: 'Error ', detail: 'Le administrateur ne vous donne pas encore l accès. Lisez votre message dans le contact. '});
                 }
             }
         );
@@ -139,6 +141,7 @@ export class AuthService {
         this._loggedIn.next(false);
         this._authenticatedUser = new UserDto();
         this.router.navigate(['']);
+        localStorage.clear();
     }
 
     get user(): UserDto {
