@@ -28,9 +28,9 @@
     
                                 <div class="field col-12 md:col-6">
                                     <div >
-                                        <p-dropdown appendTo="body" [options]="sections" [(ngModel)]="item.section" id="quizsection" [filter]="true" filterMatchMode="contains"
+                                        <p-dropdown appendTo="body" [options]="itemsSec" [(ngModel)]="item.section" id="quizsection" [filter]="true" filterMatchMode="contains"
                                                     [style]="{ 'border': 'none', 'border-bottom': '2px solid transparent', 'box-shadow': 'none', 'width': '100%' , 'font-size': '1.2rem'}"
-                                                    [showClear]="true" optionLabel="code" placeholder="{{ 'quiz.section' | translate }}"
+                                                    [showClear]="true" optionLabel="libelle" placeholder="{{ 'quiz.section' | translate }}"
                                                   >
                                         </p-dropdown>
                                     </div>

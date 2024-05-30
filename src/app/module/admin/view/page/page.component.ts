@@ -13,6 +13,8 @@ import { UserService } from 'src/app/zynerator/security/shared/service/User.serv
 import { UserDto } from 'src/app/zynerator/security/shared/model/User.model';
 import {AbstractListController} from "../../../../zynerator/controller/AbstractListController";
 import {UserCriteria} from "../../../../zynerator/security/shared/criteria/UserCriteria.model";
+import { QuizDto } from 'src/app/shared/model/quiz/Quiz.model';
+import { QuizAdminService } from 'src/app/shared/service/admin/quiz/QuizAdmin.service';
 
 @Component({
   selector: 'app-page',
@@ -26,6 +28,8 @@ export class PageComponent extends AbstractListController<UserDto, UserCriteria,
     profs: Array<ProfDto> = [];
     students: Array<EtudiantDto>= [];
     admins: Array<UserDto>= [];
+    Quiss: Array<QuizDto> = [];
+
 
     ngOnInit() {
      /*   this.findAllCours()
@@ -48,7 +52,7 @@ export class PageComponent extends AbstractListController<UserDto, UserCriteria,
         this.findAllCours();
         this.findAllParcours();
         this.findAllSections();
-
+        this.findAllQuiss();
 
 
     }
@@ -58,7 +62,8 @@ export class PageComponent extends AbstractListController<UserDto, UserCriteria,
                  private sectionService: SectionAdminService,
                  private profService: ProfAdminService,
                  private studentService: EtudiantAdminService,
-                 private userservice: UserService
+                 private userservice: UserService,
+                 private quisService: QuizAdminService
     ){
         super(userservice);
 
@@ -78,6 +83,9 @@ export class PageComponent extends AbstractListController<UserDto, UserCriteria,
     }
     public findAllStudent(){
         return this.studentService.findAll().subscribe(data => this.students = data)
+    }
+    public findAllQuiss(){
+        return this.quisService.findAll().subscribe(data => this.Quiss = data)
     }
     /*public findAllAdmin(){
         return this.userservice.findAll().subscribe(data => this.userservice = data)

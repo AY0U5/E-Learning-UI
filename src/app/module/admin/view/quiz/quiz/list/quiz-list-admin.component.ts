@@ -34,8 +34,13 @@ export class QuizListAdminComponent extends AbstractListController<QuizDto, Quiz
 
 
     sections: Array<SectionDto>;
+    get itemsSec(): Array<SectionDto> {
+        return this.sectionService.items;
+    }
 
-
+    set itemsSec(value: Array<SectionDto>) {
+        this.sectionService.items = value;
+    }
 
     //
 

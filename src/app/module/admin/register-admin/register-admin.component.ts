@@ -42,6 +42,7 @@ export class RegisterAdminComponent implements OnInit {
     this.user.email = email;
 	this.user.roleUsers = [roleUser] ;
     this.authService.registerAdmin();
+    alert("Attender la confirmation d'administrateur")
   }
 
   get user(): UserDto {

@@ -9,7 +9,7 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { RegisterAdminComponent } from './register-admin/register-admin.component';
 import {PageComponent} from "./view/page/page.component";
 import {TablesComponent} from "./view/tables/tables.component";
-import {AboutComponent} from "./view/about/about.component";
+import {AboutComponent} from "./view/about/about.component"
 
 @NgModule({
     imports: [
@@ -51,7 +51,7 @@ import {AboutComponent} from "./view/about/about.component";
                         {
                             path: 'about',
                             component: AboutComponent ,
-                            canActivate: [AuthGuard]
+                            canActivate: [AuthGuard],
                         },
                         {
                             path: 'quiz',

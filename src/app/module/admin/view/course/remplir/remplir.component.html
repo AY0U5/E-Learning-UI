@@ -14,7 +14,7 @@
     <div class="liiiiiiste mt-8 col col-3">
         <ul
              *ngFor="let cat of sections; let i = index"
-             [ngStyle]="{'background-color': i === selectedCardIndex? '#ff752e' : 'white', color: i === selectedCardIndex? 'white' : 'black'}"
+             [ngStyle]="{'background-color': i === selectedCardIndex? '#ff8c53' : 'white', color: i === selectedCardIndex? 'white' : 'black'}"
              (click)="selectCard(cat,i)">
             <li>
                 {{cat.numeroOrder}}

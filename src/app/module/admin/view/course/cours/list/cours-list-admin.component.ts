@@ -106,6 +106,7 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             }
         });
 
+
     }
 
 
@@ -248,9 +249,8 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
             }
         });
 
-
-        this.itemsCours = this.filteredItemsCours;
-        this.showSection;
+        this.showCours;
+        this.itemsCours;
     }
 
 

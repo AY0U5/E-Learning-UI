@@ -9,52 +9,42 @@
                 </button>
             </div>
             <div class="input-group">
-                <input type="search" placeholder="Search Data..." (input)="dt.filterGlobal($event.target.value , 'contains')">
+                <input type="search" class="pi pi-plus" placeholder="Search Data..." (input)="dt.filterGlobal($event.target.value , 'contains')">
                 <i class="pi pi-search"></i>
             </div>
         </div>
         <h2 style="text-align: center;">Cours</h2>
     </section>
     <section class="table__body">
-
-            <p-table #dt [value]="itemsCours"  class="p-datatable-thead p-datatable-tbody"
-                    [globalFilterFields]="['code', 'libelle', 'image', 'etatCourslibelle', 'parcourslibelle', 'nombreSectionFinalise', 'nombreSectionEnCours', 'nombreLinkEnCours', 'nombreLinkFinalise', 'numeroOrder','nombreSection']" [(selection)]="selections"
-            >
-                <ng-template  pTemplate="header">
-
-
-                    <tr >
-                        <th>Cours</th>
-                        <th>Etat</th>
-                        <th>N° section</th>
-                        <th>Action</th>
-                    </tr>
-
-                </ng-template>
-                <ng-template *ngIf="!showCours"  pTemplate="body" let-element>
-
-                    <tr>
-                        <td>  {{element.libelle}} </td>
-                        <td> {{element.etatCours?.libelle}} </td>
-                        <td>
-                            <p class="status delivered">{{element.nombreSection}}</p>
-                        </td>
-
-                        <td>
-                            <div style="display: flex; flex-direction: row;">
-                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(element)"  *ngIf="editActionIsValid"></button>
+        <p-table #dt [value]="itemsCours"  class="scroll p-datatable-thead p-datatable-tbody"  scrollable="true" scrollHeight="500px"
+                    [globalFilterFields]="['code', 'libelle', 'image', 'etatCourslibelle', 'parcourslibelle', 'nombreSectionFinalise', 'nombreSectionEnCours', 'nombreLinkEnCours', 'nombreLinkFinalise', 'numeroOrder','nombreSection']" [(selection)]="selections">
+            <ng-template  pTemplate="header">
+                <tr>
+                    <th>Cours</th>
+                    <th>Etat</th>
+                    <th>N° section</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template  pTemplate="body" let-element>
+                <tr *ngIf="showCours">
+                    <td>  {{element.libelle}} </td>
+                    <td> {{element.etatCours?.libelle}} </td>
+                    <td>
+                        <p class="status delivered">{{element.nombreSection}}</p>
+                    </td>
+                    <td>
+                        <div style="display: flex; flex-direction: row;">
+                            <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-info mr-2" (click)="editCours(element)"  *ngIf="editActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteCours(element)"  *ngIf="deleteActionIsValid"></button>
                             <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2"  (click)="viewSection(element)"></button>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-
-
-            </p-table>
-
-            </section>
-            </main>
-        <app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
-        <app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
-        <app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </section>
+</main>
+<app-cours-create-admin  *ngIf="createDialog  && createActionIsValid"></app-cours-create-admin>
+<app-cours-edit-admin  *ngIf="editDialog  && editActionIsValid"></app-cours-edit-admin>
+<app-cours-view-admin  *ngIf="viewDialog  && viewActionIsValid"></app-cours-view-admin>
