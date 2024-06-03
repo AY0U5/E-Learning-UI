@@ -177,8 +177,8 @@ import { ServComponent } from './view/serv/serv.component';
         SecurityModule,
         SecurityRoutingModule,
         AppLayoutModule,
-        AppModule
-    ],
+        AppModule,
+  ],
   exports: [
   LoginAdminComponent,
   RegisterAdminComponent,

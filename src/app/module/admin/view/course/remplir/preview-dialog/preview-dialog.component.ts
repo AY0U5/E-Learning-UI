@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 @Component({
     selector: 'app-preview-dialog',
     templateUrl: './preview-dialog.component.html',
-    styleUrls: ['./preview-dialog.component.scss'],
+    styleUrls: ['./preview-dialog.component.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class PreviewDialogComponent implements OnInit {
@@ -24,6 +24,11 @@ export class PreviewDialogComponent implements OnInit {
     okVideo: boolean = false;
     urlImage: string;
     urlVideo: string;
+
+    public editorConfig = {
+        
+        height: '29rem'
+    };
 
     constructor(
         private sectionService: SectionAdminService,

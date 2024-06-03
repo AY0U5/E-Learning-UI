@@ -176,7 +176,7 @@ export class CourseAdminModule {
             'outdent', 'indent', '|',
             'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo'
         ],
-        height: '30rem'
+        height: '80rem'
     };
 
     config: AngularEditorConfig = {

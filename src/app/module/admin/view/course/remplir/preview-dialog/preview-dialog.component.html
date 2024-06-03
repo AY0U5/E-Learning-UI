@@ -1,8 +1,8 @@
 <div>
-    <ckeditor [(ngModel)]="item.contenu" style="max-height: 60vh;"></ckeditor>
-    <p-dialog [(visible)]="okPreview" [style]="{width: '60vw'}">
+    <ckeditor [(ngModel)]="item.contenu" [config]="editorConfig" style="min-height: 80rem;"></ckeditor>
+    <p-dialog [(visible)]="okPreview" [style]="{width: '80vw',height: '80vw'}">
         <div class="flex">
-            <div class="col col-8 cont">
+            <div class="col col-8 show cont">
                 <div  *ngFor="let cont of items; let j=index">
                     <div class="flex flex-column" id="contentWithoutTags" *ngIf="j === selectedCardIndexP">
                         <div [innerHTML]="cont.contenu | safeHtml"></div>
@@ -11,13 +11,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col col-4 catre-container">
-                <div class="m-3 catre"
-                     *ngFor="let cat of items; let i = index"
-                     [ngStyle]="{'background-color': i === selectedCardIndexP? 'rgb(255,111,101)' : 'white'}"
-                     (click)="selectCardP(cat,i)">
-                    <span class="col col-2">{{cat.numeroOrder}}</span>
-                    <span class="col col-5">{{cat.categorieSection.libelle}}</span>
+            <div class="col col-4">
+                <div class="catre-container">
+                    <div class="m-3 catre"
+                         *ngFor="let cat of items; let i = index"
+                         [ngStyle]="{'background-color': i === selectedCardIndexP? '#ff8c53' : 'white'}"
+                         (click)="selectCardP(cat,i)">
+                        <span class="col col-2">{{cat.numeroOrder}}</span>
+                        <span class="col col-5">{{cat.libelle}}</span>
+                    </div>
                 </div>
                 <div class="flex mt-3">
                     <button pButton (click)="prevCardP()" class="col col-5 p-button-danger" label="Previous"></button>

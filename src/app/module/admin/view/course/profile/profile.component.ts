@@ -10,6 +10,9 @@ import {UserService} from "../../../../../zynerator/security/shared/service/User
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+    okEmail : boolean = false
+    okPhone : boolean = false
+    okInsta : boolean = false
 
     public curUser = {
         credentialsNonExpired: null,
@@ -24,6 +27,16 @@ export class ProfileComponent implements OnInit {
         password: null,
         passwordChanged: null
     };
+
+    emailOK(){
+        this.okEmail = true
+    }
+    phoneOK(){
+        this.okEmail = true
+    }
+    instaOK(){
+        this.okEmail = true
+    }
 
     constructor(private tokenService: TokenService, private authService: AuthService, private userService: UserService) {}
 

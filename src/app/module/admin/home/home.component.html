@@ -1,5 +1,5 @@
 <main>
-    <div class="hero">
+    <div id="home" class="hero">
         <div class="nav" id="navbar">
             <nav>
                 <a class="pict" href="#">
@@ -7,19 +7,19 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="/">Home</a>
+                        <a href="#hero">Home</a>
                     </li>
                     <li>
-                        <a href="#">Free Trial</a>
+                        <a href="#free">Free Trial</a>
                     </li>
                     <li>
-                        <a href="#">Cours</a>
+                        <a href="#courses">Cours</a>
                     </li>
                     <li>
                         <a href="#contact">Contact</a>
                     </li>
                     <li>
-                        <a href="/admin/about">About us</a>
+                        <a href="#about">About us</a>
                     </li>
                 </ul>
                 <a class="button" type="button" href="admin/login">
@@ -36,17 +36,17 @@
         </div>
     </div>
     <div class="wrap">
-        <div class="section content content--sticky content--grid bg-1">
+        <section id="courses" class="section content content--sticky content--grid bg-1">
             <app-serv></app-serv>
-        </div>
-        <div id="contact" class="section con content content--sticky content--grid bg-1">
+        </section>
+        <section id="contact" class="section con content content--sticky content--grid bg-1">
             <app-contact></app-contact>
-        </div>
-        <div class="section tr content content--sticky content--grid bg-1">
+        </section>
+        <section id="free" class="section tr content content--sticky content--grid bg-1">
             <app-trialhome></app-trialhome>
-        </div>
+        </section>
     </div>
-    <div class="content content--highlight content--outro">
+    <section id="about" class="content content--highlight content--outro">
         <h2 class="titl">About Us</h2>
         <p class="text-large">
             EngFlexy is the first interactive English learning platform in the Arab world(100% online).EngFlexy’s mission is to simplify and facilitate access to English language learning and to build an educational institution that inspires.
@@ -54,7 +54,7 @@
                 For More
             </a>
         </p>
-    </div>
+    </section>
 </main>
 
 

@@ -1,36 +1,39 @@
 <p-toast></p-toast>
 <main class="table" id="customers_table">
     <section class="table__header">
-        <div class="buttons">
-            <button pButton class="new" icon="pi pi-plus" (click)="openCreate('User')" *ngIf="createActionIsValid">
-                <span class="button-label">{{ 'new' | translate }}</span>
-            </button>
-        </div>
-        <div class="input-group">
-            <input type="search" placeholder="Search Data...">
-            <i class="pi pi-search"></i>
+        <div class="top">
+            <div class="buttons">
+                <button pButton class="new" icon="pi pi-plus" (click)="openCreate('User')" *ngIf="createActionIsValid">
+                    <span class="button-label">{{ 'new' | translate }}</span>
+                </button>
+            </div>
+            <div class="input-group">
+                <input type="search" placeholder="Search Data..." (input)="dt.filterGlobal($event.target.value , 'contains')">
+                <i class="pi pi-search"></i>
+            </div>
         </div>
     </section>
     <section class="table__body">
-        <table>
-            <thead>
+        <p-table #dt [value]="items" class="p-datatable-thead p-datatable-tbody"  scrollable="true" scrollHeight="500px"
+                 [globalFilterFields]="['code', 'libelle', 'urlImage', 'urlImage2', 'urlImage3', 'urlVideo', 'contenu', 'questions', 'indicationProf', 'numeroOrder', 'categorieSectioncode', 'courslibelle', 'url', 'content','etatSectionlibelle']" [(selection)]="selections">
+            <ng-template pTemplate="header">
                 <tr>
                     <th>username</th>
                     <th>email</th>
                     <th>Actions</th>
                 </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let element of items">
+            </ng-template>
+            <ng-template pTemplate="body" let-element>
+                <tr>
                     <td>{{element.username}}</td>
-                    <td>{{element.email}}</td>
-                    <td>
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="edituser(element)" *ngIf="editActionIsValid"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)" *ngIf="deleteActionIsValid"></button>
-                    </td>
+                        <td>{{element.email}}</td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="edituser(element)" *ngIf="editActionIsValid"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="delete(element)" *ngIf="deleteActionIsValid"></button>
+                        </td>
                 </tr>
-            </tbody>
-        </table>
+            </ng-template>
+        </p-table>
     </section>
 </main>
 

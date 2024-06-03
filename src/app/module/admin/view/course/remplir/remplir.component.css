@@ -59,4 +59,6 @@ ul li:hover{
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
+    overflow-y: auto;
+    height: 41rem;
 }

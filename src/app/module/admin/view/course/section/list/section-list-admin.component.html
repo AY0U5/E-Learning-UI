@@ -20,12 +20,12 @@
         <h2 style="text-align: center;">Section</h2>
     </section>
     <section class="table__body">
-        <p-table #dt [value]="itemsSections" class="p-datatable-thead p-datatable-tbody"
+        <p-table #dt [value]="itemsSections" class="p-datatable-thead p-datatable-tbody"  scrollable="true" scrollHeight="500px"
                  [globalFilterFields]="['code', 'libelle', 'urlImage', 'urlImage2', 'urlImage3', 'urlVideo', 'contenu', 'questions', 'indicationProf', 'numeroOrder', 'categorieSectioncode', 'courslibelle', 'url', 'content','etatSectionlibelle']" [(selection)]="selections">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Section</th>
-                    <th>Etat cours</th>
+                    <th>Etat</th>
                     <th>Action</th>
                 </tr>
             </ng-template>

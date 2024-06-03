@@ -343,44 +343,36 @@
     </section>
     <section class="table__body">
 
-        <p-table #dt [value]="items"  class="p-datatable-thead p-datatable-tbody"
-                 [globalFilterFields]="['datePublication', 'dateCreation', 'code', 'libelle', 'numeroOrder', 'nombreCours', 'centreref','etatParcourslibelle']" [(selection)]="selections"
-        >
-            <ng-template  pTemplate="header"	>
+        <p-table #dt [value]="items" class="p-datatable-thead p-datatable-tbody"
+    [globalFilterFields]="['datePublication', 'dateCreation', 'code', 'libelle', 'numeroOrder', 'nombreCours', 'centreref','etatParcourslibelle']"
+    [(selection)]="selections"
+    scrollable="true" scrollHeight="500px">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Parcours</th>
+            <th>Etat</th>
+            <th>N° Cours</th>
+            <th>Action</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-element>
+        <tr>
+            <td>{{element.libelle}}</td>
+            <td>{{element.etatParcours?.libelle}}</td>
+            <td>
+                <p class="status delivered">{{element.nombreCours}}</p>
+            </td>
+            <td>
+                <div style="display: flex; flex-direction: row;">
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="edit(element)" *ngIf="editActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deletepa(element)" *ngIf="deleteActionIsValid"></button>
+                    <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(element)"></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
 
-
-                <tr>
-                    <th>Parcours</th>
-                    <th>Etat cours</th>
-                    <th>N° Cours</th>
-                    <th>Action</th>
-                </tr>
-
-            </ng-template>
-            <ng-template  pTemplate="body" let-element>
-
-                <tr  >
-                    <!--<td>
-                        <p-tableCheckbox [value]="element"></p-tableCheckbox>
-                    </td>-->
-
-                    <td>{{element.libelle}}</td>
-                    <td>{{element.etatParcours?.libelle}}</td>
-                    <td>
-                        <p class="status delivered">{{element.nombreCours}}</p>
-                    </td>
-                    <td>
-                        <div  style="display: flex; flex-direction: row;">
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="edit(element)" *ngIf="editActionIsValid"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deletepa(element)" *ngIf="deleteActionIsValid"></button>
-                        <button pButton pRipple icon="pi pi-arrow-circle-right" class="p-button-rounded p-button-raised p-button-warning mr-2" (click)="viewCourss(element)"></button>
-                        </div>
-                    </td>
-                </tr>
-            </ng-template>
-
-
-        </p-table>
 
     </section>
 </main>
