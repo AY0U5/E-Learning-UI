@@ -249,8 +249,11 @@ export class CoursListAdminComponent extends AbstractListController<CoursDto, Co
         });
 
 
-        this.itemsCours = this.filteredItemsCours;
+        // this.itemsCours = this.filteredItemsCours;
+        this.showCours;
         this.showSection;
+        this.itemsCours;
+console.log( this.itemsCours);
     }
 
 

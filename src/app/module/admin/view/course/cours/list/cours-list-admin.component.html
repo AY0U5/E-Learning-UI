@@ -31,9 +31,9 @@
                     </tr>
 
                 </ng-template>
-                <ng-template *ngIf="!showCours"  pTemplate="body" let-element>
+                <ng-template   pTemplate="body" let-element>
 
-                    <tr>
+                    <tr *ngIf="showCours">
                         <td>  {{element.libelle}} </td>
                         <td> {{element.etatCours?.libelle}} </td>
                         <td>

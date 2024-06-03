@@ -104,6 +104,7 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
             this.viewcoursOk = true;
             // this.itemParcour = dto;
             this.itemParcour=this.item;
+            console.log(this.itemsCours);
             // console.log(this.service.item);
         });
 
@@ -157,11 +158,11 @@ export class ParcoursListAdminComponent extends AbstractListController<ParcoursD
 
             }
         });
-        this.parcoursService.findAll().subscribe((data: ParcoursDto[]) => {
+        /*this.parcoursService.findAll().subscribe((data: ParcoursDto[]) => {
             this.data = data;
             // Initialize filteredItems with the same data as items
             this.filteredItems = [...this.data];
-        });
+        });*/
 
     }
 

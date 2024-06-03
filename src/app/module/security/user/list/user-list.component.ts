@@ -112,7 +112,7 @@ export class UserListComponent extends AbstractListController<UserDto, UserCrite
         }];
     }
 
-    public async edituser(element: UserDto) {
+   /* public async edituser(element: UserDto) {
         this.item = element ;
             this.service.edit().subscribe(res => {
                 this.item = res;
@@ -121,5 +121,13 @@ export class UserListComponent extends AbstractListController<UserDto, UserCrite
             });
 
     }
+*/
+    public async edituser(dto: UserDto) {
+        this.service.findByIdWithAssociatedList(dto).subscribe(res => {
+            this.item = res;
+            console.log(res);
+            this.editDialog = true;
+        });
 
+    }
 }
